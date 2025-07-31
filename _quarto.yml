@@ -1,0 +1,51 @@
+project:
+  type: website
+  output-dir: docs/
+
+website:
+  title: "IOC"
+  favicon: images/logoInforBio_fond_blanc.png
+  
+  page-footer: 
+    right: "This page is built with [Quarto](https://quarto.org/)"
+    left: "&copy; Code: MIT License | Content: CC BY-NC 4.0 [InforBio]"
+    
+  navbar:
+    logo: images/logoInforBio_fond_blanc_small.png
+    # right:
+    #   - href: index.qmd
+    #     text: "About IOC"
+    left: 
+      - text: "Calendar & Info"
+        menu: 
+          - text: "IOC-R Info"
+            href: ioc_r_info.qmd
+          - text: "IOC-scRNAseq Info"
+            href: ioc_scrnaseq_info.qmd
+      - text: "IOC-R"
+        href: ioc_r_toc.qmd
+        # menu: 
+        #   - text: "Week 1 - Slides"
+        #     href: docs/r_slides_week01.html
+        #   - text: "Week 1 - Exercises"
+        #     href: r_week1.qmd
+      - text: "IOC-scRNAseq"
+        href: ioc_scrnaseq.qmd
+      # - text: "IOC-bulk RNAseq"
+      #   href: ioc_bulk_rnaseq.qmd
+      # - text: "News"
+      #   href: news.qmd
+      - icon: github
+        href: https://github.com/InforBio/IOC
+
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+  # pdf:
+  #   toc: true
+    
+
+
+

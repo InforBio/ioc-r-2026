@@ -1,0 +1,325 @@
+---
+title: "Week 7 - Hands-On Examples"
+format: 
+  html: default
+  # pdf: default
+date: "2025-03-04"
+date-format: " "
+categories: 
+  - week07
+  - exercise
+editor_options: 
+  chunk_output_type: console
+---
+
+The R script is available here:
+[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week07/r_w07_exos.R)
+
+
+## Goals
+
+- Use `apply()` for column-wise and row-wise operations (*e.g.*, calculation variance of each rows or columns)
+- Leverage `lapply()` for list-based computations (*e.g.*, repeating generation of plot for a list of genes)
+
+## The `apply()` Function
+
+1. Import the gene expression data file ([read-counts.csv](../exos_data/read-counts.csv)) into RStudio and name it as `counts`.
+
+```{r}
+counts <- read.csv("../exos_data/read-counts.csv", header = TRUE)
+dim(counts)
+counts[1:5, 1:5]
+```
+
+
+2. Calculate following metrics for each row (genes) and
+column (samples) using the `apply()` function:
+
+- Mean (`mean()`)
+- Variance (`var()`)
+- Minimum and maximum (`min()`, `max()` or use `range()`)
+
+What is the expected length or dimension of the outputs?
+
+**Attention**: exclude the 1st column for the calculation.
+
+```{r}
+## for rows
+apply(X = counts[, -1], MARGIN = 1, FUN = var)
+apply(counts[, -1], 1, mean)
+apply(counts[, -1], 1, min)
+apply(counts[, -1], 1, max)
+apply(counts[, -1], 1, range)
+
+## for columns
+apply(X = counts[, -1], MARGIN = 2, FUN = var)
+apply(counts[, -1], 2, mean)
+apply(counts[, -1], 2, min)
+apply(counts[, -1], 2, max)
+apply(counts[, -1], 2, range)
+```
+
+
+## The `lapply()` Function
+
+### Check GC Content
+
+The GC content is the percentage of guanine (G) and cytosine (C) in a DNA or RNA sequence.
+This measure is one of the metrics which can be used in the sequencing quality control
+(*e.g.*, detects contamination).
+
+Here we will use a small example to see how this metric is calculated.
+
+```{r}
+# Generate a list of DNA sequences
+dna_sequences <- list(
+  seq1 = "ATGCGTAGCTAGGCTATCCGA",
+  seq2 = "CGCGTTAGGCAAGTGTTACG",
+  seq3 = "GGTACGATCGATGCGCGTAA",
+  seq4 = "TTTAAACCCGGGATATAAAA"
+)
+
+# the 1st DNA sequence
+dna_sequences[["seq1"]]
+```
+
+1. Split the 1st DNA sequence into individual bases using the function `strsplit()`. (See `?strsplit`)
+
+```{r}
+seq1 <- strsplit(dna_sequences[["seq1"]], split = "")
+seq1
+```
+
+2. Convert the results of split to a vector.
+
+```{r}
+seq1_base <- unlist(seq1)
+seq1_base
+```
+
+3. Count the number of G and C bases among all bases.
+
+```{r}
+seq1_base %in% c("G", "C")
+
+gc_count <- sum(seq1_base %in% c("G", "C"))
+gc_count
+```
+
+4. Calculate the percentage of GC in the whole sequence.
+
+```{r}
+gc_percentage <- gc_count / length(seq1_base) * 100
+gc_percentage
+```
+
+5. Write a function which take one sequence as input to calculate the GC content.
+Test your function on the 1st sequence of the list.
+
+```{r}
+# Function to calculate GC content
+gc_content <- function(sequence) {
+  seq_base <- unlist(strsplit(sequence, ""))  # Split sequence into individual bases
+  gc_count <- sum(seq_base %in% c("G", "C"))  # Count G and C bases
+  gc_percentage <- (gc_count / length(seq_base)) * 100  # Calculate percentage
+  return(gc_percentage)
+}
+
+gc_content(dna_sequences[["seq1"]])
+```
+
+6. Use `lapply()` or `sapply()` to apply the created function to the list of sequences.
+
+```{r}
+# Apply function to all sequences
+lapply(dna_sequences, gc_content)
+sapply(dna_sequences, gc_content)
+```
+
+
+### Automate Tasks for a List of Genes
+
+Based on differential gene expression analysis (SET1 *vs.* WT) results,
+draw the boxplot of for the top 3 genes with the smallest adjusted p-value,
+add individual data points on the boxplot and
+show p-value above the boxes with horizontal bar
+(with the help of the {[ggsignif](https://const-ae.github.io/ggsignif/)} pacakge).
+
+
+1. Import the differential gene expression analysis (SET1 *vs.* WT) results file
+[toy_DEanalysis.csv](../exos_data/toy_DEanalysis.csv) into RStudio and name it as `de_res`.
+
+```{r}
+# Import DE results
+de_res <- read.csv("../exos_data/toy_DEanalysis.csv", header = TRUE)
+head(de_res)
+```
+
+2. Extract the genes of interest, *i.e.*, 3 genes with the smallest adjusted p-value.
+
+```{r}
+# Order data by adjusted pvalue
+de_res <- de_res[order(de_res$padj), ]
+head(de_res)
+
+# Extract the first 3 gene names
+target_genes <- de_res[1:3, "gene_name"]
+target_genes
+
+# alternatives
+# target_genes <- de_res[order(de_res$padj), ][1:3, "gene_name"]
+# target_genes <- de_res[order(de_res$padj), ]$gene_name[1:3]
+```
+
+3. Based on the `counts` data, build data frame for the *LOH1* gene for the boxplot.
+This data frame should contain:
+  - a column of counts for SET1 and WT samples,
+  - and a column for corresponding the sample group.
+
+Attention: In order to **avoid hardcoding** the gene name or sample name, use a variable instead.
+
+```{r}
+# create a variable to store gene name
+my_gene <- "LOH1"
+# even better
+my_gene <- target_genes[1]
+
+# create another variable for the number of sample
+1:10 # old way
+
+n_sample <- 10
+seq(n_sample)
+seq_len(n_sample) # safer, take only non negative number
+
+gg_df <- data.frame(
+  expr_val = c(
+    unlist(counts[counts$Feature == my_gene, paste0("WT.", seq_len(n_sample))]),
+    unlist(counts[counts$Feature == my_gene, paste0("SET1.", seq_len(n_sample))])
+  ),
+  group = factor(
+    rep(c("WT", "SET1"), each = n_sample),
+    levels = c("WT", "SET1")
+  )
+)
+head(gg_df)
+
+## alternative
+# gg_df <- as.data.frame(t(
+#   counts[
+#     counts$Feature == my_gene,
+#     paste0(
+#       rep(c("WT.", "SET1."), each = n_sample),
+#       seq_len(n_sample)
+#     )
+#   ]
+# ))
+# colnames(gg_df) <- "expr_val"
+# gg_df$group <- factor(rep(c("WT", "SET1"), each = n_sample), levels = c("WT", "SET1"))
+## or
+# gg_df <- data.frame(
+#   expr_val = unlist(
+#     counts[
+#       counts$Feature == my_gene,
+#       paste0(
+#         rep(c("WT.", "SET1."), each = n_sample),
+#         seq_len(n_sample)
+#       )
+#     ]
+#   ),
+#   group = factor(
+#     rep(c("WT", "SET1"), each = n_sample),
+#     levels = c("WT", "SET1")
+#   )
+# )
+```
+
+4. Draw boxplot and show the individual data points on the same figure.
+
+```{r}
+library(ggplot2)
+
+p <- ggplot(gg_df, aes(x = group, y = expr_val)) +
+  geom_boxplot() +
+  geom_point(
+    position = position_jitter(width = 0.3, height = 0, seed = 1)
+  ) +
+  labs(x = NULL, y = "Expression Counts", title = my_gene) +
+  theme_bw()
+
+p
+```
+
+5. Add p-value with a horizontal bar on the figure:
+  - install the [`ggsignif`](https://const-ae.github.io/ggsignif/) package,
+  - use the function `geom_signif()` to add a layer to show p-value on the figure.
+
+Check the documentation of `geom_signif()`, what do we need to add p-value?
+
+```{r}
+# install.packages("ggsignif")
+library(ggsignif)
+
+p + geom_signif(
+  comparisons = list(c("WT", "SET1")),
+  annotations = de_res$padj[de_res$gene_name == my_gene] # show p-value as is
+)
+
+# improve p-value annotation
+p <- p + geom_signif(
+  comparisons = list(c("WT", "SET1")),
+  annotations = signif( # round p-value
+    de_res$padj[de_res$gene_name == my_gene],
+    digits = 3
+  )
+)
+
+p
+```
+
+6. Generalise previous steps with a function which take the name of gene as input.
+Test the function with another gene.
+
+```{r}
+draw_boxplot <- function(gene_i) {
+  ## build data frame for the plot
+  gg_df <- data.frame(
+    expr_val = c(
+      unlist(counts[counts$Feature == gene_i, paste0("WT.", 1:10)]),
+      unlist(counts[counts$Feature == gene_i, paste0("SET1.", 1:10)])
+    ),
+    group = factor(rep(c("WT", "SET1"), each = 10), levels = c("WT", "SET1"))
+  )
+
+  ## draw figure
+  p <- ggplot(gg_df, aes(x = group, y = expr_val)) +
+    geom_boxplot() +
+    geom_point(
+      position = position_jitter(width = 0.3, height = 0, seed = 1)
+    ) +
+    labs(x = NULL, y = "Expression Counts", title = gene_i) +
+    geom_signif(
+      comparisons = list(c("WT", "SET1")),
+      annotations = signif(
+        de_res$padj[de_res$gene_name == gene_i],
+        digits = 3
+      )
+    ) +
+    theme_bw()
+
+  return(p)
+}
+
+draw_boxplot(target_genes[2])
+```
+
+7. Apply the function to the targeted genes.
+
+```{r}
+lapply(target_genes, draw_boxplot)
+```
+
+---
+
+#### Good job! 👏👏 You've leveled up in R! From basic functions to powerful apply techniques—keep exploring and practicing!
+
+

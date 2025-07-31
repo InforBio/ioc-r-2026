@@ -1,0 +1,230 @@
+---
+title: "Week 4 - Hands-On Examples"
+format: 
+  html: default
+  # pdf: default
+date: "2025-01-28"
+date-format: " "
+categories: 
+  - week04
+  - exercise
+editor_options: 
+  chunk_output_type: console
+---
+
+The R script is available here:
+[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week04/r_w04_exos.R)
+
+## Goals
+
+- Understand and use operators to filter data with precision.
+- Understand function's basic structure, learn to use new functions, write functions to automate tasks.
+
+## Import Data
+
+A gene-level differential expression (DE) analysis was performed to compare SET1 samples to WT samples using data from `read-counts.csv`.
+
+The analysis results are available via this [link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv).
+
+- Please donwload the result file and upload it to your data folder.
+- Import the data using the `read.csv()` function.
+(See the documentation with `?read.csv`) 
+Name the imported results `de_res`.
+
+```{r}
+de_res <- read.csv(
+  file = "../exos_data/toy_DEanalysis.csv",  # replace the path with your own
+  header = TRUE
+)
+```
+
+
+## Exercises
+
+1. Check the structure of `de_res` using an appropriate R function. What are the dimensions?
+
+```{r}
+str(de_res)
+```
+
+The result is a data frame with `r nrow(de_res)` rows and `r ncol(de_res)` columns.
+
+The result contains following columns:
+
+- `gene_name`: gene name
+- `baseMean`: mean of normalized counts for all samples
+- `log2FoldChange`: log2 fold change
+- `lfcSE`: standard error
+- `stat`: Wald statistic
+- `pvalue`: Wald test p-value
+- `padj`: adjusted p-values (Benjamini-Hochberg procedure)
+
+2. Filter the rows where the gene has a log2 fold change (`log2FoldChange`) greater than 0.5.
+
+```{r}
+de_res[de_res$log2FoldChange > 0.5, ]
+```
+
+3. Filter the rows where the gene has a log2 fold change smaller than -0.5.
+
+```{r}
+de_res[de_res$log2FoldChange < -0.5, ]
+```
+
+4. Filter the rows where the gene has a log2 fold change greater than 0.5 or smaller than -0.5.
+
+```{r}
+de_res[de_res$log2FoldChange > 0.5 | de_res$log2FoldChange < -0.5, ]
+
+## Bonus: we can test the absolute value of log2FoldChange to simplify condition
+abs(c(0.5, -0.5)) # how abs() works
+de_res[abs(de_res$log2FoldChange) > 0.5, ]
+```
+
+5. Filter the rows where the gene has a log2 fold change greater than 0.5 and adjusted p-value (`padj`) smaller than 0.05.
+
+```{r}
+de_res[de_res$log2FoldChange > 0.5 & de_res$padj < 0.05, ]
+```
+
+::: {.callout-tip title="Stats Time!"}
+**Multiple Tests Correction**
+
+<ul>
+<li>Why multiple testing is a problem?
+
+When performing multiple statistical tests,
+the probability of making at least one Type I error (false positive) increases
+with the number of tests.
+
+For instance, if we perform 100 independent tests with a significance level ($\alpha$) of 5%,
+the chance of incorrectly rejecting at least one null hypothesis is no longer 5%, but much higher. This is because the errors accumulate across the tests.
+
+If we do 100 tests simultaneously and set and use $\alpha$ at 0.05,
+the probability to do at least one error is:
+
+$$
+\begin{aligned}
+P(\text{at least 1 significant result by chance}) &= 1- P(\text{non significant results}) \\
+&= 1 – (1 - 0.05)^{100} \\
+&= 0.99
+\end{aligned}
+$$
+
+</li>
+
+<li>Multiple test correction
+
+To address this issue and control the overall Type I error rate,
+statistical corrections like the Bonferroni correction or
+False Discovery Rate (FDR) adjustments are commonly used in multiple testing scenarios.
+
+  <ul>
+    <li> **Bonferroni** correction: adjust the significance threshold ($\alpha$) to account for the number of tests (Ntest) being performed, *i.e.*, $\alpha_{adjusted}= \frac{\alpha}{\text{Ntest}}$</li>
+  <p>
+$$
+\begin{aligned}
+P(\text{at least 1 significant result by chance}) &= 1 – (1 - \frac{0.05}{100})^{100} \\
+&= 0.049
+\end{aligned}
+$$
+  </p>
+    <li> **FDR** (False discovery rate): control the proportion of false positive amongst all significant results, *e.g.*: Benjamini-Hochberg (BH) procedure.</li>
+  </ul>
+  </li>
+</ul>
+
+:::
+
+6. Extract results for these genes: *RNR1*, *PIR3*, *SRP68*.
+
+```{r}
+de_res[de_res$gene_name %in% c("RNR1", "PIR3", "SRP68"), ]
+```
+
+7. Use `ifelse()` to categorize genes. 
+Add a new column, `gene_category`, that assigns categories:
+
+- "up" if `log2FoldChange > 0.5`.
+- "down" if `log2FoldChange < -0.5`.
+- "neutral" otherwise.
+
+```{r}
+de_res[["gene_category"]] <- ifelse(
+  test = de_res[["log2FoldChange"]] > 0.5,
+  yes = "up",
+  no = ifelse(
+    test = de_res[["log2FoldChange"]] < -0.5,
+    yes = "down",
+    no = "neutral"
+  )
+)
+```
+
+8. Use `table()` to count the occurrences of each gene category.
+
+```{r}
+table(de_res[["gene_category"]])
+```
+
+
+## Bonus Questions
+
+9. Write a function to automate "de_res" filtering for genes
+with a p-value less than or equal to a custom cutoff.
+
+```{r}
+filter_p <- function(cutoff = 0.05) {
+  de_res[de_res$pvalue <= cutoff, ]
+}
+filter_p(0.01)
+filter_p(0.0001)
+```
+
+10. Based on the function created in question 9,
+modify the function to allow output ordered by any desired column in `de_res`.
+
+Hints: You need an extra parameter to specify the wanted column and
+another parameter to fix the cutoff.
+
+```{r}
+filter_col <- function(col = "pvalue", cutoff = 0.05) {
+  de_res[de_res[[col]] <= cutoff, ]
+}
+filter_col(cutoff = 0.0001)
+filter_col(col = "log2FoldChange", cutoff = -1)
+```
+
+
+::: {.callout-tip}
+**Ensembl Data Base**
+
+[Ensembl](http://www.ensembl.org/index.html)
+is a comprehensive genome database that provides detailed information on genes and
+their annotations across a wide range of species (humain, mouse, zebrafish, *etc.*).
+It integrates genomic data with tools like BioMart,
+making it easy to query and extract information such as gene names, coordinates, functions,
+and orthologs for research purposes.
+:::
+
+11. A yeast gene annotation file was obtained from the Ensembl data base.
+This file can be donwloaded [here](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/yeast_gene_annot.csv).
+
+Import the data and add the annotation to the `de_res` data frame using `merge()` function.
+
+```{r}
+annot <- read.csv(
+  "../exos_data/yeast_gene_annot.csv", # replace the path by your own
+  header = TRUE
+)
+
+de_res <- merge(de_res, annot, by = "gene_name", all.x = TRUE)
+head(de_res)
+```
+
+
+---
+
+#### Bravo! 🎉 You've learned the basics of R, and you're already making great progress, keep it up!
+
+

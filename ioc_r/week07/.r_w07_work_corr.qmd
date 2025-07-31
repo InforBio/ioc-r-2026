@@ -1,0 +1,201 @@
+---
+title: "Week 7 - Homework"
+format: 
+  html: default
+date: "2025-03-05"
+date-format: " "
+categories: 
+  - week07
+  - homework
+editor_options: 
+  chunk_output_type: console
+---
+
+Write your code directly in a Quarto document.
+
+To create a Quarto document: go to **File** -> **New File** -> **Quarto Document**, then click **Create**.
+
+
+## Ranking Genes
+
+To target the genes of interest, we can rank genes based on different metrics:
+
+- by p-values (raw or adjusted p-value)
+- by log2 fold change
+- by combinaison of p-value and log2 fold change (weighted sum),
+e.g., $0.7\times|log_{2}(\text{FC})|+0.3\times(-log_{10}(\text{p-value}))$
+
+1. Import the differential gene expression analysis (SET1 *vs.* WT) results file [toy_DEanalysis.csv](../exos_data/toy_DEanalysis.csv) into RStudio and name it as `de_res`.
+
+```{r}
+de_res <- read.csv("../exos_data/toy_DEanalysis.csv", header = TRUE)
+head(de_res)
+```
+
+2. With the help of the `rank()` function (`?rank`),
+rank genes based on the negative absolute (`abs()`) log2 fold change,
+so that larger absolute log2FC → higher rank (smaller rank number).
+Store the rank in a new column called `rank_lfc`.
+
+```{r}
+# Check how rank() works
+rank(c(10, 8, 7, 12, -6))
+```
+
+```{r}
+de_res$rank_lfc <- rank(-abs(de_res$log2FoldChange))
+
+de_res[de_res$rank_lfc %in% 1:3, ] # the top 3 log2FoldChange
+```
+
+3. With the help of the `rank()` function,
+rank genes based on the log10 of adjusted p-values (`pajd`),
+so that smaller adjusted p-value → higher rank.
+Store the rank in a new column called `rank_padj`.
+
+```{r}
+de_res$rank_padj <- rank(log10(de_res$padj))
+
+de_res[de_res$rank_padj <= 3, ] # the top 3 adjusted p-value
+```
+
+4. With the help of the `rank()` function,
+rank genes based on the weighted sum of absolute log2 fold change and -log10 adjusted p-value,
+with 0.7 the weight for log2 fold change and 0.3 the weight for -log10 adjusted p-value.
+Store the rank in a new column called `rand_weighted`.
+
+```{r}
+de_res$rand_weighted <- rank(-(0.7 * abs(de_res$log2FoldChange) + 0.3 * (-log10(de_res$padj))))
+
+de_res[de_res$rand_weighted %in% 1:3, ] # the top 3 weigthed sum
+```
+
+5. Identify the best and the worst rank for each gene.
+
+```{r}
+apply(
+  X = de_res[, c("rank_lfc", "rank_padj", "rand_weighted")],
+  MARGIN = 1, 
+  FUN = range
+)
+```
+
+6. Compute the average rank for each gene. Which gene has the smallest average rank?
+
+```{r}
+## Calculate the average rank across the 3 type of ranks
+avg_rank <- apply(
+  X = de_res[, c("rank_lfc", "rank_padj", "rand_weighted")],
+  MARGIN = 1, 
+  FUN = mean
+)
+avg_rank
+
+## Extract gene name based on average rank
+de_res$gene_name[which.min(avg_rank)]
+```
+
+## Add Significance Level on ggplot
+
+During the exercise, we've created a boxplot with p-value shown using the {`ggsignif`} package's function.
+We can also annotate the level of significance (ns, \*, \*\*, \*\*\*) instead of showing the p-value.
+
+Tasks:
+
+- Import gene expression data [counts.csv](../exos_data/read-counts.csv).
+- From the differential expression results ([toy_DEanalysis.csv](../exos_data/toy_DEanalysis.csv)):
+  - create a new column called `signif`, which shows:
+    - "***" if adjusted p-value < 0.001,
+    - "**" if adjusted p-value < 0.01,
+    - "*" if adjusted p-value < 0.05,
+    - "ns" if adjusted p-value >= 0.05;
+  - extract the 3 genes with the smallest adjusted p-value.
+- Build data frame for boxplot for the *PIR3* gene of WT and SET1 samples.
+- Draw boxplot with individual data points and significance level annotation (`geom_signif()`)
+- Generalise the previous steps to draw boxplot for any genes, *e.g.*: "TOS6"
+- Apply your function for a list of any genes from the "toy_DEanalysis" results.
+
+```{r}
+library(ggplot2)
+library(ggsignif)
+
+# import counts data
+counts <- read.csv("../exos_data/read-counts.csv", header = TRUE)
+
+# create a annotation for significance level according to p-value
+de_res$signif <- ifelse(
+  de_res$padj < 0.001, "***", ifelse(
+    de_res$padj < 0.01, "**", ifelse(
+      de_res$padj < 0.05, "*", "ns"
+    )
+  )
+)
+head(de_res)
+
+# extract gene of interest
+target_genes <- de_res[order(de_res$padj), ][1:3, "gene_name"]
+target_genes
+
+
+# data frame for PIR3 boxplot
+my_gene <- target_genes[2]
+nb_sample <- 10
+
+gg_df <- data.frame(
+  expr_val = c(
+    unlist(counts[counts$Feature == my_gene, paste0("WT.", seq_len(nb_sample))]),
+    unlist(counts[counts$Feature == my_gene, paste0("SET1.", seq_len(nb_sample))])
+  ),
+  group = factor(rep(c("WT", "SET1"), each = nb_sample), levels = c("WT", "SET1"))
+)
+
+
+# draw boxplot with individual points and singificance level annotation
+ggplot(gg_df, aes(x = group, y = expr_val)) +
+  geom_boxplot() +
+  geom_point(
+    position = position_jitter(width = 0.3, height = 0, seed = 1)
+  ) +
+  labs(x = NULL, y = "Expression Counts", title = my_gene) +
+  geom_signif(
+    comparisons = list(c("WT", "SET1")),
+    annotations = de_res$signif[de_res$gene_name == my_gene]
+  ) +
+  theme_bw()
+
+# generalisation
+draw_boxplot <- function(gene_i) {
+  ## build data frame for the plot
+  gg_df <- data.frame(
+    expr_val = c(
+      unlist(counts[counts$Feature == gene_i, paste0("WT.", 1:10)]),
+      unlist(counts[counts$Feature == gene_i, paste0("SET1.", 1:10)])
+    ),
+    group = factor(rep(c("WT", "SET1"), each = 10), levels = c("WT", "SET1"))
+  )
+
+  ## draw figure
+  p <- ggplot(gg_df, aes(x = group, y = expr_val)) +
+    geom_boxplot() +
+    geom_point(
+      position = position_jitter(width = 0.3, height = 0, seed = 1)
+    ) +
+    labs(x = NULL, y = "Expression Counts", title = gene_i) +
+    geom_signif(
+      comparisons = list(c("WT", "SET1")),
+      annotations = de_res$signif[de_res$gene_name == gene_i]
+    ) +
+    theme_bw()
+
+  return(p)
+}
+# test on TOS6
+draw_boxplot("TOS6")
+
+# test on other genes
+lapply(de_res$gene_name[20:22], draw_boxplot)
+```
+
+---
+
+Click "Render" to generate your Quarto report.

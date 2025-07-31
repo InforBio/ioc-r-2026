@@ -1,0 +1,88 @@
+---
+title: "Week 1 - Homework"
+format: 
+  html: default
+categories: 
+  - week01
+  - homework
+editor_options: 
+  chunk_output_type: console
+---
+
+Note: There may be other valid ways to solve this exercise — this is just one possible solution!
+
+1. Import the data file "**visceral_fat.csv**".
+
+  - First, download the `visceral_fat.csv` file via this [link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/visceral_fat.csv).
+  - Then, upload the file to a folder of your choice within your RStudio project.
+  - Next, import the data into RStudio and name the data frame `visceral_fat`. 
+
+Tip:
+
+Use the **click-button method** in RStudio to upload and import the file. Then, copy and paste the R commands generated into a code chunk in your Quarto report.
+
+Once imported, you can use the `visceral_fat` dataset for further analysis in your report.
+
+```{r}
+# command from the import pop-up window
+visceral_fat <- read.csv("../exos_data/visceral_fat.csv") # replace the path by your own
+```
+
+2. Summarize the dataset.
+
+Run the function `summary(visceral_fat)` to generate a summary of the dataset. Describe what information you obtained.
+
+```{r}
+summary(visceral_fat)
+```
+
+This function returns the minimum, maximum, mean, and quartile values for each column.
+The column `ethnicity` contains one missing value (`NA`).
+
+3. Draw a histogram.
+
+Create a histogram for the diastolic blood pressure using the column `visceral_fat[["diastolic_bp__mmhg"]]`. Describe what you observe from the plot.
+
+```{r}
+hist(visceral_fat[["diastolic_bp__mmhg"]])
+```
+
+The histogram shows a skewed distribution with some extreme values. Most of the values are concentrated in the bins on the left, while a single bin far on the right suggests outliers.
+
+4. Handle an outlier.
+
+After consulting with a clinician, you discover that the 27th value of the diastolic blood pressure was incorrectly recorded.
+
+  - Ignore this value using `visceral_fat[["diastolic_bp__mmhg"]][-27]`
+  - Redraw the histogram after excluding the outlier and describe any changes you observe.
+
+```{r}
+hist(visceral_fat[["diastolic_bp__mmhg"]][-27])
+```
+
+The histogram becomes more symmetrical after removing the outlier.
+The most frequent values fall within the range of 65 to 70.
+
+5. Compare mean and median.
+
+Calculate the mean (`mean()`) and the median (`median()`) for the diastolic blood pressure
+
+  - before ignoring the 27th value: `visceral_fat[["diastolic_bp__mmhg"]]` 
+  - after ignoring the 27th value: `visceral_fat[["diastolic_bp__mmhg"]][-27]`
+  
+Describe how the outlier affects the mean and median.
+
+```{r}
+mean(visceral_fat[["diastolic_bp__mmhg"]])
+median(visceral_fat[["diastolic_bp__mmhg"]])
+mean(visceral_fat[["diastolic_bp__mmhg"]][-27])
+median(visceral_fat[["diastolic_bp__mmhg"]][-27])
+```
+
+The median remains unchanged.
+
+The mean decreases after removing the outlier,
+highlighting its sensitivity to extreme values.
+The median, in contrast, is robust to extreme values.
+
+6. Click "Render" to generate your Quarto report.

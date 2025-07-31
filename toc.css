@@ -1,0 +1,8 @@
+/* css styles for toc content */
+
+/* preview image size */
+.thumbnail img {
+  width: auto; /* Maintain the aspect ratio */
+  height: auto; /* Adjust the height to desired size */
+  max-height: 150px; /* Limit the height for larger images */
+}

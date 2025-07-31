@@ -1,0 +1,18 @@
+/* css styles for ioc_r content */
+
+/* logo size */
+.reveal .slide-logo {
+  max-height: 0.5em !important;
+}
+
+/* slide number position */
+.slide-number, .reveal.has-logo .slide-number {
+  bottom: 14px !important;
+  left: 50% !important;
+  top: unset !important;
+}
+
+
+.content-smaller {
+  font-size: 0.8em;
+}

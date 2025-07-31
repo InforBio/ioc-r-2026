@@ -1,0 +1,53 @@
+---
+title: "Week 8 - Homework"
+format: 
+  html: default
+date: "2025-03-12"
+date-format: " "
+categories: 
+  - week08
+  - homework
+editor_options: 
+  chunk_output_type: console
+---
+
+Write your code directly in a Quarto document.
+
+To create a Quarto document: go to **File** -> **New File** -> **Quarto Document**, then click **Create**.
+
+## Mini Data Project (Part 2)
+
+We already saw how to import and tidy the data for structure 1 during the exercise.
+
+Just a reminder, the expression of 20 genes was measured in mice aged from 10 to 60 days, with both male and female mice, and each group consists of 6 animals. The gene expression data is stored in two files, one for each brain structure. Within each file, rows represent the different ages, and columns represent the gene, sex, and animal.
+
+The data is available in two CSV files:
+
+- [data_anonym_struc1_noise.csv](../exos_data/data_anonym_struc1_noise.csv)
+- [data_anonym_struc2_noise.csv](../exos_data/data_anonym_struc2_noise.csv)
+
+1. Use `lapply()` to import and reshape the two data files at once. Don't forget to change the necessary parameters.
+
+Hints:
+
+- Create a vector to store the data files' path.
+- Use `lapply()` to repeat the import and reshape steps on the created path vector.
+- Bind rows to have a final data frame for both structures. (Use `dplyr::bind_rows()` or `rbind()`)
+
+
+2. Remove lines with NA in expression value.
+
+
+3. At age 60 and in the brain structure 2, which animal has the smallest expression level in each sex for gene 2 and 16?
+
+
+4. Explore how to use `facet_grid()` in ggplot2 to display figures in separate facets.
+Create a boxplot to visualize the expression levels of gene 16 for both sexes at different age time points, with each brain structure shown in its own facet.
+
+
+---
+
+Click "Render" to generate your Quarto report.
+
+The homework correction is available here:
+[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week08/.r_w08_work_corr.qmd)

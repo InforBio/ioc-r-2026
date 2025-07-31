@@ -1,0 +1,15 @@
+---
+title: "Materials for the IOC-R"
+listing:
+  contents: ioc_r
+  sort: "date"
+  type: default
+  categories: numbered
+  sort-ui: false
+  filter-ui: false
+  fields: [image, title, categories]
+page-layout: full
+title-block-banner: false
+css: toc.css
+---
+

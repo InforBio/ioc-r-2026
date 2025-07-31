@@ -1,0 +1,426 @@
+---
+title: "Kickstart with R:<br>Your Gateway to Data Science"
+subtitle: "IOC-R Week 1"
+date: "2025-01-06"
+date-format: " "
+format:
+  revealjs: 
+    toc: true
+    toc-title: "Plan"
+    toc-depth: 1
+    slide-number: true
+    preview-links: auto
+    logo: ../../images/logoInforBio_fond_blanc_small.png
+    css: ../custom.css
+  # pdf:
+  #   toc: true
+categories: 
+  - week01
+  - slides
+image: images/R_logo.png
+---
+
+# Unlock the Power of Your Data with ![](images/R_logo.png){width=2.5cm}
+
+## Welcome to R! {.smaller}
+
+R is a programming language and software environment designed for statistical computing and data analysis.
+
+::: columns
+::: {.column}
+
+Why R?
+
+- Biologist friendly!
+- Free and open-source
+- Supported by a huge community
+
+:::
+
+::: {.column .fragment}
+
+What you can do with R?
+
+- Analyze your data
+- Visualize your findings
+- Automate your workflow
+- Share reproducible research
+:::
+:::
+
+
+## The R Console {.smaller}
+
+![](images/r_console2.png)
+
+Type a command after the prompt ">" and press *Enter* to execute it.
+
+# Rstudio
+
+## Rstudio Login {.smaller}
+
+If you use the RStudio Server, you need to connect to your account first.  
+
+![](images/rstudio_server_login.png)
+
+## Rstudio IDE {.smaller}
+
+Integrated Development Environment (IDE)  
+
+::: columns
+::: {.column width="55%"}
+
+![](images/screenshot_rstudio.png)
+
+:::
+
+::: {.column width="45%" .fragment}
+1. Console: enter and execute R commands interactively.
+2. Environment/History: tracks your variables and past commands.
+3. Files/Plots/Packages: managing your files, viewing graphs, or installing tools.
+
+::: {.callout-tip appearance="minimal"}
+Rstudio [cheat sheet](https://rstudio.github.io/cheatsheets/rstudio-ide.pdf)
+([and French version](https://rstudio.github.io/cheatsheets/translations/french/rstudio-ide_fr.pdf))
+:::
+:::
+:::
+
+
+:::{.notes}
+Everything you need in one organized window.
+Save your work as a script, RStudio includes many useful features which let us code easily.
+notebook, show results
+:::
+
+## Getting Started in R {.smaller}
+
+::: columns
+
+::: {.column width="43%"}
+
+- Open your RStudio.
+- Create an R script: *File* -> *New File* -> *R Script* or ![](images/rstudio_newfile.png){width=1.5cm}
+- Save script: *Cmd + S* or *Ctrl + S*
+:::
+
+::: {.column width="57%" .fragment}
+- Basic commands[^1]:
+``` {.r code-line-numbers="1|2-4|6-7|9-11|13-14|16-17|19-20"}
+# Use `#` to write a comment (line) in your script
+# Math with R:
+2 + 2    # Yes, R can do math!
+sqrt(16) # Square root.
+
+# Create a variable:
+x <- 5 # Now x is 5. You can reuse it!
+
+# Inspect your environment:
+## Look at the "Environment" pane, do you see your x?
+ls()
+
+# Load a package:
+library(stats)
+
+# Get help of a function (documentation):
+?mean
+
+# Quit RStudio properly
+q()
+```
+:::
+:::
+
+
+[^1]: Shortcut to run code: highlight it and press *Ctrl + Enter* (Windows) or *Cmd + Enter* (Mac)
+
+## Some Configuration {.smaller}
+
+Go to *Tools* -> *Global Options...*
+
+::: columns
+::: {.column width="50%"}
+Under the *General* tab:
+
+- Uncheck the box "Restore .RData..."
+- Set "Save workspace to .RData on exit" to **Never**.
+:::
+
+::: {.column width="50%"}
+![](images/rstudio_setting1.png)
+:::
+:::
+
+## Some Configuration {.smaller}
+
+Go to *Tools* -> *Global Options...*
+
+::: columns
+::: {.column width="50%"}
+
+Under the *Code* tab:
+
+In the *Display* panel, check the box "Use rainbow parentheses"
+:::
+
+::: {.column width="50%"}
+![](images/rstudio_setting2.png)
+:::
+:::
+
+## Some Configuration {.smaller}
+
+Go to *Tools* -> *Global Options...*
+
+::: columns
+::: {.column width="50%"}
+- Under the *Appearance* tab:
+
+You can select a theme for you RStudio, e.g., the "Cobalt" for a dark theme.
+
+- Under the *Pane Layout* tab:
+
+You can arrange the four panels as you prefer.
+
+In addition, click "Add Column" lets you open an extra "Source" code column, allowing you to view your scripts side by side!
+:::
+
+::: {.column width="50%"}
+![](images/rstudio_setting3.png)
+:::
+:::
+
+# Setting Up an R Project
+
+## Create an R Project {.smaller}
+
+An R project keeps everything for your project in **one working directory**
+and helps R to know where to look for your files.
+
+. . .
+
+1. In RStudio, go to *File* -> *New Project*
+2. Choose *New Directory* and click *New Project*
+3. Set a folder name (e.g., `my_project`) and select where to save it.
+4. Click *Create Project*
+
+. . .
+
+You'll notice RStudio restarts, and now your project is set up!
+
+![](images/in_rproj.png){width=50%}
+
+::: {.notes}
+An R Project is a way to keep everything for your work (scripts, data, outputs) in one place.
+Think of it like a special folder where RStudio automatically knows where to look for your files.
+It helps avoid problems with messy file paths.
+:::
+
+
+## A Well Organized Project Folder {.smaller}
+
+Tree structure:
+
+```sh
+my_project              # Your working directory    
+├── my_project.Rproj    # The R project configuration file
+├── README.md           # A short introduction of the project
+├── data                # Raw data files
+│   └── raw_count.tsv
+├── scripts             # Your R code files
+│   └── 01-analysis.R
+│   └── 02-figures.R
+└── outputs             # Results, e.g., graphs, reports
+```
+
+<br>
+
+. . .
+
+- To create new folders:
+    - via RStudio: in *File* pane, click ![](images/rstudio_create_folder_button.png){width=1cm}. The folder will be created in the current directory.
+    - or use *File Explorer* (Windows) / *Finder* (Mac).
+
+:::{.notes}
+example of bad home organisation: pillow in kitchen and microoven in the bathroom
+The trunk is the main folder (your R Project).
+Branches are subfolders for scripts, data, and output, ect.
+By building a clear structure, you’ll:
+Always know where to find things.
+Save time when coding in R or sharing your project with others.
+Avoid messy files scattered everywhere.
+:::
+
+
+## Understanding File Paths {.smaller}
+
+A **path** tells your computer where to find files.
+
+. . .
+
+- **Absolute path**, starts from the very top of your computer's folder
+  - E.g.: 
+    - In real-life: France, Paris, 9 Quai St Bernard, Building B, office 725 
+    - On Linux/Mac: `/home/test_user/my_project/data/myfile.csv`
+    - On Windows: `C:\Users\test_user\my_project\data\myfile.csv`
+
+. . .
+
+- **Relative path**, starts from your working directory (folder)
+  - E.g.:
+    - Building B, office 725
+    - `data/myfile.csv` or `data\myfile.csv` (Windows)
+
+
+:::{.notes}
+computer's file system -> a country
+files -> offices in a building
+:::
+
+
+## Where Are You? {.smaller}
+
+```sh
+my_project              # Your working directory
+├── my_project.Rproj    # The R project configuration file
+├── README.md           # A short introduction of the project
+├── data                # Raw data files
+│   └── raw_count.tsv
+├── scripts             # Your R code files
+│   └── 01-analysis.R
+│   └── 02-figures.R
+└── outputs            # Results, e.g., graphs, reports
+```
+<br> 
+
+```r
+getwd() # Get working directory
+[1] "/home/test_user/my_project"
+```
+
+::: {.fragment .callout-note appearance="minimal"}
+What are the absolute and relative paths of the script "02-figures.R"?
+:::
+
+
+::: {.fragment style="font-size:75%"}
+absolute path: `/home/test_user/my_project/scripts/02-figures.R`
+
+relative path: `scripts/02-figures.R`
+:::
+
+. . .
+
+```r
+file.exists("/home/test_user/my_project/scripts/02-figures.R")
+[1] TRUE
+file.exists("scripts/02-figures.R")
+[1] TRUE
+```
+
+## Import Dataset
+
+::: columns
+::: {.column style="font-size: 60%;"}
+
+- Supported formats:  
+  - text files (.txt, .csv, *etc.*)
+  - Excel files
+  - data from other softwares (*e.g.*: SAS)
+
+- Click-button methods:  
+  - From menu bar:
+    *File* -> *Import Dataset* -> Select the format -> Choose your file
+  - From the "Environment" pane:
+    click *Import Dataset*  -> Select the format -> Choose your file
+  - From the "Files" pane:
+    Navigate to your file location -> Click the file and select *Import Dataset*
+
+:::
+
+::: {.column .fragment}
+![](images/import_data_base.png)
+![](images/import_data_base_code.png)
+:::
+:::
+
+
+# Automated Reporting
+
+## Quarto
+
+- Open-source tools for creating dynamic and shareable document.
+- Combines narrative text and code (multi-language) in one script (.qmd).
+- Supports multiple output formats: .html, .docx, .pptx, .pdf, *etc.*
+
+::: {.callout-tip appearance="minimal"}
+Official website: <https://quarto.org>
+:::
+
+## An Example {.smaller}
+
+::: columns
+::: {.column}
+To create: *File* -> *New File* -> *Quarto Document* -> click *Create*.
+![](images/quarto_annot.png)
+
+:::{.fragment}
+Save the document and click **Render** button.
+:::
+:::
+
+:::{.column .fragment}
+Rendered document in HTML format:
+![](images/quarto_output.png)
+
+::: {.callout-tip appearance="minimal" .fragment}
+- Markdown syntax [cheat sheet](https://www.markdownguide.org/cheat-sheet/)
+- [Quarto tutorial](https://quarto.org/docs/get-started/hello/rstudio.html)
+:::
+
+:::
+:::
+
+
+## Need Some Help? {.smaller}
+
+- Google it!
+- Forums: Stack Overflow, [Cirad](https://forums.cirad.fr/logiciel-R/)( francophone), *etc.*
+- Ask/discuss your question via Slack.
+- AI (like ChatGPT) is your friend 😉, but be careful of false answers! (More details in session 6)
+
+**Key points**:
+
+- Explain your question step-by-step.
+- Share the context.
+- Use keywords.
+- Try to rephrase the question.
+
+
+::: {.notes}
+google/forum stack overFlow
+- what are you trying to do / what did you try?
+- the warning or error message / your code / your data structure
+- language name / function or package name / a specific problem
+- try and iterate
+:::
+
+## PDF of Slides {.smaller}
+
+To save the slides as a PDF:
+
+- Open the presentation in a web browser
+- Press "**e**" to enable PDF export mode
+- Press **Ctrl + p** (Windows) or **Cmd + P** (Mac) to print
+- Select "**save as PDF**" as the printer option and save the file
+
+After saving, press "**e**" again to return to presentation mode.
+
+# Let's Practice !
+
+## Today's Goals
+
+- Get familiar with the RStudio
+- Create an R project in RStudio
+- Import data file into RStudio
+- Generate your first Quarto report
