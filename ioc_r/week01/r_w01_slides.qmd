@@ -411,6 +411,40 @@ Once you've checked these settings and the preview looks correct, click *Import*
 
 ## Export Data {.smaller}
 
+We'll use the built-in iris dataset and save it in the CSV format using the `write.csv()` function.
+
+```r
+head(iris) # show the first lines of the dataset
+View(iris) # preview the whole dataset
+?write.csv # get help of the function
+```
+
+**Goal**: Save the built-in `iris` dataset as a CSV file named `iris_export.csv` inside the `outputs` folder of the project.
+
+. . .
+
+1. Create the `outputs` folder.
+2. Type the following command and execute it:
+
+```r
+write.csv(iris, file = "outputs/iris_export.csv")
+```
+
+. . .
+
+::: {.callout-note appearance="minimal"}
+Go to the *Files* pane, can you find the saved file?
+:::
+
+. . .
+
+(We'll talk about other formats in the future!)
+
+::: {.notes}
+Once you've cleaned, analyzed, or modified a dataset in R, you'll want to save it. While you can save data in many formats, we'll use the most common one, a CSV file, as our example. We'll use the built-in iris dataset.
+:::
+
+
 # Need Some Help?
 
 ## Different Solutions {.smaller}
@@ -418,7 +452,7 @@ Once you've checked these settings and the preview looks correct, click *Import*
 - Google it!
 - Forums: Stack Overflow, [Cirad](https://forums.cirad.fr/logiciel-R/)(francophone), *etc.*
 - Ask/discuss your question via Slack.
-- AI (like ChatGPT) is your friend 😉, but be careful of false answers! (More details in session 6)
+- AI tools (like ChatGPT or Gemini) can be very helpful resources😉, but be careful of false answers! (More details in session 6)
 
 **Key points**:
 
@@ -454,3 +488,4 @@ After saving, press "**e**" again to return to presentation mode.
 - Get familiar with the RStudio
 - Create an R project in RStudio
 - Import data file into RStudio
+- Export data from RStudio
