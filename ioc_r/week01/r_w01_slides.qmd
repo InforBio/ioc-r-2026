@@ -350,8 +350,9 @@ file.exists("data")
 [1] TRUE
 ```
 
+# Data Import & Export
 
-## Import Dataset
+## Import Data
 
 ::: columns
 ::: {.column style="font-size: 60%;"}
@@ -367,7 +368,7 @@ file.exists("data")
   - From the "Environment" pane:
     click *Import Dataset*  -> Select the format -> Choose your file
   - From the "Files" pane:
-    Navigate to your file location -> Click the file and select *Import Dataset*
+    Navigate to your file location -> Click the file and select *Import Dataset* (need the {*readr*} package)
 
 :::
 
@@ -377,8 +378,42 @@ file.exists("data")
 :::
 :::
 
+## Import Data {.smaller}
 
-## Need Some Help? {.smaller}
+Importing your first file: [read-counts.csv](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/dev-r/ioc_r/exos_data/read-counts.csv)
+
+1. Right click the link and select "Download Linked File As..." (or the equivalent on your system).
+2. Save the file into the `data` folder of the R project `r_week1`
+3. Import the data with one of the three click-button ways.
+
+::: {.notes}
+When you select the file, a preview window will pop up.
+RStudio tries to guess the data's properties, but you should always confirm them.
+:::
+
+::: {.callout-tip appearance="minimal"}
+# Think before you import
+
+- How do you want to name the imported data?
+- Is there a header?
+- What is the column separator?
+- Do we want to use the 1st row as column names?
+- Which sign is used as the decimal?
+:::
+
+Once you've checked these settings and the preview looks correct, click *Import*.
+
+
+## Import Data {.smaller}
+
+![](images/rstudio_import.png)
+
+
+## Export Data {.smaller}
+
+# Need Some Help?
+
+## Different Solutions {.smaller}
 
 - Google it!
 - Forums: Stack Overflow, [Cirad](https://forums.cirad.fr/logiciel-R/)(francophone), *etc.*
