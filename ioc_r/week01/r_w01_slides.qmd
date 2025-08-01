@@ -1,7 +1,7 @@
 ---
 title: "Kickstart with R:<br>Your Gateway to Data Science"
 subtitle: "IOC-R Week 1"
-date: "2025-01-06"
+date: "2025-11-03"
 date-format: " "
 format:
   revealjs: 
@@ -48,13 +48,24 @@ What you can do with R?
 :::
 :::
 
-R official website: <https://www.r-project.org>
+The official website: <https://www.r-project.org>
 
 ## The R Console {.smaller}
 
+::: columns
+::: {.column}
 ![](images/r_console.png)
+:::
 
-Type a command after the prompt ">" and press *Enter* to execute it.
+::: {.column .incremental}
+In the R console:
+
+- Type a command after the prompt **`>`** and press *Enter* to execute it.
+- When you see the prompt **`+`** (at the beginning of a new line): R is waiting for you to finish your command.
+- When you see the `[1]`:  it's an output line
+:::
+:::
+
 
 # Rstudio
 
@@ -76,7 +87,7 @@ Integrated Development Environment (IDE)
 :::
 
 ::: {.column width="45%" .fragment}
-1. Console: enter and execute R commands interactively.
+1. (R) Console: enter and execute commands interactively.
 2. Environment/History: tracks your variables and past commands.
 3. Files/Plots/Packages: managing your files, viewing graphs, or installing tools.
 
@@ -87,12 +98,60 @@ Rstudio [cheat sheet](https://rstudio.github.io/cheatsheets/rstudio-ide.pdf)
 :::
 :::
 
-
 :::{.notes}
 Everything you need in one organized window.
 Save your work as a script, RStudio includes many useful features which let us code easily.
 notebook, show results
 :::
+
+
+## Getting Started {.smaller}
+
+::: columns
+
+::: {.column width="43%"}
+
+- Open your RStudio.
+- Create an R script: *File* -> *New File* -> *R Script* or click ![](images/rstudio_newfile.png){width=1.5cm}. (Shown in 4)
+- Write your codes/commandes in the script.
+- Save script: *Cmd + S* or *Ctrl + S*, name your script, *e.g.*: `test.R`.
+- Execute code: Click ![](images/rstudio_runcode.png){width=1.3cm} or press *Cmd + Enter* (*Ctrl + Enter* for Windows)
+
+:::
+
+::: {.column width="57%"}
+![](images/rstudio_fullpanel.png)
+:::
+:::
+
+## Getting Started {.smaller}
+
+Copy paste following codes into your script and save the script as `test.R`.  
+
+- Basic commands:
+``` {.r code-line-numbers="1|2-4|6-8|10-12|14-15|17-18|20-21"}
+# Use `#` to write a comment (line) in your script
+# Math with R:
+2 + 2    # Yes, R can do math!
+sqrt(16) # Square root.
+
+# Create a variable:
+x <- 5 # Now x is 5. You can reuse it!
+x + 1
+
+# Inspect your environment:
+## Look at the "Environment" pane, do you see your x?
+ls()
+
+# Load a package:
+library(stats)
+
+# Get help of a function (documentation):
+?mean
+
+# Quit RStudio properly
+q()
+```
 
 
 ## Some Configuration {.smaller}
@@ -101,10 +160,10 @@ Go to *Tools* -> *Global Options...*
 
 ::: columns
 ::: {.column width="50%"}
-Under the *General* tab:
+- Under the *General* tab:
 
-- Uncheck the box "Restore .RData..."
-- Set "Save workspace to .RData on exit" to **Never**.
+  - Uncheck the box "Restore .RData..."
+  - Set "Save workspace to .RData on exit" to **Never**.
 
 Then click "Apply".
 :::
@@ -121,7 +180,7 @@ Go to *Tools* -> *Global Options...*
 ::: columns
 ::: {.column width="50%"}
 
-Under the *Code* tab:
+- Under the *Code* tab:
 
 In the *Display* panel, check the box "Use rainbow parentheses"
 
@@ -158,48 +217,6 @@ Then click "Apply".
 :::
 
 
-## Getting Started in R {.smaller}
-
-::: columns
-
-::: {.column width="43%"}
-
-- Open your RStudio.
-- Create an R script: *File* -> *New File* -> *R Script* or click ![](images/rstudio_newfile.png){width=1.5cm}
-- Save script: *Cmd + S* or *Ctrl + S*, name your script, *e.g.*: `test.R`.
-- Execute code: Click ![](images/rstudio_runcode.png){width=1.5cm} or press *Cmd + Enter* (*Ctrl + Enter* for Windows)
-
-:::
-
-::: {.column width="57%" .fragment}
-- Basic commands:
-``` {.r code-line-numbers="1|2-4|6-8|10-12|14-15|17-18|20-21"}
-# Use `#` to write a comment (line) in your script
-# Math with R:
-2 + 2    # Yes, R can do math!
-sqrt(16) # Square root.
-
-# Create a variable:
-x <- 5 # Now x is 5. You can reuse it!
-x + 1
-
-# Inspect your environment:
-## Look at the "Environment" pane, do you see your x?
-ls()
-
-# Load a package:
-library(stats)
-
-# Get help of a function (documentation):
-?mean
-
-# Quit RStudio properly
-q()
-```
-:::
-:::
-
-
 # Setting Up an R Project
 
 ## Create an R Project {.smaller}
@@ -229,7 +246,7 @@ It helps avoid problems with messy file paths.
 
 ## Create an R Project {.smaller}
 
-![](images/rstudio_workingdir)
+![](images/rstudio_workingdir.png)
 
 
 ## A Well Organized Project Folder {.smaller}
@@ -250,7 +267,7 @@ r_week1              # Your working directory
 
 . . .
 
-- Managing Files (via *File* pane):
+- Managing Files (via the *File* pane):
   - To create a new folder: click ![](images/rstudio_create_folder_button.png){width=1cm}. The folder will be created in the current directory.
   - To move a file or folder: check the box next to its name, click ![](images/rstudio_gear.png){width=1cm} and then select *Move...* to choose a new destination.
 
@@ -302,9 +319,9 @@ A **path** tells your computer where to find files/folders.
 ```sh
 r_week1              # Your working directory
 ├── r_week1.Rproj    # The R project configuration file
-├── data                # Raw data files
-├── scripts             # Your R code files
-│   └── test.R
+├── data             # Raw data files
+└── scripts          # Your R code files
+    └── test.R
 ```
 <br> 
 
