@@ -60,10 +60,20 @@ The official website: <https://www.r-project.org>
 ::: {.column .incremental}
 In the R console:
 
-- Type a command after the prompt **`>`** and press *Enter* to execute it.
-- When you see the prompt **`+`** (at the beginning of a new line): R is waiting for you to finish your command.
-- When you see the `[1]`:  it's an output line
+- **`>`** (The prompt): R is ready for your command.
+Type your code and press **Enter** to run it.
+- **`[1]`** (Output): This indicates the start of an output line.
+- **`+`** (Continuation): R is waiting for you to finish your command.
+You can either finish the command or press **Esc** to cancel it.
 :::
+:::
+
+::: {.notes}
+In the R Console, the > prompt lets you know that R is ready for your command. Just type your code and hit Enter.
+When you see the output, it will start with [1], which indicates the position of the first element.
+If you see a + at the beginning of a new line, it means R is waiting for you to finish your command,
+this often happens if you forget a parenthesis or a comma.
+You can either finish it by typing the rest of the code or press the Esc key to cancel the input completely and get a fresh > prompt.
 :::
 
 
@@ -112,10 +122,10 @@ notebook, show results
 ::: {.column width="43%"}
 
 - Open your RStudio.
-- Create an R script: *File* -> *New File* -> *R Script* or click ![](images/rstudio_newfile.png){width=1.5cm}. (Shown in 4)
-- Write your codes/commandes in the script.
-- Save script: *Cmd + S* or *Ctrl + S*, name your script, *e.g.*: `test.R`.
-- Execute code: Click ![](images/rstudio_runcode.png){width=1.3cm} or press *Cmd + Enter* (*Ctrl + Enter* for Windows)
+- Create an R script: *File* -> *New File* -> *R Script* or click ![](images/rstudio_newfile.png){width=1.5cm}. (Will appeared at 4)
+- Write your codes in the script.
+- Save script: *Cmd/Ctrl + S*, name your script.
+- Execute code: Click ![](images/rstudio_runcode.png){width=1.3cm} or press *Cmd/Ctrl + Enter*
 
 :::
 
@@ -128,7 +138,7 @@ notebook, show results
 
 Copy paste following codes into your script and save the script as `test.R`.  
 
-- Basic commands:
+- Basic codes (commands):
 ``` {.r code-line-numbers="1|2-4|6-8|10-12|14-15|17-18|20-21"}
 # Use `#` to write a comment (line) in your script
 # Math with R:
@@ -326,7 +336,7 @@ r_week1              # Your working directory
 <br> 
 
 ```r
-getwd() # Get working directory
+> getwd() # Get working directory
 [1] "/Users/lijiao/Documents/r_week1"
 ```
 
@@ -344,9 +354,9 @@ relative path: `data`
 . . .
 
 ```r
-file.exists("/Users/lijiao/Documents/r_week1/data")
+> file.exists("/Users/lijiao/Documents/r_week1/data")
 [1] TRUE
-file.exists("data")
+> file.exists("data")
 [1] TRUE
 ```
 
@@ -373,8 +383,7 @@ file.exists("data")
 :::
 
 ::: {.column .fragment}
-![](images/import_data_base.png)
-![](images/import_data_base_code.png)
+![Using the {readr} import wizard.](images/import_data_readr.png)
 :::
 :::
 
@@ -397,7 +406,6 @@ RStudio tries to guess the data's properties, but you should always confirm them
 - How do you want to name the imported data?
 - Is there a header?
 - What is the column separator?
-- Do we want to use the 1st row as column names?
 - Which sign is used as the decimal?
 :::
 
@@ -456,10 +464,10 @@ Once you've cleaned, analyzed, or modified a dataset in R, you'll want to save i
 
 **Key points**:
 
-- Explain your question step-by-step.
-- Share the context.
-- Use keywords.
-- Try to rephrase the question.
+- Be specific.
+- Provide context: code, error, *etc.*
+- Always verify.
+- Protect sensitive data.
 
 
 ::: {.notes}
@@ -476,8 +484,9 @@ To save the slides as a PDF:
 
 - Open the presentation in a web browser
 - Press "**e**" to enable PDF export mode
-- Press **Ctrl + p** (Windows) or **Cmd + P** (Mac) to print
-- Select "**save as PDF**" as the printer option and save the file
+- Press **Cmd/Ctrl + P** to open the in-browser print dialog.
+- Change layout to "Landscape".
+- Select "**save as PDF**" as the printer option and save the file.
 
 After saving, press "**e**" again to return to presentation mode.
 
