@@ -1,8 +1,0 @@
----
-title: "IOC Single-cell RNAseq Training Information"
----
-
-Welcome to the IOC-scRNAseq Training!
-
-The online course will be started from March 2026.
-More details will be shared later.
