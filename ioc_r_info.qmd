@@ -17,14 +17,14 @@ Please bookmark this page for quick access.
 
   | **Week**           | **Session**                                                   | **Date**      | **Time**           |
   |--------------------|---------------------------------------------------------------|---------------|--------------------|
-  | Week 1 (in-person) | Kickstart with R: Your Gateway to Data Science                |  3rd November | 9:30 am – 12:30 pm |
+  | **Week 1 (in-person)** | Kickstart with R: Your Gateway to Data Science                |  3rd November | 9:30 am – 12:30 pm |
   | Week 2             | Data Foundations: Vectors and Matrices                        | 10th November | 9:30 am – 12:30 pm |
   | Week 3             | More Complex Data Structures: Data Frames and Lists           | 17th November | 9:30 am – 12:30 pm |
   | Week 4             | Building Logic: Operators and Conditions                      | 24th November | 9:30 am – 12:30 pm |
-  | Week 5 (in-person) | Graphing with {`ggplot2`}                                     |  1st December | 9:30 am – 12:30 pm |
+  | **Week 5 (in-person)** | Graphing with {`ggplot2`}                                     |  1st December | 9:30 am – 12:30 pm |
   | Week 6             | R-fresh: Revisiting the Essentials                            |  5th January  | 9:30 am – 12:30 pm |
   | Week 7             | Graphs Level Up: {`ggplot2`} part 2 & Reporting with Quarto   | 12th January  | 9:30 am – 12:30 pm |
-  | Week 8 (in-person) | Smart Shortcuts: `apply`, `lapply` and Your Own Functions     | 26th January  | 9:30 am – 12:30 pm |
+  | **Week 8 (in-person)** | Smart Shortcuts: `apply`, `lapply` and Your Own Functions     | 26th January  | 9:30 am – 12:30 pm |
   | Week 9             | Tidy Up: A Taste of {`tidyverse`} (filter, mutate, summarise) |  9th March    | 9:30 am – 12:30 pm |
   | Week 10            | Your project presentation                                     | **TBD**       | **TBD** |
 
