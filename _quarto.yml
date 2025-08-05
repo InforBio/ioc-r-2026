@@ -36,7 +36,7 @@ website:
       # - text: "News"
       #   href: news.qmd
       - icon: github
-        href: https://github.com/InforBio/IOC
+        href: https://github.com/InforBio/ioc-r-2026
 
 
 format:
