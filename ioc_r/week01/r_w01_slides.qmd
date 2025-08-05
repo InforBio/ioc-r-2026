@@ -418,12 +418,12 @@ Once you've checked these settings and the preview looks correct, click *Import*
 
 ## Export Data {.smaller}
 
-We'll use the built-in iris dataset and save it in the CSV format using the `write.csv()` function.
+We'll use the built-in iris dataset and save it in the CSV format using the `write_csv()` function from the {*readr*} package.
 
 ```r
 head(iris) # show the first lines of the dataset
 View(iris) # preview the whole dataset
-?write.csv # get help of the function
+?write_csv # get help of the function
 ```
 
 **Goal**: Save the built-in `iris` dataset as a CSV file named `iris_export.csv` inside the `outputs` folder of the project.
@@ -434,7 +434,7 @@ View(iris) # preview the whole dataset
 2. Type the following command and execute it:
 
 ```r
-write.csv(iris, file = "outputs/iris_export.csv")
+write_csv(iris, file = "outputs/iris_export.csv")
 ```
 
 . . .
