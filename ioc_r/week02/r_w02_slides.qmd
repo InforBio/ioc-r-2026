@@ -1,0 +1,797 @@
+---
+title: "Data Foundations:<br>Vectors and Matrices"
+subtitle: "IOC-R Week 2"
+date: "2025-01-13"
+date-format: " "
+format:
+  revealjs: 
+    toc: true
+    toc-title: "Plan"
+    toc-depth: 1
+    slide-number: true
+    preview-links: auto
+    logo: ../../images/logoInforBio_fond_blanc_small.png
+    css: ../custom.css
+echo: true
+categories: 
+  - week02
+  - slides
+image: images/preview_w2.png
+---
+
+# Variables and Data Types in R
+
+## How We Store Data in R?  {.smaller}
+
+- A **variable** is like a box where you store data.
+- Each variable has a **name** and **content** (one or multiple values).
+- A variable is created at the moment you assign a value to it. Use `<-` for assignment.
+
+```{r}
+#| error: true
+
+x <- 1 # put a space on each side of the assignment sign
+x # type variable name to print its value(s)
+
+char_name <- "InforBio"
+char_name
+
+char_name <- InforBio
+```
+
+::: {.callout-note appearance="minimal"}
+Check the "Environment" pane or type `ls()` in the console, are variables you just created there?
+:::
+
+::: {.notes}
+Variables are containers for data.
+A box labeled "x" containing the number 1.
+A box labeled "char_name" containing the platform name "InforBio".
+:::
+
+## Variable Naming Convention {.smaller}
+
+::: columns
+::: {.column .content-smaller}
+- Choose a short and descriptive name
+- Use snake_case (lowercase letters and underscores only)
+- Avoid special characters (such as `!`, `#`, ) and spaces
+- Do not start a name with numbers
+- Avoid reserved keywords in R (*e.g.*, function, if, TRUE)
+- Do not overwrite built-in functions (*e.g.*, mean, sd)
+:::
+
+::: {.column .fragment}
+
+::: {.callout-note appearance="minimal"}
+Which are valid names?
+:::
+
+``` {.r code-line-numbers="1-16|5,8-10"}
+foo
+test
+var
+var2
+exam_results
+a_variable_with_a_name_super_long
+
+day_1
+day_one
+day1
+first_day_of_the_month
+DayOne
+dayOne
+DAYONE
+DAYone
+```
+
+:::
+:::
+
+::: {.fragment .callout-note appearance="minimal"}
+How to know if a variable name was already used?
+
+- Type `help(reserved)` to check reserved words in R.
+- Check in "Environment" pane.
+- Type the first letters of a name and press the **Tab** key to trigger autocompletion
+:::
+
+::: {.notes}
+Follow the same rules when you naming your R project folder.
+If really needs a long name, use abbreviation of it with a comment line at the begin to explain what it stands for.
+:::
+
+
+## Data Types {.smaller}
+
+Examples: `1`, `2.5`, `"A"`, `"InforBio"`, `"I love R"`, `TRUE`, `FALSE`, ...
+
+<br>
+How R understands and stores information?
+
+. . .
+
+Main data types:
+
+- Numeric
+  - Double: `2.5`
+  - Integer: `1`
+- Character: `"A"`, `"InforBio"`, `"I love R"`
+- Logical (boolean): `TRUE`, `FALSE`
+- Factor: for categorical data
+
+::: {.callout-tip appearance="minimal"}
+We'll see factor next week.
+:::
+
+## Numeric {.smaller}
+
+::: columns
+::: {.column}
+- **Double** (default): used for numbers with decimal points or without.
+
+```{r}
+a <- 3
+is.numeric(a)
+is.double(a)
+typeof(a)
+```
+
+:::
+
+::: {.column}
+- If you explicitly want an **integer** (whole numbers), you can define it by appending an `L` to the number:
+
+```{r}
+b <- 3L
+is.numeric(b)
+is.integer(b)
+typeof(b)
+```
+
+:::
+:::
+
+## Character {.smaller}
+
+R stores text (strings) as character. Use **quotation marks** to indicate a value is character.
+
+```{r}
+# enclosed in either double quotes (") or single quotes (')
+x <- "I love R"
+x
+
+is.character(x)
+```
+
+. . .
+
+```{r}
+#| error: true
+
+"1" + "2"
+```
+
+. . .
+
+```{r}
+as.numeric("1") + as.numeric("2")  # convert to numeric
+```
+
+. . .
+
+```{r}
+as.character(1) # convert to character
+```
+
+## Logical (1) {.smaller}
+
+- Only two possible values for logical data: `TRUE` or `FALSE`.
+
+- Can be written as `T` or `F`, but never in other formats (*e.g.*: `True`, `true`)
+
+```{r}
+#| error: true
+
+is.logical(TRUE)
+is.logical(T)
+is.logical(True)
+```
+
+- Can be obtained from logical statements, *e.g.*:
+
+```{r}
+2 > 1
+```
+
+## Logical (2) {.smaller}
+
+Convert to other types:
+
+::: {.columns}
+::: {.column}
+
+```{r}
+as.numeric(TRUE)
+as.numeric(FALSE)
+
+TRUE + TRUE + FALSE
+```
+
+::: {.fragment}
+
+```{r}
+as.character(TRUE)
+as.character(FALSE)
+```
+
+:::
+:::
+::: {.column .fragment}
+
+```{r}
+as.logical(1)
+as.logical(-1)
+as.logical(0)
+```
+
+::: {.callout-tip appearance="minimal"}
+When `as.logical()` is applied to numbers, any non-zero number is converted to `TRUE`.
+:::
+:::
+:::
+
+
+# Data Strucutres
+
+## From Single Value to Multiple Values {.smaller}
+
+When we store multiple values, we need a structure.
+
+```{r}
+gene1 <- 10
+gene2 <- 12
+gene3 <- 9
+```
+
+How to put `gene1`, `gene2` and `gene3` together?
+
+. . .
+
+<br>
+R provides 4 data structures to store multiple values:
+
+|                      | 1 dimension | 2 dimensions (row/column) |
+|----------------------|:-----------:|:------------:|
+| **Same** data type       | vector      | matrix       |
+| **Different** data types | list        | data frame   |
+
+
+# Vectors
+
+The simplest data structure in R, for **one dimension** data of the **same type**.
+
+## Vector Creation (1) {.smaller}
+
+Use the function `c()` to create a vector and use `,` to separate elements.
+
+::: columns
+::: {.column}
+```{r}
+c(10, 12, 9) # Numeric vector
+c(gene1, gene2, gene3)
+
+gene_expr <- c(gene1, gene2, gene3) # store in a variable
+gene_expr
+c(gene_expr, 18)
+```
+
+:::{.fragment}
+- Quickly create sequences of numbers
+
+```{r}
+1:10
+5:1
+seq(from = 1, to = 10, by = 2)
+```
+
+:::
+:::
+
+::: {.column .fragment}
+```{r}
+c("gene1", "gene2", "gene3") # Character vector
+c(TRUE, FALSE, FALSE, TRUE, TRUE) # Logical vector
+```
+
+:::{.fragment}
+- Other tricks
+
+```{r}
+paste0("gene", 1:3)
+rep(c(TRUE, FALSE), each = 2) # repetition
+```
+
+::: {.callout-tip appearance="minimal"}
+A single value (scalar) is treated as a vector of length 1. 
+
+```{r}
+is.vector(10)
+length(10)
+is.vector("gene1")
+```
+
+:::
+
+:::
+:::
+:::
+
+## Vector Creation (2) {.smaller}
+
+When you combine different data types ...
+
+```{r}
+c(10, TRUE)
+c(10, "gene1")
+c(TRUE, "gene1")
+c(10, "gene1", TRUE)
+```
+
+. . .
+
+<br>
+R follows a hierarchy of data types for coercion:
+
+logical (**least** inclusive) → numeric → character (**most** inclusive)
+
+::: {.notes}
+R always picks the "most flexible" type that can represent all the values without losing information.
+:::
+
+
+## Vector Indexing (1) {.smaller}
+
+::: columns
+::: {.column}
+
+- Use `[`idx`]` to access element(s). 
+
+*Notes*: The index starts from **1**.
+
+```{r}
+gene_expr
+gene_expr[1]   # 1st element
+gene_expr[c(2, 3)] # elements 2 and 3
+gene_expr[2:3] # elements 2 and 3
+gene_expr[-1]  # remove 1st element
+```
+
+:::
+
+::: {.column .fragment}
+
+- Modify element(s).
+
+```{r}
+gene_expr[1] <- 100
+gene_expr
+
+gene_expr[2:3] <- 8
+gene_expr
+
+gene_expr[2:3] <- c(0, 20)
+gene_expr
+```
+
+:::
+:::
+
+## Vector Indexing (2) {.smaller}
+
+::: columns
+::: {.column}
+
+- Use `[`name`]` to access element(s) if the vector is named. 
+
+```{r}
+# name elements of the vector
+names(gene_expr) <- c("gene1", "gene2", "gene3")
+gene_expr
+
+gene_expr["gene1"] # the element named "gene1"
+gene_expr[c("gene1", "gene2")] # extract "gene1" and "gene2"
+```
+
+:::
+
+::: {.column .fragment}
+
+- Modify element(s).
+
+```{r}
+gene_expr["gene1"] <- 2
+gene_expr
+```
+
+
+::: {.fragment .callout-note appearance="minimal"}
+- How to modify the expression value of "gene1" and "gene2" to 5?
+- How to change the expression value of "gene1" to 0 and "gene2" to 16?
+:::
+
+::: {.fragment}
+
+```{r}
+gene_expr[c("gene1", "gene2")] <- 5
+gene_expr
+
+gene_expr[c("gene1", "gene2")] <- c(0, 16)
+gene_expr
+```
+
+:::
+
+:::
+:::
+
+## Vector Indexing (3) {.smaller}
+
+::: columns
+::: {.column width="60%"}
+
+- Use a logical vector for indexing.
+
+```{r}
+num_vec <- c(1, 2, 5, 4)
+num_vec
+logical_vec <- c(TRUE, TRUE, FALSE, FALSE)
+logical_vec
+
+num_vec[logical_vec]
+```
+
+
+```{r}
+# create logical vect using comparison operator
+num_vec < 3
+
+# then use it to extract values from the numeric vector
+num_vec[num_vec < 3]
+```
+
+:::
+
+::: {.column width="40%" .fragment}
+::: {.callout-note appearance="minimal"}
+R use the `==` to test equality. *E.g.*:
+
+```{r}
+1 == 2
+c(1, 2, 3) == 2
+```
+
+How to extract the value `5` from the `num_vec`?
+:::
+
+::: {.fragment}
+```{r}
+num_vec[num_vec == 5]
+```
+
+:::
+:::
+:::
+
+## Vector Operations {.smaller}
+
+::: columns
+::: {.column}
+```{r}
+# create a vector for gene expression
+gene_expr <- c(15, 19, 14, 3, 10) 
+
+# check the structure
+is.numeric(gene_expr)
+str(gene_expr)
+
+# vector length
+length(gene_expr)
+
+# show the first/last elements
+head(gene_expr)
+tail(gene_expr)
+
+## check if missing value present
+is.na(gene_expr)
+```
+
+:::
+::: {.column .fragment}
+
+```{r}
+# Arithmetic operations
+gene_expr + 1
+gene_expr * 10
+```
+
+::: {.fragment}
+```{r}
+# Get some summary stats
+sum(gene_expr)
+mean(gene_expr)
+median(gene_expr)
+summary(gene_expr)
+```
+
+:::
+
+:::
+:::
+
+
+# Matrices
+
+A matrix is a **two dimensional** data structure with **rows** and **columns**,
+it contains data of the **same data type**.
+
+## Matrices Creation {.smaller}
+
+::: columns
+::: {.column}
+- Use the `matrix()` function to create a matrix.
+
+```{r}
+my_mat1 <- matrix(1:6, nrow = 2)
+my_mat2 <- matrix(1:6, nrow = 2, byrow = TRUE)
+
+my_mat1
+my_mat2
+```
+
+:::
+
+::: {.column .fragment}
+- Combine vectors to create matrix.
+
+```{r}
+vec1 <- 1:3
+vec2 <- 4:6
+
+rbind(vec1, vec2)
+cbind(vec1, vec2)
+```
+
+<br>
+
+::: {.fragment .callout-note appearance="minimal"}
+What is the data structure of each row/column of a matrix?
+:::
+
+:::
+:::
+
+
+## Matrices Indexing (1) {.smaller}
+
+- Use `[`row_idx`, `column_idx`]` to access element(s).
+
+::: columns
+::: {.column}
+
+```{r}
+mat <- matrix(1:12, ncol = 4)
+mat
+dim(mat) # dimensions of the matrix
+nrow(mat)
+ncol(mat)
+
+mat[1, 2] # element in the 1st row and 2nd column
+mat[, 3] # all rows of the 3rd column
+```
+
+:::
+
+::: {.column .fragment}
+
+::: {.callout-note appearance="minimal"}
+- How to get all columns of the 2nd and the 3rd rows?
+- How to get the value 5 from the matrix?
+:::
+
+::: {.fragment}
+
+```{r}
+mat[2:3, ]
+mat[2, 2]
+```
+
+:::
+
+:::
+:::
+
+::: {.notes}
+As matrix is vectors extended into 2D, 
+if question about drop dim, drop = FALSE
+:::
+
+## Matrices Indexing (2) {.smaller}
+
+- Use `[`row_name`, `column_name`]` to access element(s) if names exist.
+
+::: columns
+::: {.column}
+
+```{r}
+mat
+
+# add names to the columns and rows
+rownames(mat) <- c("r1", "r2", "r3")
+colnames(mat) <- paste0("c", 1:4)
+
+mat
+
+mat["r1", ] # all element of the 1st row
+```
+
+:::
+
+::: {.column .fragment}
+
+::: {.callout-note appearance="minimal"}
+By using the names of rows and columns:
+
+- How to get 2nd row of the 2nd and the 3rd columns?
+- How to get the value 5 from the matrix?
+:::
+
+::: {.fragment}
+```{r}
+mat["r2", c("c2", "c3")]
+mat["r2", "c2"]
+```
+
+:::
+:::
+:::
+
+## Matrices Indexing (3) {.smaller}
+
+::: columns
+
+::: {.column}
+
+- Use logical vector(s) for indexing.
+
+```{r}
+mat[c(TRUE, TRUE, FALSE), ]
+mat[c(TRUE, TRUE, FALSE), c(FALSE, TRUE, TRUE, FALSE)]
+```
+
+:::
+
+::: {.column .fragment}
+
+::: {.callout-note appearance="minimal"}
+By using the logical indexing, how to select the 2nd and 3rd rows, the 1st and 2nd columns of the `mat`?
+:::
+
+::: {.fragment}
+```{r}
+mat[c(FALSE, TRUE, TRUE), c(TRUE, TRUE, FALSE, FALSE)]
+```
+
+:::
+
+:::
+:::
+
+## Matrices Operations {.smaller}
+
+::: columns
+::: {.column}
+
+- Check the structure
+```{r}
+is.matrix(mat)
+str(mat)
+```
+
+::: {.fragment}
+
+- Some maths
+
+```{r}
+rowSums(mat)
+colSums(mat)
+colMeans(mat)
+rowMeans(mat)
+```
+
+:::
+:::
+
+::: {.column .fragment}
+
+- Modify elements
+
+
+```{r}
+mat[1:2, 3] <- c(1, 2)
+mat
+```
+
+::: {.fragment}
+
+```{r}
+mat[1:2, ] <- 10
+mat
+```
+
+:::
+
+::: {.fragment}
+```{r}
+#| error: true
+
+# replace values in 1st row
+mat[1, ] <- c(0, 1, 2)
+```
+
+:::
+
+
+:::
+
+:::
+
+## Value Replacement {.smaller}
+
+::: columns
+::: {.column}
+* In matrices
+```{r}
+#| error: true
+
+mat
+# replace values in 1st row
+mat[1, ] <- c(0, 1, 2)
+```
+
+:::
+
+::: {.column}
+* In vectors
+```{r}
+#| error: true
+#| message: true
+#| warning: true
+
+num_vec <- 1:10
+num_vec
+num_vec[1:5] <- c(0, 1, 2)
+num_vec
+```
+
+:::
+:::
+
+::: {.fragment .callout-tip appearance="minimal"}
+When assigning new values, you must provide either:
+
+- A single value, 
+- A vector with the exact number of elements to be replaced, or
+- A vector whose length is a factor of the number of elements to be replaced. (Recycling) Not recommanded!
+:::
+
+
+# Let's Practice !
+
+## Today's Goals
+
+- Get familiar with variables and data types
+- Get familiar with vectors and matrices manipulations
+- Simulate your own biological data and test the normality using the Shapiro-Wilk test
+
+
