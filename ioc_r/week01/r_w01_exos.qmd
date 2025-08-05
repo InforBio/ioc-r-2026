@@ -186,6 +186,17 @@ hist(log2(counts[["WT.2"]]))
 ```
 
 
+7. Export the data `counts[, c("Feature", "WT.2")]` to a file called `WT_2_expression.csv`, store this file in the `outputs` folder.
+
+```{r}
+#| eval: false 
+
+write_csv(counts[, c("Feature", "WT.2")], file = "outputs/WT_2_expression.csv")
+```
+
+Check in the `outputs` folder, do you see the saved file?
+Does the content correspond to your expectations? 
+
 ---
 
 #### Good job! 👏👏 You've taken your first big steps into R, and you're off to a great start, keep it up! 

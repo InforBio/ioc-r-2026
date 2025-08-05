@@ -43,8 +43,8 @@
 # 1. Click on the CSV file in *Files* pane to "View" it. Identify the column separator.
 # 2. Import the file into R and call the imported data "counts".
 # 3. Copy paste the command shown in the R console.
-
-counts <- read.csv("path/to/read-counts.csv") # replace this line by the copied command
+library(readr) # load the readr package for reading CSV files
+counts <- read_csv("data/read-counts.csv")
 
 
 ### Exercises
@@ -94,3 +94,8 @@ hist(counts[["WT.2"]])
 # Re draw the histogram with the log2 transformed data,
 # what does the distribution look like now?
 hist(log2(counts[["WT.2"]]))
+
+
+# 7. Export the data `counts[, c("Feature", "WT.2")]` to a file called `WT_2_expression.csv`,
+# store this file in the `outputs` folder.
+write_csv(counts[, c("Feature", "WT.2")], file = "outputs/WT_2_expression.csv")
