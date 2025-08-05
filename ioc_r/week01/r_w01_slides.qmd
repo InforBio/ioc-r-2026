@@ -87,16 +87,15 @@ If you use the RStudio Server, you need to connect to your account first.
 
 ## Rstudio IDE {.smaller}
 
-::: columns
-::: {.column width="55%"}
 Integrated Development Environment (IDE)
 
+::: columns
+::: {.column width="55%"}
 ![](images/screenshot_rstudio.png)
-
 :::
 
 ::: {.column width="45%" .fragment}
-1. (R) Console: enter and execute commands interactively.
+1. Console: enter and execute R commands interactively.
 2. Environment/History: tracks your variables and past commands.
 3. Files/Plots/Packages: managing your files, viewing graphs, or installing tools.
 

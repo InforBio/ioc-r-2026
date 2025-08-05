@@ -2,7 +2,7 @@
 title: "Week 1 - Homework"
 format: 
   html: default
-date: "2025-01-08"
+date: "2025-11-05"
 date-format: " "
 categories: 
   - week01

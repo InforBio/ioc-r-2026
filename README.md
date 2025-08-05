@@ -1,7 +1,7 @@
 # Interactive Online Companionship (IOC) @[InforBio](https://inforbio.github.io/)
 
 [![License](https://img.shields.io/github/license/InforBio/ioc-r-2026)](LICENSE)
-[![Auto build & publish](https://github.com/InforBio/IOC/actions/workflows/publish-quarto.yml/badge.svg)]((https://github.com/InforBio/InforBio.github.io/actions/workflows/publish-quarto.yml/badge.svg))
+[![Auto build & publish](https://github.com/InforBio/ioc-r-2026/actions/workflows/publish-quarto.yml/badge.svg)]((https://github.com/InforBio/InforBio.github.io/actions/workflows/publish-quarto.yml/badge.svg))
 
 ## Edition 2026
 
