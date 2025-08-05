@@ -21,11 +21,571 @@
     "text": "Recommended Readings\n\nR for Data Science by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.\nHands-On Programming with R by Garrett Grolemund\nggplot2: Elegant Graphics for Data Analysis by Hadley Wickham\nYaRrr! The Pirate’s Guide to R by Nathaniel D. Phillips\nCRAN R Documentation"
   },
   {
-    "objectID": "ioc_r/week01/r_w01_work.html",
-    "href": "ioc_r/week01/r_w01_work.html",
-    "title": "Week 1 - Homework",
+    "objectID": "ioc_r/week04/r_w04_slides.html#brief-recap-week-3",
+    "href": "ioc_r/week04/r_w04_slides.html#brief-recap-week-3",
+    "title": "Building Logic:Operators, Conditions, and Functions",
+    "section": "Brief Recap Week 3",
+    "text": "Brief Recap Week 3\n\n\n\nData frames: row-column structure\n\n\ndf &lt;- data.frame(x = 1:3, y = c(\"a\", \"b\", \"c\"))\ndf\n\n  x y\n1 1 a\n2 2 b\n3 3 c\n\n\n\nLists: store anything\n\n\nmy_list &lt;- list(x = 1:3, y = letters[5:1])\nmy_list\n\n$x\n[1] 1 2 3\n\n$y\n[1] \"e\" \"d\" \"c\" \"b\" \"a\"\n\n\n\n\n\n\nWhat are the outputs for following codes?\n\n\n\n\ndf$x\ndf[[2]]\ndf[3, ]\ndf[, \"y\", drop = FALSE]\ndf[1, 2]\n\n\n\n\nmy_list$x\nmy_list[1]\nmy_list[\"y\"]\nmy_list[[2]][3]\n\n\n\n\nlist is often used to store meta data\nMotivation for Week 4 - Why learn operators, conditions, and functions? - Real-world examples (e.g., filtering data, automating repetitive tasks, decision-making in analysis)."
+  },
+  {
+    "objectID": "ioc_r/week04/r_w04_slides.html#assignment-and-arithmetic-operators",
+    "href": "ioc_r/week04/r_w04_slides.html#assignment-and-arithmetic-operators",
+    "title": "Building Logic:Operators, Conditions, and Functions",
+    "section": "Assignment and Arithmetic Operators",
+    "text": "Assignment and Arithmetic Operators\n\n\n\nAssignment operators: &lt;-, -&gt;, =\n\n\nx &lt;- 1\nx\n\n[1] 1\n\n2 -&gt; x # not recommanded\nx\n\n[1] 2\n\ny = \"abc\" # not recommanded\ny\n\n[1] \"abc\"\n\nmean(x = 1:3) # assign value to function’s parameter\n\n[1] 2\n\n\n\n\nArithmetic operators: +, -, *, /, ^ (exponentiation), %% (remainder), etc.\n\n\n10^3\n\n[1] 1000\n\n10 %% 3 # modulus (remainder) of a division operation\n\n[1] 1\n\n\n\n\nx &lt;- c(2, 8, 3)\nx - 1\n\n[1] 1 7 2\n\nx - 1:3\n\n[1] 1 6 0\n\n\n\n\n\ny &lt;- c(6, 4, 1)\nx + y\n\n[1]  8 12  4\n\nx * y\n\n[1] 12 32  3\n\nx / y\n\n[1] 0.3333333 2.0000000 3.0000000"
+  },
+  {
+    "objectID": "ioc_r/week04/r_w04_slides.html#comparison-operators",
+    "href": "ioc_r/week04/r_w04_slides.html#comparison-operators",
+    "title": "Building Logic:Operators, Conditions, and Functions",
+    "section": "Comparison Operators",
+    "text": "Comparison Operators\nElement-wise comparison: ==, !=, &gt;, &lt;, &gt;=, &lt;=, return logical results.\n\n\n\n10 == 3\n\n[1] FALSE\n\n10 != 3\n\n[1] TRUE\n\n10 &gt; 3\n\n[1] TRUE\n\n10 &gt;= 3\n\n[1] TRUE\n\n10 &lt; 3\n\n[1] FALSE\n\n10 &lt;= 3\n\n[1] FALSE\n\n\n\n\nx &lt;- c(2, 8, 3)\ny &lt;- c(6, 8, 1)\nx == y\n\n[1] FALSE  TRUE FALSE\n\nx != y\n\n[1]  TRUE FALSE  TRUE\n\nx &gt; y\n\n[1] FALSE FALSE  TRUE\n\nx &lt;= y\n\n[1]  TRUE  TRUE FALSE\n\n\n\n\n\n\nWhat are the expected results?\n\nx == 8\ny &gt; 1\na is a vector of numbers 1 to 5, a[a &gt; 3] returns?"
+  },
+  {
+    "objectID": "ioc_r/week04/r_w04_slides.html#logical-operators",
+    "href": "ioc_r/week04/r_w04_slides.html#logical-operators",
+    "title": "Building Logic:Operators, Conditions, and Functions",
+    "section": "Logical Operators",
+    "text": "Logical Operators\nElement-wise comparison: NOT (!), AND (&), OR (|), etc., returns logical values.\n\n\n\n!TRUE\n\n[1] FALSE\n\n!FALSE\n\n[1] TRUE\n\n\n\nTo combine two conditions A and B:\n\n\n\nA\nB\nA & B\nA | B\n\n\n\n\nTRUE\nTRUE\nTRUE\nTRUE\n\n\nTRUE\nFALSE\nFALSE\nTRUE\n\n\nFALSE\nTRUE\nFALSE\nTRUE\n\n\nFALSE\nFALSE\nFALSE\nFALSE\n\n\n\n\n\n\n\n\nWhat are the expected results?\n\n(3 &gt; 1) & (7 &lt; 5)\n(3 &gt; 1) | (7 &lt; 5)\n\n\n\n\n\n\n(3 &gt; 1) & (7 &lt; 5)\n\n[1] FALSE\n\n(3 &gt; 1) | (7 &lt; 5)\n\n[1] TRUE"
+  },
+  {
+    "objectID": "ioc_r/week04/r_w04_slides.html#the-in-operator",
+    "href": "ioc_r/week04/r_w04_slides.html#the-in-operator",
+    "title": "Building Logic:Operators, Conditions, and Functions",
+    "section": "The %in% Operator",
+    "text": "The %in% Operator\nWe use %in% to check if left-side values are present in right-side, it returns logical values.\n\n\n\n## check membership\n1 %in% 1:3\n\n[1] TRUE\n\n1:3 %in% 1\n\n[1]  TRUE FALSE FALSE\n\n\"a\" %in% c(\"abc\", \"a\")\n\n[1] TRUE\n\n\n\n\n\n\n\nData frame df has two columns x and y, what is the result of following code?\n\"col3\" %in% colnames(df)\n\n\n\n\n\n\n\"col3\" %in% colnames(df)\n\n[1] FALSE"
+  },
+  {
+    "objectID": "ioc_r/week04/r_w04_slides.html#bonus-operator-precedence",
+    "href": "ioc_r/week04/r_w04_slides.html#bonus-operator-precedence",
+    "title": "Building Logic:Operators, Conditions, and Functions",
+    "section": "Bonus: Operator Precedence",
+    "text": "Bonus: Operator Precedence\n\n\nSimplified precedence order1 (highest to lowest):\n\nArithmetic (^ &gt; *, / &gt; +, -)\nRelational (&gt;, &lt;, &gt;=, &lt;=, ==, !=)\nMembership (%in%)\nLogical (! &gt; & &gt; |)\n\n\nOrder can be change using ():\n\n1 + 2 * 3\n\n[1] 7\n\n(1 + 2) * 3\n\n[1] 9\n\n\n\n\nTRUE | TRUE & FALSE\n\n[1] TRUE\n\n\n\n\n\n(TRUE | TRUE) & FALSE\n\n[1] FALSE\n\n\n\n\nFor more detail, check the operator documentation."
+  },
+  {
+    "objectID": "ioc_r/week04/r_w04_slides.html#any-all-and-which",
+    "href": "ioc_r/week04/r_w04_slides.html#any-all-and-which",
+    "title": "Building Logic:Operators, Conditions, and Functions",
+    "section": "any(), all() and which()",
+    "text": "any(), all() and which()\n\n\nGiven a set of logical vectors:\n\n-3:3\n\n[1] -3 -2 -1  0  1  2  3\n\n-3:3 &gt; 0\n\n[1] FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE\n\n\n\nany(): is at least one of the values TRUE?\n\n\nany(-3:3 &gt; 0)\n\n[1] TRUE\n\n\n\nall(): are all of the values TRUE?\n\n\nall(-3:3 &gt; 0)\n\n[1] FALSE\n\n\n\nwhich(): return indices of TRUE values.\n\n\nwhich(-3:3 &gt; 0)\n\n[1] 5 6 7\n\n\n\n\n\n\nWe have a vector log2FoldChange &lt;- c(1.2, -0.5, 0.9, 0.7, -1.1), what are the expected results for the following codes?\n\nwhich(log2FoldChange &gt; 0.8)\nany(log2FoldChange &gt; 0.8)\nall(log2FoldChange &gt; 0)"
+  },
+  {
+    "objectID": "ioc_r/week04/r_w04_slides.html#conditional-statements",
+    "href": "ioc_r/week04/r_w04_slides.html#conditional-statements",
+    "title": "Building Logic:Operators, Conditions, and Functions",
+    "section": "Conditional Statements",
+    "text": "Conditional Statements\nConditional statements allow us to make decisions based on logical conditions, guiding how the code behaves in different scenarios.\n\n\n\n\n\nflowchart LR\n  A{temperature &gt; 37} --&gt; B(TRUE)\n  A --&gt; C(FALSE)\n  B --&gt; D[Fever]\n  C --&gt; E[Normal]\n\n\n\n\n\n\n\n\n\n\n\n\nflowchart LR\n  A{log2FC &gt; 0} --&gt; B(TRUE)\n  A --&gt; C(FALSE)\n  B --&gt; D[Up-regulated]\n  C --&gt; E[Not up-regulated]"
+  },
+  {
+    "objectID": "ioc_r/week04/r_w04_slides.html#if-and-if-else",
+    "href": "ioc_r/week04/r_w04_slides.html#if-and-if-else",
+    "title": "Building Logic:Operators, Conditions, and Functions",
+    "section": "if and if else",
+    "text": "if and if else\n\n\nSyntax:\n\n## if statement\nif (condition) {\n  # code to run if `condition` is TRUE\n}\n\n## if else statement\nif (condition) {\n  # code to run if `condition` is TRUE\n} else {\n  # code to run if `condition` is FALSE\n}\n\n\n\n\n\nYou can use if without else but never in the opposite way.\nThe condition must evaluate to exactly one logical value (TRUE or FALSE) and cannot be NA.\n\n\n\n\n\n\n\n\n\n\nflowchart LR\n  A{log2FC &gt; 0} --&gt; B(TRUE)\n  A --&gt; C(FALSE)\n  B --&gt; D[Up-regulated]\n  C --&gt; E[Not up-regulated]\n\n\n\n\n\n\n\nlog2FC &lt;- 2.5\nif (log2FC &gt; 0) {\n  # code to run if condition is TRUE\n  print(\"Up-regulated\")\n} else {\n  # code to run if condition is FALSE\n  print(\"Not up-regulated\")\n}\n\n[1] \"Up-regulated\"\n\n\n\n\n\n\nWhat will you get when log2FC is 0?\n\n\n\n\n\n\n\n[1] \"Not up-regulated\""
+  },
+  {
+    "objectID": "ioc_r/week04/r_w04_slides.html#the-ifelse-function",
+    "href": "ioc_r/week04/r_w04_slides.html#the-ifelse-function",
+    "title": "Building Logic:Operators, Conditions, and Functions",
+    "section": "The ifelse() Function",
+    "text": "The ifelse() Function\nSyntax:\n\nifelse(test, yes, no)\n\nExample:\n\nlog2FC &lt;- -1\nifelse(test = log2FC &gt; 0, yes = \"Up-regulated\", no = \"Not up-regulated\")\n\n[1] \"Not up-regulated\"\n\n\n\n\n# nested condition\nifelse(\n  test = log2FC &gt; 0,\n  yes = \"Up-regulated\",\n  no = ifelse(log2FC &lt; 0, yes = \"Down-regulated\", no = \"No change\")\n)\n\n[1] \"Down-regulated\"\n\n\n\n\nThe “test” parameter can be a logical vector.\n\nvec_lfc &lt;- c(-1, 0, 1)\nifelse(vec_lfc &gt; 0, yes = \"Up-regulated\", no = \"Not up-regulated\")\n\n[1] \"Not up-regulated\" \"Not up-regulated\" \"Up-regulated\""
+  },
+  {
+    "objectID": "ioc_r/week04/r_w04_slides.html#what-is-a-function",
+    "href": "ioc_r/week04/r_w04_slides.html#what-is-a-function",
+    "title": "Building Logic:Operators, Conditions, and Functions",
+    "section": "What is a Function?",
+    "text": "What is a Function?\nFunctions = Reusable blocks of code.\nCall a function: write function name followed by (), including any required arguments inside ().\n\n\n\nBuilt-in functions\n\n\nmean(x = 1:3)\n\n[1] 2\n\n\n\nFunctions that are part of R’s base installation, always available without needing to load any additional packages.\n\n\nCustom functions\n\n\nadd_one &lt;- function(x) {x + 1}\nadd_one(x = 1:3)\n\n[1] 2 3 4\n\n\n\n\nFunctions from additional packages\n\n\nlibrary(readr)\nread_csv(file = \"path/to/data.csv\")\n\n\n\n\nWe’ll talk about packages next week!\n\n\n\n\n\n\n\n\nUse ? or help() to view the function’s documentation, e.g.: ?mean, help(mean)"
+  },
+  {
+    "objectID": "ioc_r/week04/r_w04_slides.html#anatomy-of-a-function",
+    "href": "ioc_r/week04/r_w04_slides.html#anatomy-of-a-function",
+    "title": "Building Logic:Operators, Conditions, and Functions",
+    "section": "Anatomy of a Function",
+    "text": "Anatomy of a Function\n\n\nSyntax:\n\nfunction_name &lt;- function(arguments) {\n  # function body (code for tasks)\n  return(result)\n}\n\n\nThe function name, be concise and preferably a verb.\nThe reserved token function() and argument(s).\nThe curly brackets {} frame the function body.\nThe return() (usually) at the end will return a result.\n\n\n\n\n\nWhat is the composition of the following function?\n\n\n\nadd_one &lt;- function(x) {\n  result &lt;- x + 1\n  return(result)\n}"
+  },
+  {
+    "objectID": "ioc_r/week04/r_w04_slides.html#function-parameters",
+    "href": "ioc_r/week04/r_w04_slides.html#function-parameters",
+    "title": "Building Logic:Operators, Conditions, and Functions",
+    "section": "Function Parameters",
+    "text": "Function Parameters\nA function can have 0, 1 or multiple parameters, with or without default values.\n\n\n\nNo parameter: perform an action without needing input\n\n\nsay_hello &lt;- function() {\n  print(\"Hello!\")\n}\nsay_hello()\n\n[1] \"Hello!\"\n\n\n\n\n1 paramter:\n\n\nadd_one &lt;- function(x = 5) {\n  return(x + 1)\n}\nadd_one() # use default value of x\n\n[1] 6\n\nadd_one(x = 1:3) # use custom values for x\n\n[1] 2 3 4\n\n\n\nvec &lt;- 1:2\nadd_one(x = vec) # use custom values from a variable\n\n[1] 2 3\n\n\n\n\n\nMultiple parameters\n\n\ndivise &lt;- function(numerator, denominator) {\n  return(numerator/denominator)\n}\n# Provide argument values in the expected order\ndivise(numerator = 1, denominator = 2)\n\n[1] 0.5\n\ndivise(1, 2)\n\n[1] 0.5\n\n# Provide argument values in a different order\ndivise(2, 1)\n\n[1] 2\n\ndivise(denominator = 2, numerator = 1)\n\n[1] 0.5"
+  },
+  {
+    "objectID": "ioc_r/week04/r_w04_slides.html#function-body",
+    "href": "ioc_r/week04/r_w04_slides.html#function-body",
+    "title": "Building Logic:Operators, Conditions, and Functions",
+    "section": "Function Body",
+    "text": "Function Body\nExample: a function to calculate geometric mean1.\n\n\n\ngeo_mean &lt;- function(x) {\n  # calculate geometric mean\n  result &lt;- exp(mean(log(x)))\n  return(result)\n}\ngeo_mean(c(1:10, 50))\n\n[1] 5.633703\n\nmean(c(1:10, 50))\n\n[1] 9.545455\n\n\n\nBut, geometric mean can only be calculated for positive numbers.\n\n\nUse a condition to ensure this.\n\ngeo_mean &lt;- function(x) {\n  # keep only positive values\n  if (any(x &lt;= 0)) {\n    x &lt;- x[x &gt; 0]\n  }\n  # calculate geometric mean\n  result &lt;- exp(mean(log(x)))\n  return(result)\n}\ngeo_mean(c(1:10, 50, -1, 0))\n\n[1] 5.633703\n\n\n\n\ngeom mean is more suitable for data with a log-normal distribution or when values have outliers or large differences in scale.\n\nCompare to arithmetic mean, geometric mean is more suitable for data with outliers or large differences in scale."
+  },
+  {
+    "objectID": "ioc_r/week04/r_w04_slides.html#local-vs.-global-variables",
+    "href": "ioc_r/week04/r_w04_slides.html#local-vs.-global-variables",
+    "title": "Building Logic:Operators, Conditions, and Functions",
+    "section": "Local vs. Global Variables",
+    "text": "Local vs. Global Variables\n\nLocal variable: defined inside the function.\nGlobal variable: defined outside and accessible anywhere.\n\n\nx &lt;- 5\nadd_one &lt;- function() {\n  x &lt;- 10\n  return(x + 1)\n}\nadd_one()  # Local, x is 10\n\n[1] 11\n\nx  # Global, x is 5\n\n[1] 5\n\n\n\nScope in R, importance of proper scoping in functions."
+  },
+  {
+    "objectID": "ioc_r/week04/r_w04_slides.html#todays-goals",
+    "href": "ioc_r/week04/r_w04_slides.html#todays-goals",
+    "title": "Building Logic:Operators, Conditions, and Functions",
+    "section": "Today’s Goals",
+    "text": "Today’s Goals\n\nUnderstand and use operators to filter data with precision.\nUnderstand function’s basic structure, learn to use new functions, write functions to automate tasks."
+  },
+  {
+    "objectID": "ioc_r/week04/r_w04_work.html",
+    "href": "ioc_r/week04/r_w04_work.html",
+    "title": "Week 4 - Homework",
     "section": "",
-    "text": "Write your code in a new R script. You can use # at the beginning of a line to add a comment in your script.\n\nImport the data file “visceral_fat.csv”.\n\n\nFirst, download the visceral_fat.csv file via this link.\nThen, upload the file to a folder of your choice within your RStudio project.\nNext, import the data into RStudio and name the data frame visceral_fat.\n\nTip:\nUse the click-button method in RStudio to upload and import the file. Then, copy and paste the R commands generated into your script.\nOnce imported, you can use the visceral_fat dataset for further analysis in your report.\n\nSummarize the dataset.\n\nRun the function summary(visceral_fat) to generate a summary of the dataset. Describe what information you obtained.\n\nDraw a histogram.\n\nCreate a histogram for the diastolic blood pressure using the column visceral_fat[[\"diastolic_bp__mmhg\"]]. Describe what you observe from the plot.\n\nHandle an outlier.\n\nAfter consulting with a clinician, you discover that the 27th value of the diastolic blood pressure was incorrectly recorded.\n\nIgnore this value using visceral_fat[[\"diastolic_bp__mmhg\"]][-27]\nRedraw the histogram after excluding the outlier and describe any changes you observe.\n\n\nCompare mean and median.\n\nCalculate the mean (mean()) and the median (median()) for the diastolic blood pressure\n\nbefore ignoring the 27th value: visceral_fat[[\"diastolic_bp__mmhg\"]]\nafter ignoring the 27th value: visceral_fat[[\"diastolic_bp__mmhg\"]][-27]\n\nDescribe how the outlier affects the mean and median.\nThe homework correction is available here: link"
+    "text": "Write your code directly in a Quarto document.\nTo create a Quarto document: go to File -&gt; New File -&gt; Quarto Document, then click Create.\n\nImport the read-counts.csv file.\n\nQuick reminder: this data file contains gene expression values of samples from four groups, sample names are prefixed by “WT.”, “SET1.”, “SET1.RRP6.” and “RRP6.”. Each group has 10 samples.\n\nCreate a function to calculate the average gene expression across samples by selected group. Test your function on WT samples.\n\n\nUse function created in question 2 to calculate the average for all sample groups, store the results in a list. Show the first 5 average gene expression of SET1.RRP6 samples.\n\n\nTransform the list obtained in question 3 to a data frame using as.data.frame(). Show the head lines of your data frame.\n\n\n\n\n\n\n\nTip\n\n\n\nA data frame can be considered as a list of equal-length vectors.\n\n\n\nWhat are the genes having an average greater than 10000 in WT and SET1 samples? Compare if there are genes in common using learned operator or the intersect() function.\n\n\nCreate a function to check if the average expression of each sample group is normally distributed (?shapiro.test()) using significance level at 5%. If TRUE, draw directly a histogram (?hist()) for the values. Otherwise, draw a histogram for the log-transformed values. And return the p-value of normality test at the end.\n\nTest your function on average expression of RRP6 samples.\n\nClick “Render” to generate your Quarto report.\n\nThe homework correction is available here: link"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_exos.html",
+    "href": "ioc_r/week01/r_w01_exos.html",
+    "title": "Week 1 - Hands-On Examples",
+    "section": "",
+    "text": "Get familiar with the RStudio\nCreate an R project in RStudio\nImport data file into RStudio\nExport data from RStudio"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_exos.html#goals",
+    "href": "ioc_r/week01/r_w01_exos.html#goals",
+    "title": "Week 1 - Hands-On Examples",
+    "section": "",
+    "text": "Get familiar with the RStudio\nCreate an R project in RStudio\nImport data file into RStudio\nExport data from RStudio"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_exos.html#create-an-r-project",
+    "href": "ioc_r/week01/r_w01_exos.html#create-an-r-project",
+    "title": "Week 1 - Hands-On Examples",
+    "section": "Create an R project",
+    "text": "Create an R project\n\nOpen RStudio, create a new R project in the folder of your choice.\n\nSome rules for naming your project:\n\nChoose a short and descriptive name.\nUse snake case (lowercase letters and underscores only). Avoid special characters (such as !, #, ) and spaces.\nThe name cannot starts with numbers.\n\n\nOpen your R project, create three new folders, i.e., data, scripts, outputs.\nDownload two files:\n\n\nAn R script named “r_w01_exos.R” for this week’s exercise (here), save it into the scripts folder.\nA data file called “read-counts.csv” (here), put it into the data folder.\n\n\n\n\n\n\n\nTip\n\n\n\nIf you are using RStudio server, files can be uploaded using the “Upload” icon in the Files pane."
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_exos.html#files-description",
+    "href": "ioc_r/week01/r_w01_exos.html#files-description",
+    "title": "Week 1 - Hands-On Examples",
+    "section": "Files Description",
+    "text": "Files Description\n\nData File\nWe’ll be working with a gene expression dataset as an example, sourced from this link.\nThe data comes from an experiment using PCR to study 44 genes. The results were measured to see which genes are active at different stages in Yeast cell cycling. Several strains were tested, including wildtype and some with specific genes knock-downs. Samples were taken at nine time points over two cell cycles (two hours).\n\n\nThe R script\nThe r_w01_exos.R script contains all commands R for the exercise."
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_exos.html#play-with-rstudio",
+    "href": "ioc_r/week01/r_w01_exos.html#play-with-rstudio",
+    "title": "Week 1 - Hands-On Examples",
+    "section": "Play with RStudio",
+    "text": "Play with RStudio\nIn your R project, open the downloaded R script r_w01_exos.R: In RStudio menu bar, click File -&gt; Open File -&gt; selec the Rscript, or click the file in the Files pane.\n\nImport Data\n\nIf you are not familiar with the file content, click on the CSV file in Files pane to “View” it. Identify the column separator and the decimal sign.\nImport the file into R and call the imported data “counts”.\nCopy paste the command shown in the R console.\n\n\n\nExercises\n\nWhat is the absolute file path of the imported data counts? What is its relative path? Verify your answer using the function file.exists().\n\n\ngetwd() # show the current working directory\n\nabs_path &lt;- \"\" # put your answer between quotes\nrel_path &lt;- \"\" # put your answer between quotes\n\nfile.exists(abs_path) # check if R finds your file using absolute path\nfile.exists(rel_path) # check if R finds your file using relative path\n\n\nWhat is the dimension (number of rows and columns) of the data frame? Check the “Environment” panel or use the function dim().\n\n\ndim(counts)\n\n[1] 45 41\n\n\nIn the “Environment” panel, click on the tabular icon next to the dataset to visualize the it.\nWe can extract all gene expressions for the sample named “WT.2” using counts[[\"WT.2\"]].\n\nTry mode() on the expression data for “WT.2”, what does it return?\n\n\nmode(counts[[\"WT.2\"]])\n\n[1] \"numeric\"\n\n\n\nCalculate the average expression (mean()) and standard deviation (sd()) of genes from the sample “WT.2”.\n\n\nmean(counts[[\"WT.2\"]])\n\n[1] 148\n\nsd(counts[[\"WT.2\"]])\n\n[1] 392.7854\n\n\n\nGenerate descriptive statistics for all genes from the sample “WT.2” using summary().\n\n\nsummary(counts[[\"WT.2\"]])\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n      0       6      27     148     110    2527 \n\n\n\n\n\n\n\n\nStats Time!\n\n\n\nWhat are quartiles?\nQuartiles are three values that split sorted data into four equal parts.\n\n(figure modified from this source)\nIQR (Interquartile range) = Q3 - Q1\n\n\n\nGenerate a histogram for the “WT.2” sample using hist(). What does the distribution look like?\n\n\n\n\n\n\n\nStats Time!\n\n\n\nHistograms help us see how data is spread out. They show how many data points fall into different intervals, or bins. By looking at a histogram, we can quickly understand the shape of the data, like if it’s skewed or has outliers. It’s a simple way to get an overview of your data.\n\n\n\nhist(counts[[\"WT.2\"]])\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStats Time!\n\n\n\nlog2 Transformation\nA log2 transformation is commonly used to normalize data and reduce skewness, especially in datasets with values spanning several orders of magnitude. Many biological data, like gene expression counts, tend to have a highly skewed distribution with a long tail of large values. The log2 transformation helps:\n\nStabilize variance – Makes data with large differences more comparable.\nHandle ratios – Converts multiplicative relationships into additive ones, simplifying interpretation.\nImprove normality – Makes the data distribution closer to normal, which is often required for statistical tests.\n\n\n\n\nplot(\n  x = counts[[\"WT.2\"]], y = log2(counts[[\"WT.2\"]]),\n  xlab = \"Original Scale\", ylab = \"log2 Scale\",\n  main = \"Gene expression for the sample WT.2\"\n)\nabline(v = 256, col = \"red\", lty = 2) # Add vertical line \nabline(h = 8, col = \"red\", lty = 2) # Add horizontal line\ntext(x = 500, y = 7, labels = expression(2^8 == 256)) # Add equation\n\n\n\n\n\n\n\n\nRe draw the histogram with the log2 transformed data, what does the distribution look like now?\n\nhist(log2(counts[[\"WT.2\"]]))\n\n\n\n\n\n\n\n\n\nWe can extract the gene name column (called “Feature”) and the column for sample “WT.2” using this command: counts[, c(\"Feature\", \"WT.2\")]. Export the data to a file called WT_2_expression.csv, store this file in the outputs folder.\n\n\nwrite_csv(counts[, c(\"Feature\", \"WT.2\")], file = \"outputs/WT_2_expression.csv\")\n\nCheck in the outputs folder, do you see the saved file? Does the content correspond to your expectations?\n\n\nGood job! 👏👏 You’ve taken your first big steps into R, and you’re off to a great start, keep it up!"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_work.html",
+    "href": "ioc_r/week02/r_w02_work.html",
+    "title": "Week 2 - Homework",
+    "section": "",
+    "text": "Use the following code to import the file “read-counts.csv” (you have already downloaded it for the hand-on examples of week01). Name the imported data expr_data.\n\nexpr_data &lt;- read.table(\n  file = \"../exos_data/read-counts.csv\",  # replace the path with your own\n  header = TRUE, sep = \",\", row.names = 1\n)\n\n\nIs the imported data a matrix?\n\n\nTransform it to a matrix using as.matrix().\n\n\nWhat are the dimensions of the matrix?\n\n\nWhat are the column names and row names?\n\n\nExtract all genes’ expression for the 10 WT samples (WT.1, WT.2, …, WT.10), and store it in a variable called expr_wt. Show the first few rows using head() function.\n\n\nWhat is the average expression level across all WT samples for each gene? Store the results in a variable called avg_wt.\n\n\nDraw a histogram to check the distribution of the average gene expression level for WT samples.\n\n\nRepeat questions 5 to 7 for the SET1 samples (SET1.1, SET1.2, …, SET1.10).\n\n\nWhat is the absolute difference between the average expression of WT and SET1 samples for each gene? Which gene shows the biggest difference?\n\nHints:\n\nUse abs() to get the absolute value. (?abs)\nThe max() function helps to find the maximum value from a vector. (?max)\nThe which.max() function helps to find the index of the maximum value from a vector. (?which.max)\n\n\nCompare the following matrix to the one we created during the course’ exercise (the matrix named expression_levels). What is the key difference in how the matrix is constructed? Provide a brief explanation.\n\n\nmatrix(\n  c(10, 12, 15, 20, 18, 22, 14, 16, 19, 8, 9, 7, 25, 30, 28),\n  ncol = 3\n)\n\n     [,1] [,2] [,3]\n[1,]   10   22    9\n[2,]   12   14    7\n[3,]   15   16   25\n[4,]   20   19   30\n[5,]   18    8   28\n\n\nThe homework correction is available here: link"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_exos.html",
+    "href": "ioc_r/week02/r_w02_exos.html",
+    "title": "Week 2 - Hands-On Examples",
+    "section": "",
+    "text": "The R script is available here: link"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_exos.html#goals",
+    "href": "ioc_r/week02/r_w02_exos.html#goals",
+    "title": "Week 2 - Hands-On Examples",
+    "section": "Goals",
+    "text": "Goals\n\nGet familiar with variables and data types\nGet familiar with vectors and matrices manipulations\nSimulate your own biological data and test the normality using the Shapiro-Wilk test"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_exos.html#variables-in-r",
+    "href": "ioc_r/week02/r_w02_exos.html#variables-in-r",
+    "title": "Week 2 - Hands-On Examples",
+    "section": "Variables in R",
+    "text": "Variables in R\n\nA variable in R is like a labeled container where you can store data (a single value, multiple values, or more complex structures like data frames).\nUse &lt;- for assignment."
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_exos.html#data-types-in-r",
+    "href": "ioc_r/week02/r_w02_exos.html#data-types-in-r",
+    "title": "Week 2 - Hands-On Examples",
+    "section": "Data Types in R",
+    "text": "Data Types in R\nCreate variables to store the following types of biological data and check their class in R:\n\nThe name of a gene (e.g., BRCA1).\nThe number of samples in an experiment (e.g., 50).\nWhether a sample is treated or not (select between TRUE/FALSE).\nThe four bases in DNA sequence: “A”, “T”, “G”, “C”.\n\n\ngene_name &lt;- \"BRCA1\" \nis.character(gene_name)\n\n[1] TRUE\n\nnum_samples &lt;- 50    \nis.numeric(num_samples)\n\n[1] TRUE\n\nis_treated &lt;- TRUE  \nis.logical(is_treated)\n\n[1] TRUE\n\ndna_bases &lt;- c(\"A\", \"T\", \"G\", \"C\") \nis.character(dna_bases)\n\n[1] TRUE"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_exos.html#vectors",
+    "href": "ioc_r/week02/r_w02_exos.html#vectors",
+    "title": "Week 2 - Hands-On Examples",
+    "section": "Vectors",
+    "text": "Vectors\nYou have the following concentrations of a drug measured in five samples (in µM): 2.3, 5.1, 3.8, 6.4, 4.9. Perform the following tasks:\n\nCreate a numeric vector to store the concentrations.\n\n\ndrug_concentration &lt;- c(2.3, 5.1, 3.8, 6.4, 4.9)\n\n\nCalculate the mean and standard deviation of the concentrations.\n\n\nmean_concentration &lt;- mean(drug_concentration)\nmean_concentration\n\n[1] 4.5\n\nsd_concentration &lt;- sd(drug_concentration)\nsd_concentration\n\n[1] 1.537856\n\n\n\nSubset the concentrations greater than 4 µM\n\n\nhigh_concentration &lt;- drug_concentration[drug_concentration &gt; 4]\nhigh_concentration\n\n[1] 5.1 6.4 4.9"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_exos.html#matrices",
+    "href": "ioc_r/week02/r_w02_exos.html#matrices",
+    "title": "Week 2 - Hands-On Examples",
+    "section": "Matrices",
+    "text": "Matrices\nYou’re working with expression levels of three genes (geneA, geneB, geneC) across five samples. The expression levels are as follows:\nsample1: 10, 12, 15  \nsample2: 20, 18, 22  \nsample3: 14, 16, 19  \nsample4: 8, 9, 7  \nsample5: 25, 30, 28  \n\nCreate a matrix to represent this data, with genes in rows and samples in columns.\n\n\n# Create the matrix\nexpression_levels &lt;- matrix(\n  c(10, 12, 15,\n    20, 18, 22,\n    14, 16, 19,\n    8, 9, 7,\n    25, 30, 28), \n  nrow = 3\n)\nexpression_levels\n\n     [,1] [,2] [,3] [,4] [,5]\n[1,]   10   20   14    8   25\n[2,]   12   18   16    9   30\n[3,]   15   22   19    7   28\n\n## or create first samples' vector then combine them\nsample1 &lt;- c(10, 12, 15)\nsample2 &lt;- c(20, 18, 22)\nsample3 &lt;- c(14, 16, 19)\nsample4 &lt;- c(8, 9, 7)\nsample5 &lt;- c(25, 30, 28)\nexpression_levels2 &lt;- cbind(sample1, sample2, sample3, sample4, sample5)\nexpression_levels2\n\n     sample1 sample2 sample3 sample4 sample5\n[1,]      10      20      14       8      25\n[2,]      12      18      16       9      30\n[3,]      15      22      19       7      28\n\n\n\nAdd row and column names to the matrix.\n\n\n# Add row and column names\nrownames(expression_levels) &lt;- c(\"geneA\", \"geneB\", \"geneC\")\ncolnames(expression_levels) &lt;- c(\"sample1\", \"sample2\", \"sample3\", \"sample4\", \"sample5\")\n\n## or\nrownames(expression_levels) &lt;- paste0(\"gene\", LETTERS[1:3])\ncolnames(expression_levels) &lt;- paste0(\"sample\", 1:5)\n\nexpression_levels\n\n      sample1 sample2 sample3 sample4 sample5\ngeneA      10      20      14       8      25\ngeneB      12      18      16       9      30\ngeneC      15      22      19       7      28\n\n\n\nCalculate the mean expression for each gene (row-wise).\n\n\ngene_means &lt;- rowMeans(expression_levels)\ngene_means\n\ngeneA geneB geneC \n 15.4  17.0  18.2 \n\n\n\nSubset the data to show only samples where geneC expression is greater than 20.\n\n\n# Extract geneC\ngeneC_expression &lt;- expression_levels[\"geneC\", ]\n\n# Subset samples with geneC &gt; 20\nhigh_geneC_samples &lt;- geneC_expression[geneC_expression &gt; 20]\nhigh_geneC_samples\n\nsample2 sample5 \n     22      28"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_exos.html#test-the-normality-on-simulated-data",
+    "href": "ioc_r/week02/r_w02_exos.html#test-the-normality-on-simulated-data",
+    "title": "Week 2 - Hands-On Examples",
+    "section": "Test the Normality on Simulated Data",
+    "text": "Test the Normality on Simulated Data\n\nHeight\nUse following code to generate the height (in cm) of 100 students:\n\n# simulate data following a normal distribution\nset.seed(1)\nheights &lt;- round(rnorm(n = 100, mean = 170, sd = 10), 1)\nheights\n\n  [1] 163.7 171.8 161.6 186.0 173.3 161.8 174.9 177.4 175.8 166.9 185.1 173.9\n [13] 163.8 147.9 181.2 169.6 169.8 179.4 178.2 175.9 179.2 177.8 170.7 150.1\n [25] 176.2 169.4 168.4 155.3 165.2 174.2 183.6 169.0 173.9 169.5 156.2 165.9\n [37] 166.1 169.4 181.0 177.6 168.4 167.5 177.0 175.6 163.1 162.9 173.6 177.7\n [49] 168.9 178.8 174.0 163.9 173.4 158.7 184.3 189.8 166.3 159.6 175.7 168.6\n [61] 194.0 169.6 176.9 170.3 162.6 171.9 152.0 184.7 171.5 191.7 174.8 162.9\n [73] 176.1 160.7 157.5 172.9 165.6 170.0 170.7 164.1 164.3 168.6 181.8 154.8\n [85] 175.9 173.3 180.6 167.0 173.7 172.7 164.6 182.1 181.6 177.0 185.9 175.6\n [97] 157.2 164.3 157.8 165.3\n\n\n\n\n\n\n\n\nStats Time!\n\n\n\nNormal Distribution\nA normal distribution (also known as Gaussian distribution or “bell curve”), is a common way in which data tends to organize itself naturally when measured repeatedly in a population.\n  (figure obtained from this source)\nIt’s symmetric around the average (mean, \\(\\mu\\)), and the spread of values depends on the standard deviation (\\(\\sigma\\)). A a smaller \\(\\sigma\\) results in values being tightly concentrated near the mean, while a larger \\(\\sigma\\) results in values being more spread out across the range.\nMany statistical tests, such as t-tests or ANOVAs, assume that the data follows a normal distribution. This assumption is important because it enables the calculation of probabilities and supports making reliable inferences. If the data does not follow a normal distribution, these tests may produce misleading results.\nShapiro-Wilk Test\nThe Shapiro-Wilk test is designed to check for deviations from normality, i.e., to check whether your data follows a normal distribution.\nTest Hypotheses: H0, H1\nWhen performing a statistical test, you start with two opposing ideas, called hypotheses, that you want to evaluate:\n\nNull Hypothesis (H0): This is the default assumption, often stating that there is no effect, no difference, or no relationship in your data.\nAlternative Hypothesis (H1): This is the claim you are testing for something different from the null hypothesis.\n\nWhen you perform a statistical test, the goal is to decide whether you have enough evidence to reject the null hypothesis (H0) in favor of the alternative hypothesis (H1).\n\n\nThe function shapiro.test() in R allows to perform the test of normality.\nHere, the null hypothesis (H0) is the heights are normally distributed, and the alternative hypothesis (H1) is the heights are not normally distributed.\n\nshapiro.test(heights) \n\n\n    Shapiro-Wilk normality test\n\ndata:  heights\nW = 0.99564, p-value = 0.9883\n\n\n\n\n\n\n\n\nStats Time!\n\n\n\nType I error (\\(\\alpha\\))\nA type I error occurs when we reject the null hypothesis whereas it is actually true (false positive).\nThe probability (risk) of making a type I error is denoted as \\(\\alpha\\), which also called the significance level. By choosing \\(\\alpha = 0.05\\), you’re saying: “I’m willing to accept a 5% chance of incorrectly rejecting H0.”\nP-value\nThe p-value is the probability of observing your data (or something more extreme) if the null hypothesis (H0) is true.\n\nIf the p-value is small (e.g., ≤ 0.05):\n\nThere’s strong evidence against H0, so you reject it.\nThis suggests that the alternative hypothesis (H1) might be true.\n\nIf the p-value is large (e.g., &gt; 0.05):\n\nThere’s not enough evidence to reject H0.\nThis doesn’t mean H0 is true, it just means the data doesn’t strongly contradict it.\n\n\n\n\nIf we take \\(\\alpha=0.05\\): since the p-value (0.9876) is greater than 0.05, we fail to reject H0. This means there’s no strong evidence to suggest the heights are not normally distributed.\nLet’s check the heights’ distribution with a histgram!\n\n# Histogram\nhist(\n  heights, probability = TRUE, col = \"lightblue\",\n  main = \"Histogram with Bell Curve\", xlab = \"Heights (cm)\", ylab = \"Density\"\n)\n# Add bell curve\ncurve(dnorm(x, mean = mean(heights), sd = sd(heights)), col = \"red\", lwd = 2, add = TRUE)\n\n\n\n\n\n\n\n\n\n\nGood job! 👏👏 You’ve taken your first big steps into R, and you’re off to a great start, keep it up!"
+  },
+  {
+    "objectID": "ioc_r/week03/r_w03_exos.html",
+    "href": "ioc_r/week03/r_w03_exos.html",
+    "title": "Week 3 - Hands-On Examples",
+    "section": "",
+    "text": "The R script is available here: link"
+  },
+  {
+    "objectID": "ioc_r/week03/r_w03_exos.html#goals",
+    "href": "ioc_r/week03/r_w03_exos.html#goals",
+    "title": "Week 3 - Hands-On Examples",
+    "section": "Goals",
+    "text": "Goals\n\nWork with data frames and lists\nCalculate fold change of gene expression between groups\nCompare gene expression using the Wilcoxon test\nVisualize differences with boxplots"
+  },
+  {
+    "objectID": "ioc_r/week03/r_w03_exos.html#data-frames",
+    "href": "ioc_r/week03/r_w03_exos.html#data-frames",
+    "title": "Week 3 - Hands-On Examples",
+    "section": "Data Frames",
+    "text": "Data Frames\nUse the following code to import the file “read-counts.csv” (you have already downloaded it for the hand-on examples of week01). Name the imported data expr_data.\n\nexpr_data &lt;- read.table(\n  file = \"../exos_data/read-counts.csv\",  # replace the path with your own\n  header = TRUE, sep = \",\", row.names = 1\n)\n\n\nCheck the structure of expr_data using an appropriate R function.\n\n\nstr(expr_data)\n\n'data.frame':   45 obs. of  40 variables:\n $ WT.1        : num  20648 7867 1481 743 185 ...\n $ WT.2        : num  466 147 37 27 6 16 0 105 8 490 ...\n $ WT.3        : num  1783 427 187 370 200 ...\n $ WT.4        : num  25335 5178 1856 4050 669 ...\n $ WT.5        : num  64252 27889 3952 877 166 ...\n $ WT.6        : num  24126 8547 1020 357 68 ...\n $ WT.7        : num  9067 3432 484 845 360 ...\n $ WT.8        : num  19721 6935 1409 2110 595 ...\n $ WT.9        : num  67353 34229 4636 1872 438 ...\n $ WT.10       : num  28059 13913 1870 684 204 ...\n $ SET1.1      : num  21214 9807 1604 1075 209 ...\n $ SET1.2      : num  3822 1663 572 1170 381 ...\n $ SET1.3      : num  2870 932 358 1692 588 ...\n $ SET1.4      : num  65483 31023 7322 10529 1067 ...\n $ SET1.5      : num  39073 30668 3479 753 125 ...\n $ SET1.6      : num  17421 9701 1241 344 93 ...\n $ SET1.7      : num  5979 2484 518 1424 490 ...\n $ SET1.8      : num  29570 12998 3122 5552 1251 ...\n $ SET1.9      : num  56156 39462 5084 1600 346 ...\n $ SET1.10     : num  42195 26192 3027 1120 286 ...\n $ SET1.RRP6.1 : num  36236 34296 4480 3040 1155 ...\n $ SET1.RRP6.2 : num  1716 1238 677 1190 494 ...\n $ SET1.RRP6.3 : num  2137 1672 774 2940 1335 ...\n $ SET1.RRP6.4 : num  21731 18206 4335 9383 2193 ...\n $ SET1.RRP6.5 : num  43086 53296 6548 4044 906 ...\n $ SET1.RRP6.6 : num  33990 35468 3723 1710 402 ...\n $ SET1.RRP6.7 : num  12290 12523 1475 593 183 ...\n $ SET1.RRP6.8 : num  7170 7099 1101 1093 468 ...\n $ SET1.RRP6.9 : num  21650 19932 3824 5620 1940 ...\n $ SET1.RRP6.10: num  21870 23810 3677 2878 893 ...\n $ RRP6.1      : num  38560 32163 3988 2671 959 ...\n $ RRP6.2      : num  4275 1811 941 872 593 ...\n $ RRP6.3      : num  2923 1257 541 2966 1210 ...\n $ RRP6.4      : num  29292 24615 5292 7584 1664 ...\n $ RRP6.5      : num  55453 57599 6436 2714 594 ...\n $ RRP6.6      : num  37863 29579 2844 854 275 ...\n $ RRP6.7      : num  25900 17696 1931 995 517 ...\n $ RRP6.8      : num  21179 14404 2383 5318 1796 ...\n $ RRP6.9      : num  43327 40664 6029 4940 1386 ...\n $ RRP6.10     : num  77043 79181 9389 4092 1267 ...\n\n\n\nHow many unique values are in sample WT.2?\n\n\nUse unique() to get the unique values;\nthen use length() to check the number of elements.\n\n\nval_unique &lt;- unique(expr_data[[\"WT.2\"]])\nhead(val_unique)\n\n[1] 466 147  37  27   6  16\n\nn_unique &lt;- length(val_unique)\nn_unique\n\n[1] 33\n\n# all in one line\nlength(unique(expr_data[[\"WT.2\"]]))\n\n[1] 33\n\n\n\nExtract expression levels for the gene “LOH1” in WT samples (WT.1, WT.2, …, WT.10) and SET1 samples (SET1.1, SET1.2, …, SET1.10). Store them as expr_wt and expr_set1. Ensure they are vectors using unlist(). (see help with ?unlist)\n\n\nexpr_wt &lt;- expr_data[\"LOH1\", paste0(\"WT.\", 1:10)]\nexpr_set1 &lt;- expr_data[\"LOH1\", paste0(\"SET1.\", 1:10)]\n\n# check data structure\nstr(expr_wt)\n\n'data.frame':   1 obs. of  10 variables:\n $ WT.1 : num 10\n $ WT.2 : num 2\n $ WT.3 : num 14\n $ WT.4 : num 19\n $ WT.5 : num 35\n $ WT.6 : num 17\n $ WT.7 : num 6\n $ WT.8 : num 3\n $ WT.9 : num 31\n $ WT.10: num 13\n\nstr(expr_set1)\n\n'data.frame':   1 obs. of  10 variables:\n $ SET1.1 : num 67\n $ SET1.2 : num 49\n $ SET1.3 : num 83\n $ SET1.4 : num 185\n $ SET1.5 : num 203\n $ SET1.6 : num 83\n $ SET1.7 : num 40\n $ SET1.8 : num 84\n $ SET1.9 : num 134\n $ SET1.10: num 155\n\n# convert to vectors\nexpr_wt &lt;- unlist(expr_wt)\nexpr_set1 &lt;- unlist(expr_set1)\n\n# check again the structure\nstr(expr_wt)\n\n Named num [1:10] 10 2 14 19 35 17 6 3 31 13\n - attr(*, \"names\")= chr [1:10] \"WT.1\" \"WT.2\" \"WT.3\" \"WT.4\" ...\n\nstr(expr_set1)\n\n Named num [1:10] 67 49 83 185 203 83 40 84 134 155\n - attr(*, \"names\")= chr [1:10] \"SET1.1\" \"SET1.2\" \"SET1.3\" \"SET1.4\" ...\n\n\n\n\n\n\n\n\nStats Time!\n\n\n\nFold change\nFold change (FC) measures the relative change in gene expression between two conditions or groups. (e.g., treated vs. untreated, healthy vs. diseased). \\[\nFC = \\frac{Mean Expression in Group 2}{Mean Expression in Group 1}\n\\]\nIt’s common to log2 transform the fold change :\n\\[\n\\begin{aligned}\n  \\text{FC} &= 1, \\quad \\log_2(\\text{FC}) = 0 \\Rightarrow \\text{No change}\\\\\n  \\text{FC} &= 2, \\quad \\log_2(\\text{FC}) = 1 \\Rightarrow \\text{Up-regulated} \\\\\n  \\text{FC} &= 0.5, \\quad \\log_2(\\text{FC}) = -1 \\Rightarrow \\text{Down-regulated}\n\\end{aligned}\n\\]\n\n\n\nCalculate the fold change and log2 fold change for “LOH1” between WT and SET1 groups. Is the gene up- or down-regulated?\n\n\n## Calculate the mean for each group\navg_wt &lt;- mean(expr_wt)\navg_set1 &lt;- mean(expr_set1)\n\n## Get the fold change\nfc &lt;- avg_set1 / avg_wt\n\n## log2 transformed fold change\nlfc &lt;- log2(fc)\nlfc\n\n[1] 2.851999\n\n\n\n\n\n\n\n\nStats Time!\n\n\n\nMann-Whitney Wilcoxon Rank Sum Test\nThe Wilcoxon Rank Sum test, also called Mann-Whitney test, is a non-parametric test used to compare independant samples (groups). It does not assume a normal distribution.\nThis test is particularly useful for ordinal data or when the assumptions of parametric tests (like the t-test) are not met.\nThe idea is to bring the two groups together and sort all values in order. \n(Figure credit: Lorette Noiret)\nThe hypotheses are:\n\nH0: two groups have the same distribution\nH1: two groups have different distribution\n\nIf H0 is true, then the ranks should be randomly distributed between the two samples (WA ≃ WB). If H0 is false, then the larger ranks will be in one of the two groups (WA &lt; WB)\nSo we can make decision based on the sum of ranks in each group.\n\n\n\nUse wilcox.test() to compare LOH1 expression between WT and SET1. At \\(\\alpha = 0.05\\), what is your conclusion?\n\n\nwilcox.test(expr_wt, expr_set1)\n\nWarning in wilcox.test.default(expr_wt, expr_set1): cannot compute exact\np-value with ties\n\n\n\n    Wilcoxon rank sum test with continuity correction\n\ndata:  expr_wt and expr_set1\nW = 0, p-value = 0.0001817\nalternative hypothesis: true location shift is not equal to 0\n\n\nAs the p-value is smaller than 0.05, we can reject the H0. There is a significant difference between two WT and SET1 samples for the expression of the LOH1.\n\nCreate a new data frame for LOH1 gene expression in WT and SET1 samples with two columns:\n\n\n“expr_value”: expression levels\n“group”: WT or SET1\n\n\nexpr_loh1 &lt;- data.frame(\n  expr_value = c(expr_wt, expr_set1),\n  group = rep(c(\"WT\", \"SET1\"), each = length(expr_wt))\n)\nexpr_loh1\n\n        expr_value group\nWT.1            10    WT\nWT.2             2    WT\nWT.3            14    WT\nWT.4            19    WT\nWT.5            35    WT\nWT.6            17    WT\nWT.7             6    WT\nWT.8             3    WT\nWT.9            31    WT\nWT.10           13    WT\nSET1.1          67  SET1\nSET1.2          49  SET1\nSET1.3          83  SET1\nSET1.4         185  SET1\nSET1.5         203  SET1\nSET1.6          83  SET1\nSET1.7          40  SET1\nSET1.8          84  SET1\nSET1.9         134  SET1\nSET1.10        155  SET1\n\n\n\nWith the new data frame, draw a boxplot to compare expression between groups using boxplot(). (see ?boxplot)\n\n\nboxplot(expr_value ~ group, data = expr_loh1)"
+  },
+  {
+    "objectID": "ioc_r/week03/r_w03_exos.html#lists",
+    "href": "ioc_r/week03/r_w03_exos.html#lists",
+    "title": "Week 3 - Hands-On Examples",
+    "section": "Lists",
+    "text": "Lists\nHere’s a toy list storing information about three samples:\n\nmy_list &lt;- list(\n  # sample information\n  sample_info = data.frame(\n    id = paste0(\"sample\", 1:3),\n    age = c(25, 27, 30),\n    sex = c(\"F\", \"M\", \"F\")\n  ),\n  ## expression matrix\n  count_expr = matrix(\n    1:6, ncol = 2, dimnames = list(\n      paste0(\"sample\", 1:3),\n      paste0(\"gene\", c(\"A\", \"B\"))\n    )\n  ),\n  # mesured genes\n  gene_name = paste0(\"gene\", c(\"A\", \"B\")),\n  # sequenced family members of each sample\n  family_sequenced = list(\n    sample1 = c(\"father\", \"mother\"),\n    sample2 = c(\"father\", \"mother\", \"sister\"),\n    sample3 = c(\"mother\", \"sister\")\n  )\n)\nmy_list\n\n$sample_info\n       id age sex\n1 sample1  25   F\n2 sample2  27   M\n3 sample3  30   F\n\n$count_expr\n        geneA geneB\nsample1     1     4\nsample2     2     5\nsample3     3     6\n\n$gene_name\n[1] \"geneA\" \"geneB\"\n\n$family_sequenced\n$family_sequenced$sample1\n[1] \"father\" \"mother\"\n\n$family_sequenced$sample2\n[1] \"father\" \"mother\" \"sister\"\n\n$family_sequenced$sample3\n[1] \"mother\" \"sister\"\n\n\n\nUse names() to extract the names of the elements in the list.\n\n\nnames(my_list)\n\n[1] \"sample_info\"      \"count_expr\"       \"gene_name\"        \"family_sequenced\"\n\n\n\nExtract the count_expr matrix from the list.\n\n\nmy_list[[\"count_expr\"]]\n\n        geneA geneB\nsample1     1     4\nsample2     2     5\nsample3     3     6\n\n\n\nFrom the matrix, find the expression value of geneA in sample2\n\n\nmy_list[[\"count_expr\"]][\"sample2\", \"geneA\"]\n\n[1] 2\n\n\n\nCalculate the total counts of each gene across all samples.\n\n\ncolSums(my_list[[\"count_expr\"]])\n\ngeneA geneB \n    6    15 \n\n\n\nFrom sample_info data frame, extract the age column.\n\n\nmy_list[[\"sample_info\"]][[\"age\"]]\n\n[1] 25 27 30\n\n\n\nExtract the 1st sequenced family member of sample3.\n\n\nmy_list[[\"family_sequenced\"]][[\"sample3\"]][1]\n\n[1] \"mother\"\n\n\n\nAdd a new element to the list, “gene_description”, with the following values: c(\"geneA\" = \"housekeeping gene\", \"geneB\" = \"stress response gene\")\n\n\nmy_list[[\"gene_description\"]] &lt;- c(\n  \"geneA\" = \"housekeeping gene\",\n  \"geneB\" = \"stress response gene\"\n)\n\n\n\n\n\n\n\nBonus!\n\n\n\nCheck out this cheat sheet for the basic R commands: Base R Cheat Sheet\n\n\n\n\nGood job! 👏👏 You’ve taken your first big steps into R, and you’re off to a great start, keep it up!"
+  },
+  {
+    "objectID": "index.html#what-is-ioc",
+    "href": "index.html#what-is-ioc",
+    "title": "Welcome To the IOC Training!",
+    "section": "What is IOC?",
+    "text": "What is IOC?\nThe InforBio platform has developed an “Interactive Online Companionship” (IOC) specifically tailored to initiate researchers into bioinformatics. The IOC involved one-to-many virtual work sessions where companions are trained to analyze their own data.\nAll IOC programs are structured into a series of modules, with each module building upon the knowledge and skills acquired in the previous one. One module lasts one week, during which companions dive into online materials to ensure they understand and internalize the content. Companions then complete quizzes and exercises using both public and their own data to gauge their understanding, receiving personalized feedback on their work. To facilitate their learning, we provide access to computational resources such as Rstudio and Galaxy servers. The module wraps up with a 3 hours training to recap the week’s material and address any questions, with 7 videoconference sessions and 3 in-person sessions. These videoconferences are recorded and made available for later viewing, ensuring continuous access to the learning resources.\nBy the end of an IOC, companions will be equipped with expertise and confidence to run their own analyses independently."
+  },
+  {
+    "objectID": "index.html#ioc-tools",
+    "href": "index.html#ioc-tools",
+    "title": "Welcome To the IOC Training!",
+    "section": "IOC tools",
+    "text": "IOC tools\n\nZoom\nWe will use Zoom for videoconferencing.\nPlease follow the rules for usage:\n\nPlease be on time.\nTechnical setup:\n\nEnsure your internet connection is stable.\nTest your camera and microphone before the session.\n\nDuring the session:\n\nKeep your microphone muted unless you’re speaking to avoid background noise.\nUse the “Raise Hand” feature if you want to ask a question during the lecture.\nKeep your camera on if possible to create a more interactive environment.\n\nRecorded sessions are for personal review only. Do not distribute them without permission.\n\n\n\nSlack\nSlack is a dedicated workspace for communication and staying connected between sessions.\nIf you haven’t already use it, you need to create a Slack account.\nIf you have a Slack account, you can either connect to the account using this webpage, or use a desktop version on your computer. (Slack Windows desktop, Slack Mac desktop)\nAnd you will receive an invitation link to join the IOC Slack of your group.\n\nPost messages in the correct channel, e.g., “questions” for asking about course content.\nWhen asking questions, please be specific and clear with a minimal context, include screenshots or error message to help others understand the issue.\nWhen discussing a question, please reply in the thread to avoid flooding the channel.\n\n\n\nTrello\nTrello is a tool to help you stay organized and track your learning progress.\nYou will be invited to join a Trello board for this IOC. We will create one list per student, please add one card for each session to add your notes, summary, etc."
+  },
+  {
+    "objectID": "ioc_scrnaseq.html",
+    "href": "ioc_scrnaseq.html",
+    "title": "IOC on Single-cell RNAseq Analysis",
+    "section": "",
+    "text": "Training on single-cell RNAseq analysis is upcoming!"
+  },
+  {
+    "objectID": "ioc_scrnaseq_info.html",
+    "href": "ioc_scrnaseq_info.html",
+    "title": "IOC Single-cell RNAseq Training Information",
+    "section": "",
+    "text": "Welcome to the IOC-scRNAseq Training!\nThe online course will be started from March 2026. More details will be shared later."
+  },
+  {
+    "objectID": "ioc_r/week03/r_w03_work.html",
+    "href": "ioc_r/week03/r_w03_work.html",
+    "title": "Week 3 - Homework",
+    "section": "",
+    "text": "Create a matrix of two columns to store numbers 1 to 8, use the dimnames parameter of the matrix function to name the rows and columns directly. (see ?matrix) (You can name the rows/columns whatever you want.)\n\nUse the following code to import the file “read-counts.csv” (you have already downloaded it for the hand-on examples of week01). Name the imported data expr_data.\n\nexpr_data &lt;- read.table(\n  file = \"../exos_data/read-counts.csv\",  # replace the path with your own\n  header = TRUE, sep = \",\", row.names = 1\n)\n\n\nCreate a list info_expr to store information about expr_data:\n\n\n\n“col_names”: column names\n“row_names”: row names\n“dimension”: number of rows and columns\n“sum_sample”: the sum of expression level across all genes for each sample\n“avg_gene”: the average expression level across all samples for each gene\n\n\nCalculate the median of the average gene expression levels across all samples.\n\n\nUse summary() to generate summary statistics of the sum of expression level across all genes.\n\n\nCalculate the log2 fold change of the gene TOS6 for the WT and RRP6 samples. Is TOS6 up or down-regulated in the RRP6 samples compared to WT?\n\n\nPerform a Wilcoxon test to check if the TOS6 expression is different between WT and RRP6 samples.\n\n\nStore the test results in a variable (object) called res_wilcox. What is the data structure of the results? Extract the p-value from the results.\nUse \\(\\alpha = 0.05\\), what is your conclusion?\n\n\nVisualize the expression level of TOS6 for WT and RRP6 samples using boxplot.\n\nThe homework correction is available here: link"
+  },
+  {
+    "objectID": "ioc_r/week03/r_w03_slides.html#what-weve-learned-so-far",
+    "href": "ioc_r/week03/r_w03_slides.html#what-weve-learned-so-far",
+    "title": "More Complex Data Structures:Data Frames and Lists",
+    "section": "What We’ve Learned So Far",
+    "text": "What We’ve Learned So Far\n\n\n\nData types\nVariable\nData structures:\n\nvector\nmatrix\n\n\n\n\n\n\nWhat are the outputs for following codes?\n\n\n\n\nc(1, 3, 5)[3]\n5:2\nseq(1, 2, by = 0.5)\nrep(c(1, 3), times = 2)\nrep(c(\"case\", \"control\"), each = 2)\n\n\n\n\nmat &lt;- matrix(1:6, nrow = 2)\nmat\n\n     [,1] [,2] [,3]\n[1,]    1    3    5\n[2,]    2    4    6\n\n\n\nmat[1, ]\nmat[, 2]\nmat[2, 1]\n\n\n\n\nquestion/quiz time"
+  },
+  {
+    "objectID": "ioc_r/week03/r_w03_slides.html#data-structures",
+    "href": "ioc_r/week03/r_w03_slides.html#data-structures",
+    "title": "More Complex Data Structures:Data Frames and Lists",
+    "section": "Data Structures",
+    "text": "Data Structures\nThe 4 data structures to store multiple values:\n\n\n\n\n\n1 dimension\n2 dimensions (row/column)\n\n\n\n\nSame data type\nvector\nmatrix\n\n\nDifferent data types\nlist\ndata frame"
+  },
+  {
+    "objectID": "ioc_r/week03/r_w03_slides.html#data-frames-creation",
+    "href": "ioc_r/week03/r_w03_slides.html#data-frames-creation",
+    "title": "More Complex Data Structures:Data Frames and Lists",
+    "section": "Data Frames Creation",
+    "text": "Data Frames Creation\nUse data.frame() to create a data frame, separate columns by ,.\n\n\n\nmy_df &lt;- data.frame(\n  id = 1:10,\n  gene_name = paste0(\"gene\", LETTERS[1:10]),\n  detected = \"yes\",\n  gene_expr = c(\n    12.4, 11.3, 13.5, 10.2, 11.4,\n    0.5, 1, 1.2, 1.4, 0.6\n  ),\n  status = rep( # repetition\n    c(\"activated\", \"inhibited\"),\n    each = 5\n  )\n)\nmy_df\n\n   id gene_name detected gene_expr    status\n1   1     geneA      yes      12.4 activated\n2   2     geneB      yes      11.3 activated\n3   3     geneC      yes      13.5 activated\n4   4     geneD      yes      10.2 activated\n5   5     geneE      yes      11.4 activated\n6   6     geneF      yes       0.5 inhibited\n7   7     geneG      yes       1.0 inhibited\n8   8     geneH      yes       1.2 inhibited\n9   9     geneI      yes       1.4 inhibited\n10 10     geneJ      yes       0.6 inhibited\n\n\n\n\n# Check the data structure\nis.data.frame(my_df)\n\n[1] TRUE\n\nstr(my_df)\n\n'data.frame':   10 obs. of  5 variables:\n $ id       : int  1 2 3 4 5 6 7 8 9 10\n $ gene_name: chr  \"geneA\" \"geneB\" \"geneC\" \"geneD\" ...\n $ detected : chr  \"yes\" \"yes\" \"yes\" \"yes\" ...\n $ gene_expr: num  12.4 11.3 13.5 10.2 11.4 0.5 1 1.2 1.4 0.6\n $ status   : chr  \"activated\" \"activated\" \"activated\" \"activated\" ...\n\n\n\n\n\n\n\nHow many rows and columns?\nWhat is the data type for each column?"
+  },
+  {
+    "objectID": "ioc_r/week03/r_w03_slides.html#exploring-the-data-frame",
+    "href": "ioc_r/week03/r_w03_slides.html#exploring-the-data-frame",
+    "title": "More Complex Data Structures:Data Frames and Lists",
+    "section": "Exploring the Data Frame",
+    "text": "Exploring the Data Frame\n\n\n\nnrow(my_df)\n\n[1] 10\n\nncol(my_df)\n\n[1] 5\n\ndim(my_df)\n\n[1] 10  5\n\nrownames(my_df)\n\n [1] \"1\"  \"2\"  \"3\"  \"4\"  \"5\"  \"6\"  \"7\"  \"8\"  \"9\"  \"10\"\n\ncolnames(my_df)\n\n[1] \"id\"        \"gene_name\" \"detected\"  \"gene_expr\" \"status\"   \n\n\n\n\nhead(my_df, n = 5)\n\n  id gene_name detected gene_expr    status\n1  1     geneA      yes      12.4 activated\n2  2     geneB      yes      11.3 activated\n3  3     geneC      yes      13.5 activated\n4  4     geneD      yes      10.2 activated\n5  5     geneE      yes      11.4 activated\n\ntail(my_df, n = 3)\n\n   id gene_name detected gene_expr    status\n8   8     geneH      yes       1.2 inhibited\n9   9     geneI      yes       1.4 inhibited\n10 10     geneJ      yes       0.6 inhibited\n\n\n\n\n\nsummary(my_df)\n\n       id         gene_name           detected           gene_expr    \n Min.   : 1.00   Length:10          Length:10          Min.   : 0.50  \n 1st Qu.: 3.25   Class :character   Class :character   1st Qu.: 1.05  \n Median : 5.50   Mode  :character   Mode  :character   Median : 5.80  \n Mean   : 5.50                                         Mean   : 6.35  \n 3rd Qu.: 7.75                                         3rd Qu.:11.38  \n Max.   :10.00                                         Max.   :13.50  \n    status         \n Length:10         \n Class :character  \n Mode  :character"
+  },
+  {
+    "objectID": "ioc_r/week03/r_w03_slides.html#accessing-elements-1",
+    "href": "ioc_r/week03/r_w03_slides.html#accessing-elements-1",
+    "title": "More Complex Data Structures:Data Frames and Lists",
+    "section": "Accessing Elements (1)",
+    "text": "Accessing Elements (1)\nSimilar to matrix indexing, use [idx ,idx] syntax to access elements with:\n\n\nnumeric index\nrow/column names\nlogical index\n\n\n\n# Get 2nd and 3rd rows\nmy_df[2:3, ] \n\n  id gene_name detected gene_expr    status\n2  2     geneB      yes      11.3 activated\n3  3     geneC      yes      13.5 activated\n\nmy_df[-c(1, 4:10), ] # remove the other rows\n\n  id gene_name detected gene_expr    status\n2  2     geneB      yes      11.3 activated\n3  3     geneC      yes      13.5 activated\n\n\n\nmy_df[c(\"2\", \"3\"), ]\n\n  id gene_name detected gene_expr    status\n2  2     geneB      yes      11.3 activated\n3  3     geneC      yes      13.5 activated\n\nmy_df[c(FALSE, TRUE, TRUE, rep(FALSE, 7)), ]\n\n  id gene_name detected gene_expr    status\n2  2     geneB      yes      11.3 activated\n3  3     geneC      yes      13.5 activated"
+  },
+  {
+    "objectID": "ioc_r/week03/r_w03_slides.html#accessing-elements-2",
+    "href": "ioc_r/week03/r_w03_slides.html#accessing-elements-2",
+    "title": "More Complex Data Structures:Data Frames and Lists",
+    "section": "Accessing Elements (2)",
+    "text": "Accessing Elements (2)\n\n\n\nmy_df\n\n   id gene_name detected gene_expr    status\n1   1     geneA      yes      12.4 activated\n2   2     geneB      yes      11.3 activated\n3   3     geneC      yes      13.5 activated\n4   4     geneD      yes      10.2 activated\n5   5     geneE      yes      11.4 activated\n6   6     geneF      yes       0.5 inhibited\n7   7     geneG      yes       1.0 inhibited\n8   8     geneH      yes       1.2 inhibited\n9   9     geneI      yes       1.4 inhibited\n10 10     geneJ      yes       0.6 inhibited\n\n\n\n\n\n\nHow to get the 2nd and 3rd columns?\n\n\n\n\n\nmy_df[, 2:3]\n\n   gene_name detected\n1      geneA      yes\n2      geneB      yes\n3      geneC      yes\n4      geneD      yes\n5      geneE      yes\n6      geneF      yes\n7      geneG      yes\n8      geneH      yes\n9      geneI      yes\n10     geneJ      yes\n\n\n\nmy_df[, c(\"gene_name\", \"detected\")] # idem\nmy_df[, c(FALSE, TRUE, TRUE, FALSE, FALSE)] # idem\n\n\n\n\n\n\nHow to get “geneH” from the data frame?\n\n\n\n\n\n\nmy_df[8, 2]\n\n[1] \"geneH\"\n\nmy_df[8, \"gene_name\"]\n\n[1] \"geneH\""
+  },
+  {
+    "objectID": "ioc_r/week03/r_w03_slides.html#accessing-elements-3",
+    "href": "ioc_r/week03/r_w03_slides.html#accessing-elements-3",
+    "title": "More Complex Data Structures:Data Frames and Lists",
+    "section": "Accessing Elements (3)",
+    "text": "Accessing Elements (3)\n\nUse the operator $ or [[ ]] to get a column:\n\n\nmy_df$gene_name\n\n [1] \"geneA\" \"geneB\" \"geneC\" \"geneD\" \"geneE\" \"geneF\" \"geneG\" \"geneH\" \"geneI\"\n[10] \"geneJ\"\n\n\n\nmy_df[[2]] # idem, use numeric position\nmy_df[[\"gene_name\"]] # idem, use column name\n\n\nSubset the data frame based on some conditions:\n\n\n# Keep rows where the value in the \"status\" column is \"activated\"\nmy_df[my_df$status == \"activated\", ]\n\n  id gene_name detected gene_expr    status\n1  1     geneA      yes      12.4 activated\n2  2     geneB      yes      11.3 activated\n3  3     geneC      yes      13.5 activated\n4  4     geneD      yes      10.2 activated\n5  5     geneE      yes      11.4 activated\n\n\n\n\n\nDon’t worry, we’ll go into more detail at the next session!"
+  },
+  {
+    "objectID": "ioc_r/week03/r_w03_slides.html#be-careful-of-data-structure",
+    "href": "ioc_r/week03/r_w03_slides.html#be-careful-of-data-structure",
+    "title": "More Complex Data Structures:Data Frames and Lists",
+    "section": "Be Careful of Data Structure",
+    "text": "Be Careful of Data Structure\n\n\nIf you select only 1 row of a data frame:\n\nstr(my_df[2, ]) # still a data frame\n\n'data.frame':   1 obs. of  5 variables:\n $ id       : int 2\n $ gene_name: chr \"geneB\"\n $ detected : chr \"yes\"\n $ gene_expr: num 11.3\n $ status   : chr \"activated\"\n\n\n\nunlist(my_df[2, ]) # convert to a vector\n\n         id   gene_name    detected   gene_expr      status \n        \"2\"     \"geneB\"       \"yes\"      \"11.3\" \"activated\" \n\n\n\nIf you select only 1 column of a data frame:\n\nmy_df[, 2]\n\n [1] \"geneA\" \"geneB\" \"geneC\" \"geneD\" \"geneE\" \"geneF\" \"geneG\" \"geneH\" \"geneI\"\n[10] \"geneJ\"\n\nis.vector(my_df[, 2]) # The output was \"simplified\" to a vector.\n\n[1] TRUE\n\n\n\n\nTo keep the output as a data.frame when you select only 1 column, specify drop = FALSE:\n\nmy_df[, 2, drop = FALSE]\n\n   gene_name\n1      geneA\n2      geneB\n3      geneC\n4      geneD\n5      geneE\n6      geneF\n7      geneG\n8      geneH\n9      geneI\n10     geneJ\n\nstr(my_df[, 2, drop = FALSE])\n\n'data.frame':   10 obs. of  1 variable:\n $ gene_name: chr  \"geneA\" \"geneB\" \"geneC\" \"geneD\" ..."
+  },
+  {
+    "objectID": "ioc_r/week03/r_w03_slides.html#data-frame-modification-1",
+    "href": "ioc_r/week03/r_w03_slides.html#data-frame-modification-1",
+    "title": "More Complex Data Structures:Data Frames and Lists",
+    "section": "Data Frame Modification (1)",
+    "text": "Data Frame Modification (1)\nModify existing column:\n\n\n\nThe whole column\n\n\nmy_df[[\"id\"]] &lt;- paste0(\"ID\", my_df[[\"id\"]])\nmy_df\n\n     id gene_name detected gene_expr    status\n1   ID1     geneA      yes      12.4 activated\n2   ID2     geneB      yes      11.3 activated\n3   ID3     geneC      yes      13.5 activated\n4   ID4     geneD      yes      10.2 activated\n5   ID5     geneE      yes      11.4 activated\n6   ID6     geneF      yes       0.5 inhibited\n7   ID7     geneG      yes       1.0 inhibited\n8   ID8     geneH      yes       1.2 inhibited\n9   ID9     geneI      yes       1.4 inhibited\n10 ID10     geneJ      yes       0.6 inhibited\n\n\n\nmy_df$id &lt;- paste0(\"ID\", 1:10) # idem\n\n\n\nModify some elements\n\n\nmy_df[[\"id\"]][1:2] &lt;- 1:2 \nmy_df\n\n     id gene_name detected gene_expr    status\n1     1     geneA      yes      12.4 activated\n2     2     geneB      yes      11.3 activated\n3   ID3     geneC      yes      13.5 activated\n4   ID4     geneD      yes      10.2 activated\n5   ID5     geneE      yes      11.4 activated\n6   ID6     geneF      yes       0.5 inhibited\n7   ID7     geneG      yes       1.0 inhibited\n8   ID8     geneH      yes       1.2 inhibited\n9   ID9     geneI      yes       1.4 inhibited\n10 ID10     geneJ      yes       0.6 inhibited\n\n\n\nmy_df[1:2, \"id\"] &lt;- 1:2 # idem"
+  },
+  {
+    "objectID": "ioc_r/week03/r_w03_slides.html#data-frame-modification-2",
+    "href": "ioc_r/week03/r_w03_slides.html#data-frame-modification-2",
+    "title": "More Complex Data Structures:Data Frames and Lists",
+    "section": "Data Frame Modification (2)",
+    "text": "Data Frame Modification (2)\n\nAdd new column\n\n\nmy_df[[\"tissue\"]] &lt;- rep(c(\"liver\", \"muscle\"), times = 5)\nmy_df\n\n     id gene_name detected gene_expr    status tissue\n1     1     geneA      yes      12.4 activated  liver\n2     2     geneB      yes      11.3 activated muscle\n3   ID3     geneC      yes      13.5 activated  liver\n4   ID4     geneD      yes      10.2 activated muscle\n5   ID5     geneE      yes      11.4 activated  liver\n6   ID6     geneF      yes       0.5 inhibited muscle\n7   ID7     geneG      yes       1.0 inhibited  liver\n8   ID8     geneH      yes       1.2 inhibited muscle\n9   ID9     geneI      yes       1.4 inhibited  liver\n10 ID10     geneJ      yes       0.6 inhibited muscle\n\n\n\nmy_df$tissue &lt;- rep(c(\"liver\", \"muscle\"), times = 5) # idem"
+  },
+  {
+    "objectID": "ioc_r/week03/r_w03_slides.html#data-frame-modification-3",
+    "href": "ioc_r/week03/r_w03_slides.html#data-frame-modification-3",
+    "title": "More Complex Data Structures:Data Frames and Lists",
+    "section": "Data Frame Modification (3)",
+    "text": "Data Frame Modification (3)\n\nDelete column(s)\n\n\nmy_df[[\"detected\"]] &lt;- NULL\nmy_df\n\n     id gene_name gene_expr    status tissue\n1     1     geneA      12.4 activated  liver\n2     2     geneB      11.3 activated muscle\n3   ID3     geneC      13.5 activated  liver\n4   ID4     geneD      10.2 activated muscle\n5   ID5     geneE      11.4 activated  liver\n6   ID6     geneF       0.5 inhibited muscle\n7   ID7     geneG       1.0 inhibited  liver\n8   ID8     geneH       1.2 inhibited muscle\n9   ID9     geneI       1.4 inhibited  liver\n10 ID10     geneJ       0.6 inhibited muscle\n\n\n\nmy_df$detected &lt;- NULL # idem"
+  },
+  {
+    "objectID": "ioc_r/week03/r_w03_slides.html#recoding-data-type",
+    "href": "ioc_r/week03/r_w03_slides.html#recoding-data-type",
+    "title": "More Complex Data Structures:Data Frames and Lists",
+    "section": "Recoding Data Type",
+    "text": "Recoding Data Type\nYou need to recode the column data type if data is categorical, use the factor() function.\n\nmy_df[[\"status\"]] &lt;- factor(my_df[[\"status\"]])\nmy_df$tissue &lt;- factor(\n  my_df[[\"tissue\"]],\n  levels = c(\"muscle\", \"liver\") # specify levels' order\n)\n\n# Check again the data\nstr(my_df)\n\n'data.frame':   10 obs. of  5 variables:\n $ id       : chr  \"1\" \"2\" \"ID3\" \"ID4\" ...\n $ gene_name: chr  \"geneA\" \"geneB\" \"geneC\" \"geneD\" ...\n $ gene_expr: num  12.4 11.3 13.5 10.2 11.4 0.5 1 1.2 1.4 0.6\n $ status   : Factor w/ 2 levels \"activated\",\"inhibited\": 1 1 1 1 1 2 2 2 2 2\n $ tissue   : Factor w/ 2 levels \"muscle\",\"liver\": 2 1 2 1 2 1 2 1 2 1\n\nsummary(my_df)\n\n      id             gene_name           gene_expr           status     tissue \n Length:10          Length:10          Min.   : 0.50   activated:5   muscle:5  \n Class :character   Class :character   1st Qu.: 1.05   inhibited:5   liver :5  \n Mode  :character   Mode  :character   Median : 5.80                           \n                                       Mean   : 6.35                           \n                                       3rd Qu.:11.38                           \n                                       Max.   :13.50"
+  },
+  {
+    "objectID": "ioc_r/week03/r_w03_slides.html#data-frame-concatenation",
+    "href": "ioc_r/week03/r_w03_slides.html#data-frame-concatenation",
+    "title": "More Complex Data Structures:Data Frames and Lists",
+    "section": "Data Frame Concatenation",
+    "text": "Data Frame Concatenation\n\n\nUse cbind() to bind two or more data frames by columns.\n\ndf1 &lt;- data.frame(x = 1:3, y = 4:6)\ndf1\n\n  x y\n1 1 4\n2 2 5\n3 3 6\n\ndf2 &lt;- data.frame(a = 7:9, b = 10:12)\ndf2\n\n  a  b\n1 7 10\n2 8 11\n3 9 12\n\ncbind(df1, df2)\n\n  x y a  b\n1 1 4 7 10\n2 2 5 8 11\n3 3 6 9 12\n\n\n\nUse rbind() to bind two or more data frames by rows, columns names should be the same.\n\nrbind(df1, df2)\n\nError in match.names(clabs, names(xi)): names do not match previous names\n\ndf3 &lt;- data.frame(x = 7:9, y = 10:12)\nrbind(df1, df3)\n\n  x  y\n1 1  4\n2 2  5\n3 3  6\n4 7 10\n5 8 11\n6 9 12"
+  },
+  {
+    "objectID": "ioc_r/week03/r_w03_slides.html#join-data-frames",
+    "href": "ioc_r/week03/r_w03_slides.html#join-data-frames",
+    "title": "More Complex Data Structures:Data Frames and Lists",
+    "section": "Join Data Frames",
+    "text": "Join Data Frames\nUse merge() to join two data frames based on a common column.\n\n\n\ndf1 &lt;- data.frame(id = 1:3, x = letters[1:3])\ndf1\n\n  id x\n1  1 a\n2  2 b\n3  3 c\n\ndf2 &lt;- data.frame(id = c(2, 4), y = LETTERS[c(2, 4)])\ndf2\n\n  id y\n1  2 B\n2  4 D\n\n# inner join\nmerge(x = df1, y = df2, by = \"id\") \n\n  id x y\n1  2 b B\n\n\n\n\n# left join\nmerge(x = df1, y = df2, by = \"id\", all.x = TRUE) \n\n  id x    y\n1  1 a &lt;NA&gt;\n2  2 b    B\n3  3 c &lt;NA&gt;\n\n# right join\nmerge(x = df1, y = df2, by = \"id\", all.y = TRUE) \n\n  id    x y\n1  2    b B\n2  4 &lt;NA&gt; D\n\n# outer join\nmerge(x = df1, y = df2, by = \"id\", all = TRUE)\n\n  id    x    y\n1  1    a &lt;NA&gt;\n2  2    b    B\n3  3    c &lt;NA&gt;\n4  4 &lt;NA&gt;    D"
+  },
+  {
+    "objectID": "ioc_r/week03/r_w03_slides.html#lists-creation",
+    "href": "ioc_r/week03/r_w03_slides.html#lists-creation",
+    "title": "More Complex Data Structures:Data Frames and Lists",
+    "section": "Lists Creation",
+    "text": "Lists Creation\n\n\nUse list() function to create a list, separate elements with ,.\n\nx &lt;- \"geneA\"\ny &lt;- c(10, 11, 0.5)\nz &lt;- c(TRUE, TRUE, FALSE)\nsimple_list &lt;- list(x, y, z)\nsimple_list\n\n[[1]]\n[1] \"geneA\"\n\n[[2]]\n[1] 10.0 11.0  0.5\n\n[[3]]\n[1]  TRUE  TRUE FALSE\n\n# how many elements in the elements\nlength(simple_list)\n\n[1] 3\n\n# check the structure\nstr(simple_list)\n\nList of 3\n $ : chr \"geneA\"\n $ : num [1:3] 10 11 0.5\n $ : logi [1:3] TRUE TRUE FALSE\n\n\n\nWe can name the elements of a list:\n\n# name the elements during creation\nlist(gene_name = x, counts = y, expressed = z) \n\n$gene_name\n[1] \"geneA\"\n\n$counts\n[1] 10.0 11.0  0.5\n\n$expressed\n[1]  TRUE  TRUE FALSE\n\n# or name the elements afterward\nnames(simple_list) &lt;- c(\"gene_name\", \"counts\", \"expressed\")\nsimple_list\n\n$gene_name\n[1] \"geneA\"\n\n$counts\n[1] 10.0 11.0  0.5\n\n$expressed\n[1]  TRUE  TRUE FALSE"
+  },
+  {
+    "objectID": "ioc_r/week03/r_w03_slides.html#subsetting-a-list",
+    "href": "ioc_r/week03/r_w03_slides.html#subsetting-a-list",
+    "title": "More Complex Data Structures:Data Frames and Lists",
+    "section": "Subsetting a List",
+    "text": "Subsetting a List\nUse [ ] to subset a list, with numeric index, name or logical index.\n\n\n\nsimple_list[c(1, 3)]\n\n$gene_name\n[1] \"geneA\"\n\n$expressed\n[1]  TRUE  TRUE FALSE\n\nsimple_list[c(\"gene_name\", \"expressed\")]\n\n$gene_name\n[1] \"geneA\"\n\n$expressed\n[1]  TRUE  TRUE FALSE\n\nsimple_list[c(TRUE, FALSE, TRUE)]\n\n$gene_name\n[1] \"geneA\"\n\n$expressed\n[1]  TRUE  TRUE FALSE\n\n\n\n\n\n\nWhat is the data structure after subsetting?\n\nsimple_list[c(1, 3)]\nsimple_list[1]\n\n\n\n\n\n\nstr(simple_list[c(1, 3)])\n\nList of 2\n $ gene_name: chr \"geneA\"\n $ expressed: logi [1:3] TRUE TRUE FALSE\n\nstr(simple_list[1])\n\nList of 1\n $ gene_name: chr \"geneA\""
+  },
+  {
+    "objectID": "ioc_r/week03/r_w03_slides.html#accessing-element-1",
+    "href": "ioc_r/week03/r_w03_slides.html#accessing-element-1",
+    "title": "More Complex Data Structures:Data Frames and Lists",
+    "section": "Accessing Element (1)",
+    "text": "Accessing Element (1)\n\nsimple_list\n\n$gene_name\n[1] \"geneA\"\n\n$counts\n[1] 10.0 11.0  0.5\n\n$expressed\n[1]  TRUE  TRUE FALSE\n\n\n\nUse $ to access named element:\n\n\nsimple_list$counts\n\n[1] 10.0 11.0  0.5\n\n\n\nUse [[ ]] for named or indexed element:\n\n\nsimple_list[[\"counts\"]]\n\n[1] 10.0 11.0  0.5\n\nsimple_list[[2]]\n\n[1] 10.0 11.0  0.5"
+  },
+  {
+    "objectID": "ioc_r/week03/r_w03_slides.html#accessing-element-2",
+    "href": "ioc_r/week03/r_w03_slides.html#accessing-element-2",
+    "title": "More Complex Data Structures:Data Frames and Lists",
+    "section": "Accessing Element (2)",
+    "text": "Accessing Element (2)\nOnce we have access to the element, we can extract values according to the data structure of that element.\n\n\n\nmy_list &lt;- list(\n  sample_info = data.frame(\n    id = paste0(\"sample\", 1:3),\n    age = c(25, 27, 30)\n  ),\n  family_sequenced = list(\n    sample1 = c(\"father\", \"mother\"),\n    sample2 = c(\"father\", \"mother\", \"sister\"),\n    sample3 = c(\"mother\", \"sister\")\n  )\n)\nmy_list\n\n$sample_info\n       id age\n1 sample1  25\n2 sample2  27\n3 sample3  30\n\n$family_sequenced\n$family_sequenced$sample1\n[1] \"father\" \"mother\"\n\n$family_sequenced$sample2\n[1] \"father\" \"mother\" \"sister\"\n\n$family_sequenced$sample3\n[1] \"mother\" \"sister\"\n\n\n\n\n\n\nHow to extract the age of sample1?\n\n\n\n\n\nmy_list[[\"sample_info\"]][1, \"age\"]\n\n[1] 25\n\n\n\n\n\n\n\nHow to extract the sequenced family members of sample 2?\n\n\n\n\n\n\nmy_list[[\"family_sequenced\"]][[\"sample2\"]]\n\n[1] \"father\" \"mother\" \"sister\"\n\n\n\n\n\nexplain the data in list"
+  },
+  {
+    "objectID": "ioc_r/week03/r_w03_slides.html#list-modification",
+    "href": "ioc_r/week03/r_w03_slides.html#list-modification",
+    "title": "More Complex Data Structures:Data Frames and Lists",
+    "section": "List Modification",
+    "text": "List Modification\n\n\n\nsimple_list\n\n$gene_name\n[1] \"geneA\"\n\n$counts\n[1] 10.0 11.0  0.5\n\n$expressed\n[1]  TRUE  TRUE FALSE\n\n\n\nModify an element\n\n\nsimple_list[[1]] &lt;- 1:10\nsimple_list\n\n$gene_name\n [1]  1  2  3  4  5  6  7  8  9 10\n\n$counts\n[1] 10.0 11.0  0.5\n\n$expressed\n[1]  TRUE  TRUE FALSE\n\n\n\n\nAdd an element\n\n\nsimple_list[[\"new_element\"]] &lt;- 3:1\nsimple_list\n\n$gene_name\n [1]  1  2  3  4  5  6  7  8  9 10\n\n$counts\n[1] 10.0 11.0  0.5\n\n$expressed\n[1]  TRUE  TRUE FALSE\n\n$new_element\n[1] 3 2 1\n\n\n\nRemove an element\n\n\nsimple_list[[\"expressed\"]] &lt;- NULL\nsimple_list\n\n$gene_name\n [1]  1  2  3  4  5  6  7  8  9 10\n\n$counts\n[1] 10.0 11.0  0.5\n\n$new_element\n[1] 3 2 1"
+  },
+  {
+    "objectID": "ioc_r/week03/r_w03_slides.html#list-concatenation",
+    "href": "ioc_r/week03/r_w03_slides.html#list-concatenation",
+    "title": "More Complex Data Structures:Data Frames and Lists",
+    "section": "List Concatenation",
+    "text": "List Concatenation\nUse c() to concatenate two or more lists.\n\nlist1 &lt;- list(1:3, 4:6)\nlist2 &lt;- list(letters[1:3], \"A\")\n\nlist_long &lt;- c(list1, list2)\nlist_long\n\n[[1]]\n[1] 1 2 3\n\n[[2]]\n[1] 4 5 6\n\n[[3]]\n[1] \"a\" \"b\" \"c\"\n\n[[4]]\n[1] \"A\"\n\nstr(list_long)\n\nList of 4\n $ : int [1:3] 1 2 3\n $ : int [1:3] 4 5 6\n $ : chr [1:3] \"a\" \"b\" \"c\"\n $ : chr \"A\""
+  },
+  {
+    "objectID": "ioc_r/week03/r_w03_slides.html#todays-goals",
+    "href": "ioc_r/week03/r_w03_slides.html#todays-goals",
+    "title": "More Complex Data Structures:Data Frames and Lists",
+    "section": "Today’s Goals",
+    "text": "Today’s Goals\n\nWork with data frames and lists\nCalculate fold change of gene expression between groups\nCompare gene expression using the Wilcoxon test\nVisualize differences with boxplots"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#brief-recap-week-1",
+    "href": "ioc_r/week02/r_w02_slides.html#brief-recap-week-1",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Brief Recap Week 1",
+    "text": "Brief Recap Week 1\n\nWith RStudio:\n\nCreating an R project\nManaging files (create, move, etc.)\nImporting and exporting data with RStudio\n\nUnderstanding absolute and relative paths"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#how-we-store-data-in-r",
+    "href": "ioc_r/week02/r_w02_slides.html#how-we-store-data-in-r",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "How We Store Data in R?",
+    "text": "How We Store Data in R?\n\nA variable is like a box where you store data.\nEach variable has a name and content (one or multiple values).\nA variable is created at the moment you assign a value to it. Use &lt;- for assignment.\n\n\nx &lt;- 1 # put a space on each side of the assignment sign\nx # type variable name to print its value(s)\n\n[1] 1\n\nchar_name &lt;- \"InforBio\"\nchar_name\n\n[1] \"InforBio\"\n\nchar_name &lt;- InforBio\n\nError: object 'InforBio' not found\n\n\n\n\n\nCheck the “Environment” pane or type ls() in the console, are variables you just created there?\n\n\n\n\nVariables are containers for data. A box labeled “x” containing the number 1. A box labeled “char_name” containing the platform name “InforBio”."
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#variable-naming-convention",
+    "href": "ioc_r/week02/r_w02_slides.html#variable-naming-convention",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Variable Naming Convention",
+    "text": "Variable Naming Convention\n\n\n\nChoose a short and descriptive name\nUse snake_case (lowercase letters and underscores only)\nAvoid special characters (such as !, #, ) and spaces\nDo not start a name with numbers\nAvoid reserved keywords in R (e.g., function, if, TRUE)\nDo not overwrite built-in functions (e.g., mean, sd)\n\n\n\n\n\nWhich are valid names?\n\n\n\nfoo\ntest\nvar\nvar2\nexam_results\na_variable_with_a_name_super_long\n\nday_1\nday_one\nday1\nfirst_day_of_the_month\nDayOne\ndayOne\nDAYONE\nDAYone\n\n\n\n\n\nHow to know if a variable name was already used?\n\nType help(reserved) to check reserved words in R.\nCheck in “Environment” pane.\nType the first letters of a name and press the Tab key to trigger autocompletion\n\n\n\n\n\n\nFollow the same rules when you naming your R project folder. If really needs a long name, use abbreviation of it with a comment line at the begin to explain what it stands for."
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#data-types",
+    "href": "ioc_r/week02/r_w02_slides.html#data-types",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Data Types",
+    "text": "Data Types\nExamples: 1, 2.5, \"A\", \"InforBio\", \"I love R\", TRUE, FALSE, …\n How R understands and stores information?\n\nMain data types:\n\nNumeric\n\nDouble: 2.5\nInteger: 1\n\nCharacter: \"A\", \"InforBio\", \"I love R\"\nLogical (boolean): TRUE, FALSE\nFactor: for categorical data\n\n\n\n\nWe’ll see factor next week."
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#numeric",
+    "href": "ioc_r/week02/r_w02_slides.html#numeric",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Numeric",
+    "text": "Numeric\n\n\n\nDouble (default): used for numbers with decimal points or without.\n\n\na &lt;- 3\nis.numeric(a)\n\n[1] TRUE\n\nis.double(a)\n\n[1] TRUE\n\ntypeof(a)\n\n[1] \"double\"\n\n\n\n\nIf you explicitly want an integer (whole numbers), you can define it by appending an L to the number:\n\n\nb &lt;- 3L\nis.numeric(b)\n\n[1] TRUE\n\nis.integer(b)\n\n[1] TRUE\n\ntypeof(b)\n\n[1] \"integer\""
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#character",
+    "href": "ioc_r/week02/r_w02_slides.html#character",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Character",
+    "text": "Character\nR stores text (strings) as character. Use quotation marks to indicate a value is character.\n\n# enclosed in either double quotes (\") or single quotes (')\nx &lt;- \"I love R\"\nx\n\n[1] \"I love R\"\n\nis.character(x)\n\n[1] TRUE\n\n\n\n\n\"1\" + \"2\"\n\nError in \"1\" + \"2\": non-numeric argument to binary operator\n\n\n\n\n\nas.numeric(\"1\") + as.numeric(\"2\")  # convert to numeric\n\n[1] 3\n\n\n\n\n\nas.character(1) # convert to character\n\n[1] \"1\""
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#logical",
+    "href": "ioc_r/week02/r_w02_slides.html#logical",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Logical",
+    "text": "Logical\n\nOnly two possible values for logical data: TRUE or FALSE.\nCan be written as T or F, but never in other formats (e.g.: True, true)\n\n\nis.logical(TRUE)\n\n[1] TRUE\n\nis.logical(T)\n\n[1] TRUE\n\nis.logical(True)\n\nError: object 'True' not found\n\n\n\nCan be obtained from logical statements, e.g.:\n\n\n2 &gt; 1\n\n[1] TRUE"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#from-single-value-to-multiple-values",
+    "href": "ioc_r/week02/r_w02_slides.html#from-single-value-to-multiple-values",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "From Single Value to Multiple Values",
+    "text": "From Single Value to Multiple Values\nWhen we store multiple values, we need a structure.\n\ngene1 &lt;- 10\ngene2 &lt;- 12\ngene3 &lt;- 9\n\nHow to put gene1, gene2 and gene3 together?\n\n R provides 4 data structures to store multiple values:\n\n\n\n\n1 dimension\n2 dimensions (row/column)\n\n\n\n\nSame data type\nvector\nmatrix\n\n\nDifferent data types\nlist\ndata frame"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#vector-creation-1",
+    "href": "ioc_r/week02/r_w02_slides.html#vector-creation-1",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Vector Creation (1)",
+    "text": "Vector Creation (1)\nUse the function c() to create a vector and use , to separate elements.\n\n\n\nc(10, 12, 9) # Numeric vector\n\n[1] 10 12  9\n\nc(gene1, gene2, gene3)\n\n[1] 10 12  9\n\ngene_expr &lt;- c(gene1, gene2, gene3) # store in a variable\ngene_expr\n\n[1] 10 12  9\n\nc(gene_expr, 18)\n\n[1] 10 12  9 18\n\n\n\n\nQuickly create sequences of numbers\n\n\n1:10\n\n [1]  1  2  3  4  5  6  7  8  9 10\n\n5:1\n\n[1] 5 4 3 2 1\n\nseq(from = 1, to = 10, by = 2)\n\n[1] 1 3 5 7 9\n\n\n\n\n\nc(\"gene1\", \"gene2\", \"gene3\") # Character vector\n\n[1] \"gene1\" \"gene2\" \"gene3\"\n\nc(TRUE, FALSE, FALSE, TRUE, TRUE) # Logical vector\n\n[1]  TRUE FALSE FALSE  TRUE  TRUE\n\n\n\n\nOther tricks\n\n\npaste0(\"gene\", 1:3)\n\n[1] \"gene1\" \"gene2\" \"gene3\"\n\nrep(c(TRUE, FALSE), each = 2) # repetition\n\n[1]  TRUE  TRUE FALSE FALSE\n\n\n\n\n\nA single value (scalar) is treated as a vector of length 1.\n\nis.vector(10)\n\n[1] TRUE\n\nlength(10)\n\n[1] 1\n\nis.vector(\"gene1\")\n\n[1] TRUE"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#vector-creation-2",
+    "href": "ioc_r/week02/r_w02_slides.html#vector-creation-2",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Vector Creation (2)",
+    "text": "Vector Creation (2)\nWhen you combine different data types …\n\nc(10, TRUE)\n\n[1] 10  1\n\nc(10, \"gene1\")\n\n[1] \"10\"    \"gene1\"\n\nc(TRUE, \"gene1\")\n\n[1] \"TRUE\"  \"gene1\"\n\nc(10, \"gene1\", TRUE)\n\n[1] \"10\"    \"gene1\" \"TRUE\" \n\n\n\n R follows a hierarchy of data types for coercion:\nlogical (least inclusive) → numeric → character (most inclusive)\n\nR always picks the “most flexible” type that can represent all the values without losing information."
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#vector-indexing-1",
+    "href": "ioc_r/week02/r_w02_slides.html#vector-indexing-1",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Vector Indexing (1)",
+    "text": "Vector Indexing (1)\n\n\n\nUse [idx] to access element(s).\n\nNotes: The index starts from 1.\n\ngene_expr\n\n[1] 10 12  9\n\ngene_expr[1]   # 1st element\n\n[1] 10\n\ngene_expr[c(2, 3)] # elements 2 and 3\n\n[1] 12  9\n\ngene_expr[2:3] # elements 2 and 3\n\n[1] 12  9\n\ngene_expr[-1]  # all elements except the 1st\n\n[1] 12  9\n\n\n\n\nModify element(s).\n\n\ngene_expr[1] &lt;- 100\ngene_expr\n\n[1] 100  12   9\n\ngene_expr[2:3] &lt;- 8\ngene_expr\n\n[1] 100   8   8\n\ngene_expr[2:3] &lt;- c(0, 20)\ngene_expr\n\n[1] 100   0  20"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#vector-indexing-2",
+    "href": "ioc_r/week02/r_w02_slides.html#vector-indexing-2",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Vector Indexing (2)",
+    "text": "Vector Indexing (2)\n\n\n\nUse [name] to access element(s) if the vector is named.\n\n\n# name elements of the vector\nnames(gene_expr) &lt;- c(\"gene1\", \"gene2\", \"gene3\")\ngene_expr\n\ngene1 gene2 gene3 \n  100     0    20 \n\ngene_expr[\"gene1\"] # the element named \"gene1\"\n\ngene1 \n  100 \n\ngene_expr[c(\"gene1\", \"gene2\")] # extract \"gene1\" and \"gene2\"\n\ngene1 gene2 \n  100     0 \n\n\n\n\nModify element(s).\n\n\ngene_expr[\"gene1\"] &lt;- 2\ngene_expr\n\ngene1 gene2 gene3 \n    2     0    20 \n\n\n\n\n\n\n\nHow to modify the expression value of “gene1” and “gene2” to 5?\nHow to change the expression value of “gene1” to 0 and “gene2” to 16?\n\n\n\n\n\n\n\ngene_expr[c(\"gene1\", \"gene2\")] &lt;- 5\ngene_expr\n\ngene1 gene2 gene3 \n    5     5    20 \n\ngene_expr[c(\"gene1\", \"gene2\")] &lt;- c(0, 16)\ngene_expr\n\ngene1 gene2 gene3 \n    0    16    20"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#vector-indexing-3",
+    "href": "ioc_r/week02/r_w02_slides.html#vector-indexing-3",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Vector Indexing (3)",
+    "text": "Vector Indexing (3)\n\n\n\nUse a logical vector for indexing.\n\n\nnum_vec &lt;- c(1, 2, 5, 4)\nnum_vec\n\n[1] 1 2 5 4\n\nlogical_vec &lt;- c(TRUE, TRUE, FALSE, FALSE)\nlogical_vec\n\n[1]  TRUE  TRUE FALSE FALSE\n\nnum_vec[logical_vec]\n\n[1] 1 2\n\n\n\n# create logical vect using comparison operator\nnum_vec &lt; 3\n\n[1]  TRUE  TRUE FALSE FALSE\n\n# then use it to extract values from the numeric vector\nnum_vec[num_vec &lt; 3]\n\n[1] 1 2\n\n\n\n\n\n\nR use the &gt; to test greater than. E.g.:\n\n1 &gt; 2\n\n[1] FALSE\n\nc(1, 2, 3) &gt; 2\n\n[1] FALSE FALSE  TRUE\n\n\nHow to extract values greater than 3 from the num_vec?\n\n\n\n\n\nnum_vec[num_vec &gt; 3]\n\n[1] 5 4"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#vector-operations",
+    "href": "ioc_r/week02/r_w02_slides.html#vector-operations",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Vector Operations",
+    "text": "Vector Operations\n\n\n\n# create a vector for gene expression\ngene_expr &lt;- c(15, 19, 14, 3, 10) \n\n# check the structure\nis.numeric(gene_expr)\n\n[1] TRUE\n\nstr(gene_expr)\n\n num [1:5] 15 19 14 3 10\n\n# vector length\nlength(gene_expr)\n\n[1] 5\n\n# show the first/last elements\nhead(gene_expr)\n\n[1] 15 19 14  3 10\n\ntail(gene_expr)\n\n[1] 15 19 14  3 10\n\n## check if missing value present\nis.na(gene_expr)\n\n[1] FALSE FALSE FALSE FALSE FALSE\n\n\n\n\n# Arithmetic operations\ngene_expr + 1\n\n[1] 16 20 15  4 11\n\ngene_expr * 10\n\n[1] 150 190 140  30 100\n\n\n\n\n# Get some summary stats\nsum(gene_expr)\n\n[1] 61\n\nmean(gene_expr)\n\n[1] 12.2\n\nmedian(gene_expr)\n\n[1] 14\n\nsummary(gene_expr)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n    3.0    10.0    14.0    12.2    15.0    19.0"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#matrices-creation",
+    "href": "ioc_r/week02/r_w02_slides.html#matrices-creation",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Matrices Creation",
+    "text": "Matrices Creation\n\n\n\nUse the matrix() function to create a matrix.\n\n\nmy_mat1 &lt;- matrix(1:6, nrow = 2)\nmy_mat2 &lt;- matrix(1:6, nrow = 2, byrow = TRUE)\n\nmy_mat1\n\n     [,1] [,2] [,3]\n[1,]    1    3    5\n[2,]    2    4    6\n\nmy_mat2\n\n     [,1] [,2] [,3]\n[1,]    1    2    3\n[2,]    4    5    6\n\n\n\n\nCombine vectors to create matrix.\n\n\nvec1 &lt;- 1:3\nvec2 &lt;- 4:6\n\nrbind(vec1, vec2)\n\n     [,1] [,2] [,3]\nvec1    1    2    3\nvec2    4    5    6\n\ncbind(vec1, vec2)\n\n     vec1 vec2\n[1,]    1    4\n[2,]    2    5\n[3,]    3    6\n\n\n\n\n\n\n\nWhat is the data structure of each row/column of a matrix?"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#matrices-indexing-1",
+    "href": "ioc_r/week02/r_w02_slides.html#matrices-indexing-1",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Matrices Indexing (1)",
+    "text": "Matrices Indexing (1)\n\nUse [row_idx,column_idx] to access element(s).\n\n\n\n\nmat &lt;- matrix(1:12, ncol = 4)\nmat\n\n     [,1] [,2] [,3] [,4]\n[1,]    1    4    7   10\n[2,]    2    5    8   11\n[3,]    3    6    9   12\n\ndim(mat) # dimensions of the matrix\n\n[1] 3 4\n\nnrow(mat)\n\n[1] 3\n\nncol(mat)\n\n[1] 4\n\nmat[1, 2] # element in the 1st row and 2nd column\n\n[1] 4\n\nmat[, 3] # all rows of the 3rd column\n\n[1] 7 8 9\n\n\n\n\n\n\n\nHow to get all columns of the 2nd and the 3rd rows?\nHow to get the value 5 from the matrix?\n\n\n\n\n\n\nmat[2:3, ]\n\n     [,1] [,2] [,3] [,4]\n[1,]    2    5    8   11\n[2,]    3    6    9   12\n\nmat[2, 2]\n\n[1] 5\n\n\n\n\n\nAs matrix is vectors extended into 2D, if question about drop dim, drop = FALSE"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#matrices-indexing-2",
+    "href": "ioc_r/week02/r_w02_slides.html#matrices-indexing-2",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Matrices Indexing (2)",
+    "text": "Matrices Indexing (2)\n\nUse [row_name,column_name] to access element(s) if names exist.\n\n\n\n\nmat\n\n     [,1] [,2] [,3] [,4]\n[1,]    1    4    7   10\n[2,]    2    5    8   11\n[3,]    3    6    9   12\n\n# add names to the columns and rows\nrownames(mat) &lt;- c(\"r1\", \"r2\", \"r3\")\ncolnames(mat) &lt;- paste0(\"c\", 1:4)\n\nmat\n\n   c1 c2 c3 c4\nr1  1  4  7 10\nr2  2  5  8 11\nr3  3  6  9 12\n\nmat[\"r1\", ] # all element of the 1st row\n\nc1 c2 c3 c4 \n 1  4  7 10 \n\n\n\n\n\n\nBy using the names of rows and columns:\n\nHow to get 2nd row of the 2nd and the 3rd columns?\nHow to get the value 5 from the matrix?\n\n\n\n\n\n\nmat[\"r2\", c(\"c2\", \"c3\")]\n\nc2 c3 \n 5  8 \n\nmat[\"r2\", \"c2\"]\n\n[1] 5"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#matrices-indexing-3",
+    "href": "ioc_r/week02/r_w02_slides.html#matrices-indexing-3",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Matrices Indexing (3)",
+    "text": "Matrices Indexing (3)\n\nUse logical vector(s) for indexing.\n\n\nmat[c(TRUE, TRUE, FALSE), ]\n\n   c1 c2 c3 c4\nr1  1  4  7 10\nr2  2  5  8 11\n\nmat[c(TRUE, TRUE, FALSE), c(FALSE, TRUE, TRUE, FALSE)]\n\n   c2 c3\nr1  4  7\nr2  5  8\n\n\n\n\n\n\nBy using the logical indexing, how to select the 2nd and 3rd rows, the 1st and 2nd columns of the mat?\n\n\n\n\n\n\nmat[c(FALSE, TRUE, TRUE), c(TRUE, TRUE, FALSE, FALSE)]\n\n   c1 c2\nr2  2  5\nr3  3  6"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#matrices-operations",
+    "href": "ioc_r/week02/r_w02_slides.html#matrices-operations",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Matrices Operations",
+    "text": "Matrices Operations\n\n\n\nCheck the structure\n\n\nis.matrix(mat)\n\n[1] TRUE\n\nstr(mat)\n\n int [1:3, 1:4] 1 2 3 4 5 6 7 8 9 10 ...\n - attr(*, \"dimnames\")=List of 2\n  ..$ : chr [1:3] \"r1\" \"r2\" \"r3\"\n  ..$ : chr [1:4] \"c1\" \"c2\" \"c3\" \"c4\"\n\n\n\n\nSome maths\n\n\nrowSums(mat)\n\nr1 r2 r3 \n22 26 30 \n\ncolSums(mat)\n\nc1 c2 c3 c4 \n 6 15 24 33 \n\ncolMeans(mat)\n\nc1 c2 c3 c4 \n 2  5  8 11 \n\nrowMeans(mat)\n\n r1  r2  r3 \n5.5 6.5 7.5 \n\n\n\n\n\nModify elements\n\n\nmat[1:2, 3] &lt;- c(1, 2)\nmat\n\n   c1 c2 c3 c4\nr1  1  4  1 10\nr2  2  5  2 11\nr3  3  6  9 12\n\n\n\n\nmat[1:2, ] &lt;- 10\nmat\n\n   c1 c2 c3 c4\nr1 10 10 10 10\nr2 10 10 10 10\nr3  3  6  9 12\n\n\n\n\n\n# replace values in 1st row\nmat[1, ] &lt;- c(0, 1, 2)\n\nError in mat[1, ] &lt;- c(0, 1, 2): number of items to replace is not a multiple of replacement length"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#value-replacement",
+    "href": "ioc_r/week02/r_w02_slides.html#value-replacement",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Value Replacement",
+    "text": "Value Replacement\n\n\n\nIn matrices\n\n\nmat\n\n   c1 c2 c3 c4\nr1 10 10 10 10\nr2 10 10 10 10\nr3  3  6  9 12\n\n# replace values in 1st row\nmat[1, ] &lt;- c(0, 1, 2)\n\nError in mat[1, ] &lt;- c(0, 1, 2): number of items to replace is not a multiple of replacement length\n\n\n\n\nIn vectors\n\n\nnum_vec &lt;- 1:10\nnum_vec\n\n [1]  1  2  3  4  5  6  7  8  9 10\n\nnum_vec[1:5] &lt;- c(0, 1, 2)\n\nWarning in num_vec[1:5] &lt;- c(0, 1, 2): number of items to replace is not a\nmultiple of replacement length\n\nnum_vec\n\n [1]  0  1  2  0  1  6  7  8  9 10\n\n\n\n\n\n\n\nWhen assigning new values, you must provide either:\n\nA single value,\nA vector with the exact number of elements to be replaced, or\nA vector whose length is a factor of the number of elements to be replaced. (Recycling) Not recommanded!"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#todays-goals",
+    "href": "ioc_r/week02/r_w02_slides.html#todays-goals",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Today’s Goals",
+    "text": "Today’s Goals\n\nGet familiar with variables and data types\nGet familiar with vectors and matrices manipulations\nSimulate your own biological data and test the normality using the Shapiro-Wilk test"
   },
   {
     "objectID": "ioc_r/week01/r_w01_slides.html#welcome-to-r",
@@ -53,7 +613,7 @@
     "href": "ioc_r/week01/r_w01_slides.html#rstudio-ide",
     "title": "Kickstart with R:Your Gateway to Data Science",
     "section": "Rstudio IDE",
-    "text": "Rstudio IDE\n\n\nIntegrated Development Environment (IDE)\n\n\n\n\nConsole: enter and execute commands interactively.\n\nEnvironment/History: tracks your variables and past commands.\nFiles/Plots/Packages: managing your files, viewing graphs, or installing tools.\n\n\n\n\nRstudio cheat sheet (and French version)\n\n\n\n\n\nEverything you need in one organized window. Save your work as a script, RStudio includes many useful features which let us code easily. notebook, show results"
+    "text": "Rstudio IDE\nIntegrated Development Environment (IDE)\n\n\n\n\n\nConsole: enter and execute R commands interactively.\nEnvironment/History: tracks your variables and past commands.\nFiles/Plots/Packages: managing your files, viewing graphs, or installing tools.\n\n\n\n\nRstudio cheat sheet (and French version)\n\n\n\n\n\nEverything you need in one organized window. Save your work as a script, RStudio includes many useful features which let us code easily. notebook, show results"
   },
   {
     "objectID": "ioc_r/week01/r_w01_slides.html#getting-started",
@@ -182,73 +742,52 @@
     "text": "Today’s Goals\n\nGet familiar with the RStudio\nCreate an R project in RStudio\nImport data file into RStudio\nExport data from RStudio"
   },
   {
-    "objectID": "ioc_scrnaseq_info.html",
-    "href": "ioc_scrnaseq_info.html",
-    "title": "IOC Single-cell RNAseq Training Information",
+    "objectID": "ioc_r/week01/r_w01_work.html",
+    "href": "ioc_r/week01/r_w01_work.html",
+    "title": "Week 1 - Homework",
     "section": "",
-    "text": "Welcome to the IOC-scRNAseq Training!\nThe online course will be started from March 2026. More details will be shared later."
+    "text": "Write your code in a new R script. You can use # at the beginning of a line to add a comment in your script.\n\nImport the data file “visceral_fat.csv”.\n\n\nFirst, download the visceral_fat.csv file via this link.\nThen, upload the file to a folder of your choice within your RStudio project.\nNext, import the data into RStudio and name the data frame visceral_fat.\n\nTip:\nUse the click-button method in RStudio to upload and import the file. Then, copy and paste the R commands generated into your script.\nOnce imported, you can use the visceral_fat dataset for further analysis in your report.\n\nSummarize the dataset.\n\nRun the function summary(visceral_fat) to generate a summary of the dataset. Describe what information you obtained.\n\nDraw a histogram.\n\nCreate a histogram for the diastolic blood pressure using the column visceral_fat[[\"diastolic_bp__mmhg\"]]. Describe what you observe from the plot.\n\nHandle an outlier.\n\nAfter consulting with a clinician, you discover that the 27th value of the diastolic blood pressure was incorrectly recorded.\n\nIgnore this value using visceral_fat[[\"diastolic_bp__mmhg\"]][-27]\nRedraw the histogram after excluding the outlier and describe any changes you observe.\n\n\nCompare mean and median.\n\nCalculate the mean (mean()) and the median (median()) for the diastolic blood pressure\n\nbefore ignoring the 27th value: visceral_fat[[\"diastolic_bp__mmhg\"]]\nafter ignoring the 27th value: visceral_fat[[\"diastolic_bp__mmhg\"]][-27]\n\nDescribe how the outlier affects the mean and median.\nThe homework correction is available here: link"
   },
   {
-    "objectID": "ioc_scrnaseq.html",
-    "href": "ioc_scrnaseq.html",
-    "title": "IOC on Single-cell RNAseq Analysis",
+    "objectID": "ioc_r/week04/r_w04_exos.html",
+    "href": "ioc_r/week04/r_w04_exos.html",
+    "title": "Week 4 - Hands-On Examples",
     "section": "",
-    "text": "Training on single-cell RNAseq analysis is upcoming!"
+    "text": "The R script is available here: link"
   },
   {
-    "objectID": "index.html#what-is-ioc",
-    "href": "index.html#what-is-ioc",
-    "title": "Welcome To the IOC Training!",
-    "section": "What is IOC?",
-    "text": "What is IOC?\nThe InforBio platform has developed an “Interactive Online Companionship” (IOC) specifically tailored to initiate researchers into bioinformatics. The IOC involved one-to-many virtual work sessions where companions are trained to analyze their own data.\nAll IOC programs are structured into a series of modules, with each module building upon the knowledge and skills acquired in the previous one. One module lasts one week, during which companions dive into online materials to ensure they understand and internalize the content. Companions then complete quizzes and exercises using both public and their own data to gauge their understanding, receiving personalized feedback on their work. To facilitate their learning, we provide access to computational resources such as Rstudio and Galaxy servers. The module wraps up with a 2.5 hours’ videoconference to recap the week’s material and address any questions. These videoconferences are recorded and made available for later viewing, ensuring continuous access to the learning resources.\nBy the end of an IOC, companions will be equipped with expertise and confidence to run their own analyses independently."
+    "objectID": "ioc_r/week04/r_w04_exos.html#goals",
+    "href": "ioc_r/week04/r_w04_exos.html#goals",
+    "title": "Week 4 - Hands-On Examples",
+    "section": "Goals",
+    "text": "Goals\n\nUnderstand and use operators to filter data with precision.\nUnderstand function’s basic structure, learn to use new functions, write functions to automate tasks."
   },
   {
-    "objectID": "index.html#ioc-tools",
-    "href": "index.html#ioc-tools",
-    "title": "Welcome To the IOC Training!",
-    "section": "IOC tools",
-    "text": "IOC tools\n\nZoom\nWe will use Zoom for videoconferencing.\nPlease follow the rules for usage:\n\nPlease be on time.\nTechnical setup:\n\nEnsure your internet connection is stable.\nTest your camera and microphone before the session.\n\nDuring the session:\n\nKeep your microphone muted unless you’re speaking to avoid background noise.\nUse the “Raise Hand” feature if you want to ask a question during the lecture.\nKeep your camera on if possible to create a more interactive environment.\n\nRecorded sessions are for personal review only. Do not distribute them without permission.\n\n\n\nSlack\nSlack is a dedicated workspace for communication and staying connected between sessions.\nIf you haven’t already use it, you need to create a Slack account.\nIf you have a Slack account, you can either connect to the account using this webpage, or use a desktop version on your computer. (Slack Windows desktop, Slack Mac desktop)\nAnd you will receive an invitation link to join the IOC Slack of your group.\n\nPost messages in the correct channel, e.g., “questions” for asking about course content.\nWhen asking questions, please be specific and clear with a minimal context, include screenshots or error message to help others understand the issue.\nWhen discussing a question, please reply in the thread to avoid flooding the channel.\n\n\n\nTrello\nTrello is a tool to help you stay organized and track your learning progress.\nYou will be invited to join a Trello board for this IOC. We will create one list per student, please add one card for each session to add your notes, summary, etc."
+    "objectID": "ioc_r/week04/r_w04_exos.html#import-data",
+    "href": "ioc_r/week04/r_w04_exos.html#import-data",
+    "title": "Week 4 - Hands-On Examples",
+    "section": "Import Data",
+    "text": "Import Data\nA gene-level differential expression (DE) analysis was performed to compare SET1 samples to WT samples using data from read-counts.csv.\nThe analysis results are available via this link.\n\nPlease donwload the result file and upload it to your data folder.\nImport the data using the read.csv() function. (See the documentation with ?read.csv) Name the imported results de_res.\n\n\nde_res &lt;- read.csv(\n  file = \"../exos_data/toy_DEanalysis.csv\",  # replace the path with your own\n  header = TRUE\n)"
   },
   {
-    "objectID": "ioc_r/week01/r_w01_exos.html",
-    "href": "ioc_r/week01/r_w01_exos.html",
-    "title": "Week 1 - Hands-On Examples",
-    "section": "",
-    "text": "Get familiar with the RStudio\nCreate an R project in RStudio\nImport data file into RStudio\nExport data from RStudio"
+    "objectID": "ioc_r/week04/r_w04_exos.html#exercises",
+    "href": "ioc_r/week04/r_w04_exos.html#exercises",
+    "title": "Week 4 - Hands-On Examples",
+    "section": "Exercises",
+    "text": "Exercises\n\nCheck the structure of de_res using an appropriate R function. What are the dimensions?\n\n\nstr(de_res)\n\n'data.frame':   45 obs. of  7 variables:\n $ gene_name     : chr  \"HTB2\" \"HHF1\" \"HHT1\" \"POL30\" ...\n $ baseMean      : num  20259 9821 1539 1274 316 ...\n $ log2FoldChange: num  -0.3757 0.1789 0.0866 0.4165 0.2189 ...\n $ lfcSE         : num  0.447 0.536 0.412 0.422 0.434 ...\n $ stat          : num  -0.841 0.334 0.21 0.988 0.505 ...\n $ pvalue        : num  0.4 0.739 0.834 0.323 0.614 ...\n $ padj          : num  0.891 0.906 0.915 0.891 0.891 ...\n\n\nThe result is a data frame with 45 rows and 7 columns.\nThe result contains following columns:\n\ngene_name: gene name\nbaseMean: mean of normalized counts for all samples\nlog2FoldChange: log2 fold change\nlfcSE: standard error\nstat: Wald statistic\npvalue: Wald test p-value\npadj: adjusted p-values (Benjamini-Hochberg procedure)\n\n\nFilter the rows where the gene has a log2 fold change (log2FoldChange) greater than 0.5.\n\n\nde_res[de_res$log2FoldChange &gt; 0.5, ]\n\n   gene_name  baseMean log2FoldChange     lfcSE     stat       pvalue\n9     SUT476  88.12355      0.9935943 0.3856808 2.576209 9.989029e-03\n15     CDC20 216.80742      0.7885416 0.4908836 1.606372 1.081922e-01\n16      CLB6 111.03713      0.7373706 0.5448055 1.353457 1.759098e-01\n21      LOH1  48.61440      2.2259655 0.3969997 5.606971 2.058986e-08\n29   SUT2873  26.00372      1.4253323 0.3685458 3.867449 1.099797e-04\n40      ACM1 140.43590      0.7332617 0.4864127 1.507489 1.316854e-01\n           padj\n9  7.611881e-02\n15 5.792117e-01\n16 7.196311e-01\n21 9.265435e-07\n29 1.649695e-03\n40 5.925843e-01\n\n\n\nFilter the rows where the gene has a log2 fold change smaller than -0.5.\n\n\nde_res[de_res$log2FoldChange &lt; -0.5, ]\n\n   gene_name    baseMean log2FoldChange     lfcSE      stat       pvalue\n10     APQ12 5422.709150     -0.6401330 0.2366950 -2.704463 0.0068414883\n19      FAR1 5927.470166     -1.5095445 0.6754613 -2.234835 0.0254281962\n20     SUT24  155.788397     -0.8436243 0.3281685 -2.570705 0.0101491743\n22      PIR3  304.294496     -2.3659253 0.6082583 -3.889672 0.0001003798\n27     TUB33    2.952205     -0.8718026 0.5544172 -1.572467 0.1158423457\n          padj\n10 0.076118807\n19 0.163466976\n20 0.076118807\n22 0.001649695\n27 0.579211728\n\n\n\nFilter the rows where the gene has a log2 fold change greater than 0.5 or smaller than -0.5.\n\n\nde_res[de_res$log2FoldChange &gt; 0.5 | de_res$log2FoldChange &lt; -0.5, ]\n\n   gene_name    baseMean log2FoldChange     lfcSE      stat       pvalue\n9     SUT476   88.123550      0.9935943 0.3856808  2.576209 9.989029e-03\n10     APQ12 5422.709150     -0.6401330 0.2366950 -2.704463 6.841488e-03\n15     CDC20  216.807415      0.7885416 0.4908836  1.606372 1.081922e-01\n16      CLB6  111.037134      0.7373706 0.5448055  1.353457 1.759098e-01\n19      FAR1 5927.470166     -1.5095445 0.6754613 -2.234835 2.542820e-02\n20     SUT24  155.788397     -0.8436243 0.3281685 -2.570705 1.014917e-02\n21      LOH1   48.614399      2.2259655 0.3969997  5.606971 2.058986e-08\n22      PIR3  304.294496     -2.3659253 0.6082583 -3.889672 1.003798e-04\n27     TUB33    2.952205     -0.8718026 0.5544172 -1.572467 1.158423e-01\n29   SUT2873   26.003715      1.4253323 0.3685458  3.867449 1.099797e-04\n40      ACM1  140.435903      0.7332617 0.4864127  1.507489 1.316854e-01\n           padj\n9  7.611881e-02\n10 7.611881e-02\n15 5.792117e-01\n16 7.196311e-01\n19 1.634670e-01\n20 7.611881e-02\n21 9.265435e-07\n22 1.649695e-03\n27 5.792117e-01\n29 1.649695e-03\n40 5.925843e-01\n\n## Bonus: we can test the absolute value of log2FoldChange to simplify condition\nabs(c(0.5, -0.5)) # how abs() works\n\n[1] 0.5 0.5\n\nde_res[abs(de_res$log2FoldChange) &gt; 0.5, ]\n\n   gene_name    baseMean log2FoldChange     lfcSE      stat       pvalue\n9     SUT476   88.123550      0.9935943 0.3856808  2.576209 9.989029e-03\n10     APQ12 5422.709150     -0.6401330 0.2366950 -2.704463 6.841488e-03\n15     CDC20  216.807415      0.7885416 0.4908836  1.606372 1.081922e-01\n16      CLB6  111.037134      0.7373706 0.5448055  1.353457 1.759098e-01\n19      FAR1 5927.470166     -1.5095445 0.6754613 -2.234835 2.542820e-02\n20     SUT24  155.788397     -0.8436243 0.3281685 -2.570705 1.014917e-02\n21      LOH1   48.614399      2.2259655 0.3969997  5.606971 2.058986e-08\n22      PIR3  304.294496     -2.3659253 0.6082583 -3.889672 1.003798e-04\n27     TUB33    2.952205     -0.8718026 0.5544172 -1.572467 1.158423e-01\n29   SUT2873   26.003715      1.4253323 0.3685458  3.867449 1.099797e-04\n40      ACM1  140.435903      0.7332617 0.4864127  1.507489 1.316854e-01\n           padj\n9  7.611881e-02\n10 7.611881e-02\n15 5.792117e-01\n16 7.196311e-01\n19 1.634670e-01\n20 7.611881e-02\n21 9.265435e-07\n22 1.649695e-03\n27 5.792117e-01\n29 1.649695e-03\n40 5.925843e-01\n\n\n\nFilter the rows where the gene has a log2 fold change greater than 0.5 and adjusted p-value (padj) smaller than 0.05.\n\n\nde_res[de_res$log2FoldChange &gt; 0.5 & de_res$padj &lt; 0.05, ]\n\n   gene_name baseMean log2FoldChange     lfcSE     stat       pvalue\n21      LOH1 48.61440       2.225966 0.3969997 5.606971 2.058986e-08\n29   SUT2873 26.00372       1.425332 0.3685458 3.867449 1.099797e-04\n           padj\n21 9.265435e-07\n29 1.649695e-03\n\n\n\n\n\n\n\n\nStats Time!\n\n\n\nMultiple Tests Correction\n\n\nWhy multiple testing is a problem?\nWhen performing multiple statistical tests, the probability of making at least one Type I error (false positive) increases with the number of tests.\nFor instance, if we perform 100 independent tests with a significance level (\\(\\alpha\\)) of 5%, the chance of incorrectly rejecting at least one null hypothesis is no longer 5%, but much higher. This is because the errors accumulate across the tests.\nIf we do 100 tests simultaneously and set and use \\(\\alpha\\) at 0.05, the probability to do at least one error is:\n\\[\n\\begin{aligned}\nP(\\text{at least 1 significant result by chance}) &= 1- P(\\text{non significant results}) \\\\\n&= 1 – (1 - 0.05)^{100} \\\\\n&= 0.99\n\\end{aligned}\n\\]\n\n\nMultiple test correction\nTo address this issue and control the overall Type I error rate, statistical corrections like the Bonferroni correction or False Discovery Rate (FDR) adjustments are commonly used in multiple testing scenarios.\n\n\nBonferroni correction: adjust the significance threshold (\\(\\alpha\\)) to account for the number of tests (Ntest) being performed, i.e., \\(\\alpha_{adjusted}= \\frac{\\alpha}{\\text{Ntest}}\\)\n\n\n\\[\n\\begin{aligned}\nP(\\text{at least 1 significant result by chance}) &= 1 – (1 - \\frac{0.05}{100})^{100} \\\\\n&= 0.049\n\\end{aligned}\n\\]\n\n\nFDR (False discovery rate): control the proportion of false positive amongst all significant results, e.g.: Benjamini-Hochberg (BH) procedure.\n\n\n\n\n\n\n\nExtract results for these genes: RNR1, PIR3, SRP68.\n\n\nde_res[de_res$gene_name %in% c(\"RNR1\", \"PIR3\", \"SRP68\"), ]\n\n   gene_name  baseMean log2FoldChange     lfcSE       stat       pvalue\n11      RNR1 1374.1805     -0.3810586 0.4335968 -0.8788317 0.3794925108\n22      PIR3  304.2945     -2.3659253 0.6082583 -3.8896719 0.0001003798\n42     SRP68 1058.4173     -0.1198641 0.2107691 -0.5686988 0.5695605340\n          padj\n11 0.891290926\n22 0.001649695\n42 0.891290926\n\n\n\nUse ifelse() to categorize genes. Add a new column, gene_category, that assigns categories:\n\n\n“up” if log2FoldChange &gt; 0.5.\n“down” if log2FoldChange &lt; -0.5.\n“neutral” otherwise.\n\n\nde_res[[\"gene_category\"]] &lt;- ifelse(\n  test = de_res[[\"log2FoldChange\"]] &gt; 0.5,\n  yes = \"up\",\n  no = ifelse(\n    test = de_res[[\"log2FoldChange\"]] &lt; -0.5,\n    yes = \"down\",\n    no = \"neutral\"\n  )\n)\n\n\nUse table() to count the occurrences of each gene category.\n\n\ntable(de_res[[\"gene_category\"]])\n\n\n   down neutral      up \n      5      34       6"
   },
   {
-    "objectID": "ioc_r/week01/r_w01_exos.html#goals",
-    "href": "ioc_r/week01/r_w01_exos.html#goals",
-    "title": "Week 1 - Hands-On Examples",
-    "section": "",
-    "text": "Get familiar with the RStudio\nCreate an R project in RStudio\nImport data file into RStudio\nExport data from RStudio"
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_exos.html#create-an-r-project",
-    "href": "ioc_r/week01/r_w01_exos.html#create-an-r-project",
-    "title": "Week 1 - Hands-On Examples",
-    "section": "Create an R project",
-    "text": "Create an R project\n\nOpen RStudio, create a new R project in the folder of your choice.\n\nSome rules for naming your project:\n\nChoose a short and descriptive name.\nUse snake case (lowercase letters and underscores only). Avoid special characters (such as !, #, ) and spaces.\nThe name cannot starts with numbers.\n\n\nOpen your R project, create three new folders, i.e., data, scripts, outputs.\nDownload two files:\n\n\nAn R script named “r_w01_exos.R” for this week’s exercise (here), save it into the scripts folder.\nA data file called “read-counts.csv” (here), put it into the data folder.\n\n\n\n\n\n\n\nTip\n\n\n\nIf you are using RStudio server, files can be uploaded using the “Upload” icon in the Files pane."
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_exos.html#files-description",
-    "href": "ioc_r/week01/r_w01_exos.html#files-description",
-    "title": "Week 1 - Hands-On Examples",
-    "section": "Files Description",
-    "text": "Files Description\n\nData File\nWe’ll be working with a gene expression dataset as an example, sourced from this link.\nThe data comes from an experiment using PCR to study 44 genes. The results were measured to see which genes are active at different stages in Yeast cell cycling. Several strains were tested, including wildtype and some with specific genes knock-downs. Samples were taken at nine time points over two cell cycles (two hours).\n\n\nThe R script\nThe r_w01_exos.R script contains all commands R for the exercise."
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_exos.html#play-with-rstudio",
-    "href": "ioc_r/week01/r_w01_exos.html#play-with-rstudio",
-    "title": "Week 1 - Hands-On Examples",
-    "section": "Play with RStudio",
-    "text": "Play with RStudio\nIn your R project, open the downloaded R script r_w01_exos.R: In RStudio menu bar, click File -&gt; Open File -&gt; selec the Rscript, or click the file in the Files pane.\n\nImport Data\n\nIf you are not familiar with the file content, click on the CSV file in Files pane to “View” it. Identify the column separator and the decimal sign.\nImport the file into R and call the imported data “counts”.\nCopy paste the command shown in the R console.\n\n\n\nExercises\n\nWhat is the absolute file path of the imported data counts? What is its relative path? Verify your answer using the function file.exists().\n\n\ngetwd() # show the current working directory\n\nabs_path &lt;- \"\" # put your answer between quotes\nrel_path &lt;- \"\" # put your answer between quotes\n\nfile.exists(abs_path) # check if R finds your file using absolute path\nfile.exists(rel_path) # check if R finds your file using relative path\n\n\nWhat is the dimension (number of rows and columns) of the data frame? Check the “Environment” panel or use the function dim().\n\n\ndim(counts)\n\n[1] 45 41\n\n\nIn the “Environment” panel, click on the tabular icon next to the dataset to visualize the it.\nWe can extract all gene expressions for the sample named “WT.2” using counts[[\"WT.2\"]].\n\nTry mode() on the expression data for “WT.2”, what does it return?\n\n\nmode(counts[[\"WT.2\"]])\n\n[1] \"numeric\"\n\n\n\nCalculate the average expression (mean()) and standard deviation (sd()) of genes from the sample “WT.2”.\n\n\nmean(counts[[\"WT.2\"]])\n\n[1] 148\n\nsd(counts[[\"WT.2\"]])\n\n[1] 392.7854\n\n\n\nGenerate descriptive statistics for all genes from the sample “WT.2” using summary().\n\n\nsummary(counts[[\"WT.2\"]])\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n      0       6      27     148     110    2527 \n\n\n\n\n\n\n\n\nStats Time!\n\n\n\nWhat are quartiles?\nQuartiles are three values that split sorted data into four equal parts.\n\n(figure modified from this source)\nIQR (Interquartile range) = Q3 - Q1\n\n\n\nGenerate a histogram for the “WT.2” sample using hist(). What does the distribution look like?\n\n\n\n\n\n\n\nStats Time!\n\n\n\nHistograms help us see how data is spread out. They show how many data points fall into different intervals, or bins. By looking at a histogram, we can quickly understand the shape of the data, like if it’s skewed or has outliers. It’s a simple way to get an overview of your data.\n\n\n\nhist(counts[[\"WT.2\"]])\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStats Time!\n\n\n\nlog2 Transformation\nA log2 transformation is commonly used to normalize data and reduce skewness, especially in datasets with values spanning several orders of magnitude. Many biological data, like gene expression counts, tend to have a highly skewed distribution with a long tail of large values. The log2 transformation helps:\n\nStabilize variance – Makes data with large differences more comparable.\nHandle ratios – Converts multiplicative relationships into additive ones, simplifying interpretation.\nImprove normality – Makes the data distribution closer to normal, which is often required for statistical tests.\n\n\n\n\nplot(\n  x = counts[[\"WT.2\"]], y = log2(counts[[\"WT.2\"]]),\n  xlab = \"Original Scale\", ylab = \"log2 Scale\",\n  main = \"Gene expression for the sample WT.2\"\n)\nabline(v = 256, col = \"red\", lty = 2) # Add vertical line \nabline(h = 8, col = \"red\", lty = 2) # Add horizontal line\ntext(x = 500, y = 7, labels = expression(2^8 == 256)) # Add equation\n\n\n\n\n\n\n\n\nRe draw the histogram with the log2 transformed data, what does the distribution look like now?\n\nhist(log2(counts[[\"WT.2\"]]))\n\n\n\n\n\n\n\n\n\nWe can extract the gene name column (called “Feature”) and the column for sample “WT.2” using this command: counts[, c(\"Feature\", \"WT.2\")]. Export the data to a file called WT_2_expression.csv, store this file in the outputs folder.\n\n\nwrite_csv(counts[, c(\"Feature\", \"WT.2\")], file = \"outputs/WT_2_expression.csv\")\n\nCheck in the outputs folder, do you see the saved file? Does the content correspond to your expectations?\n\n\nGood job! 👏👏 You’ve taken your first big steps into R, and you’re off to a great start, keep it up!"
+    "objectID": "ioc_r/week04/r_w04_exos.html#bonus-questions",
+    "href": "ioc_r/week04/r_w04_exos.html#bonus-questions",
+    "title": "Week 4 - Hands-On Examples",
+    "section": "Bonus Questions",
+    "text": "Bonus Questions\n\nWrite a function to automate “de_res” filtering for genes with a p-value less than or equal to a custom cutoff.\n\n\nfilter_p &lt;- function(cutoff = 0.05) {\n  de_res[de_res$pvalue &lt;= cutoff, ]\n}\nfilter_p(0.01)\n\n   gene_name   baseMean log2FoldChange     lfcSE      stat       pvalue\n9     SUT476   88.12355      0.9935943 0.3856808  2.576209 9.989029e-03\n10     APQ12 5422.70915     -0.6401330 0.2366950 -2.704463 6.841488e-03\n21      LOH1   48.61440      2.2259655 0.3969997  5.606971 2.058986e-08\n22      PIR3  304.29450     -2.3659253 0.6082583 -3.889672 1.003798e-04\n29   SUT2873   26.00372      1.4253323 0.3685458  3.867449 1.099797e-04\n           padj gene_category\n9  7.611881e-02            up\n10 7.611881e-02          down\n21 9.265435e-07            up\n22 1.649695e-03          down\n29 1.649695e-03            up\n\nfilter_p(0.0001)\n\n   gene_name baseMean log2FoldChange     lfcSE     stat       pvalue\n21      LOH1  48.6144       2.225966 0.3969997 5.606971 2.058986e-08\n           padj gene_category\n21 9.265435e-07            up\n\n\n\nBased on the function created in question 9, modify the function to allow output ordered by any desired column in de_res.\n\nHints: You need an extra parameter to specify the wanted column and another parameter to fix the cutoff.\n\nfilter_col &lt;- function(col = \"pvalue\", cutoff = 0.05) {\n  de_res[de_res[[col]] &lt;= cutoff, ]\n}\nfilter_col(cutoff = 0.0001)\n\n   gene_name baseMean log2FoldChange     lfcSE     stat       pvalue\n21      LOH1  48.6144       2.225966 0.3969997 5.606971 2.058986e-08\n           padj gene_category\n21 9.265435e-07            up\n\nfilter_col(col = \"log2FoldChange\", cutoff = -1)\n\n   gene_name  baseMean log2FoldChange     lfcSE      stat       pvalue\n19      FAR1 5927.4702      -1.509545 0.6754613 -2.234835 0.0254281962\n22      PIR3  304.2945      -2.365925 0.6082583 -3.889672 0.0001003798\n          padj gene_category\n19 0.163466976          down\n22 0.001649695          down\n\n\n\n\n\n\n\n\nTip\n\n\n\nEnsembl Data Base\nEnsembl is a comprehensive genome database that provides detailed information on genes and their annotations across a wide range of species (humain, mouse, zebrafish, etc.). It integrates genomic data with tools like BioMart, making it easy to query and extract information such as gene names, coordinates, functions, and orthologs for research purposes.\n\n\n\nA yeast gene annotation file was obtained from the Ensembl data base. This file can be donwloaded here.\n\nImport the data and add the annotation to the de_res data frame using merge() function.\n\nannot &lt;- read.csv(\n  \"../exos_data/yeast_gene_annot.csv\", # replace the path by your own\n  header = TRUE\n)\n\nde_res &lt;- merge(de_res, annot, by = \"gene_name\", all.x = TRUE)\nhead(de_res)\n\n  gene_name  baseMean log2FoldChange     lfcSE         stat      pvalue\n1      ACM1  140.4359    0.733261747 0.4864127  1.507488856 0.131685398\n2     APQ12 5422.7091   -0.640132968 0.2366950 -2.704463027 0.006841488\n3     CDC20  216.8074    0.788541627 0.4908836  1.606371984 0.108192203\n4      CDC5 1282.0508    0.172085182 0.4798742  0.358604793 0.719890761\n5      CLB1  927.0893   -0.145822741 0.6384089 -0.228415908 0.819322924\n6      CLB2  255.6934   -0.001034076 0.5231743 -0.001976543 0.998422948\n        padj gene_category ensembl_id chromosome  start    end\n1 0.59258429            up    YPL267W        XVI  38169  38798\n2 0.07611881          down    YIL040W         IX 277723 278139\n3 0.57921173            up    YGL116W        VII 289809 291641\n4 0.90627615       neutral    YMR001C       XIII 269019 271136\n5 0.91496751       neutral    YGR108W        VII 703636 705051\n6 0.99842295       neutral    YPR119W        XVI 771653 773128\n                                                                                                                                                                                                                                                                                                                                                                                                                                                       description\n1                                                                                                                                                                                       Pseudosubstrate inhibitor of the APC/C; suppresses APC/C [Cdh1]-mediated proteolysis of mitotic cyclins; associates with Cdh1p, Bmh1p and Bmh2p; cell cycle regulated protein; the anaphase-promoting complex/cyclosome is also known as APC/C [Source:SGD;Acc:S000006188]\n2                     Nuclear envelope/ER integral membrane protein; interacts and functions with Brr6p and Brl1p in lipid homeostasis; mutants are defective in nuclear pore complex biogenesis, nuclear envelope morphology, mRNA export from the nucleus and are sensitive to sterol biosynthesis inhibitors and membrane fluidizing agents; exhibits synthetic lethal genetic interactions with genes involved in lipid metabolism [Source:SGD;Acc:S000001302]\n3                                                                                                        Activator of anaphase-promoting complex/cyclosome (APC/C); APC/C is required for metaphase/anaphase transition; directs ubiquitination of mitotic cyclins, Pds1p, and other anaphase inhibitors; cell-cycle regulated; potential Cdc28p substrate; relative distribution to the nucleus increases upon DNA replication stress [Source:SGD;Acc:S000003084]\n4 Polo-like kinase; controls targeting and activation of Rho1p at cell division site via Rho1p guanine nucleotide exchange factors; regulates Spc72p; also functions in adaptation to DNA damage during meiosis; regulates the shape of the nucleus and expansion of the nuclear envelope during mitosis; similar to Xenopus Plx1 and S. pombe Plo1p; human homologs PLK1, PLK3 can each complement yeast cdc5 thermosensitive mutants [Source:SGD;Acc:S000004603]\n5                                                                                                                 B-type cyclin involved in cell cycle progression; activates Cdc28p to promote the transition from G2 to M phase; accumulates during G2 and M, then targeted via a destruction box motif for ubiquitin-mediated degradation by the proteasome; CLB1 has a paralog, CLB2, that arose from the whole genome duplication [Source:SGD;Acc:S000003340]\n6                                                                                                                 B-type cyclin involved in cell cycle progression; activates Cdc28p to promote the transition from G2 to M phase; accumulates during G2 and M, then targeted via a destruction box motif for ubiquitin-mediated degradation by the proteasome; CLB2 has a paralog, CLB1, that arose from the whole genome duplication [Source:SGD;Acc:S000006323]\n\n\n\n\nBravo! 🎉 You’ve learned the basics of R, and you’re already making great progress, keep it up!"
   },
   {
     "objectID": "ioc_r_toc.html",
     "href": "ioc_r_toc.html",
     "title": "Materials for the IOC-R",
     "section": "",
-    "text": "Week 1 - Hands-On Examples\n\n\n\nweek01\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 1 - Homework\n\n\n\nweek01\n\nhomework\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKickstart with R:Your Gateway to Data Science\n\n\n\nweek01\n\nslides\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Building Logic:Operators, Conditions, and Functions\n\n\n\nweek04\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 4 - Hands-On Examples\n\n\n\nweek04\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 4 - Homework\n\n\n\nweek04\n\nhomework\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKickstart with R:Your Gateway to Data Science\n\n\n\nweek01\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 1 - Hands-On Examples\n\n\n\nweek01\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 1 - Homework\n\n\n\nweek01\n\nhomework\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nData Foundations:Vectors and Matrices\n\n\n\nweek02\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 2 - Hands-On Examples\n\n\n\nweek02\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 2 - Homework\n\n\n\nweek02\n\nhomework\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMore Complex Data Structures:Data Frames and Lists\n\n\n\nweek03\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 3 - Hands-On Examples\n\n\n\nweek03\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 3 - Homework\n\n\n\nweek03\n\nhomework\n\n\n\n\n\n\n\n\n\nNo matching items"
   }
 ]

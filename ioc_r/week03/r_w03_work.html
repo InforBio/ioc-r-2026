@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Materials for the IOC-R – IOC</title>
+<title>Week 3 - Homework – IOC</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,29 +20,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./images/logoInforBio_fond_blanc.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a986a95301e671fce2c6472dffc862a1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/logoInforBio_fond_blanc.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-a986a95301e671fce2c6472dffc862a1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,35 +103,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-image','listing-title','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -130,7 +134,6 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="toc.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -140,10 +143,10 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/logoInforBio_fond_blanc_small.png" alt="" class="navbar-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/logoInforBio_fond_blanc_small.png" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">IOC</span>
     </a>
   </div>
@@ -159,21 +162,21 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-calendar--info">    
         <li>
-    <a class="dropdown-item" href="./ioc_r_info.html">
+    <a class="dropdown-item" href="../../ioc_r_info.html">
  <span class="dropdown-text">IOC-R Info</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./ioc_scrnaseq_info.html">
+    <a class="dropdown-item" href="../../ioc_scrnaseq_info.html">
  <span class="dropdown-text">IOC-scRNAseq Info</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link active" href="./ioc_r_toc.html" aria-current="page"> 
+    <a class="nav-link" href="../../ioc_r_toc.html"> 
 <span class="menu-text">IOC-R</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./ioc_scrnaseq.html"> 
+    <a class="nav-link" href="../../ioc_scrnaseq.html"> 
 <span class="menu-text">IOC-scRNAseq</span></a>
   </li>  
   <li class="nav-item compact">
@@ -189,23 +192,27 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(12)</span></div><div class="category" data-category="ZXhlcmNpc2U=">exercise <span class="quarto-category-count">(4)</span></div><div class="category" data-category="aG9tZXdvcms=">homework <span class="quarto-category-count">(4)</span></div><div class="category" data-category="c2xpZGVz">slides <span class="quarto-category-count">(4)</span></div><div class="category" data-category="d2VlazAx">week01 <span class="quarto-category-count">(3)</span></div><div class="category" data-category="d2VlazAy">week02 <span class="quarto-category-count">(3)</span></div><div class="category" data-category="d2VlazAz">week03 <span class="quarto-category-count">(3)</span></div><div class="category" data-category="d2VlazA0">week04 <span class="quarto-category-count">(3)</span></div></div></div>
+    </div>
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Materials for the IOC-R</h1>
-</div>
+<h1 class="title">Week 3 - Homework</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">week03</div>
+    <div class="quarto-category">homework</div>
+  </div>
+  </div>
 
 
 
-<div class="quarto-title-meta column-page-left">
+<div class="quarto-title-meta">
 
     
   
@@ -217,291 +224,51 @@ window.Quarto = {
 </header>
 
 
-
-
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="d2VlazA0JTJDc2xpZGVz" data-listing-date-sort="1737936000000" data-listing-file-modified-sort="1754406289965" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1307">
-<div class="thumbnail"><a href="./ioc_r/week04/r_w04_slides.html" class="no-external">
-
-<img loading="lazy" src="./ioc_r/week04/images/preview_w4.png" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./ioc_r/week04/r_w04_slides.html" class="no-external">Building Logic:<br>Operators, Conditions, and Functions</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('d2VlazA0'); return false;">week04</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('c2xpZGVz'); return false;">slides</div>
-
+<ol type="1">
+<li>Create a matrix of two columns to store numbers 1 to 8, use the <code>dimnames</code> parameter of the <code>matrix</code> function to name the rows and columns directly. (see <code>?matrix</code>) (You can name the rows/columns whatever you want.)</li>
+</ol>
+<p>Use the following code to import the file “read-counts.csv” (you have already downloaded it for the hand-on examples of week01). Name the imported data <code>expr_data</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>expr_data <span class="ot">&lt;-</span> <span class="fu">read.table</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> <span class="st">"../exos_data/read-counts.csv"</span>,  <span class="co"># replace the path with your own</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">","</span>, <span class="at">row.names =</span> <span class="dv">1</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<div class="metadata">
-<a href="./ioc_r/week04/r_w04_slides.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="d2VlazA0JTJDZXhlcmNpc2U=" data-listing-date-sort="1738022400000" data-listing-file-modified-sort="1754406289965" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="774">
-<div class="thumbnail"><a href="./ioc_r/week04/r_w04_exos.html" class="no-external">
+<ol start="2" type="1">
+<li>Create a list <code>info_expr</code> to store information about <code>expr_data</code>:<br>
+</li>
+</ol>
+<ul>
+<li>“col_names”: column names</li>
+<li>“row_names”: row names</li>
+<li>“dimension”: number of rows and columns</li>
+<li>“sum_sample”: the sum of expression level across all genes for each sample</li>
+<li>“avg_gene”: the average expression level across all samples for each gene</li>
+</ul>
+<ol start="3" type="1">
+<li>Calculate the median of the average gene expression levels across all samples.</li>
+</ol>
+<ol start="4" type="1">
+<li>Use <code>summary()</code> to generate summary statistics of the sum of expression level across all genes.</li>
+</ol>
+<ol start="5" type="1">
+<li>Calculate the log2 fold change of the gene <em>TOS6</em> for the WT and RRP6 samples. Is <em>TOS6</em> up or down-regulated in the RRP6 samples compared to WT?</li>
+</ol>
+<ol start="6" type="1">
+<li>Perform a Wilcoxon test to check if the <em>TOS6</em> expression is different between WT and RRP6 samples.</li>
+</ol>
+<ul>
+<li>Store the test results in a variable (object) called <code>res_wilcox</code>. What is the data structure of the results? Extract the p-value from the results.</li>
+<li>Use <span class="math inline">\(\alpha = 0.05\)</span>, what is your conclusion?</li>
+</ul>
+<ol start="7" type="1">
+<li>Visualize the expression level of <em>TOS6</em> for WT and RRP6 samples using boxplot.</li>
+</ol>
+<p>The homework correction is available here: <a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week03/.r_w03_work_corr.R">link</a></p>
 
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
 
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./ioc_r/week04/r_w04_exos.html" class="no-external">Week 4 - Hands-On Examples</a>
-</h3>
-<div class="listing-categories">
 
-<div class="listing-category" onclick="window.quartoListingCategory('d2VlazA0'); return false;">week04</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZXhlcmNpc2U='); return false;">exercise</div>
-
-</div>
-</div>
-<div class="metadata">
-<a href="./ioc_r/week04/r_w04_exos.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="d2VlazA0JTJDaG9tZXdvcms=" data-listing-date-sort="1738108800000" data-listing-file-modified-sort="1754406289965" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="225">
-<div class="thumbnail"><a href="./ioc_r/week04/r_w04_work.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./ioc_r/week04/r_w04_work.html" class="no-external">Week 4 - Homework</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('d2VlazA0'); return false;">week04</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('aG9tZXdvcms='); return false;">homework</div>
-
-</div>
-</div>
-<div class="metadata">
-<a href="./ioc_r/week04/r_w04_work.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="d2VlazAxJTJDc2xpZGVz" data-listing-date-sort="1762128000000" data-listing-file-modified-sort="1754406289961" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1647">
-<div class="thumbnail"><a href="./ioc_r/week01/r_w01_slides.html" class="no-external">
-
-<img loading="lazy" src="./ioc_r/week01/images/R_logo.png" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./ioc_r/week01/r_w01_slides.html" class="no-external">Kickstart with R:<br>Your Gateway to Data Science</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('d2VlazAx'); return false;">week01</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('c2xpZGVz'); return false;">slides</div>
-
-</div>
-</div>
-<div class="metadata">
-<a href="./ioc_r/week01/r_w01_slides.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="d2VlazAxJTJDZXhlcmNpc2U=" data-listing-date-sort="1762214400000" data-listing-file-modified-sort="1754406289961" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="804">
-<div class="thumbnail"><a href="./ioc_r/week01/r_w01_exos.html" class="no-external">
-
-<p class="card-img-top"><img src="ioc_r/week01/images/boxplot.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./ioc_r/week01/r_w01_exos.html" class="no-external">Week 1 - Hands-On Examples</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('d2VlazAx'); return false;">week01</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZXhlcmNpc2U='); return false;">exercise</div>
-
-</div>
-</div>
-<div class="metadata">
-<a href="./ioc_r/week01/r_w01_exos.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="d2VlazAxJTJDaG9tZXdvcms=" data-listing-date-sort="1762300800000" data-listing-file-modified-sort="1754406289961" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="235">
-<div class="thumbnail"><a href="./ioc_r/week01/r_w01_work.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./ioc_r/week01/r_w01_work.html" class="no-external">Week 1 - Homework</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('d2VlazAx'); return false;">week01</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('aG9tZXdvcms='); return false;">homework</div>
-
-</div>
-</div>
-<div class="metadata">
-<a href="./ioc_r/week01/r_w01_work.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-categories="d2VlazAyJTJDc2xpZGVz" data-listing-date-sort="1762732800000" data-listing-file-modified-sort="1754406289962" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1394">
-<div class="thumbnail"><a href="./ioc_r/week02/r_w02_slides.html" class="no-external">
-
-<img loading="lazy" src="./ioc_r/week02/images/preview_w2.png" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./ioc_r/week02/r_w02_slides.html" class="no-external">Data Foundations:<br>Vectors and Matrices</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('d2VlazAy'); return false;">week02</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('c2xpZGVz'); return false;">slides</div>
-
-</div>
-</div>
-<div class="metadata">
-<a href="./ioc_r/week02/r_w02_slides.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="7" data-categories="d2VlazAyJTJDZXhlcmNpc2U=" data-listing-date-sort="1762819200000" data-listing-file-modified-sort="1754406289962" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="939">
-<div class="thumbnail"><a href="./ioc_r/week02/r_w02_exos.html" class="no-external">
-
-<p class="card-img-top"><img src="ioc_r/week02/images/normal_distribution.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./ioc_r/week02/r_w02_exos.html" class="no-external">Week 2 - Hands-On Examples</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('d2VlazAy'); return false;">week02</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZXhlcmNpc2U='); return false;">exercise</div>
-
-</div>
-</div>
-<div class="metadata">
-<a href="./ioc_r/week02/r_w02_exos.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="8" data-categories="d2VlazAyJTJDaG9tZXdvcms=" data-listing-date-sort="1762905600000" data-listing-file-modified-sort="1754406289962" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="268">
-<div class="thumbnail"><a href="./ioc_r/week02/r_w02_work.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./ioc_r/week02/r_w02_work.html" class="no-external">Week 2 - Homework</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('d2VlazAy'); return false;">week02</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('aG9tZXdvcms='); return false;">homework</div>
-
-</div>
-</div>
-<div class="metadata">
-<a href="./ioc_r/week02/r_w02_work.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="9" data-categories="d2VlazAzJTJDc2xpZGVz" data-listing-date-sort="1763337600000" data-listing-file-modified-sort="1754406289964" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1060">
-<div class="thumbnail"><a href="./ioc_r/week03/r_w03_slides.html" class="no-external">
-
-<img loading="lazy" src="./ioc_r/week03/images/preview_w3.png" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./ioc_r/week03/r_w03_slides.html" class="no-external">More Complex Data Structures:<br>Data Frames and Lists</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('d2VlazAz'); return false;">week03</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('c2xpZGVz'); return false;">slides</div>
-
-</div>
-</div>
-<div class="metadata">
-<a href="./ioc_r/week03/r_w03_slides.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="10" data-categories="d2VlazAzJTJDZXhlcmNpc2U=" data-listing-date-sort="1763424000000" data-listing-file-modified-sort="1754406289964" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="784">
-<div class="thumbnail"><a href="./ioc_r/week03/r_w03_exos.html" class="no-external">
-
-<p class="card-img-top"><img src="ioc_r/week03/images/wilcox_viz.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./ioc_r/week03/r_w03_exos.html" class="no-external">Week 3 - Hands-On Examples</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('d2VlazAz'); return false;">week03</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZXhlcmNpc2U='); return false;">exercise</div>
-
-</div>
-</div>
-<div class="metadata">
-<a href="./ioc_r/week03/r_w03_exos.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="11" data-categories="d2VlazAzJTJDaG9tZXdvcms=" data-listing-date-sort="1763510400000" data-listing-file-modified-sort="1754406289964" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="263">
-<div class="thumbnail"><a href="./ioc_r/week03/r_w03_work.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./ioc_r/week03/r_w03_work.html" class="no-external">Week 3 - Homework</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('d2VlazAz'); return false;">week03</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('aG9tZXdvcms='); return false;">homework</div>
-
-</div>
-</div>
-<div class="metadata">
-<a href="./ioc_r/week03/r_w03_work.html" class="no-external">
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
