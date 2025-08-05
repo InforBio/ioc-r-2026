@@ -2,7 +2,7 @@
 title: "Week 3 - Homework"
 format: 
   html: default
-date: "2025-01-22"
+date: "2025-11-19"
 date-format: " "
 categories: 
   - week03
@@ -10,11 +10,6 @@ categories:
 editor_options: 
   chunk_output_type: console
 ---
-
-Write your code directly in a Quarto document.
-
-To create a Quarto document: go to **File** -> **New File** -> **Quarto Document**, then click **Create**.
-
 
 1. Create a matrix of two columns to store numbers 1 to 8,
 use the `dimnames` parameter of the `matrix` function to name
@@ -87,8 +82,5 @@ WT and RRP6 samples.
 ```
 
 
-8. Click "Render" to generate your Quarto report.
-
-
 The homework correction is available here:
-[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week03/.r_w03_work_corr.qmd)
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week03/.r_w03_work_corr.R)

@@ -123,5 +123,3 @@ boxplot(expr_value ~ group, data = expr_tos6)
 
 The distribution of two groups are indeed similar,
 but the maximum value in the WT group is much higher than that of RRP6 group.
-
-8. Click "Render" to generate your Quarto report.
