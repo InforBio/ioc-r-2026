@@ -13,12 +13,11 @@
 #    *i.e.*, `data`, `scripts`, `outputs`.
 # 3. Download two files:
 #   -  An R script named "r_w01_exos.R" for this week's exercise here:
-# https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week01/r_w01_exos.R
+# https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week01/r_w01_exos.R
 #     save it into the `scripts` folder.
 #   - A data file called "read-counts.csv" here:
-# https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/read-counts.csv
+# https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv
 #     Put it into the `data` folder.
-
 
 ## Files Description ----------------------------------------------------------------------
 
@@ -33,21 +32,19 @@
 ### The R script
 # The `r_w01_exos.R` script contains contains all commands R for the exercise.
 
-
 ## Play with RStudio -----------------------------------------------------------------
 
 # In your R project, open the downloaded R script `r_w01_exos.R`:
 # In RStudio menu bar, click *File* -> *Open File* -> selec the Rscript,
 # or click the file in the *Files* pane.
 
-
 ### Import Data
 
 # 1. Click on the CSV file in *Files* pane to "View" it. Identify the column separator.
 # 2. Import the file into R and call the imported data "counts".
 # 3. Copy paste the command shown in the R console.
-
-counts <- read.csv("path/to/read-counts.csv") # replace this line by the copied command
+library(readr) # load the readr package for reading CSV files
+counts <- read_csv("data/read-counts.csv")
 
 
 ### Exercises
@@ -97,3 +94,9 @@ hist(counts[["WT.2"]])
 # Re draw the histogram with the log2 transformed data,
 # what does the distribution look like now?
 hist(log2(counts[["WT.2"]]))
+
+
+# 7. We can extract the gene name column (called "Feature") and the column for sample "WT.2" using this command:
+#   `counts[, c("Feature", "WT.2")]`
+#   Export the data to a file called `WT_2_expression.csv`, store this file in the `outputs` folder.
+write_csv(counts[, c("Feature", "WT.2")], file = "outputs/WT_2_expression.csv")

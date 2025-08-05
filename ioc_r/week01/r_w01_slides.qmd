@@ -1,7 +1,7 @@
 ---
 title: "Kickstart with R:<br>Your Gateway to Data Science"
 subtitle: "IOC-R Week 1"
-date: "2025-01-06"
+date: "2025-11-03"
 date-format: " "
 format:
   revealjs: 
@@ -20,7 +20,7 @@ categories:
 image: images/R_logo.png
 ---
 
-# Unlock the Power of Your Data with ![](images/R_logo.png){width=2.5cm}
+# Unlock the Power of Your Data with ![](images/R_logo.png){width=2.7cm}
 
 ## Welcome to R! {.smaller}
 
@@ -48,12 +48,34 @@ What you can do with R?
 :::
 :::
 
+The official website: <https://www.r-project.org>
 
 ## The R Console {.smaller}
 
-![](images/r_console2.png)
+::: columns
+::: {.column}
+![](images/r_console.png)
+:::
 
-Type a command after the prompt ">" and press *Enter* to execute it.
+::: {.column .incremental}
+In the R console:
+
+- **`>`** (The prompt): R is ready for your command.
+Type your code and press **Enter** to run it.
+- **`[1]`** (Output): This indicates the start of an output line.
+- **`+`** (Continuation): R is waiting for you to finish your command.
+You can either finish the command or press **Esc** to cancel it.
+:::
+:::
+
+::: {.notes}
+In the R Console, the > prompt lets you know that R is ready for your command. Just type your code and hit Enter.
+When you see the output, it will start with [1], which indicates the position of the first element.
+If you see a + at the beginning of a new line, it means R is waiting for you to finish your command,
+this often happens if you forget a parenthesis or a comma.
+You can either finish it by typing the rest of the code or press the Esc key to cancel the input completely and get a fresh > prompt.
+:::
+
 
 # Rstudio
 
@@ -65,17 +87,16 @@ If you use the RStudio Server, you need to connect to your account first.
 
 ## Rstudio IDE {.smaller}
 
-Integrated Development Environment (IDE)  
-
 ::: columns
 ::: {.column width="55%"}
+Integrated Development Environment (IDE)
 
 ![](images/screenshot_rstudio.png)
 
 :::
 
 ::: {.column width="45%" .fragment}
-1. Console: enter and execute R commands interactively.
+1. (R) Console: enter and execute commands interactively.
 2. Environment/History: tracks your variables and past commands.
 3. Files/Plots/Packages: managing your files, viewing graphs, or installing tools.
 
@@ -86,27 +107,38 @@ Rstudio [cheat sheet](https://rstudio.github.io/cheatsheets/rstudio-ide.pdf)
 :::
 :::
 
-
 :::{.notes}
 Everything you need in one organized window.
 Save your work as a script, RStudio includes many useful features which let us code easily.
 notebook, show results
 :::
 
-## Getting Started in R {.smaller}
+
+## Getting Started {.smaller}
 
 ::: columns
 
 ::: {.column width="43%"}
 
 - Open your RStudio.
-- Create an R script: *File* -> *New File* -> *R Script* or ![](images/rstudio_newfile.png){width=1.5cm}
-- Save script: *Cmd + S* or *Ctrl + S*
+- Create an R script: *File* -> *New File* -> *R Script* or click ![](images/rstudio_newfile.png){width=1.5cm}. (Will appeared at 4)
+- Write your codes in the script.
+- Save script: *Cmd/Ctrl + S*, name your script.
+- Execute code: Click ![](images/rstudio_runcode.png){width=1.3cm} or press *Cmd/Ctrl + Enter*
+
 :::
 
-::: {.column width="57%" .fragment}
-- Basic commands[^1]:
-``` {.r code-line-numbers="1|2-4|6-7|9-11|13-14|16-17|19-20"}
+::: {.column width="57%"}
+![](images/rstudio_fullpanel.png)
+:::
+:::
+
+## Getting Started {.smaller}
+
+Copy paste following codes into your script and save the script as `test.R`.  
+
+- Basic codes (commands):
+``` {.r code-line-numbers="1|2-4|6-8|10-12|14-15|17-18|20-21"}
 # Use `#` to write a comment (line) in your script
 # Math with R:
 2 + 2    # Yes, R can do math!
@@ -114,6 +146,7 @@ sqrt(16) # Square root.
 
 # Create a variable:
 x <- 5 # Now x is 5. You can reuse it!
+x + 1
 
 # Inspect your environment:
 ## Look at the "Environment" pane, do you see your x?
@@ -128,11 +161,7 @@ library(stats)
 # Quit RStudio properly
 q()
 ```
-:::
-:::
 
-
-[^1]: Shortcut to run code: highlight it and press *Ctrl + Enter* (Windows) or *Cmd + Enter* (Mac)
 
 ## Some Configuration {.smaller}
 
@@ -140,10 +169,12 @@ Go to *Tools* -> *Global Options...*
 
 ::: columns
 ::: {.column width="50%"}
-Under the *General* tab:
+- Under the *General* tab:
 
-- Uncheck the box "Restore .RData..."
-- Set "Save workspace to .RData on exit" to **Never**.
+  - Uncheck the box "Restore .RData..."
+  - Set "Save workspace to .RData on exit" to **Never**.
+
+Then click "Apply".
 :::
 
 ::: {.column width="50%"}
@@ -158,9 +189,11 @@ Go to *Tools* -> *Global Options...*
 ::: columns
 ::: {.column width="50%"}
 
-Under the *Code* tab:
+- Under the *Code* tab:
 
 In the *Display* panel, check the box "Use rainbow parentheses"
+
+Then click "Apply".
 :::
 
 ::: {.column width="50%"}
@@ -183,12 +216,15 @@ You can select a theme for you RStudio, e.g., the "Cobalt" for a dark theme.
 You can arrange the four panels as you prefer.
 
 In addition, click "Add Column" lets you open an extra "Source" code column, allowing you to view your scripts side by side!
+
+Then click "Apply".
 :::
 
 ::: {.column width="50%"}
 ![](images/rstudio_setting3.png)
 :::
 :::
+
 
 # Setting Up an R Project
 
@@ -201,7 +237,7 @@ and helps R to know where to look for your files.
 
 1. In RStudio, go to *File* -> *New Project*
 2. Choose *New Directory* and click *New Project*
-3. Set a folder name (e.g., `my_project`) and select where to save it.
+3. Set a folder name (e.g., `r_week1`) and select where to save it.
 4. Click *Create Project*
 
 . . .
@@ -217,13 +253,18 @@ It helps avoid problems with messy file paths.
 :::
 
 
+## Create an R Project {.smaller}
+
+![](images/rstudio_workingdir.png)
+
+
 ## A Well Organized Project Folder {.smaller}
 
-Tree structure:
+- Tree structure:
 
 ```sh
-my_project              # Your working directory    
-├── my_project.Rproj    # The R project configuration file
+r_week1              # Your working directory    
+├── r_week1.Rproj    # The R project configuration file
 ├── README.md           # A short introduction of the project
 ├── data                # Raw data files
 │   └── raw_count.tsv
@@ -233,13 +274,18 @@ my_project              # Your working directory
 └── outputs             # Results, e.g., graphs, reports
 ```
 
-<br>
+. . .
+
+- Managing Files (via the *File* pane):
+  - To create a new folder: click ![](images/rstudio_create_folder_button.png){width=1cm}. The folder will be created in the current directory.
+  - To move a file or folder: check the box next to its name, click ![](images/rstudio_gear.png){width=1cm} and then select *Move...* to choose a new destination.
 
 . . .
 
-- To create new folders:
-    - via RStudio: in *File* pane, click ![](images/rstudio_create_folder_button.png){width=1cm}. The folder will be created in the current directory.
-    - or use *File Explorer* (Windows) / *Finder* (Mac).
+::: {.callout-note appearance="minimal"}
+- Create `data` and `scripts` folders inside your working directory.
+- Move the `test.R` into the `scripts` folder of your working directory.  
+:::
 
 :::{.notes}
 example of bad home organisation: pillow in kitchen and microoven in the bathroom
@@ -254,71 +300,68 @@ Avoid messy files scattered everywhere.
 
 ## Understanding File Paths {.smaller}
 
-A **path** tells your computer where to find files.
+How to tell your computer where to find the `test.R`?
+
+![](images/finder_abs_path.png)
 
 . . .
 
-- **Absolute path**, starts from the very top of your computer's folder
-  - E.g.: 
-    - In real-life: France, Paris, 9 Quai St Bernard, Building B, office 725 
-    - On Linux/Mac: `/home/test_user/my_project/data/myfile.csv`
-    - On Windows: `C:\Users\test_user\my_project\data\myfile.csv`
-
-. . .
-
-- **Relative path**, starts from your working directory (folder)
-  - E.g.:
-    - Building B, office 725
-    - `data/myfile.csv` or `data\myfile.csv` (Windows)
+- **Absolute path**, starts from the very top of your computer's folder.
+*E.g.*: 
+  - Linux/Mac: `/Users/lijiao/Documents/r_week1/scripts/test.R`
+  - Windows: `C:\Users\lijiao\Documents\r_week1\scripts\test.R`
 
 
-:::{.notes}
-computer's file system -> a country
-files -> offices in a building
-:::
+## Understanding File Paths {.smaller}
+
+A **path** tells your computer where to find files/folders.
+
+- **Relative path**, starts from your working directory (folder). *E.g.*:
+  - Linux/Mac: `scripts/test.R` 
+  - Windows: `scripts\test.R`
+
+![](images/finder_rel_path.png){width=80%}
 
 
 ## Where Are You? {.smaller}
 
 ```sh
-my_project              # Your working directory
-├── my_project.Rproj    # The R project configuration file
-├── README.md           # A short introduction of the project
-├── data                # Raw data files
-│   └── raw_count.tsv
-├── scripts             # Your R code files
-│   └── 01-analysis.R
-│   └── 02-figures.R
-└── outputs            # Results, e.g., graphs, reports
+r_week1              # Your working directory
+├── r_week1.Rproj    # The R project configuration file
+├── data             # Raw data files
+└── scripts          # Your R code files
+    └── test.R
 ```
 <br> 
 
 ```r
-getwd() # Get working directory
-[1] "/home/test_user/my_project"
+> getwd() # Get working directory
+[1] "/Users/lijiao/Documents/r_week1"
 ```
 
 ::: {.fragment .callout-note appearance="minimal"}
-What are the absolute and relative paths of the script "02-figures.R"?
+What are the absolute and relative paths of the folder "data"?
 :::
 
 
 ::: {.fragment style="font-size:75%"}
-absolute path: `/home/test_user/my_project/scripts/02-figures.R`
+absolute path: `/Users/lijiao/Documents/r_week1/data`
 
-relative path: `scripts/02-figures.R`
+relative path: `data`
 :::
 
 . . .
 
 ```r
-file.exists("/home/test_user/my_project/scripts/02-figures.R")
+> file.exists("/Users/lijiao/Documents/r_week1/data")
 [1] TRUE
-file.exists("scripts/02-figures.R")
+> file.exists("data")
 [1] TRUE
 ```
 
-## Import Dataset
+# Data Import & Export
+
+## Import Data
 
 ::: columns
 ::: {.column style="font-size: 60%;"}
@@ -334,67 +377,96 @@ file.exists("scripts/02-figures.R")
   - From the "Environment" pane:
     click *Import Dataset*  -> Select the format -> Choose your file
   - From the "Files" pane:
-    Navigate to your file location -> Click the file and select *Import Dataset*
+    Navigate to your file location -> Click the file and select *Import Dataset* (need the {*readr*} package)
 
 :::
 
 ::: {.column .fragment}
-![](images/import_data_base.png)
-![](images/import_data_base_code.png)
+![Pop-up window using the {readr} import wizard.](images/import_data_readr.png)
 :::
 :::
 
+## Import Data {.smaller}
 
-# Automated Reporting
+Importing your first file: [shiny_sample_data.csv](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/dev-r/ioc_r/exos_data/shiny_sample_data.csv)
 
-## Quarto
+1. Right click the link and select "Download Linked File As..." (or the equivalent on your system).
+2. Save the file into the `data` folder of the R project `r_week1`
+3. Import the data with one of the three click-button ways.
 
-- Open-source tools for creating dynamic and shareable document.
-- Combines narrative text and code (multi-language) in one script (.qmd).
-- Supports multiple output formats: .html, .docx, .pptx, .pdf, *etc.*
+::: {.notes}
+When you select the file, a preview window will pop up.
+RStudio tries to guess the data's properties, but you should always confirm them.
+:::
 
 ::: {.callout-tip appearance="minimal"}
-Official website: <https://quarto.org>
+# Think before you import
+
+- How do you want to name the imported data?
+- Is there a header?
+- What is the column separator?
+- Which sign is used as the decimal?
 :::
 
-## An Example {.smaller}
+Once you've checked these settings and the preview looks correct, click *Import*.
 
-::: columns
-::: {.column}
-To create: *File* -> *New File* -> *Quarto Document* -> click *Create*.
-![](images/quarto_annot.png)
 
-:::{.fragment}
-Save the document and click **Render** button.
+## Import Data {.smaller}
+
+![](images/rstudio_import.png)
+
+
+## Export Data {.smaller}
+
+We'll use the built-in iris dataset and save it in the CSV format using the `write_csv()` function from the {*readr*} package.
+
+```r
+head(iris) # show the first lines of the dataset
+View(iris) # preview the whole dataset
+?write_csv # get help of the function
+```
+
+**Goal**: Save the built-in `iris` dataset as a CSV file named `iris_export.csv` inside the `outputs` folder of the project.
+
+. . .
+
+1. Create the `outputs` folder.
+2. Type the following command and execute it:
+
+```r
+write_csv(iris, file = "outputs/iris_export.csv")
+```
+
+. . .
+
+::: {.callout-note appearance="minimal"}
+Go to the *Files* pane, can you find the saved file?
 :::
-:::
 
-:::{.column .fragment}
-Rendered document in HTML format:
-![](images/quarto_output.png)
+. . .
 
-::: {.callout-tip appearance="minimal" .fragment}
-- Markdown syntax [cheat sheet](https://www.markdownguide.org/cheat-sheet/)
-- [Quarto tutorial](https://quarto.org/docs/get-started/hello/rstudio.html)
-:::
+(We'll talk about other formats in the future!)
 
-:::
+::: {.notes}
+Once you've cleaned, analyzed, or modified a dataset in R, you'll want to save it. While you can save data in many formats, we'll use the most common one, a CSV file, as our example. We'll use the built-in iris dataset.
 :::
 
 
-## Need Some Help? {.smaller}
+# Need Some Help?
+
+## Different Solutions {.smaller}
 
 - Google it!
-- Forums: Stack Overflow, [Cirad](https://forums.cirad.fr/logiciel-R/)( francophone), *etc.*
+- Forums: Stack Overflow, [Cirad](https://forums.cirad.fr/logiciel-R/)(francophone), *etc.*
 - Ask/discuss your question via Slack.
-- AI (like ChatGPT) is your friend 😉, but be careful of false answers! (More details in session 6)
+- AI tools (like ChatGPT or Gemini) can be very helpful resources😉, but be careful of false answers! (More details in session 6)
 
 **Key points**:
 
-- Explain your question step-by-step.
-- Share the context.
-- Use keywords.
-- Try to rephrase the question.
+- Be specific.
+- Provide context: code, error, *etc.*
+- Always verify.
+- Protect sensitive data.
 
 
 ::: {.notes}
@@ -411,8 +483,9 @@ To save the slides as a PDF:
 
 - Open the presentation in a web browser
 - Press "**e**" to enable PDF export mode
-- Press **Ctrl + p** (Windows) or **Cmd + P** (Mac) to print
-- Select "**save as PDF**" as the printer option and save the file
+- Press **Cmd/Ctrl + P** to open the in-browser print dialog.
+- Change layout to "Landscape".
+- Select "**save as PDF**" as the printer option and save the file.
 
 After saving, press "**e**" again to return to presentation mode.
 
@@ -423,4 +496,4 @@ After saving, press "**e**" again to return to presentation mode.
 - Get familiar with the RStudio
 - Create an R project in RStudio
 - Import data file into RStudio
-- Generate your first Quarto report
+- Export data from RStudio
