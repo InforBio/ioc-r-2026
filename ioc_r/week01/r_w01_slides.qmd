@@ -383,13 +383,13 @@ relative path: `data`
 :::
 
 ::: {.column .fragment}
-![Using the {readr} import wizard.](images/import_data_readr.png)
+![Pop-up window using the {readr} import wizard.](images/import_data_readr.png)
 :::
 :::
 
 ## Import Data {.smaller}
 
-Importing your first file: [read-counts.csv](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/dev-r/ioc_r/exos_data/read-counts.csv)
+Importing your first file: [shiny_sample_data.csv](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/dev-r/ioc_r/exos_data/shiny_sample_data.csv)
 
 1. Right click the link and select "Download Linked File As..." (or the equivalent on your system).
 2. Save the file into the `data` folder of the R project `r_week1`
