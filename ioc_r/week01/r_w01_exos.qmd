@@ -17,11 +17,11 @@ editor_options:
 - Get familiar with the RStudio
 - Create an R project in RStudio
 - Import data file into RStudio
-- Generate your first Quarto report
+- Export data from RStudio
 
 ## Create an R project
 
-1. In RStudio, create a new project in your folder.
+1. Open RStudio, create a new R project in the folder of your choice.
 
 Some rules for naming your project:  
 
@@ -34,8 +34,8 @@ Some rules for naming your project:
 
 3. Download two files:
 
-  -  An R script named "r_w01_exos.R" for this week's exercise ([here](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week01/r_w01_exos.R)), save it into the `scripts` folder.
-  - A data file called "read-counts.csv" ([here](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/read-counts.csv)), put it into the `data` folder.
+  -  An R script named "r_w01_exos.R" for this week's exercise ([here](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week01/r_w01_exos.R)), save it into the `scripts` folder.
+  - A data file called "read-counts.csv" ([here](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv)), put it into the `data` folder.
 
 ::: {.callout-tip}
 If you are using RStudio server, files can be uploaded using the "Upload" icon
@@ -66,7 +66,7 @@ or click the file in the *Files* pane.
 
 ### Import Data
 
-1. Click on the CSV file in *Files* pane to "View" it. Identify the column separator.
+1. If you are not familiar with the file content, click on the CSV file in *Files* pane to "View" it. Identify the column separator and the decimal sign.
 2. Import the file into R and call the imported data "counts".
 3. Copy paste the command shown in the R console.
 
@@ -74,7 +74,8 @@ or click the file in the *Files* pane.
 #| echo: false
 #| message: false
 
-counts <- read.csv("../exos_data/read-counts.csv")
+library(readr)
+counts <- read_csv("../exos_data/read-counts.csv")
 ```
 
 ### Exercises
@@ -95,7 +96,7 @@ file.exists(abs_path) # check if R finds your file using absolute path
 file.exists(rel_path) # check if R finds your file using relative path
 ```
 
-2. What is the dimension of the data frame?
+2. What is the dimension (number of rows and columns) of the data frame?
 Check the "Environment" panel or use the function `dim()`.
 
 ```{r}
@@ -183,30 +184,6 @@ what does the distribution look like now?
 ```{r}
 hist(log2(counts[["WT.2"]]))
 ```
-
-
-## Get Your First Quarto Report
-
-Create a new Quarto document (*File* -> *New File* -> *Quarto Document*),
-write all codes above and your observation for the questions in the document.
-Then click the "Render" to generate your own report!
-
-- Change something in your script Quarto and re-render it, is the report up-to-date?
-
-To go further: 
-
-- Where is your report stored?
-- What should you do if you want the report be stored in a specified folder?
-  => use a configuration file for Quarto.
-  
-Open a new text file and copy paste following code, save it as `_quarto.yml` in your project folder.
-
-```r
-project:
-  output-dir: outputs/
-```
-
-Try "Render" again, now where is your report?
 
 
 ---
