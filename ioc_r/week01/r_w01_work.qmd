@@ -73,4 +73,4 @@ Describe how the outlier affects the mean and median.
 
 
 The homework correction is available here:
-[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week01/.r_w01_work_corr.qmd)
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week01/.r_w01_work_corr.R)
