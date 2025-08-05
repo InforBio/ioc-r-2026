@@ -2,7 +2,7 @@
 title: "Week 2 - Homework"
 format: 
   html: default
-date: "2025-01-15"
+date: "2025-11-12"
 date-format: " "
 categories: 
   - week02
@@ -10,11 +10,6 @@ categories:
 editor_options: 
   chunk_output_type: console
 ---
-
-Write your code directly in a Quarto document.
-
-To create a Quarto document: go to **File** -> **New File** -> **Quarto Document**, then click **Create**.
-
 
 Use the following code to import the file "read-counts.csv" 
 (you have already downloaded it for the hand-on examples of week01).
@@ -104,8 +99,6 @@ matrix(
 )
 ```
 
-11. Click "Render" to generate your Quarto report.
-
 
 The homework correction is available here:
-[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week02/.r_w02_work_corr.qmd)
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week02/.r_w02_work_corr.R)
