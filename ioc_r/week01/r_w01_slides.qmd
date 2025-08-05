@@ -87,10 +87,9 @@ If you use the RStudio Server, you need to connect to your account first.
 
 ## Rstudio IDE {.smaller}
 
-Integrated Development Environment (IDE)  
-
 ::: columns
 ::: {.column width="55%"}
+Integrated Development Environment (IDE)
 
 ![](images/screenshot_rstudio.png)
 
