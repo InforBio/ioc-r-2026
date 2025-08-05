@@ -96,6 +96,7 @@ hist(counts[["WT.2"]])
 hist(log2(counts[["WT.2"]]))
 
 
-# 7. Export the data `counts[, c("Feature", "WT.2")]` to a file called `WT_2_expression.csv`,
-# store this file in the `outputs` folder.
+# 7. We can extract the gene name column (called "Feature") and the column for sample "WT.2" using this command:
+#   `counts[, c("Feature", "WT.2")]`
+#   Export the data to a file called `WT_2_expression.csv`, store this file in the `outputs` folder.
 write_csv(counts[, c("Feature", "WT.2")], file = "outputs/WT_2_expression.csv")
