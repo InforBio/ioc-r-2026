@@ -1,7 +1,7 @@
 ---
 title: "Data Foundations:<br>Vectors and Matrices"
 subtitle: "IOC-R Week 2"
-date: "2025-01-13"
+date: "2025-11-10"
 date-format: " "
 format:
   revealjs: 
@@ -18,6 +18,17 @@ categories:
   - slides
 image: images/preview_w2.png
 ---
+
+# Last Week Review
+
+## Brief Recap Week 1
+
+- With RStudio:
+  - Creating an R project
+  - Managing files (create, move, *etc.*)
+  - Importing and exporting data with RStudio
+- Understanding absolute and relative paths
+
 
 # Variables and Data Types in R
 
@@ -184,7 +195,7 @@ as.numeric("1") + as.numeric("2")  # convert to numeric
 as.character(1) # convert to character
 ```
 
-## Logical (1) {.smaller}
+## Logical {.smaller}
 
 - Only two possible values for logical data: `TRUE` or `FALSE`.
 
@@ -203,43 +214,6 @@ is.logical(True)
 ```{r}
 2 > 1
 ```
-
-## Logical (2) {.smaller}
-
-Convert to other types:
-
-::: {.columns}
-::: {.column}
-
-```{r}
-as.numeric(TRUE)
-as.numeric(FALSE)
-
-TRUE + TRUE + FALSE
-```
-
-::: {.fragment}
-
-```{r}
-as.character(TRUE)
-as.character(FALSE)
-```
-
-:::
-:::
-::: {.column .fragment}
-
-```{r}
-as.logical(1)
-as.logical(-1)
-as.logical(0)
-```
-
-::: {.callout-tip appearance="minimal"}
-When `as.logical()` is applied to numbers, any non-zero number is converted to `TRUE`.
-:::
-:::
-:::
 
 
 # Data Strucutres
@@ -364,7 +338,7 @@ gene_expr
 gene_expr[1]   # 1st element
 gene_expr[c(2, 3)] # elements 2 and 3
 gene_expr[2:3] # elements 2 and 3
-gene_expr[-1]  # remove 1st element
+gene_expr[-1]  # all elements except the 1st
 ```
 
 :::
@@ -464,19 +438,19 @@ num_vec[num_vec < 3]
 
 ::: {.column width="40%" .fragment}
 ::: {.callout-note appearance="minimal"}
-R use the `==` to test equality. *E.g.*:
+R use the `>` to test greater than. *E.g.*:
 
 ```{r}
-1 == 2
-c(1, 2, 3) == 2
+1 > 2
+c(1, 2, 3) > 2
 ```
 
-How to extract the value `5` from the `num_vec`?
+How to extract values greater than `3` from the `num_vec`?
 :::
 
 ::: {.fragment}
 ```{r}
-num_vec[num_vec == 5]
+num_vec[num_vec > 3]
 ```
 
 :::
@@ -658,10 +632,6 @@ mat["r2", "c2"]
 
 ## Matrices Indexing (3) {.smaller}
 
-::: columns
-
-::: {.column}
-
 - Use logical vector(s) for indexing.
 
 ```{r}
@@ -669,11 +639,7 @@ mat[c(TRUE, TRUE, FALSE), ]
 mat[c(TRUE, TRUE, FALSE), c(FALSE, TRUE, TRUE, FALSE)]
 ```
 
-:::
-
-::: {.column .fragment}
-
-::: {.callout-note appearance="minimal"}
+::: {.callout-note appearance="minimal" .fragment}
 By using the logical indexing, how to select the 2nd and 3rd rows, the 1st and 2nd columns of the `mat`?
 :::
 
@@ -684,8 +650,6 @@ mat[c(FALSE, TRUE, TRUE), c(TRUE, TRUE, FALSE, FALSE)]
 
 :::
 
-:::
-:::
 
 ## Matrices Operations {.smaller}
 
