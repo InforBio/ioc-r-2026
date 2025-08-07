@@ -6,15 +6,13 @@
 # We will use a couple of additional R packages for this training
 # in sessions 8 and 9, for example:
 # - {[tidyr](https://tidyr.tidyverse.org)}: provides functions that help you get to tidy data
-# - {[readr](https://readr.tidyverse.org)}: provides fast and friendly way to read rectangular data 
+# - {[dplyr](https://dplyr.tidyverse.org)}: provides functions that help you to manipulate data
 
-
-## 1.Install the {`readr`} and {`tidyr`} packages.
-# install.packages("readr") # you only need to install it once
+## 1.Install the {`dplyr`} and {`tidyr`} packages.
+# install.packages("dplyr") # you only need to install it once
 # install.packages("tidyr") # you only need to install it once
 
-
-## 2. Check if you can find `{readr}` and `{tidyr}` 
+## 2. Check if you can find `{dplyr}` and `{tidyr}`
 ##    in the "Packages" panel in RStudio.
 
 ## 3. Please use the following code to create a data frame of
@@ -22,13 +20,9 @@
 ##    Show a couple of first lines of the data frame.
 my_pkgs <- as.data.frame(installed.packages()[, c(1, 3:4)])
 
-
 ## 4. According to `my_pkgs`, how many packages are installed in your system?
 
-
-## 5. Extract the rows for the "ggplot2", "tidyr", "readr" packages from `my_pkgs`.
-
-
+## 5. Extract the rows for the "ggplot2", "tidyr", "dplyr" packages from `my_pkgs`.
 
 ## Create a Basic Histogram -------------------------------------------------------------
 
@@ -44,20 +38,15 @@ my_pkgs <- as.data.frame(installed.packages()[, c(1, 3:4)])
 ##      for all genes of the sample "WT.2".
 ##    Have you noticed the message from `geom_histogram()` about the bins?
 
-
 ## 2.Create a new histogram for the sample "WT.2",
 ##    but this time use the log2 of the gene counts.
 ##   Do you see the messages from `geom_histogram()`?
 
-
-
 ## 3. Try 10 and 20 for the `bins` parameter of `geom_histogram()`.
 ##    Observe how the histogram changes.
 
-
 ## 4. We will use 10 bins for the histogram.
 ##    Change the color of the bars to blue.
-
 
 ## 5. Based on the previous figure, fill the bars in orange.
 
@@ -67,7 +56,6 @@ my_pkgs <- as.data.frame(installed.packages()[, c(1, 3:4)])
 ##    - plot title to show sample name and the number of genes used.
 
 ## 7. Based on the previous figure, use the theme `theme_bw()`.
-
 
 ## Create a Boxplot with ggplot --------------------------------------------
 
@@ -84,9 +72,7 @@ my_pkgs <- as.data.frame(installed.packages()[, c(1, 3:4)])
 ##    - a column for the expression levels of different samples
 ##    - a column to indicate what is the sample group (WT or SET1)
 
-
 ## 1. Create a boxplot for the expression level by sample group.
-
 
 ## 2. Modify labels:
 ##    - Remove x-axis title
@@ -94,16 +80,12 @@ my_pkgs <- as.data.frame(installed.packages()[, c(1, 3:4)])
 ##    - Add a plot title "Expression of LOH1 in SET1 and WT samples"
 ##    - Add a subtitle "log2FoldChange = 2.85"
 
-
 ## 3. Add a layer of scatter plot over the boxplot.
 ##    - Color the points by sample group.
 ##    - Use the `alpha` parameter to let points be semi-transparent.
 
-
 ## 4. Change the theme to `theme_minimal()`.
-
 
 ## 5. With the `theme()` function:
 ##    - Move the plot title to the center.
 ##    - Hide the legend.
-

@@ -13,7 +13,7 @@ editor_options:
 ---
 
 The R script is available here:
-[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week05/r_w05_exos.R)
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week05/r_w05_exos.R)
 
 ## Goals
 
@@ -23,20 +23,20 @@ The R script is available here:
 ## Install New Packages
 
 We will use a couple of additional R packages for this training
-in sessions 8 and 9, for example:
+in session 9, for example:
 
 - {[tidyr](https://tidyr.tidyverse.org)}: provides functions that help you get to tidy data
-- {[readr](https://readr.tidyverse.org)}: provides fast and friendly way to read rectangular data 
+- {[dplyr](https://dplyr.tidyverse.org)}: provides functions that help you to manipulate data 
 
 
-1. Install the {`readr`} and {`tidyr`} packages.
+1. Install the {`dplyr`} and {`tidyr`} packages.
 
 ```{r}
-# install.packages("readr") # you only need to install it once
+# install.packages("dplyr") # you only need to install it once
 # install.packages("tidyr") # you only need to install it once
 ```
 
-2. Check if you can find `{readr}` and `{tidyr}` in the "*Packages*" panel in RStudio.
+2. Check if you can find `{dplyr}` and `{tidyr}` in the "*Packages*" panel in RStudio.
 
 3. Please use the following code to create a data frame of all installed packages in your system.
 Show a couple of first lines of the data frame.
@@ -52,15 +52,15 @@ head(my_pkgs)
 nrow(my_pkgs) # the number can be different
 ```
 
-5. Extract the rows for the "ggplot2", "tidyr", "readr" packages from `my_pkgs`.
+5. Extract the rows for the "ggplot2", "tidyr", "dplyr" packages from `my_pkgs`.
 
 ```{r}
 # extract by rownames
-my_pkgs[c("ggplot2", "tidyr", "readr"), ]
+my_pkgs[c("ggplot2", "tidyr", "dplyr"), ]
 
 ## or
 # extract by filtering the names in the "Package" column
-my_pkgs[my_pkgs$Package %in% c("ggplot2", "tidyr", "readr"), ]
+my_pkgs[my_pkgs$Package %in% c("ggplot2", "tidyr", "dplyr"), ]
 ```
 
 
@@ -73,7 +73,8 @@ Now let's try with functions from {`ggplot2`} package.
 0. Import the `read-counts.csv` file into RStudio and name the data as `counts`.
 
 ```{r}
-counts <- read.csv("../exos_data/read-counts.csv", header = TRUE)
+library(readr)
+counts <- read_csv("../exos_data/read-counts.csv") # replace the path by the yours
 dim(counts)
 ```
 
