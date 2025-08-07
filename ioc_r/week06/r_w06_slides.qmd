@@ -1,0 +1,505 @@
+---
+title: "R-fresh:<br>Revisiting the Essentials"
+subtitle: "IOC-R Week 6"
+date: "2025-02-10"
+date-format: " "
+format:
+  revealjs: 
+    toc: true
+    toc-title: "Plan"
+    toc-depth: 1
+    slide-number: true
+    preview-links: auto
+    logo: ../../images/logoInforBio_fond_blanc_small.png
+    css: ../custom.css
+  # pdf:
+  #   toc: true
+echo: true
+categories: 
+  - week06
+  - slides
+image: images/xkcd_parenthesis.png
+---
+
+# R Projects
+
+## Organizing Your Work Like a Pro
+
+Use R Projects to manage files and scripts in a structured way.
+
+- Keep data, scripts, and outputs in separate folders to avoid chaos.
+
+- Example:
+
+```bash
+my_project/
+  ├── data/          # Raw data files (e.g., RNA-seq counts)
+  ├── scripts/       # R scripts for preprocessing & analysis
+  ├── outputs/       # Output figures & tables
+```
+
+# Variables & Data Types
+
+## What’s in Your Data? {.smaller}
+
+| Data Type  |	Example in Biology |
+|:-----------|:---------------------|
+| Numeric    |	Expression levels (`25.3`)|
+| Character  |	Gene names (`"TP53"`,` "BRCA1"`)|
+| Logical    |	Mutation status (`TRUE` for mutated, `FALSE` for WT)|
+
+<br>
+
+::: {.columns}
+::: {.column}
+```{r}
+expression <- 25.3   # Numeric
+gene <- "TP53"       # Character
+is_mutant <- TRUE    # Logical
+```
+
+:::
+::: {.column .fragment}
+
+```{r}
+x <- 1
+y <- 2
+total <- x + y
+total
+```
+:::{.callout-note appearance="minimal"}
+- If we change `x` to 5, is the value stored in `total` changed?
+- If `total` is not changed, what do you need to do to update the value in `total`?
+:::
+:::
+:::
+
+
+# Data Structures
+
+## Where Do You Store Your Data? {.smaller}
+
+::: {.columns}
+::: {.column}
+- **Vectors**
+
+  - 1D homogeneous data (all elements of the same type).
+  - Use cases: A list of gene names, expression levels, or p-values.
+  - Use `[]` for indexing
+:::
+::: {.column}
+```{r}
+gene_names <- c("TP53", "BRCA1", "EGFR", "INS")
+gene_names[1]  # First gene: "TP53"
+gene_names[c(2, 4)]  # Select multiple genes
+
+# factor
+mut_gp <- factor(c("wt", "wt", "mut", "mut"))
+mut_gp
+mut_gp[3]
+```
+
+:::
+:::
+
+
+## Where Do You Store Your Data? {.smaller}
+
+::: {.columns}
+::: {.column}
+- **Matrices**:
+
+  - 2D homogeneous data, a collection of equal-length vectors of the same data type.
+  - Use case: gene expression counting table, rows = genes, columns = samples
+  - Use `[, ]` for indexing.
+
+```{r}
+expr_matrix <- matrix(
+  c(10, 12, 15, 20, 8, 30),
+  nrow = 3, byrow = TRUE,
+  dimnames = list( # name the rows and columns   
+    c("gene1", "gene2", "gene3"),
+    c("sample1", "sample2")
+  )
+)
+```
+
+:::
+::: {.column}
+```{r}
+expr_matrix
+expr_matrix["gene1", ]  # Expression of Gene1 across samples
+expr_matrix[, "sample2"]  # All gene expressions in Sample2
+expr_matrix[2, 1]  # Specific value at row 2, column 1
+```
+
+:::
+:::
+
+## Where Do You Store Your Data? {.smaller}
+
+::: {.columns}
+::: {.column}
+- **Data Frames**
+
+  - 2D heterogeneous data, a collection of equal-length vectors of one or more data types.
+  - Use `[, ]` for indexing
+  - Use `$` and `[[ ]]` to extract one column.
+
+```{r}
+df <- data.frame(
+  Gene = c("TP53", "BRCA1", "EGFR"),
+  Expression = c(25.3, 12.5, 30.1),
+  Mutation = c(TRUE, FALSE, TRUE)
+)
+df
+```
+
+:::
+::: {.column}
+
+```{r}
+df$Gene  # Select column as a vector
+df[, "Expression"]  # Same as df$Expression
+df[[2]]  # Same as df$Expression
+df[1, ]  # First row
+df[df$Expression > 30, ]  # Filter expression bigger than 30
+df[which(df$Mutation), ]  # Filter mutated genes
+```
+
+:::
+:::
+
+## Where Do You Store Your Data? {.smaller}
+
+::: {.columns}
+::: {.column}
+- **Lists**
+
+  - Flexible structure, can hold anything (vectors, matrices, data frames or lists).
+  - Use `[]` to subset a list.
+  - Use `[[ ]]` or `$` to select a specific component of a list.
+
+```{r}
+bio_data <- list(
+  genes = c("TP53", "BRCA1"),
+  expression = matrix(c(20, 15, 30, 25), nrow = 2),
+  metadata = data.frame(Sample = c("A", "B"), Condition = c("WT", "KO"))
+)
+```
+
+:::
+::: {.column}
+
+```{r}
+bio_data
+bio_data[1]  # A sub list
+bio_data[[1]]  # Get gene names
+bio_data$expression  # Get expression matrix
+bio_data$metadata$Condition  # Get sample conditions
+```
+
+:::
+:::
+
+# Conditions & Operators
+
+## Filtering Data with Accuracy in R {.smaller}
+
+| Type |	Operator |	Example |
+|:----------|:---------------------:|:--------------:|
+|Comparison |	==, !=, >, <, >=, <=	| p_value < 0.05 |
+|Logical    | `&` (AND), `|` (OR), `!` (NOT) | TRUE & FALSE |
+
+<br>
+
+::: {.columns}
+::: {.column .fragment}
+
+```{r}
+expression <- 25.3
+
+if (expression > 20) {
+  print("High expression")
+} else {
+  print("Low expression")
+}
+
+ifelse(test = expression > 20, yes = "High expression", no = "Low expression")
+```
+
+:::{.fragment}
+
+```{r}
+age <- c(18, 27, 20, 23, 22)
+age[age < 20 | age > 25]
+```
+:::
+:::
+::: {.column .fragment}
+
+```{r}
+genes <- data.frame(
+  gene = c("TP53", "BRCA1", "EGFR"),
+  expr = c(25.3, 12.5, 30.1),
+  gene_family = c("A", "A", "B")
+  
+)
+genes[genes$expr > 20, ]
+# subset(genes, expr > 20) # idem
+
+subset(genes, expr > 20, select = c("gene", "expr")) # filter and select some columns
+```
+
+:::
+:::
+
+# Functions
+
+## Automate Task in R {.smaller}
+
+```{r}
+classify_expression <- function(expr, cutoff = 20) {
+  message("Cutoff is ", cutoff)
+  if (expr > cutoff) {
+    return("High")
+  } else {
+    return("Low")
+  }
+}
+
+```
+
+<br>
+
+::: {.columns .fragment}
+::: {.column}
+
+```{r}
+#| message: true
+
+classify_expression(expr = 25.3, cutoff = 20)
+classify_expression(25.3)
+```
+:::
+::: {.column}
+
+```{r}
+#| message: true
+
+classify_expression(25.3, 30)
+classify_expression(25.3, 10)
+```
+:::
+:::
+
+# Ggplot2: Visualizing Your Results
+
+## Basic Graphing {.smaller}
+
+Syntax: `ggplot(data, aes(x, y)) + geom_*()`
+
+```{r}
+#| echo: false
+
+library(ggplot2)
+theme_set(theme_grey())
+theme_update(
+  axis.title = element_text(size = rel(2)),
+  axis.text = element_text(size = rel(2)),
+  strip.text = element_text(size = rel(2)),
+  plot.title = element_text(size = rel(2.5)),
+  legend.text = element_text(size = rel(2)),
+  legend.title = element_text(size = rel(2))
+)
+```
+
+::: {.columns}
+::: {.column}
+```{r}
+library(ggplot2)
+df <- data.frame(
+  Expression = c(
+    25.3, 12.5, 30.1, 27.8, 18.2, 35.6
+  ),
+  Condition = rep(c("WT", "KO"), 3)
+)
+df
+```
+
+:::
+::: {.column}
+```{r}
+ggplot(
+  data = df,
+  aes(x = Condition, y = Expression)
+) +
+  geom_boxplot()
+```
+
+:::{.content-smaller}
+Possible to change aesthetics (color, fill, shape, alpha (transparency), *etc.*), theme, scales, *etc.*
+:::
+
+```{r}
+#| eval: false
+
+## save figure
+ggsave(filename = "path/to/my_figure.png")
+```
+:::
+:::
+
+# Data Import and Export
+
+## Text and Excel Files {.smaller}
+
+::: {.columns}
+::: {.column}
+- Text format (.txt, .csv)
+
+```{r}
+#| eval: false
+
+# use {base}'s functions
+## Import
+text_file <- read.table("path/to/file.txt")
+csv_file <- read.csv("path/to/file.csv")
+
+## Export
+write.table(
+  x = df,
+  file = "outputs/cleaned_gene_expression.txt"
+)
+write.csv(
+  x = df,
+  file = "outputs/cleaned_gene_expression.csv"
+)
+
+# use {readr}'s functions
+## Import
+readr::read_csv(
+  file = "outputs/cleaned_gene_expression.csv"
+)
+## Export
+readr::write_csv(
+  x = df,
+  file = "outputs/cleaned_gene_expression.csv"
+)
+```
+
+:::
+::: {.column}
+
+- Excel format (.xlsx, .xls)
+
+```{r}
+#| eval: false
+
+# use {readxl}'s functions
+## Import
+xlsx_file <- readxl::read_xlsx("path/to/file.xlsx")
+xls_file <- readxl::read_xls("path/to/file.xls")
+
+# use {xlsx}'s function
+## Export
+xlsx::write.xlsx(
+  x = df,
+  file = "outputs/cleaned_gene_expression.xlsx"
+)
+```
+
+:::{.callout-tip appearance="minimal" .fragment}
+- Don't forget to use arguments to specify if your data has header, row names, *etc.*
+- Cheat sheet for data import/export with {readr} and {readxl} in R: <https://github.com/rstudio/cheatsheets/blob/main/data-import.pdf>
+:::
+
+:::
+:::
+
+## R Specific Formats {.smaller}
+
+::: {.columns}
+::: {.column}
+- **RDS** (for preserving a single R object)
+
+```{r}
+#| eval: false
+
+saveRDS(
+  object = df,
+  file = "outputs/cleaned_gene_expression.rds"
+)
+
+# load RDS data into environment
+my_df <- readRDS(
+  file = "outputs/cleaned_gene_expression.rds"
+)
+```
+
+:::
+::: {.column}
+- **RData** (for saving multiple R objects at once)
+
+```{r}
+#| eval: false
+
+save(
+  df,
+  summary_stats,
+  file = "outputs/analysis_results.RData"
+)
+
+# Load all objects back into the environment
+# with their original names
+load("outputs/analysis_results.RData")
+```
+:::
+:::
+
+<br>
+
+:::{.callout-tip appearance="minimal" .fragment}
+Both `.RDS` and `.Rdata` preserve data structures, such as column data types (numeric, character or factor).
+:::
+
+
+# Using AI to Solve Coding Problems in R
+
+## How Can AI help Us? {.smaller}
+
+- Debugging: Identify and troubleshoot error/warning messages
+- Generate code snippets (filter data, visualize, define functions, etc.)
+- Explain unfamiliar code and documentation
+- Enhance code quality (readability, efficiency, optimization)
+- ...
+
+Different AI tools: ChatGPT, Gemini, Perplexity, Claude, Le Chat, DeepSeek, *etc.*
+
+:::{.callout-important appearance="minimal"}
+AI is a great assistant, but it can make mistakes, always verify outputs!
+:::
+
+
+## How to ask AI for help effectively? {.smaller}
+
+✅ Be specific: Instead of "Why is my code not working?", ask:
+
+> "I’m trying to filter a data frame in R where Expression > 10, but I get an error. Here’s my code: df[df$Expression > 10]. How can I fix it?"
+
+✅ Provide context:
+
+- A quick mention of your background can guide the response (*e.g.*: "I'm biologist working with gene expression data")
+- What is your goal?
+- What error message do you see?
+- What does your dataset look like?
+
+# Let's Practice!
+
+## Today's Goals
+
+- Hands-on challenge: “Fix the Code”
+- Mini data analysis project
+  - Data cleaning
+  - Simple analysis
+  - Visualisation
