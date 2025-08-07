@@ -11,16 +11,12 @@ editor_options:
   chunk_output_type: console
 ---
 
-Write your code directly in a Quarto document.
-
-To create a Quarto document: go to **File** -> **New File** -> **Quarto Document**, then click **Create**.
-
 # Import data.
 
 We need to use two data for this exercise:
 
-- the bulk RNAseq gene expression data from the [`read-counts.csv`](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/read-counts.csv) file.
-- the diffenrential expression (DE) analysis results [`toy_DEanalysis`](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv).
+- the bulk RNAseq gene expression data from the [`read-counts.csv`](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv) file.
+- the diffenrential expression (DE) analysis results [`toy_DEanalysis`](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv).
 
 Reminder: the DE results were obtained by comparing SET1 samples to WT samples using data from `read-counts.csv`
 
@@ -32,7 +28,7 @@ Reminder: the DE results were obtained by comparing SET1 samples to WT samples u
 
 You can either use the first column (Feature) to name the rows of your data frame or keep the fisrt column as is.
 It will just change how you filter data later.
-Here I import the data without using the 1st column to name the rows of my data frame.
+
 
 # Find Genes of Interest
 
@@ -51,15 +47,7 @@ Store the results in a variable `target_genes`.
 
 Hints: you need to extract the expression data for the gene from the `counts` and build a data frame for the boxplot.
 
-
-6. Write a function that generates a boxplot for a specified gene,
-allowing the user to input the gene name.
-Use your function to create boxplots for all the remaining genes in the `target_genes`.
-
-
 ---
 
-Click "Render" to generate your Quarto report.
-
 The homework correction is available here:
-[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week05/.r_w05_work_corr.qmd)
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week05/.r_w05_work_corr.R)
