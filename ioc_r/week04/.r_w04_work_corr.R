@@ -23,7 +23,7 @@ wt_data <- data[, wt_samples]
 ## calculate average across WT sample
 gp_avg <- rowMeans(wt_data)
 
-# 3. Now, generalize the previous step to calculate the average expression
+# 3. Now, repeat the previous step to calculate the average expression
 #   for the remaining three groups: "SET1.", "SET1.RRP6." and "RRP6."
 # - Store the four average values in a list named `avg_list`, using the group names as the names of the list.
 # - Display the first 5 average values for the "SET1.RRP6" group.

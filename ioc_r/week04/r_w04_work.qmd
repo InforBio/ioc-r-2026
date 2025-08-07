@@ -22,16 +22,15 @@ this data file contains gene expression values of samples from four groups,
 sample names are prefixed by "WT", "SET1", "SET1.RRP6" and "RRP6".
 Each group has 10 samples.
 
-2. Create a function to calculate the average gene expression across samples
-by selected group. Test your function on WT samples.
+2. Calculate the average gene expression per gene across the 10 samples in the "WT" group.
 
 ```{r}
 
 ```
 
-3. Use function created in question 2 to calculate the average for
-all sample groups, store the results in a list.
-Show the first 5 average gene expression of SET1.RRP6 samples.
+3. Now, repeat the previous step to calculate the average expression for the remaining three groups: "SET1", "SET1.RRP6" and "RRP6"
+- Store the four average values in a list named `avg_list`, using the group names as the names of the list.
+- Display the first 5 average values for the "SET1.RRP6" group.
 
 ```{r}
 
