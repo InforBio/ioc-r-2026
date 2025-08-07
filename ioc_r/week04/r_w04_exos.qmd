@@ -3,7 +3,7 @@ title: "Week 4 - Hands-On Examples"
 format: 
   html: default
   # pdf: default
-date: "2025-01-28"
+date: "2025-11-25"
 date-format: " "
 categories: 
   - week04
@@ -13,28 +13,29 @@ editor_options:
 ---
 
 The R script is available here:
-[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week04/r_w04_exos.R)
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week04/r_w04_exos.R)
 
 ## Goals
 
 - Understand and use operators to filter data with precision.
-- Understand function's basic structure, learn to use new functions, write functions to automate tasks.
+- Apply functions to perform basic calculations and data manipulation.
 
 ## Import Data
 
 A gene-level differential expression (DE) analysis was performed to compare SET1 samples to WT samples using data from `read-counts.csv`.
 
-The analysis results are available via this [link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv).
+The analysis results are available via this [link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv).
 
-- Please donwload the result file and upload it to your data folder.
-- Import the data using the `read.csv()` function.
-(See the documentation with `?read.csv`) 
+- Donwload the result file and upload it to your data folder.
+- Import the data using the `read_csv()` function from the package `readr`.
+(See the documentation with `?read_csv`) 
 Name the imported results `de_res`.
 
 ```{r}
-de_res <- read.csv(
+library(readr)
+de_res <- read_csv(
   file = "../exos_data/toy_DEanalysis.csv",  # replace the path with your own
-  header = TRUE
+  col_names = TRUE
 )
 ```
 
@@ -77,7 +78,7 @@ de_res[de_res$log2FoldChange < -0.5, ]
 de_res[de_res$log2FoldChange > 0.5 | de_res$log2FoldChange < -0.5, ]
 
 ## Bonus: we can test the absolute value of log2FoldChange to simplify condition
-abs(c(0.5, -0.5)) # how abs() works
+abs(c(0.5, -0.5)) # how abs() works, ?abs
 de_res[abs(de_res$log2FoldChange) > 0.5, ]
 ```
 
@@ -161,40 +162,11 @@ de_res[["gene_category"]] <- ifelse(
 )
 ```
 
-8. Use `table()` to count the occurrences of each gene category.
+8. Use `table()` to count the occurrences of each gene category. (`?table`)
 
 ```{r}
 table(de_res[["gene_category"]])
 ```
-
-
-## Bonus Questions
-
-9. Write a function to automate "de_res" filtering for genes
-with a p-value less than or equal to a custom cutoff.
-
-```{r}
-filter_p <- function(cutoff = 0.05) {
-  de_res[de_res$pvalue <= cutoff, ]
-}
-filter_p(0.01)
-filter_p(0.0001)
-```
-
-10. Based on the function created in question 9,
-modify the function to allow output ordered by any desired column in `de_res`.
-
-Hints: You need an extra parameter to specify the wanted column and
-another parameter to fix the cutoff.
-
-```{r}
-filter_col <- function(col = "pvalue", cutoff = 0.05) {
-  de_res[de_res[[col]] <= cutoff, ]
-}
-filter_col(cutoff = 0.0001)
-filter_col(col = "log2FoldChange", cutoff = -1)
-```
-
 
 ::: {.callout-tip}
 **Ensembl Data Base**
@@ -207,15 +179,14 @@ making it easy to query and extract information such as gene names, coordinates,
 and orthologs for research purposes.
 :::
 
-11. A yeast gene annotation file was obtained from the Ensembl data base.
-This file can be donwloaded [here](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/yeast_gene_annot.csv).
+9. A yeast gene annotation file was obtained from the Ensembl data base.
+This file can be donwloaded [here](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/yeast_gene_annot.csv).
 
-Import the data and add the annotation to the `de_res` data frame using `merge()` function.
+Import the data and add the annotation to the `de_res` data frame using `merge()` function. (`?merge`)
 
 ```{r}
-annot <- read.csv(
-  "../exos_data/yeast_gene_annot.csv", # replace the path by your own
-  header = TRUE
+annot <- read_csv(
+  "../exos_data/yeast_gene_annot.csv" # replace the path by your own
 )
 
 de_res <- merge(de_res, annot, by = "gene_name", all.x = TRUE)
