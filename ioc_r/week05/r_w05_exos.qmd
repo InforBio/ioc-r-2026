@@ -1,0 +1,251 @@
+---
+title: "Week 5 - Hands-On Examples"
+format: 
+  html: default
+  # pdf: default
+date: "2025-12-02"
+date-format: " "
+categories: 
+  - week05
+  - exercise
+editor_options: 
+  chunk_output_type: console
+---
+
+The R script is available here:
+[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week05/r_w05_exos.R)
+
+## Goals
+
+- Install new R packages
+- Create basic plots with ggplot2
+
+## Install New Packages
+
+We will use a couple of additional R packages for this training
+in sessions 8 and 9, for example:
+
+- {[tidyr](https://tidyr.tidyverse.org)}: provides functions that help you get to tidy data
+- {[readr](https://readr.tidyverse.org)}: provides fast and friendly way to read rectangular data 
+
+
+1. Install the {`readr`} and {`tidyr`} packages.
+
+```{r}
+# install.packages("readr") # you only need to install it once
+# install.packages("tidyr") # you only need to install it once
+```
+
+2. Check if you can find `{readr}` and `{tidyr}` in the "*Packages*" panel in RStudio.
+
+3. Please use the following code to create a data frame of all installed packages in your system.
+Show a couple of first lines of the data frame.
+
+```{r}
+my_pkgs <- as.data.frame(installed.packages()[, c(1, 3:4)])
+head(my_pkgs)
+```
+
+4. According to `my_pkgs`, how many packages are installed in your system?
+
+```{r}
+nrow(my_pkgs) # the number can be different
+```
+
+5. Extract the rows for the "ggplot2", "tidyr", "readr" packages from `my_pkgs`.
+
+```{r}
+# extract by rownames
+my_pkgs[c("ggplot2", "tidyr", "readr"), ]
+
+## or
+# extract by filtering the names in the "Package" column
+my_pkgs[my_pkgs$Package %in% c("ggplot2", "tidyr", "readr"), ]
+```
+
+
+## Create a Basic Histogram
+
+In the hands-on examples of session 1 and 2, we have drawn histograms with the basic R function `hist()`.
+
+Now let's try with functions from {`ggplot2`} package.
+
+0. Import the `read-counts.csv` file into RStudio and name the data as `counts`.
+
+```{r}
+counts <- read.csv("../exos_data/read-counts.csv", header = TRUE)
+dim(counts)
+```
+
+
+1. Load the {`ggplot2`} package.
+Then create a histogram with the function `geom_histogram()` 
+for all genes of the sample "WT.2".
+Have you noticed the message from `geom_histogram()` about the bins? 
+
+```{r}
+library(ggplot2)
+ggplot(data = counts, aes(x = WT.2)) +
+  geom_histogram()
+```
+
+2. Create a new histogram for the sample "WT.2",
+but this time use the log2 of the gene counts.
+Do you see the messages from `geom_histogram()`? 
+
+```{r}
+ggplot(data = counts, aes(x = log2(WT.2))) +
+  geom_histogram()
+```
+
+3. Try 10 and 20 for the `bins` parameter of `geom_histogram()`.
+Observe how the histogram changes.
+
+```{r}
+ggplot(data = counts, aes(x = log2(WT.2))) +
+  geom_histogram(bins = 10) +
+  labs(title = "10 bins")
+
+ggplot(data = counts, aes(x = log2(WT.2))) +
+  geom_histogram(bins = 20) +
+  labs(title = "20 bins")
+```
+
+4. We will use 10 bins for the histogram.
+Change the color of the bars to blue.
+
+```{r}
+ggplot(data = counts, aes(x = log2(WT.2))) +
+  geom_histogram(bins = 10, color = "blue")
+```
+
+5. Based on the previous figure, fill the bars in orange.
+
+```{r}
+ggplot(data = counts, aes(x = log2(WT.2))) +
+  geom_histogram(bins = 10, color = "blue", fill = "orange")
+```
+
+6. Based on the previous figure, change:
+
+- x-axis title to be: "log2 gene expression"
+- y-axis title to be: "Counts"
+- plot title to show sample name and the number of genes used.
+
+```{r}
+ggplot(data = counts, aes(x = log2(WT.2))) +
+  geom_histogram(bins = 10, color = "blue", fill = "orange") +
+  labs(
+    x = "log2 gene expression",
+    y = "Counts",
+    title = paste0(nrow(counts), " genes of WT.2 sample")
+  )
+```
+
+7. Based on the previous figure, use the theme `theme_bw()`.
+
+```{r}
+ggplot(data = counts, aes(x = log2(WT.2))) +
+  geom_histogram(bins = 10, color = "blue", fill = "orange") +
+  labs(
+    x = "log2 gene expression",
+    y = "Counts",
+    title = paste0(nrow(counts), " genes of WT.2 sample")
+  ) +
+  theme_bw()
+```
+
+
+## Create a Boxplot with ggplot
+
+In the hands-on examples of session 3,
+we demonstrated that there is a significant difference in
+the expression of *LOH1* between WT and SET1 samples.
+
+This gene is upregulated in SET1 samples compared to WT samples,
+the log2 fold change is 2.85.
+
+Now, let's draw a more sophisticated boxplot with ggplot2.
+
+0. Prepare a data frame for the boxplot. We need:
+
+- a column for the expression levels of different samples
+- a column to indicate what is the sample group (WT or SET1)
+
+```{r}
+gg_df <- data.frame(
+  expr_value = c(
+    unlist(counts[counts$Feature == "LOH1", paste0("WT.", 1:10)]),
+    unlist(counts[counts$Feature == "LOH1", paste0("SET1.", 1:10)])
+  ),
+  gp = rep(c("WT", "SET1"), each = 10)
+)
+gg_df
+```
+
+1. Create a boxplot for the expression level by sample group.
+
+```{r}
+p_base <- ggplot(gg_df, aes(x = gp, y = expr_value)) +
+  geom_boxplot()
+
+p_base
+```
+
+2. Modify labels:
+
+- Remove x-axis title
+- Change y-axis title to "Expression Level"
+- Add a plot title "Expression of LOH1 in SET1 and WT samples"
+- Add a subtitle "log2FoldChange = 2.85"
+
+```{r}
+p_base <- p_base + labs(
+  x = NULL,
+  y = "Expression Level",
+  title = "Expression of LOH1 in SET1 and WT samples",
+  subtitle = "log2FoldChange = 2.85"
+)
+p_base
+```
+
+3. Add a layer of scatter plot over the boxplot.
+
+- Color the points by sample group.
+- Use the `alpha` parameter to let points be semi-transparent.
+
+```{r}
+p_base <- p_base +
+  geom_point(
+    aes(color = gp),
+    alpha = 0.5
+  )
+p_base
+```
+
+4. Change the theme to `theme_minimal()`. 
+
+```{r}
+p_base <- p_base + theme_minimal()
+p_base
+```
+
+5. With the `theme()` function:
+
+- Move the plot title to the center.
+- Hide the legend.
+
+```{r}
+p_base <- p_base + theme(
+  plot.title = element_text(hjust = 0.5), # center plot title
+  legend.position = "none"
+)
+p_base
+```
+
+
+---
+
+#### Good job! 👏👏 You've taken your first big steps into ggplot2, keep it up! 
+
+
