@@ -335,7 +335,7 @@ guiding how the code behaves in different scenarios.
 %%| echo: false
 %%| fig-width: 10
 flowchart LR
-  AA[temperature] --> A(("> 37"))
+  AA[temperature] --> A((&gt; 37))
   A --> B(TRUE)
   A --> C(FALSE)
   B --> D[Fever]
@@ -348,7 +348,7 @@ flowchart LR
 %%| echo: false
 %%| fig-width: 10
 flowchart LR
-  AA[log2FC] --> A(("> 0"))
+  AA[log2FC] --> A((&gt; 0))
   A --> B(TRUE)
   A --> C(FALSE)
   B --> D[Up-regulated]
@@ -388,7 +388,7 @@ if (condition) {
 ```{mermaid}
 %%| echo: false
 flowchart LR
-  AA[log2FC] --> A(("> 0"))
+  AA[log2FC] --> A((&gt; 0))
   A --> B(TRUE)
   A --> C(FALSE)
   B --> D[Up-regulated]
