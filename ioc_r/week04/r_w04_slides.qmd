@@ -534,4 +534,4 @@ We'll talk about customised functions in session 8!
 ## Today's Goals
 
 - Understand and use operators to filter data with precision.
-- Understand function's basic structure, learn to use new functions, write functions to automate tasks.
+- Apply functions to perform basic calculations and data manipulation.
