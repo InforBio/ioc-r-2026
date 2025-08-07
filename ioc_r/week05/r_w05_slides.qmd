@@ -1,5 +1,5 @@
 ---
-title: "Graphing with {ggplot2}"
+title: "Graphing with {ggplot2} (Part 1)"
 subtitle: "IOC-R Week 5"
 date: "2025-12-01"
 date-format: " "
@@ -67,43 +67,6 @@ if (lfc > 2 & pvalue < 0.05 ) {
 :::
 :::
 
-## Brief Recap Week 4 {.smaller}
-
-::: {.columns}
-
-::: {.column}
-- Functions
-
-```r
-## syntax
-my_function <- function(arg1, arg2) {
-  # code
-  return(result)
-}
-```
-
-:::
-::: {.column .fragment}
-
-::: {.callout-note appearance="minimal"}
-Based on the following code:
-
-- what will you get when calling `times_three(2)`?
-- What will you get if you type `time_factor` in the console?
-:::
-
-```r
-times_three <- function(number) {
-  time_factor <- 3
-  res <- number * time_factor
-  return(res)
-}
-times_three(2)
-time_factor
-```
-:::
-:::
-
 
 # R Packages 
 
@@ -145,7 +108,7 @@ By default, R will install the lastest version of a package.
 :::
 
 ::: {.notes}
-Only need install once for the system, the load the package.
+Only need install once for the system, then load the package.
 :::
 
 ## Management of Packages {.smaller}
@@ -166,11 +129,6 @@ Or use `remove.packages("tibble")`.
 :::
 :::
 
-::: {.callout-tip appearance="minimal"}
-We'll talk about packages' version management via the
-[renv](https://rstudio.github.io/renv/articles/renv.html)
-package in session 6 if time allowed.
-:::
 
 ## Using Functions of Package {.smaller}
 
@@ -187,10 +145,6 @@ A loaded package will be checked in the "Packages" panel.
 
 ::: {.callout-tip appearance="minimal"}
 You only need to load a package once per R session.
-
-However, if you're running your script in a non-interactive way,
-make sure to include the `library()` calls in your script,
-ideally at the beginning.
 :::
 
 - or load one function of the package at the time with the syntax `pkg_name::fct_name`
@@ -200,7 +154,8 @@ ggplot2::ggplot()
 ```
 
 ::: {.callout-tip appearance="minimal"}
-This way is recommanded if you need to use only one function of a package.
+This way is recommanded if you need to use only one function of a package,
+or if you want to make sure you use the wanted function.
 :::
 
 
