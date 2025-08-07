@@ -364,7 +364,7 @@ $y
 </section>
 <section id="comparison-operators" class="slide level2 smaller">
 <h2>Comparison Operators</h2>
-<p>Element-wise comparison: <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code>==</code>, <code>!=</code> return logical results.</p>
+<p>Element-wise comparison: <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code>==</code>, <code>!=</code>, returns logical results.</p>
 <div class="columns">
 <div class="column">
 <div class="cell">
@@ -663,7 +663,7 @@ $y
 <p></p><figure class=""><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart LR
-  AA{temperature} --&gt; A((&gt; 37))
+  AA[temperature] --&gt; A(("&gt; 37"))
   A --&gt; B(TRUE)
   A --&gt; C(FALSE)
   B --&gt; D[Fever]
@@ -681,7 +681,7 @@ $y
 <p></p><figure class=""><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart LR
-  AA{log2FC} --&gt; A((&gt; 0))
+  AA[log2FC] --&gt; A(("&gt; 0"))
   A --&gt; B(TRUE)
   A --&gt; C(FALSE)
   B --&gt; D[Up-regulated]
@@ -729,7 +729,7 @@ $y
 <p></p><figure class=""><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart LR
-  AA{log2FC} --&gt; A((&gt; 0))
+  AA[log2FC] --&gt; A(("&gt; 0"))
   A --&gt; B(TRUE)
   A --&gt; C(FALSE)
   B --&gt; D[Up-regulated]
@@ -823,8 +823,8 @@ $y
 <p></p><figure class=""><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart LR
-  A(Inputs) --&gt; B[Code block for specific task]
-  B --&gt; C(Output)
+  A[Inputs] --&gt; B(Code block for specific task)
+  B --&gt; C[Output]
 </pre>
 </div>
 <p></p></figure><p></p>
