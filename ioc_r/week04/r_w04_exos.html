@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.7.33">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 4 - Hands-On Examples – IOC</title>
+<title>Week 4 - Hands-On Examples – IOC-2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -72,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-a986a95301e671fce2c6472dffc862a1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -147,7 +147,7 @@ window.Quarto = {
     <img src="../../images/logoInforBio_fond_blanc_small.png" alt="" class="navbar-logo">
     </a>
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">IOC</span>
+    <span class="navbar-title">IOC-2026</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -180,7 +180,7 @@ window.Quarto = {
 <span class="menu-text">IOC-scRNAseq</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/InforBio/IOC"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/InforBio/ioc-r-2026"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -203,7 +203,6 @@ window.Quarto = {
   <li><a href="#goals" id="toc-goals" class="nav-link active" data-scroll-target="#goals">Goals</a></li>
   <li><a href="#import-data" id="toc-import-data" class="nav-link" data-scroll-target="#import-data">Import Data</a></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
-  <li><a href="#bonus-questions" id="toc-bonus-questions" class="nav-link" data-scroll-target="#bonus-questions">Bonus Questions</a></li>
   </ul>
 </nav>
     </div>
@@ -233,27 +232,38 @@ window.Quarto = {
 </header>
 
 
-<p>The R script is available here: <a href="https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week04/r_w04_exos.R">link</a></p>
+<p>The R script is available here: <a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week04/r_w04_exos.R">link</a></p>
 <section id="goals" class="level2">
 <h2 class="anchored" data-anchor-id="goals">Goals</h2>
 <ul>
 <li>Understand and use operators to filter data with precision.</li>
-<li>Understand function’s basic structure, learn to use new functions, write functions to automate tasks.</li>
+<li>Apply functions to perform basic calculations and data manipulation.</li>
 </ul>
 </section>
 <section id="import-data" class="level2">
 <h2 class="anchored" data-anchor-id="import-data">Import Data</h2>
 <p>A gene-level differential expression (DE) analysis was performed to compare SET1 samples to WT samples using data from <code>read-counts.csv</code>.</p>
-<p>The analysis results are available via this <a href="https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv">link</a>.</p>
+<p>The analysis results are available via this <a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv">link</a>.</p>
 <ul>
-<li>Please donwload the result file and upload it to your data folder.</li>
-<li>Import the data using the <code>read.csv()</code> function. (See the documentation with <code>?read.csv</code>) Name the imported results <code>de_res</code>.</li>
+<li>Donwload the result file and upload it to your data folder.</li>
+<li>Import the data using the <code>read_csv()</code> function from the package <code>readr</code>. (See the documentation with <code>?read_csv</code>) Name the imported results <code>de_res</code>.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>de_res <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> <span class="st">"../exos_data/toy_DEanalysis.csv"</span>,  <span class="co"># replace the path with your own</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">header =</span> <span class="cn">TRUE</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>de_res <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> <span class="st">"../exos_data/toy_DEanalysis.csv"</span>,  <span class="co"># replace the path with your own</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names =</span> <span class="cn">TRUE</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 45 Columns: 7
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (1): gene_name
+dbl (6): baseMean, log2FoldChange, lfcSE, stat, pvalue, padj
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
 </div>
 </section>
 <section id="exercises" class="level2">
@@ -262,16 +272,27 @@ window.Quarto = {
 <li>Check the structure of <code>de_res</code> using an appropriate R function. What are the dimensions?</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(de_res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(de_res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   45 obs. of  7 variables:
- $ gene_name     : chr  "HTB2" "HHF1" "HHT1" "POL30" ...
- $ baseMean      : num  20259 9821 1539 1274 316 ...
- $ log2FoldChange: num  -0.3757 0.1789 0.0866 0.4165 0.2189 ...
- $ lfcSE         : num  0.447 0.536 0.412 0.422 0.434 ...
- $ stat          : num  -0.841 0.334 0.21 0.988 0.505 ...
- $ pvalue        : num  0.4 0.739 0.834 0.323 0.614 ...
- $ padj          : num  0.891 0.906 0.915 0.891 0.891 ...</code></pre>
+<pre><code>spc_tbl_ [45 × 7] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ gene_name     : chr [1:45] "HTB2" "HHF1" "HHT1" "POL30" ...
+ $ baseMean      : num [1:45] 20259 9821 1539 1274 316 ...
+ $ log2FoldChange: num [1:45] -0.3757 0.1789 0.0866 0.4165 0.2189 ...
+ $ lfcSE         : num [1:45] 0.447 0.536 0.412 0.422 0.434 ...
+ $ stat          : num [1:45] -0.841 0.334 0.21 0.988 0.505 ...
+ $ pvalue        : num [1:45] 0.4 0.739 0.834 0.323 0.614 ...
+ $ padj          : num [1:45] 0.891 0.906 0.915 0.891 0.891 ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   gene_name = col_character(),
+  ..   baseMean = col_double(),
+  ..   log2FoldChange = col_double(),
+  ..   lfcSE = col_double(),
+  ..   stat = col_double(),
+  ..   pvalue = col_double(),
+  ..   padj = col_double()
+  .. )
+ - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
 </div>
 </div>
 <p>The result is a data frame with 45 rows and 7 columns.</p>
@@ -289,120 +310,90 @@ window.Quarto = {
 <li>Filter the rows where the gene has a log2 fold change (<code>log2FoldChange</code>) greater than 0.5.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>de_res[de_res<span class="sc">$</span>log2FoldChange <span class="sc">&gt;</span> <span class="fl">0.5</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>de_res[de_res<span class="sc">$</span>log2FoldChange <span class="sc">&gt;</span> <span class="fl">0.5</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   gene_name  baseMean log2FoldChange     lfcSE     stat       pvalue
-9     SUT476  88.12355      0.9935943 0.3856808 2.576209 9.989029e-03
-15     CDC20 216.80742      0.7885416 0.4908836 1.606372 1.081922e-01
-16      CLB6 111.03713      0.7373706 0.5448055 1.353457 1.759098e-01
-21      LOH1  48.61440      2.2259655 0.3969997 5.606971 2.058986e-08
-29   SUT2873  26.00372      1.4253323 0.3685458 3.867449 1.099797e-04
-40      ACM1 140.43590      0.7332617 0.4864127 1.507489 1.316854e-01
-           padj
-9  7.611881e-02
-15 5.792117e-01
-16 7.196311e-01
-21 9.265435e-07
-29 1.649695e-03
-40 5.925843e-01</code></pre>
+<pre><code># A tibble: 6 × 7
+  gene_name baseMean log2FoldChange lfcSE  stat       pvalue        padj
+  &lt;chr&gt;        &lt;dbl&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;
+1 SUT476        88.1          0.994 0.386  2.58 0.00999      0.0761     
+2 CDC20        217.           0.789 0.491  1.61 0.108        0.579      
+3 CLB6         111.           0.737 0.545  1.35 0.176        0.720      
+4 LOH1          48.6          2.23  0.397  5.61 0.0000000206 0.000000927
+5 SUT2873       26.0          1.43  0.369  3.87 0.000110     0.00165    
+6 ACM1         140.           0.733 0.486  1.51 0.132        0.593      </code></pre>
 </div>
 </div>
 <ol start="3" type="1">
 <li>Filter the rows where the gene has a log2 fold change smaller than -0.5.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>de_res[de_res<span class="sc">$</span>log2FoldChange <span class="sc">&lt;</span> <span class="sc">-</span><span class="fl">0.5</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>de_res[de_res<span class="sc">$</span>log2FoldChange <span class="sc">&lt;</span> <span class="sc">-</span><span class="fl">0.5</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   gene_name    baseMean log2FoldChange     lfcSE      stat       pvalue
-10     APQ12 5422.709150     -0.6401330 0.2366950 -2.704463 0.0068414883
-19      FAR1 5927.470166     -1.5095445 0.6754613 -2.234835 0.0254281962
-20     SUT24  155.788397     -0.8436243 0.3281685 -2.570705 0.0101491743
-22      PIR3  304.294496     -2.3659253 0.6082583 -3.889672 0.0001003798
-27     TUB33    2.952205     -0.8718026 0.5544172 -1.572467 0.1158423457
-          padj
-10 0.076118807
-19 0.163466976
-20 0.076118807
-22 0.001649695
-27 0.579211728</code></pre>
+<pre><code># A tibble: 5 × 7
+  gene_name baseMean log2FoldChange lfcSE  stat   pvalue    padj
+  &lt;chr&gt;        &lt;dbl&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+1 APQ12      5423.           -0.640 0.237 -2.70 0.00684  0.0761 
+2 FAR1       5927.           -1.51  0.675 -2.23 0.0254   0.163  
+3 SUT24       156.           -0.844 0.328 -2.57 0.0101   0.0761 
+4 PIR3        304.           -2.37  0.608 -3.89 0.000100 0.00165
+5 TUB33         2.95         -0.872 0.554 -1.57 0.116    0.579  </code></pre>
 </div>
 </div>
 <ol start="4" type="1">
 <li>Filter the rows where the gene has a log2 fold change greater than 0.5 or smaller than -0.5.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>de_res[de_res<span class="sc">$</span>log2FoldChange <span class="sc">&gt;</span> <span class="fl">0.5</span> <span class="sc">|</span> de_res<span class="sc">$</span>log2FoldChange <span class="sc">&lt;</span> <span class="sc">-</span><span class="fl">0.5</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>de_res[de_res<span class="sc">$</span>log2FoldChange <span class="sc">&gt;</span> <span class="fl">0.5</span> <span class="sc">|</span> de_res<span class="sc">$</span>log2FoldChange <span class="sc">&lt;</span> <span class="sc">-</span><span class="fl">0.5</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   gene_name    baseMean log2FoldChange     lfcSE      stat       pvalue
-9     SUT476   88.123550      0.9935943 0.3856808  2.576209 9.989029e-03
-10     APQ12 5422.709150     -0.6401330 0.2366950 -2.704463 6.841488e-03
-15     CDC20  216.807415      0.7885416 0.4908836  1.606372 1.081922e-01
-16      CLB6  111.037134      0.7373706 0.5448055  1.353457 1.759098e-01
-19      FAR1 5927.470166     -1.5095445 0.6754613 -2.234835 2.542820e-02
-20     SUT24  155.788397     -0.8436243 0.3281685 -2.570705 1.014917e-02
-21      LOH1   48.614399      2.2259655 0.3969997  5.606971 2.058986e-08
-22      PIR3  304.294496     -2.3659253 0.6082583 -3.889672 1.003798e-04
-27     TUB33    2.952205     -0.8718026 0.5544172 -1.572467 1.158423e-01
-29   SUT2873   26.003715      1.4253323 0.3685458  3.867449 1.099797e-04
-40      ACM1  140.435903      0.7332617 0.4864127  1.507489 1.316854e-01
-           padj
-9  7.611881e-02
-10 7.611881e-02
-15 5.792117e-01
-16 7.196311e-01
-19 1.634670e-01
-20 7.611881e-02
-21 9.265435e-07
-22 1.649695e-03
-27 5.792117e-01
-29 1.649695e-03
-40 5.925843e-01</code></pre>
+<pre><code># A tibble: 11 × 7
+   gene_name baseMean log2FoldChange lfcSE  stat       pvalue        padj
+   &lt;chr&gt;        &lt;dbl&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;
+ 1 SUT476       88.1           0.994 0.386  2.58 0.00999      0.0761     
+ 2 APQ12      5423.           -0.640 0.237 -2.70 0.00684      0.0761     
+ 3 CDC20       217.            0.789 0.491  1.61 0.108        0.579      
+ 4 CLB6        111.            0.737 0.545  1.35 0.176        0.720      
+ 5 FAR1       5927.           -1.51  0.675 -2.23 0.0254       0.163      
+ 6 SUT24       156.           -0.844 0.328 -2.57 0.0101       0.0761     
+ 7 LOH1         48.6           2.23  0.397  5.61 0.0000000206 0.000000927
+ 8 PIR3        304.           -2.37  0.608 -3.89 0.000100     0.00165    
+ 9 TUB33         2.95         -0.872 0.554 -1.57 0.116        0.579      
+10 SUT2873      26.0           1.43  0.369  3.87 0.000110     0.00165    
+11 ACM1        140.            0.733 0.486  1.51 0.132        0.593      </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Bonus: we can test the absolute value of log2FoldChange to simplify condition</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(<span class="fu">c</span>(<span class="fl">0.5</span>, <span class="sc">-</span><span class="fl">0.5</span>)) <span class="co"># how abs() works</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Bonus: we can test the absolute value of log2FoldChange to simplify condition</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(<span class="fu">c</span>(<span class="fl">0.5</span>, <span class="sc">-</span><span class="fl">0.5</span>)) <span class="co"># how abs() works, ?abs</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5 0.5</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>de_res[<span class="fu">abs</span>(de_res<span class="sc">$</span>log2FoldChange) <span class="sc">&gt;</span> <span class="fl">0.5</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>de_res[<span class="fu">abs</span>(de_res<span class="sc">$</span>log2FoldChange) <span class="sc">&gt;</span> <span class="fl">0.5</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   gene_name    baseMean log2FoldChange     lfcSE      stat       pvalue
-9     SUT476   88.123550      0.9935943 0.3856808  2.576209 9.989029e-03
-10     APQ12 5422.709150     -0.6401330 0.2366950 -2.704463 6.841488e-03
-15     CDC20  216.807415      0.7885416 0.4908836  1.606372 1.081922e-01
-16      CLB6  111.037134      0.7373706 0.5448055  1.353457 1.759098e-01
-19      FAR1 5927.470166     -1.5095445 0.6754613 -2.234835 2.542820e-02
-20     SUT24  155.788397     -0.8436243 0.3281685 -2.570705 1.014917e-02
-21      LOH1   48.614399      2.2259655 0.3969997  5.606971 2.058986e-08
-22      PIR3  304.294496     -2.3659253 0.6082583 -3.889672 1.003798e-04
-27     TUB33    2.952205     -0.8718026 0.5544172 -1.572467 1.158423e-01
-29   SUT2873   26.003715      1.4253323 0.3685458  3.867449 1.099797e-04
-40      ACM1  140.435903      0.7332617 0.4864127  1.507489 1.316854e-01
-           padj
-9  7.611881e-02
-10 7.611881e-02
-15 5.792117e-01
-16 7.196311e-01
-19 1.634670e-01
-20 7.611881e-02
-21 9.265435e-07
-22 1.649695e-03
-27 5.792117e-01
-29 1.649695e-03
-40 5.925843e-01</code></pre>
+<pre><code># A tibble: 11 × 7
+   gene_name baseMean log2FoldChange lfcSE  stat       pvalue        padj
+   &lt;chr&gt;        &lt;dbl&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;
+ 1 SUT476       88.1           0.994 0.386  2.58 0.00999      0.0761     
+ 2 APQ12      5423.           -0.640 0.237 -2.70 0.00684      0.0761     
+ 3 CDC20       217.            0.789 0.491  1.61 0.108        0.579      
+ 4 CLB6        111.            0.737 0.545  1.35 0.176        0.720      
+ 5 FAR1       5927.           -1.51  0.675 -2.23 0.0254       0.163      
+ 6 SUT24       156.           -0.844 0.328 -2.57 0.0101       0.0761     
+ 7 LOH1         48.6           2.23  0.397  5.61 0.0000000206 0.000000927
+ 8 PIR3        304.           -2.37  0.608 -3.89 0.000100     0.00165    
+ 9 TUB33         2.95         -0.872 0.554 -1.57 0.116        0.579      
+10 SUT2873      26.0           1.43  0.369  3.87 0.000110     0.00165    
+11 ACM1        140.            0.733 0.486  1.51 0.132        0.593      </code></pre>
 </div>
 </div>
 <ol start="5" type="1">
 <li>Filter the rows where the gene has a log2 fold change greater than 0.5 and adjusted p-value (<code>padj</code>) smaller than 0.05.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>de_res[de_res<span class="sc">$</span>log2FoldChange <span class="sc">&gt;</span> <span class="fl">0.5</span> <span class="sc">&amp;</span> de_res<span class="sc">$</span>padj <span class="sc">&lt;</span> <span class="fl">0.05</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>de_res[de_res<span class="sc">$</span>log2FoldChange <span class="sc">&gt;</span> <span class="fl">0.5</span> <span class="sc">&amp;</span> de_res<span class="sc">$</span>padj <span class="sc">&lt;</span> <span class="fl">0.05</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   gene_name baseMean log2FoldChange     lfcSE     stat       pvalue
-21      LOH1 48.61440       2.225966 0.3969997 5.606971 2.058986e-08
-29   SUT2873 26.00372       1.425332 0.3685458 3.867449 1.099797e-04
-           padj
-21 9.265435e-07
-29 1.649695e-03</code></pre>
+<pre><code># A tibble: 2 × 7
+  gene_name baseMean log2FoldChange lfcSE  stat       pvalue        padj
+  &lt;chr&gt;        &lt;dbl&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;
+1 LOH1          48.6           2.23 0.397  5.61 0.0000000206 0.000000927
+2 SUT2873       26.0           1.43 0.369  3.87 0.000110     0.00165    </code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Stats Time!">
@@ -457,16 +448,14 @@ P(\text{at least 1 significant result by chance}) &amp;= 1 – (1 - \frac{0.05}{
 <li>Extract results for these genes: <em>RNR1</em>, <em>PIR3</em>, <em>SRP68</em>.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>de_res[de_res<span class="sc">$</span>gene_name <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"RNR1"</span>, <span class="st">"PIR3"</span>, <span class="st">"SRP68"</span>), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>de_res[de_res<span class="sc">$</span>gene_name <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"RNR1"</span>, <span class="st">"PIR3"</span>, <span class="st">"SRP68"</span>), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   gene_name  baseMean log2FoldChange     lfcSE       stat       pvalue
-11      RNR1 1374.1805     -0.3810586 0.4335968 -0.8788317 0.3794925108
-22      PIR3  304.2945     -2.3659253 0.6082583 -3.8896719 0.0001003798
-42     SRP68 1058.4173     -0.1198641 0.2107691 -0.5686988 0.5695605340
-          padj
-11 0.891290926
-22 0.001649695
-42 0.891290926</code></pre>
+<pre><code># A tibble: 3 × 7
+  gene_name baseMean log2FoldChange lfcSE   stat   pvalue    padj
+  &lt;chr&gt;        &lt;dbl&gt;          &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+1 RNR1         1374.         -0.381 0.434 -0.879 0.379    0.891  
+2 PIR3          304.         -2.37  0.608 -3.89  0.000100 0.00165
+3 SRP68        1058.         -0.120 0.211 -0.569 0.570    0.891  </code></pre>
 </div>
 </div>
 <ol start="7" type="1">
@@ -478,83 +467,25 @@ P(\text{at least 1 significant result by chance}) &amp;= 1 – (1 - \frac{0.05}{
 <li>“neutral” otherwise.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>de_res[[<span class="st">"gene_category"</span>]] <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">test =</span> de_res[[<span class="st">"log2FoldChange"</span>]] <span class="sc">&gt;</span> <span class="fl">0.5</span>,</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">yes =</span> <span class="st">"up"</span>,</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">no =</span> <span class="fu">ifelse</span>(</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">test =</span> de_res[[<span class="st">"log2FoldChange"</span>]] <span class="sc">&lt;</span> <span class="sc">-</span><span class="fl">0.5</span>,</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">yes =</span> <span class="st">"down"</span>,</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">no =</span> <span class="st">"neutral"</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>de_res[[<span class="st">"gene_category"</span>]] <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">test =</span> de_res[[<span class="st">"log2FoldChange"</span>]] <span class="sc">&gt;</span> <span class="fl">0.5</span>,</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">yes =</span> <span class="st">"up"</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">no =</span> <span class="fu">ifelse</span>(</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">test =</span> de_res[[<span class="st">"log2FoldChange"</span>]] <span class="sc">&lt;</span> <span class="sc">-</span><span class="fl">0.5</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">yes =</span> <span class="st">"down"</span>,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">no =</span> <span class="st">"neutral"</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="8" type="1">
-<li>Use <code>table()</code> to count the occurrences of each gene category.</li>
+<li>Use <code>table()</code> to count the occurrences of each gene category. (<code>?table</code>)</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(de_res[[<span class="st">"gene_category"</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(de_res[[<span class="st">"gene_category"</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
    down neutral      up 
       5      34       6 </code></pre>
-</div>
-</div>
-</section>
-<section id="bonus-questions" class="level2">
-<h2 class="anchored" data-anchor-id="bonus-questions">Bonus Questions</h2>
-<ol start="9" type="1">
-<li>Write a function to automate “de_res” filtering for genes with a p-value less than or equal to a custom cutoff.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>filter_p <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">cutoff =</span> <span class="fl">0.05</span>) {</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  de_res[de_res<span class="sc">$</span>pvalue <span class="sc">&lt;=</span> cutoff, ]</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">filter_p</span>(<span class="fl">0.01</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   gene_name   baseMean log2FoldChange     lfcSE      stat       pvalue
-9     SUT476   88.12355      0.9935943 0.3856808  2.576209 9.989029e-03
-10     APQ12 5422.70915     -0.6401330 0.2366950 -2.704463 6.841488e-03
-21      LOH1   48.61440      2.2259655 0.3969997  5.606971 2.058986e-08
-22      PIR3  304.29450     -2.3659253 0.6082583 -3.889672 1.003798e-04
-29   SUT2873   26.00372      1.4253323 0.3685458  3.867449 1.099797e-04
-           padj gene_category
-9  7.611881e-02            up
-10 7.611881e-02          down
-21 9.265435e-07            up
-22 1.649695e-03          down
-29 1.649695e-03            up</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter_p</span>(<span class="fl">0.0001</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   gene_name baseMean log2FoldChange     lfcSE     stat       pvalue
-21      LOH1  48.6144       2.225966 0.3969997 5.606971 2.058986e-08
-           padj gene_category
-21 9.265435e-07            up</code></pre>
-</div>
-</div>
-<ol start="10" type="1">
-<li>Based on the function created in question 9, modify the function to allow output ordered by any desired column in <code>de_res</code>.</li>
-</ol>
-<p>Hints: You need an extra parameter to specify the wanted column and another parameter to fix the cutoff.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>filter_col <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">col =</span> <span class="st">"pvalue"</span>, <span class="at">cutoff =</span> <span class="fl">0.05</span>) {</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  de_res[de_res[[col]] <span class="sc">&lt;=</span> cutoff, ]</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">filter_col</span>(<span class="at">cutoff =</span> <span class="fl">0.0001</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   gene_name baseMean log2FoldChange     lfcSE     stat       pvalue
-21      LOH1  48.6144       2.225966 0.3969997 5.606971 2.058986e-08
-           padj gene_category
-21 9.265435e-07            up</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter_col</span>(<span class="at">col =</span> <span class="st">"log2FoldChange"</span>, <span class="at">cutoff =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   gene_name  baseMean log2FoldChange     lfcSE      stat       pvalue
-19      FAR1 5927.4702      -1.509545 0.6754613 -2.234835 0.0254281962
-22      PIR3  304.2945      -2.365925 0.6082583 -3.889672 0.0001003798
-          padj gene_category
-19 0.163466976          down
-22 0.001649695          down</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -571,18 +502,26 @@ Tip
 <p><a href="http://www.ensembl.org/index.html">Ensembl</a> is a comprehensive genome database that provides detailed information on genes and their annotations across a wide range of species (humain, mouse, zebrafish, <em>etc.</em>). It integrates genomic data with tools like BioMart, making it easy to query and extract information such as gene names, coordinates, functions, and orthologs for research purposes.</p>
 </div>
 </div>
-<ol start="11" type="1">
-<li>A yeast gene annotation file was obtained from the Ensembl data base. This file can be donwloaded <a href="https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/yeast_gene_annot.csv">here</a>.</li>
+<ol start="9" type="1">
+<li>A yeast gene annotation file was obtained from the Ensembl data base. This file can be donwloaded <a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/yeast_gene_annot.csv">here</a>.</li>
 </ol>
-<p>Import the data and add the annotation to the <code>de_res</code> data frame using <code>merge()</code> function.</p>
+<p>Import the data and add the annotation to the <code>de_res</code> data frame using <code>merge()</code> function. (<code>?merge</code>)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>annot <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"../exos_data/yeast_gene_annot.csv"</span>, <span class="co"># replace the path by your own</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">header =</span> <span class="cn">TRUE</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>de_res <span class="ot">&lt;-</span> <span class="fu">merge</span>(de_res, annot, <span class="at">by =</span> <span class="st">"gene_name"</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(de_res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>annot <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"../exos_data/yeast_gene_annot.csv"</span> <span class="co"># replace the path by your own</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 7127 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (4): ensembl_id, gene_name, chromosome, description
+dbl (2): start, end
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>de_res <span class="ot">&lt;-</span> <span class="fu">merge</span>(de_res, annot, <span class="at">by =</span> <span class="st">"gene_name"</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(de_res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  gene_name  baseMean log2FoldChange     lfcSE         stat      pvalue
 1      ACM1  140.4359    0.733261747 0.4864127  1.507488856 0.131685398
