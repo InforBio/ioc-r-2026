@@ -7,7 +7,7 @@
 # to compare SET1 samples to WT samples using data from `read-counts.csv`.
 
 # The analysis results are available via this link:
-# https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv
+# https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv
 
 ## - Please donwload the result file and upload it to your data folder.
 ## - Import the data using the `read.csv()` function.
@@ -16,14 +16,10 @@
 
 de_res
 
-
-
 ## Exercises -------------------------------------------------------------
 
 ## 1. Check the structure of `de_res` using an appropriate R function.
 ##    What are the dimensions?
-
-
 
 # The result contains following columns:
 
@@ -46,9 +42,7 @@ de_res
 ## 5. Filter the rows where the gene has a log2 fold change greater than 0.5 and
 ##    adjusted p-value (`padj`) smaller than 0.05.
 
-
 ## 6. Extract results for these genes: RNR1, PIR3, SRP68.
-
 
 ## 7. Use `ifelse()` to categorize genes.
 ##    Add a new column, `gene_category`, that assigns categories:
@@ -56,24 +50,9 @@ de_res
 ##    - "down" if `log2FoldChange < -0.5`.
 ##    - "neutral" otherwise.
 
+## 8. Use `table()` to count the occurrences of each gene category. (?table)
 
-## 8. Use `table()` to count the occurrences of each gene category.
-
-
-## Bonus Questions  ------------------------------------------------------------
-
-## 9. Write a function to automate "de_res" filtering for genes
-##    with a p-value less than or equal to a custom cutoff.
-
-
-
-## 10. Based on the function created in question 9, modify the function
-##    to allow output ordered by any desired column in `de_res`.
-## Hints: You need an extra parameter to specify the wanted
-##        column and another parameter to fix the cutoff.
-
-
-## 11. A yeast gene annotation file was obtained from the Ensembl data base.
+## 9. A yeast gene annotation file was obtained from the Ensembl data base.
 ##     This file can be donwloaded here:
 ##     https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/yeast_gene_annot.csv
-##     Import the data and add the annotation to the `de_res` data frame using `merge()` function.
+##     Import the data and add the annotation to the `de_res` data frame using `merge()` function. (?merge)

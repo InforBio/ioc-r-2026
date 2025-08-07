@@ -25,35 +25,29 @@ This data file contains gene expression values of samples from four groups,
 sample names are prefixed by "WT.", "SET1.", "SET1.RRP6." and "RRP6.".
 Each group has 10 samples.
 
-2. Create a function to calculate the average gene expression across samples
-by selected group. Test your function on WT samples.
+2. Calculate the average gene expression per gene across the 10 samples in the "WT" group.
 
 ```{r}
-get_avg <- function(data = counts, gp_prefix) {
-  ## create sample names according to group prefix
-  samples <- paste0(gp_prefix, seq(10))
+## create sample names according to group prefix
+wt_samples <- paste0("WT.", seq(10))
 
-  ## subset data based on sample names
-  gp_data <- data[, samples]
+## subset data based on WT sample names
+wt_data <- counts[, wt_samples]
 
-  ## calculate average across sample
-  gp_avg <- rowMeans(gp_data)
-
-  return(gp_avg)
-}
-get_avg(gp_prefix = "WT.")
+## calculate average across WT sample
+wt_avg <- rowMeans(wt_data)
 ```
 
-3. Use function created in question 2 to calculate the average for
-all sample groups, store the results in a list.
-Show the first 5 average gene expression of SET1.RRP6 samples.
+3. Now, repeat the previous step to calculate the average expression for the remaining three groups: "SET1", "SET1.RRP6" and "RRP6"
+- Store the four average values in a list named `avg_list`, using the group names as the names of the list.
+- Display the first 5 average values for the "SET1.RRP6" group.
 
 ```{r}
 avg_list <- list(
-  WT = get_avg(gp_prefix = "WT."),
-  SET1 = get_avg(gp_prefix = "SET1."),
-  SET1.RRP6 = get_avg(gp_prefix = "SET1.RRP6."),
-  RRP6 = get_avg(gp_prefix = "RRP6.")
+  WT = wt_avg,
+  SET1 = rowMeans(counts[, paste0("SET1.", seq(10))]),
+  SET1.RRP6 = rowMeans(counts[, paste0("SET1.RRP6.", seq(10))]),
+  RRP6 = rowMeans(counts[, paste0("RRP6.", seq(10))])
 )
 
 head(avg_list[["SET1.RRP6"]], n = 5)
@@ -87,43 +81,36 @@ target_set1[target_set1 %in% target_wt]
 intersect(target_wt, target_set1)
 ```
 
-6. Create a function to check if the average expression of each sample group
+6. Check if the average expression of the "RRP6" group
 is normally distributed (`?shapiro.test()`) using significance level at 5%.
-If `TRUE`, draw directly a histogram (`?hist()`) for the values.
+What is the p-value of normality test?
+If it's normally distributed, draw directly a histogram (`?hist()`) for the values.
 Otherwise, draw a histogram for the log-transformed values.
-And return the p-value of normality test at the end.
-
-Test your function on average expression of RRP6 samples.
 
 ```{r}
-draw_hist <- function(data, gp) {
-  ## extract needed data
-  gp_data <- data[[gp]]
+## extract needed data
+gp_data <- avg_df[["RRP6"]]
 
-  ## perform test and extract p-value
-  res_test <- shapiro.test(gp_data) # the result is a list
-  pval <- res_test[["p.value"]]
-  
-  ## draw histogram according to normality
-  if (pval < 0.05) {
-    hist(
-      log(gp_data),
-      main = paste(gp, "Samples"),
-      xlab = "log(Average Expression)"
-    )
-  } else {
-    hist(
-      gp_data,
-      main = paste(gp, "Samples"),
-      xlab = "Average Expression"
-    )
-  }
+## perform test and extract p-value
+res_test <- shapiro.test(gp_data) # the result is a list
+pval <- res_test[["p.value"]]
+pval
 
-  ## return p-value from shapiro.test
-  return(pval)
+## draw histogram according to normality
+if (pval < 0.05) {
+  hist(
+    log(gp_data),
+    main = "RRP6 Samples",
+    xlab = "log(Average Expression)"
+  )
+} else {
+  hist(
+    gp_data,
+    main = "RRP6 Samples",
+    xlab = "Average Expression"
+  )
 }
 
-draw_hist(data = avg_df, gp = "RRP6")
 ```
 
 

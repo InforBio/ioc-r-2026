@@ -1,0 +1,84 @@
+## Week 4 - Homework
+## Note: There may be other valid ways to solve this exercise,
+## this is just one possible solution!
+
+# 1. Import the `read-counts.csv` file.
+counts <- read.csv(
+  file = "../exos_data/read-counts.csv", # replace the path by your own
+  row.names = 1
+)
+
+# *Quick reminder*:
+# this data file contains gene expression values of samples from four groups,
+# sample names are prefixed by "WT.", "SET1.", "SET1.RRP6." and "RRP6.".
+# Each group has 10 samples.
+
+# 2. Calculate the average gene expression per gene across the 10 samples in the "WT." group.
+## create sample names according to group prefix
+wt_samples <- paste0("WT.", seq(10))
+
+## subset data based on WT sample names
+wt_data <- data[, wt_samples]
+
+## calculate average across WT sample
+gp_avg <- rowMeans(wt_data)
+
+# 3. Now, repeat the previous step to calculate the average expression
+#   for the remaining three groups: "SET1.", "SET1.RRP6." and "RRP6."
+# - Store the four average values in a list named `avg_list`, using the group names as the names of the list.
+# - Display the first 5 average values for the "SET1.RRP6" group.
+avg_list <- list(
+  WT = wt_avg,
+  SET1 = rowMeans(counts[, paste0("SET1.", seq(10))]),
+  SET1.RRP6 = rowMeans(counts[, paste0("SET1.RRP6.", seq(10))]),
+  RRP6 = rowMeans(counts[, paste0("RRP6.", seq(10))])
+)
+
+head(avg_list[["SET1.RRP6"]], n = 5)
+
+# 4. Transform the list obtained in question 3 to a data frame using `as.data.frame()`.
+# Show the head lines of your data frame.
+# Tip: A data frame can be considered as a list of equal-length vectors.
+avg_df <- as.data.frame(avg_list)
+head(avg_df)
+
+# 5. What are the genes having an average greater than 10000 in WT and SET1 samples?
+# Compare if there are genes in common using learned operator or the `intersect()` function.
+## extract genes met condition
+target_wt <- rownames(avg_df[avg_df$WT > 10000, ])
+target_set1 <- rownames(avg_df[avg_df$SET1 > 10000, ])
+
+## check intersection
+target_wt[target_wt %in% target_set1]
+# or
+target_set1[target_set1 %in% target_wt]
+# or
+intersect(target_wt, target_set1)
+
+# 6. Check if the average expression of the "RRP6" group
+# is normally distributed (`?shapiro.test()`) using significance level at 5%.
+# What is the p-value of normality test?
+# If it's normally distributed, draw directly a histogram (`?hist()`) for the values.
+# Otherwise, draw a histogram for the log-transformed values.
+## extract needed data
+gp_data <- avg_df[["RRP6"]]
+
+## perform test and extract p-value
+res_test <- shapiro.test(gp_data) # the result is a list
+pval <- res_test[["p.value"]]
+pval
+
+## draw histogram according to normality
+if (pval < 0.05) {
+  hist(
+    log(gp_data),
+    main = "RRP6 Samples",
+    xlab = "log(Average Expression)"
+  )
+} else {
+  hist(
+    gp_data,
+    main = "RRP6 Samples",
+    xlab = "Average Expression"
+  )
+}

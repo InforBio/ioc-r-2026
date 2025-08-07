@@ -3,7 +3,7 @@ project:
   output-dir: docs/
 
 website:
-  title: "IOC"
+  title: "IOC-2026"
   favicon: images/logoInforBio_fond_blanc.png
   
   page-footer: 
@@ -36,7 +36,7 @@ website:
       # - text: "News"
       #   href: news.qmd
       - icon: github
-        href: https://github.com/InforBio/IOC
+        href: https://github.com/InforBio/ioc-r-2026
 
 
 format:
