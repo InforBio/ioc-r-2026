@@ -2,7 +2,7 @@
 title: "Week 4 - Homework"
 format: 
   html: default
-date: "2025-01-29"
+date: "2025-11-26"
 date-format: " "
 categories: 
   - week04
@@ -10,10 +10,6 @@ categories:
 editor_options: 
   chunk_output_type: console
 ---
-
-Write your code directly in a Quarto document.
-
-To create a Quarto document: go to **File** -> **New File** -> **Quarto Document**, then click **Create**.
 
 1. Import the `read-counts.csv` file.
 
@@ -23,7 +19,7 @@ To create a Quarto document: go to **File** -> **New File** -> **Quarto Document
 
 *Quick reminder*:
 this data file contains gene expression values of samples from four groups,
-sample names are prefixed by "WT.", "SET1.", "SET1.RRP6." and "RRP6.".
+sample names are prefixed by "WT", "SET1", "SET1.RRP6" and "RRP6".
 Each group has 10 samples.
 
 2. Create a function to calculate the average gene expression across samples
@@ -59,20 +55,16 @@ Compare if there are genes in common using learned operator or the `intersect()`
 
 ```
 
-6. Create a function to check if the average expression of each sample group
+6. Check if the average expression of the "RRP6" group
 is normally distributed (`?shapiro.test()`) using significance level at 5%.
-If `TRUE`, draw directly a histogram (`?hist()`) for the values.
+What is the p-value of normality test?
+If it's normally distributed, draw directly a histogram (`?hist()`) for the values.
 Otherwise, draw a histogram for the log-transformed values.
-And return the p-value of normality test at the end.
-
-Test your function on average expression of RRP6 samples.
 
 ```{r}
 
 ```
 
 
-7. Click "Render" to generate your Quarto report.
-
 The homework correction is available here:
-[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week04/.r_w04_work_corr.qmd)
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week04/.r_w04_work_corr.R)
