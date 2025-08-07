@@ -1,0 +1,68 @@
+## Week 5 - Homework
+## Note: There may be other valid ways to solve this exercise,
+## this is just one possible solution!
+
+# Import data.
+# We need to use two data for this exercise:
+# - the bulk RNAseq gene expression data from the [`read-counts.csv`](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv) file.
+# - the diffenrential expression (DE) analysis results [`toy_DEanalysis`](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv).
+# Reminder: the DE results were obtained by comparing SET1 samples to WT samples using data from `read-counts.csv`
+
+# 1. Import DE analysis result (`toy_DEanalysis.csv`) and name it as `de_res`.
+# (You can use the function `read_csv()` from the {`readr`} package.)
+library(readr)
+de_res <- read_csv(
+  file = "../exos_data/toy_DEanalysis.csv" # replace the path with your own
+)
+
+
+# 2. Import the `read-counts.csv` file and name it `counts`.
+counts <- read_csv(
+  file = "../exos_data/read-counts.csv" # replace the path with your own
+)
+
+
+# Find Genes of Interest
+# 3. Find the genes which satisfy the following conditions:
+# - log2 fold change < -1 or > 1 (a.k.a, the absolute log2 fold change is bigger than 1)
+# - adjusted p-value < 0.05
+# Store the results in a variable `target_genes`.
+
+target_genes <- de_res[
+  abs(de_res$log2FoldChange) > 1 & de_res$padj < 0.05,
+  "gene_name"
+]
+target_genes
+
+
+# Draw Boxplots
+# 4. Load the {`ggplot2`} package.
+library(ggplot2)
+
+# 5. Draw a boxplot for the 1st gene of the `target_genes` to show the expression level between SET1 and WT samples.
+# Hints: you need to extract the expression data for the gene from the `counts` and build a data frame for the boxplot.
+## extract the counts for WT and SET1
+counts_wt <- unlist(
+  counts[counts$Feature == target_genes[1], paste0("WT.", 1:10)]
+)
+counts_set1 <- unlist(
+  counts[counts$Feature == target_genes[1], paste0("SET1.", 1:10)]
+)
+
+## build a data frame for boxplot
+df_count <- data.frame(
+  counts = c(counts_wt, counts_set1),
+  group = factor(
+    rep(c("WT", "SET1"), each = length(counts_wt)),
+    levels = c("WT", "SET1")
+  ) # make sure WT as the reference group and will be shown at the 1st position in the figure
+)
+
+## draw boxplot
+ggplot(df_count, aes(x = group, y = counts)) +
+  geom_boxplot() +
+  labs(
+    x = NULL,
+    y = "Counts",
+    title = paste("Expression of", target_genes[1])
+  )

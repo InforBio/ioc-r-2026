@@ -134,8 +134,8 @@ x / y
 
 ## Comparison Operators {.smaller}
 
-Element-wise comparison: `>`, `<`, `>=`, `<=`, `==`, `!=`
-return logical results.
+Element-wise comparison: `>`, `<`, `>=`, `<=`, `==`, `!=`,
+returns logical results.
 
 ::: {.columns}
 ::: {.column}
@@ -335,7 +335,7 @@ guiding how the code behaves in different scenarios.
 %%| echo: false
 %%| fig-width: 10
 flowchart LR
-  AA{temperature} --> A((> 37))
+  AA[temperature] --> A(("> 37"))
   A --> B(TRUE)
   A --> C(FALSE)
   B --> D[Fever]
@@ -348,7 +348,7 @@ flowchart LR
 %%| echo: false
 %%| fig-width: 10
 flowchart LR
-  AA{log2FC} --> A((> 0))
+  AA[log2FC] --> A(("> 0"))
   A --> B(TRUE)
   A --> C(FALSE)
   B --> D[Up-regulated]
@@ -388,7 +388,7 @@ if (condition) {
 ```{mermaid}
 %%| echo: false
 flowchart LR
-  AA{log2FC} --> A((> 0))
+  AA[log2FC] --> A(("> 0"))
   A --> B(TRUE)
   A --> C(FALSE)
   B --> D[Up-regulated]
@@ -473,8 +473,8 @@ Functions = Reusable blocks of code.
 %%| echo: false
 %%| fig-width: 10
 flowchart LR
-  A(Inputs) --> B[Code block for specific task]
-  B --> C(Output)
+  A[Inputs] --> B(Code block for specific task)
+  B --> C[Output]
 ```
 
 . . .
