@@ -2,6 +2,7 @@
 title: "Week 3 - Homework"
 format: 
   html: default
+embed-resources: true
 categories: 
   - week03
   - homework
