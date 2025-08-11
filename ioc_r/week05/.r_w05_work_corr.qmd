@@ -10,7 +10,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Import data.
+# Import Data
 
 We need to use two data for this exercise:
 

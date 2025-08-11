@@ -2,7 +2,7 @@
 ## Note: There may be other valid ways to solve this exercise,
 ## this is just one possible solution!
 
-# Import data.
+# Import Data
 # We need to use two data for this exercise:
 # - the bulk RNAseq gene expression data from the [`read-counts.csv`](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv) file.
 # - the diffenrential expression (DE) analysis results [`toy_DEanalysis`](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv).
