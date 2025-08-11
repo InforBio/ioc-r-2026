@@ -11,7 +11,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Import data.
+# Import Data
 
 We need to use two data for this exercise:
 
@@ -46,6 +46,13 @@ Store the results in a variable `target_genes`.
 5. Draw a boxplot for the 1st gene of the `target_genes` to show the expression level between SET1 and WT samples.
 
 Hints: you need to extract the expression data for the gene from the `counts` and build a data frame for the boxplot.
+
+6. Refine the boxplot from question 5 to include the following customizations:
+
+- A subtitle showing the gene's log2 fold change.
+- Fill the boxplot with different colors for the "WT" and "SET1" groups.
+- Apply the `theme_minimal()` theme.
+- Hide the legend.
 
 ---
 

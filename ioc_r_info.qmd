@@ -12,7 +12,7 @@ Please bookmark this page for quick access.
 
 - Starts from: the week of 3rd November 2025  
 - Time slots: **9:30 am – 12:30 pm**
-- Format: Hybrid -- with **weeks 1, 5 and 8 held in-persion** at InforBio office; all other sessions take place online.
+- Format: Hybrid -- with **weeks 1, 5 and 9 held in-persion** at InforBio office; all other sessions take place online.
 - Provisional Schedule:  
 
   | **Week**           | **Session**                                                   | **Date**      | **Time**           |
@@ -23,9 +23,9 @@ Please bookmark this page for quick access.
   | Week 4             | Building Logic: Operators, Conditions and Functions           | 24th November | 9:30 am – 12:30 pm |
   | **Week 5 (in-person)** | Graphing with {`ggplot2`}  (Part 1)                       |  1st December | 9:30 am – 12:30 pm |
   | Week 6             | R-fresh: Revisiting the Essentials                            |  5th January  | 9:30 am – 12:30 pm |
-  | Week 7             | Graphs Level Up: {`ggplot2`} part 2 & Reporting with Quarto   | 12th January  | 9:30 am – 12:30 pm |
-  | **Week 8 (in-person)** | Smart Shortcuts: The `apply` Family and Custom Functions  | 26th January  | 9:30 am – 12:30 pm |
-  | Week 9             | Tidy Up: A Taste of {`tidyverse`} (filter, mutate, summarise) |  9th March    | 9:30 am – 12:30 pm |
+  | Week 7             | Tidy Up: Wrangling Data with {`dplyr`} and {`tidyr`}   | 12th January  | 9:30 am – 12:30 pm |
+  | Week 8 | Graphs Level Up: {`ggplot2`} (Part 2) & Custom Functions  | 26th January  | 9:30 am – 12:30 pm |
+  | **Week 9 (in-person)**             | Putting It All Together: Reproducible Analysis with Quarto |  9th March    | 9:30 am – 12:30 pm |
   | Week 10            | Your project presentation                                     | **TBD**       | **TBD** |
 
 

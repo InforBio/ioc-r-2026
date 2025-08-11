@@ -54,5 +54,5 @@ de_res
 
 ## 9. A yeast gene annotation file was obtained from the Ensembl data base.
 ##     This file can be donwloaded here:
-##     https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/yeast_gene_annot.csv
+##     https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/yeast_gene_annot.csv
 ##     Import the data and add the annotation to the `de_res` data frame using `merge()` function. (?merge)

@@ -1,0 +1,104 @@
+---
+title: "Week 6 - Homework"
+format: 
+  html: default
+date: "2026-01-07"
+date-format: " "
+categories: 
+  - week06
+  - homework
+editor_options: 
+  chunk_output_type: console
+---
+
+For this homework, we will use the [Palmer Penguins dataset](https://allisonhorst.github.io/palmerpenguins/).
+It contains information about three penguin species, living in the Palmer Archipelago.
+For each penguin, measurements include:
+
+- Bill length and bill depth (in mm)
+- Flipper length (in mm)
+- Body mass (in grams)
+- Sex and the island where it was observed
+- Study year
+
+The goal is to explore, manipulate and visualize these data in R while practicing the concepts learned in class.
+
+
+0. Set up your workspace.
+
+Create a new R Project called `penguins_analysis` and save the dataset file [penguins.csv](https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/inst/extdata/penguins.csv) inside a folder named `data` in your project.
+
+
+1. Import the `penguins.csv` dataset, name the imported data as `penguins`.
+
+```{r}
+
+```
+
+2. Insepct the imported data: 
+
+- How many rows and columns are there?
+- Recode the `species`, `island` and `sex` as factors
+
+```{r}
+
+```
+
+3. Which species contains the most data?
+
+```{r}
+
+```
+
+4. Extract penguins of "Gentoo" species which live on the "Biscoe" island.
+
+```{r}
+
+```
+
+5. Create a new column `bm_kg` which stores the body mass in kilogram.
+
+```{r}
+
+```
+
+6. Which species shows the highest average body mass in kilogram?
+
+```{r}
+
+```
+
+7. Use scatter plot to visualise the body mass (in kg) and the bill length:
+
+- Color the point by species.
+- Increase the point size to 2.5.
+- Replace the axis' label by "Body Mass (kg)" and "Bill Length (mm)".
+- Remove the legend title.
+- Use `theme_minimal()`.
+- Put the legend on the top of the figure.
+
+```{r}
+
+```
+
+What is your observation for Adelie and Chinstrap penguins?
+
+
+8. Based on your observation from question 7, test if your hypothesis is statistically valid (using significance level at 5%). 
+
+Hints:
+
+- Check the distribution of body mass or bill length,
+test the normality of data distribution of each species.
+- If both group are normally distributed, use a t-test (`?t.test`);
+If one or both groups are not normally distributed, use a Wilcoxon rank-sum test.
+- Report the p-value and state your conclusion in one sentence.
+
+```{r}
+
+```
+
+---
+
+The homework correction is available here:
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week06/.r_w06_work_corr.R)

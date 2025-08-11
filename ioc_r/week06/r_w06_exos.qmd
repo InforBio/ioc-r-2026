@@ -3,7 +3,7 @@ title: "Week 6 - Hands-On Examples"
 format: 
   html: default
   # pdf: default
-date: "2025-02-11"
+date: "2026-01-06"
 date-format: " "
 categories: 
   - week06
@@ -15,7 +15,7 @@ execute:
 ---
 
 The R script is available here:
-[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week06/r_w06_exos.R)
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week06/r_w06_exos.R)
 
 ## Goals
 
