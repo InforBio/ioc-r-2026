@@ -5,7 +5,7 @@ format:
 date: "2025-03-12"
 date-format: " "
 categories: 
-  - week08
+  - week07
   - homework
 editor_options: 
   chunk_output_type: console

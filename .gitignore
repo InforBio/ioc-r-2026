@@ -6,5 +6,5 @@ data/
 /.quarto/
 .DS_Store
 docs/
-ioc_r/week08/add_noise.R
+ioc_r/*/add_noise.R
 renv/library/

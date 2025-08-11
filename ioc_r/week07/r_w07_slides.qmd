@@ -16,7 +16,7 @@ format:
   #   toc: true
 echo: true
 categories: 
-  - week08
+  - week07
   - slides
 image: images/preview_w8.png
 ---
