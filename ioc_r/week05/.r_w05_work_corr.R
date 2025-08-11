@@ -30,8 +30,7 @@ counts <- read_csv(
 
 target_genes <- de_res[
   abs(de_res$log2FoldChange) > 1 & de_res$padj < 0.05,
-  "gene_name"
-]
+]$gene_name
 target_genes
 
 
