@@ -47,6 +47,13 @@ Store the results in a variable `target_genes`.
 
 Hints: you need to extract the expression data for the gene from the `counts` and build a data frame for the boxplot.
 
+6. Refine the boxplot from question 5 to include the following customizations:
+
+- A subtitle showing the gene's log2 fold change.
+- Fill the boxplot with different colors for the "WT" and "SET1" groups.
+- Apply the `theme_minimal()` theme.
+- Hide the legend.
+
 ---
 
 The homework correction is available here:

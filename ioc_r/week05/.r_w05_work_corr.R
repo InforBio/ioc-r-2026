@@ -65,3 +65,24 @@ ggplot(df_count, aes(x = group, y = counts)) +
     y = "Counts",
     title = paste("Expression of", target_genes[1])
   )
+
+# 6. Refine the boxplot from question 5 to include the following customizations:
+# - A subtitle showing the gene's log2 fold change.
+# - Fill the boxplot with different colors for the "WT" and "SET1" groups.
+# - Apply the `theme_minimal()` theme.
+# - Hide the legend.
+
+# get the log2 FC of the 1st gene of interest
+lfc_value <- de_res[de_res$gene_name == target_genes[1], ]$log2FoldChange
+
+ggplot(df_count, aes(x = group, y = counts, fill = group)) +
+  geom_boxplot() +
+  labs(
+    x = NULL,
+    y = "Counts",
+    title = paste("Expression of", target_genes[1]),
+    subtitle = paste("log2FC =", round(lfc_value, 2)) # add a subtitle
+  ) +
+  scale_fill_manual(values = c("orange", "#367DB0")) +
+  theme_minimal() + # use the minimal theme
+  theme(legend.position = "none") # hide the legend
