@@ -2,8 +2,6 @@
   {
     "listing": "/ioc_r_toc.html",
     "items": [
-      "/ioc_r/week06/r_w06_slides.html",
-      "/ioc_r/week06/r_w06_exos.html",
       "/ioc_r/week01/r_w01_slides.html",
       "/ioc_r/week01/r_w01_exos.html",
       "/ioc_r/week01/r_w01_work.html",
@@ -18,7 +16,10 @@
       "/ioc_r/week04/r_w04_work.html",
       "/ioc_r/week05/r_w05_slides.html",
       "/ioc_r/week05/r_w05_exos.html",
-      "/ioc_r/week05/r_w05_work.html"
+      "/ioc_r/week05/r_w05_work.html",
+      "/ioc_r/week06/r_w06_slides.html",
+      "/ioc_r/week06/r_w06_exos.html",
+      "/ioc_r/week06/r_w06_work.html"
     ]
   }
 ]

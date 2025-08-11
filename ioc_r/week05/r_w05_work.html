@@ -40,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-a986a95301e671fce2c6472dffc862a1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-4df3b0c4fafa0f66eafcead0ee6cff11.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -136,7 +136,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#import-data." id="toc-import-data." class="nav-link active" data-scroll-target="#import-data.">Import data.</a></li>
+  <li><a href="#import-data" id="toc-import-data" class="nav-link active" data-scroll-target="#import-data">Import Data</a></li>
   <li><a href="#find-genes-of-interest" id="toc-find-genes-of-interest" class="nav-link" data-scroll-target="#find-genes-of-interest">Find Genes of Interest</a></li>
   <li><a href="#draw-boxplots" id="toc-draw-boxplots" class="nav-link" data-scroll-target="#draw-boxplots">Draw Boxplots</a></li>
   </ul>
@@ -168,8 +168,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="import-data." class="level1">
-<h1>Import data.</h1>
+<section id="import-data" class="level1">
+<h1>Import Data</h1>
 <p>We need to use two data for this exercise:</p>
 <ul>
 <li>the bulk RNAseq gene expression data from the <a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv"><code>read-counts.csv</code></a> file.</li>
@@ -203,6 +203,15 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Draw a boxplot for the 1st gene of the <code>target_genes</code> to show the expression level between SET1 and WT samples.</p></li>
 </ol>
 <p>Hints: you need to extract the expression data for the gene from the <code>counts</code> and build a data frame for the boxplot.</p>
+<ol start="6" type="1">
+<li>Refine the boxplot from question 5 to include the following customizations:</li>
+</ol>
+<ul>
+<li>A subtitle showing the gene’s log2 fold change.</li>
+<li>Fill the boxplot with different colors for the “WT” and “SET1” groups.</li>
+<li>Apply the <code>theme_minimal()</code> theme.</li>
+<li>Hide the legend.</li>
+</ul>
 <hr>
 <p>The homework correction is available here: <a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week05/.r_w05_work_corr.R">link</a></p>
 
