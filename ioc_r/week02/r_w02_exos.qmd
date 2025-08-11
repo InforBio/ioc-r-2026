@@ -13,7 +13,7 @@ editor_options:
 ---
 
 The R script is available here:
-[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week02/r_w02_exos.R)
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week02/r_w02_exos.R)
 
 ## Goals
 
