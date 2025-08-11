@@ -1,7 +1,7 @@
 ---
 title: "R-fresh:<br>Revisiting the Essentials"
 subtitle: "IOC-R Week 6"
-date: "2025-02-10"
+date: "2026-01-05"
 date-format: " "
 format:
   revealjs: 
@@ -23,7 +23,7 @@ image: images/xkcd_parenthesis.png
 
 # R Projects
 
-## Organizing Your Work Like a Pro
+## Organizing Your Work Like a Pro {.smaller}
 
 Use R Projects to manage files and scripts in a structured way.
 
@@ -33,10 +33,31 @@ Use R Projects to manage files and scripts in a structured way.
 
 ```bash
 my_project/
+  ├── README.md      # A short description of project
   ├── data/          # Raw data files (e.g., RNA-seq counts)
   ├── scripts/       # R scripts for preprocessing & analysis
-  ├── outputs/       # Output figures & tables
+  └── outputs/       # Output figures & tables
 ```
+
+## File Paths {.smaller}
+
+A path tells your computer where to find files/folders.
+
+- **Absolute path**, starts from the very top of your computer’s folder.
+- **Relative path**, starts from your working directory (folder).
+
+::: {.callout-note appearance="minimal" .fragment}
+Your working directory is `/Users/lijiao/my_project/`,
+you want to import a file loacated at `/Users/lijiao/Download/data.csv` using the `read_csv()` function.
+What is the correct file path to use? 
+:::
+
+:::{.fragment}
+```r
+read_csv(file = "/Users/lijiao/Download/data.csv")
+```
+:::
+
 
 # Variables & Data Types
 
