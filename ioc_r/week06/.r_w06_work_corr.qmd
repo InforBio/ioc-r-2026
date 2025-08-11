@@ -112,9 +112,9 @@ but the Chinstrap penguins have longer bills.
 Hints:
 
 - Check the distribution of body mass or bill length,
-test the normality of data distribution.
-- If it's normally distributed, use a t-test (`?t.test`);
-If it's not normally distributed, use a Wilcoxon rank-sum test.
+test the normality of data distribution of each species.
+- If both group are normally distributed, use a t-test (`?t.test`);
+If one or both groups are not normally distributed, use a Wilcoxon rank-sum test.
 - Report the p-value and state your conclusion in one sentence.
 
 
