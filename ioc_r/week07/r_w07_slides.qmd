@@ -1,5 +1,5 @@
 ---
-title: "Tidy Your Data:<br>Exploring {`tidyr`} and {`dplyr`}"
+title: "Tidy Up: Wrangling Data with {`dplyr`} and {`tidyr`}"
 subtitle: "IOC-R Week 7"
 date: "2026-01-12"
 date-format: " "
@@ -18,7 +18,7 @@ echo: true
 categories: 
   - week07
   - slides
-image: images/preview_w8.png
+image: images/preview_w7.png
 ---
 
 # The {`tidyverse`} Ecosystem
@@ -29,13 +29,13 @@ image: images/preview_w8.png
 
 ::: {.columns}
 ::: {.column}
-- [ggplot2](https://ggplot2.tidyverse.org/): visualisation (see session 5);
-- [readr](https://readr.tidyverse.org/): import data into R;
+- [readr](https://readr.tidyverse.org/): import data into R
+- [ggplot2](https://ggplot2.tidyverse.org/): visualisation
 :::
 ::: {.column}
-- [**tidyr**](https://tidyr.tidyverse.org/): restructure data;
-- [**dplyr**](https://dplyr.tidyverse.org/): manipulate data;
-- [stringr](https://stringr.tidyverse.org/): manipulate strings (see session 9)
+- [**tidyr**](https://tidyr.tidyverse.org/): restructure data
+- [**dplyr**](https://dplyr.tidyverse.org/): manipulate data
+- [stringr](https://stringr.tidyverse.org/): manipulate strings
 :::
 :::
 
@@ -58,7 +58,7 @@ library(tidyverse)
 The pipe operator `|>` takes the output from one function and feed it to the first argument of the next function.
 
 :::{.content-smaller}
-Compare the 3 ways to do calculate the square root of the mean of abolute values of `x` ($\sqrt{\frac{1}{n} \sum_{i=1}^{n} |x_i|}$).
+Compare the 3 ways to do calculate the square root of the mean of abolute values of `x`：$\sqrt{\frac{1}{n} \sum_{i=1}^{n} |x_i|}$
 :::
 
 ::: {.columns}
@@ -166,37 +166,6 @@ The numbers before the first column in the printed tibble are **not row names or
 # Restructure Data with {`tidyr`}
 
 Cheat sheet: <https://github.com/rstudio/cheatsheets/blob/master/tidyr.pdf>
-
-## What is Tidy Data? {.smaller}
-
-> Each variable is a column, each observation is a row ... ---- Notion introduced by [Hadley Wickham](https://www.jstatsoft.org/article/view/v059i10)
-
-::: {.columns}
-::: {.column}
-
-```{r}
-not_tidy <- tibble(
-  gene = paste0("gene", LETTERS[1:3]),
-  control = c(NA, 20, 30),
-  treatment = c(15, 25, 35)
-)
-not_tidy
-```
-
-:::
-::: {.column}
-
-```{r}
-tidy_data <- tibble(
-  gene = rep(paste0("gene", LETTERS[1:3]), 2),
-  condition = rep(c("control", "treatment"), each = 3),
-  expression_level = c(NA, 20, 30, 15, 25, 35)
-)
-tidy_data
-```
-
-:::
-:::
 
 
 ## {`tidyr`} - `pivot_longer()` {.smaller}
