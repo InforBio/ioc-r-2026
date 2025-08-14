@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<link href="../../images/logoInforBio_fond_blanc.png" rel="icon" type="image/png">
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.33">
+
+  <title>IOC-2026 – Tidy Up: Wrangling Data with {dplyr} and {tidyr}</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-f563837468303362081e247dddd440d0.css">
+  <link rel="stylesheet" href="../custom.css">
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Tidy Up: Wrangling Data with {<code>dplyr</code>} and {<code>tidyr</code>}</h1>
+  <p class="subtitle">IOC-R Week 7</p>
+
+<div class="quarto-title-authors">
+</div>
+
+</section><section id="TOC">
+<nav role="doc-toc"> 
+<h2 id="toc-title">Plan</h2>
+<ul>
+<li><a href="#/the-tidyverse-ecosystem" id="/toc-the-tidyverse-ecosystem">The {<code>tidyverse</code>} Ecosystem</a></li>
+<li><a href="#/restructure-data-with-tidyr" id="/toc-restructure-data-with-tidyr">Restructure Data with {<code>tidyr</code>}</a></li>
+<li><a href="#/manipulate-data-with-dplyr" id="/toc-manipulate-data-with-dplyr">Manipulate Data with {<code>dplyr</code>}</a></li>
+<li><a href="#/lets-practice" id="/toc-lets-practice">Let’s Practice !</a></li>
+<li><a href="#/appendices" id="/toc-appendices">Appendices</a></li>
+</ul>
+</nav>
+</section>
+<section>
+<section id="the-tidyverse-ecosystem" class="title-slide slide level1 center">
+<h1>The {<code>tidyverse</code>} Ecosystem</h1>
+
+</section>
+<section id="why-do-we-need-tidyverse" class="slide level2 smaller">
+<h2>Why Do We Need {<code>tidyverse</code>}?</h2>
+<p>{<code>tidyverse</code>} provides a consistent and intuitive set of packages for data manipulation, visualization and analysis. The core packages include:</p>
+<div class="columns">
+<div class="column">
+<ul>
+<li><a href="https://readr.tidyverse.org/">readr</a>: import data into R</li>
+<li><a href="https://ggplot2.tidyverse.org/">ggplot2</a>: visualisation</li>
+</ul>
+</div><div class="column">
+<ul>
+<li><a href="https://tidyr.tidyverse.org/"><strong>tidyr</strong></a>: restructure data</li>
+<li><a href="https://dplyr.tidyverse.org/"><strong>dplyr</strong></a>: manipulate data</li>
+<li><a href="https://stringr.tidyverse.org/">stringr</a>: manipulate strings</li>
+</ul>
+</div></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="do">## install the core tidyverse packages</span></span>
+<span id="cb1-2"><a></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="do">## load the core tidyverse packages</span></span>
+<span id="cb2-2"><a></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.2     ✔ tibble    3.3.0
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.1.0     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+</div>
+</section>
+<section id="forward-chaining-with-pipe" class="slide level2 smaller">
+<h2>Forward Chaining with Pipe <code>|&gt;</code></h2>
+<p>The pipe operator <code>|&gt;</code> takes the output from one function and feed it to the first argument of the next function.</p>
+<div class="content-smaller">
+<p>Compare the 3 ways to do calculate the square root of the mean of abolute values of <code>x</code>：<span class="math inline">\(\sqrt{\frac{1}{n} \sum_{i=1}^{n} |x_i|}\)</span></p>
+</div>
+<div class="columns">
+<div class="column fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="co"># create a vector</span></span>
+<span id="cb4-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="sc">-</span><span class="dv">5</span>, <span class="cn">NA</span>, <span class="dv">8</span>)</span>
+<span id="cb4-3"><a></a></span>
+<span id="cb4-4"><a></a><span class="co"># version 1: calculation with nested function</span></span>
+<span id="cb4-5"><a></a><span class="fu">sqrt</span>(<span class="fu">mean</span>(<span class="fu">abs</span>(x), <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.309401</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="co"># version 2: use variables to store intermediate results</span></span>
+<span id="cb6-2"><a></a>abs_vals <span class="ot">&lt;-</span> <span class="fu">abs</span>(x)</span>
+<span id="cb6-3"><a></a>mean_val <span class="ot">&lt;-</span> <span class="fu">mean</span>(abs_vals, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-4"><a></a>result <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(mean_val)</span>
+<span id="cb6-5"><a></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.309401</code></pre>
+</div>
+</div>
+</div><div class="column fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co"># version 3: use pipe to execute code sequentially</span></span>
+<span id="cb8-2"><a></a><span class="fu">abs</span>(x) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a></a>  <span class="fu">mean</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a></a>  <span class="fu">sqrt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.309401</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="do">## version 3bis: or each function in one line</span></span>
+<span id="cb10-2"><a></a><span class="fu">abs</span>(x) <span class="sc">|&gt;</span> <span class="fu">mean</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> <span class="fu">sqrt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.309401</code></pre>
+</div>
+</div>
+</div></div>
+<div class="fragment">
+<div class="callout callout-note callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<ul>
+<li><code>|&gt;</code> native pipe operator, built into base R (version 4.1+)</li>
+<li><code>%&gt;%</code> pipe from the {<code>magrittr</code>} package</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="what-is-a-tibble" class="slide level2 smaller">
+<h2>What is a <code>tibble</code>?</h2>
+<p>A “modern” data frame, compatible with the data frame, but with some enhancements: better printing, less strict on column names, consistent subsetting, <em>etc.</em></p>
+<ul>
+<li>Data imported by {<code>readr</code>} is in tibble format.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"../exos_data/penguins.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 344 × 8
+   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt;
+ 1 Adelie  Torgersen           39.1          18.7               181        3750
+ 2 Adelie  Torgersen           39.5          17.4               186        3800
+ 3 Adelie  Torgersen           40.3          18                 195        3250
+ 4 Adelie  Torgersen           NA            NA                  NA          NA
+ 5 Adelie  Torgersen           36.7          19.3               193        3450
+ 6 Adelie  Torgersen           39.3          20.6               190        3650
+ 7 Adelie  Torgersen           38.9          17.8               181        3625
+ 8 Adelie  Torgersen           39.2          19.6               195        4675
+ 9 Adelie  Torgersen           34.1          18.1               193        3475
+10 Adelie  Torgersen           42            20.2               190        4250
+# ℹ 334 more rows
+# ℹ 2 more variables: sex &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<div class="callout callout-important callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<p><code>tibbles</code> don’t store row names. The numbers before the first column in the printed tibble are <strong>not row names or an index</strong> stored in the data. They are simply row numbers displayed for readability.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="what-is-a-tibble-1" class="slide level2 smaller">
+<h2>What is a <code>tibble</code>?</h2>
+<p>A “modern” data frame, compatible with the data frame, but with some enhancements.</p>
+<ul>
+<li>Create a tibble.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">tibble</span>(<span class="at">col1 =</span> <span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>, <span class="at">col2 =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+   col1 col2 
+  &lt;int&gt; &lt;lgl&gt;
+1     7 TRUE 
+2     8 FALSE</code></pre>
+</div>
+</div>
+<ul>
+<li>Convert a data frame or a matrix into a tibble, with <code>as_tibble()</code> function.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>iris_tbl <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(iris)</span>
+<span id="cb16-2"><a></a>iris_tbl <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+         &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+1          5.1         3.5          1.4         0.2 setosa 
+2          4.9         3            1.4         0.2 setosa 
+3          4.7         3.2          1.3         0.2 setosa </code></pre>
+</div>
+</div>
+<div class="callout callout-note callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<p><code>chr</code>: character; <code>dbl</code>: double; <code>int</code>: integer; <code>fct</code>: factor; <code>lgl</code>: logical; <code>dttm</code>: date and time.</p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="restructure-data-with-tidyr" class="title-slide slide level1 center">
+<h1>Restructure Data with {<code>tidyr</code>}</h1>
+<p>Cheat sheet: <a href="https://github.com/rstudio/cheatsheets/blob/master/tidyr.pdf" class="uri">https://github.com/rstudio/cheatsheets/blob/master/tidyr.pdf</a></p>
+</section>
+<section id="tidyr---pivot_longer" class="slide level2 smaller">
+<h2>{<code>tidyr</code>} - <code>pivot_longer()</code></h2>
+<p>Pivot data into <strong>longer</strong> format by <strong>increasing the number of rows</strong>.</p>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>wider_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb18-2"><a></a>  <span class="at">gene =</span> <span class="fu">paste0</span>(<span class="st">"gene"</span>, LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]),</span>
+<span id="cb18-3"><a></a>  <span class="at">control =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">20</span>, <span class="dv">30</span>),</span>
+<span id="cb18-4"><a></a>  <span class="at">treatment =</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">25</span>, <span class="dv">35</span>)</span>
+<span id="cb18-5"><a></a>)</span>
+<span id="cb18-6"><a></a>wider_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  gene  control treatment
+  &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt;
+1 geneA      NA        15
+2 geneB      20        25
+3 geneC      30        35</code></pre>
+</div>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>wider_data <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb20-3"><a></a>    <span class="at">cols =</span> <span class="fu">c</span>(control, treatment),</span>
+<span id="cb20-4"><a></a>    <span class="at">names_to =</span> <span class="st">"condition"</span>,</span>
+<span id="cb20-5"><a></a>    <span class="at">values_to =</span> <span class="st">"expression_level"</span></span>
+<span id="cb20-6"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  gene  condition expression_level
+  &lt;chr&gt; &lt;chr&gt;                &lt;dbl&gt;
+1 geneA control                 NA
+2 geneA treatment               15
+3 geneB control                 20
+4 geneB treatment               25
+5 geneC control                 30
+6 geneC treatment               35</code></pre>
+</div>
+</div>
+</div></div>
+</section>
+<section id="tidyr---pivot_wider" class="slide level2 smaller">
+<h2>{<code>tidyr</code>} - <code>pivot_wider()</code></h2>
+<p>Pivot data into <strong>wider</strong> format by <strong>increasing the number of columns</strong>. It’s the inverse transformation of <code>pivot_longer()</code>.</p>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>longer_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb22-2"><a></a>  <span class="at">gene =</span> <span class="fu">rep</span>(<span class="fu">paste0</span>(<span class="st">"gene"</span>, LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]), <span class="dv">2</span>),</span>
+<span id="cb22-3"><a></a>  <span class="at">condition =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"control"</span>, <span class="st">"treatment"</span>), <span class="at">each =</span> <span class="dv">3</span>),</span>
+<span id="cb22-4"><a></a>  <span class="at">expression_level =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">15</span>, <span class="dv">25</span>, <span class="dv">35</span>)</span>
+<span id="cb22-5"><a></a>)</span>
+<span id="cb22-6"><a></a>longer_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  gene  condition expression_level
+  &lt;chr&gt; &lt;chr&gt;                &lt;dbl&gt;
+1 geneA control                 NA
+2 geneB control                 20
+3 geneC control                 30
+4 geneA treatment               15
+5 geneB treatment               25
+6 geneC treatment               35</code></pre>
+</div>
+</div>
+</div><div class="column fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="co"># widens by condition</span></span>
+<span id="cb24-2"><a></a>longer_data <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb24-4"><a></a>    <span class="at">names_from =</span> condition, <span class="at">values_from =</span> expression_level</span>
+<span id="cb24-5"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  gene  control treatment
+  &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt;
+1 geneA      NA        15
+2 geneB      20        25
+3 geneC      30        35</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="co"># widens by gene</span></span>
+<span id="cb26-2"><a></a>longer_data <span class="sc">|&gt;</span></span>
+<span id="cb26-3"><a></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb26-4"><a></a>    <span class="at">names_from =</span> gene, <span class="at">values_from =</span> expression_level</span>
+<span id="cb26-5"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 4
+  condition geneA geneB geneC
+  &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 control      NA    20    30
+2 treatment    15    25    35</code></pre>
+</div>
+</div>
+</div></div>
+</section>
+<section id="tidyr---drop_na-in-table" class="slide level2 smaller">
+<h2>{<code>tidyr</code>} - <code>drop_na()</code> in Table</h2>
+<p>By default keep only rows with no missing value across all columns.</p>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>longer_data<span class="sc">$</span>description <span class="ot">&lt;-</span> <span class="fu">rep</span>(</span>
+<span id="cb28-2"><a></a>  <span class="fu">c</span>(<span class="st">"growth regulation"</span>, <span class="st">"stress response"</span>, <span class="cn">NA</span>),</span>
+<span id="cb28-3"><a></a>  <span class="at">times =</span> <span class="dv">2</span></span>
+<span id="cb28-4"><a></a>)</span>
+<span id="cb28-5"><a></a>longer_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  gene  condition expression_level description      
+  &lt;chr&gt; &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt;            
+1 geneA control                 NA growth regulation
+2 geneB control                 20 stress response  
+3 geneC control                 30 &lt;NA&gt;             
+4 geneA treatment               15 growth regulation
+5 geneB treatment               25 stress response  
+6 geneC treatment               35 &lt;NA&gt;             </code></pre>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="co"># drop rows with NA in any columns</span></span>
+<span id="cb30-2"><a></a>longer_data <span class="sc">|&gt;</span> <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+  gene  condition expression_level description      
+  &lt;chr&gt; &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt;            
+1 geneB control                 20 stress response  
+2 geneA treatment               15 growth regulation
+3 geneB treatment               25 stress response  </code></pre>
+</div>
+</div>
+</div>
+</div><div class="column fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="co"># drop rows with NA in specified column(s)</span></span>
+<span id="cb32-2"><a></a>longer_data <span class="sc">|&gt;</span> <span class="fu">drop_na</span>(description)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 4
+  gene  condition expression_level description      
+  &lt;chr&gt; &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt;            
+1 geneA control                 NA growth regulation
+2 geneB control                 20 stress response  
+3 geneA treatment               15 growth regulation
+4 geneB treatment               25 stress response  </code></pre>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-note callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<p>In tidyverse, column names can be used <strong>as-is without quotes</strong>. If a column name starts with number, has spaces or special characters, you must use backticks (<code>`column name`, `1col`</code>)</p>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section></section>
+<section>
+<section id="manipulate-data-with-dplyr" class="title-slide slide level1 center">
+<h1>Manipulate Data with {<code>dplyr</code>}</h1>
+<p>Cheat sheet: <a href="https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf" class="uri">https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf</a></p>
+</section>
+<section id="dplyr---select-columns" class="slide level2 smaller">
+<h2>{<code>dplyr</code>} - <code>select()</code> Columns</h2>
+<p>Select by column index.</p>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a><span class="fu">colnames</span>(iris_tbl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width"  "Species"     </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="co"># select one column</span></span>
+<span id="cb36-2"><a></a>iris_tbl <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 1
+  Sepal.Length
+         &lt;dbl&gt;
+1          5.1
+2          4.9
+3          4.7</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="co"># select mutiple columns</span></span>
+<span id="cb38-2"><a></a>iris_tbl <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="dv">1</span>, <span class="dv">3</span>) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  Sepal.Length Petal.Length
+         &lt;dbl&gt;        &lt;dbl&gt;
+1          5.1          1.4
+2          4.9          1.4
+3          4.7          1.3</code></pre>
+</div>
+</div>
+</div><div class="column fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a><span class="co"># select a range of consecutive indices</span></span>
+<span id="cb40-2"><a></a>iris_tbl <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+  Sepal.Length Sepal.Width Petal.Length Petal.Width
+         &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;
+1          5.1         3.5          1.4         0.2
+2          4.9         3            1.4         0.2
+3          4.7         3.2          1.3         0.2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a><span class="co"># use ! or - operator to negate a selection</span></span>
+<span id="cb42-2"><a></a>iris_tbl <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">!</span><span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 1
+  Species
+  &lt;fct&gt;  
+1 setosa 
+2 setosa 
+3 setosa </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a><span class="co"># iris_tbl |&gt; select(-c(1:4)) |&gt; head(3) # idem</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div></div>
+</section>
+<section id="dplyr---select-columns-1" class="slide level2 smaller">
+<h2>{<code>dplyr</code>} - <code>select()</code> Columns</h2>
+<p>Select by column name.</p>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a></a><span class="fu">colnames</span>(iris_tbl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width"  "Species"     </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a></a><span class="co"># select one column</span></span>
+<span id="cb47-2"><a></a>iris_tbl <span class="sc">|&gt;</span> <span class="fu">select</span>(Species) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 1
+  Species
+  &lt;fct&gt;  
+1 setosa 
+2 setosa 
+3 setosa </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a></a><span class="co"># select mutiple columns</span></span>
+<span id="cb49-2"><a></a>iris_tbl <span class="sc">|&gt;</span></span>
+<span id="cb49-3"><a></a>  <span class="fu">select</span>(Species, Sepal.Length) <span class="sc">|&gt;</span></span>
+<span id="cb49-4"><a></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  Species Sepal.Length
+  &lt;fct&gt;          &lt;dbl&gt;
+1 setosa           5.1
+2 setosa           4.9
+3 setosa           4.7</code></pre>
+</div>
+</div>
+</div><div class="column fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a><span class="co"># select a range of consecutive variables</span></span>
+<span id="cb51-2"><a></a>iris_tbl <span class="sc">|&gt;</span></span>
+<span id="cb51-3"><a></a>  <span class="fu">select</span>(Sepal.Length<span class="sc">:</span>Petal.Length) <span class="sc">|&gt;</span></span>
+<span id="cb51-4"><a></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  Sepal.Length Sepal.Width Petal.Length
+         &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;
+1          5.1         3.5          1.4
+2          4.9         3            1.4
+3          4.7         3.2          1.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a></a><span class="co"># use ! or - operator to negate a selection</span></span>
+<span id="cb53-2"><a></a>iris_tbl <span class="sc">|&gt;</span></span>
+<span id="cb53-3"><a></a>  <span class="fu">select</span>(<span class="sc">!</span>(Sepal.Length<span class="sc">:</span>Petal.Length)) <span class="sc">|&gt;</span></span>
+<span id="cb53-4"><a></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  Petal.Width Species
+        &lt;dbl&gt; &lt;fct&gt;  
+1         0.2 setosa 
+2         0.2 setosa 
+3         0.2 setosa </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a></a><span class="co"># iris_tbl |&gt; # idem</span></span>
+<span id="cb55-2"><a></a><span class="co">#   select(-(Sepal.Length:Petal.Length)) |&gt;</span></span>
+<span id="cb55-3"><a></a><span class="co">#   head(3)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div></div>
+</section>
+<section id="dplyr---select-columns-2" class="slide level2 smaller">
+<h2>{<code>dplyr</code>} - <code>select()</code> Columns</h2>
+<p>Select by using <em>helper functions</em>, by default case ignored when matching name.</p>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a></a><span class="fu">colnames</span>(iris_tbl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width"  "Species"     </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a></a>iris_tbl <span class="sc">|&gt;</span></span>
+<span id="cb58-2"><a></a>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">"s"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb58-3"><a></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  Sepal.Length Sepal.Width Species
+         &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+1          5.1         3.5 setosa 
+2          4.9         3   setosa 
+3          4.7         3.2 setosa </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a></a>iris_tbl <span class="sc">|&gt;</span></span>
+<span id="cb60-2"><a></a>  <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">"S"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb60-3"><a></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 1
+  Species
+  &lt;fct&gt;  
+1 setosa 
+2 setosa 
+3 setosa </code></pre>
+</div>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a></a>iris_tbl <span class="sc">|&gt;</span></span>
+<span id="cb62-2"><a></a>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"Len"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb62-3"><a></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  Sepal.Length Petal.Length
+         &lt;dbl&gt;        &lt;dbl&gt;
+1          5.1          1.4
+2          4.9          1.4
+3          4.7          1.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a></a>iris_tbl <span class="sc">|&gt;</span></span>
+<span id="cb64-2"><a></a>  <span class="fu">select</span>(<span class="fu">matches</span>(<span class="st">"len"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb64-3"><a></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  Sepal.Length Petal.Length
+         &lt;dbl&gt;        &lt;dbl&gt;
+1          5.1          1.4
+2          4.9          1.4
+3          4.7          1.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a></a><span class="co"># do not ignore case</span></span>
+<span id="cb66-2"><a></a>iris_tbl <span class="sc">|&gt;</span></span>
+<span id="cb66-3"><a></a>  <span class="fu">select</span>(<span class="fu">matches</span>(<span class="st">"len"</span>, <span class="at">ignore.case =</span> <span class="cn">FALSE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 150 × 0</code></pre>
+</div>
+</div>
+</div></div>
+</section>
+<section id="dplyr---mutate-columns" class="slide level2 smaller">
+<h2>{<code>dplyr</code>} - <code>mutate()</code> Columns</h2>
+<ul>
+<li>Use <code>mutate()</code> to add or modify columns</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a></a><span class="co"># create a new column</span></span>
+<span id="cb68-2"><a></a>iris_tbl <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">sepal_len_mm =</span> Sepal.Length <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 6
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species sepal_len_mm
+         &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;          &lt;dbl&gt;
+1          5.1         3.5          1.4         0.2 setosa           510
+2          4.9         3            1.4         0.2 setosa           490
+3          4.7         3.2          1.3         0.2 setosa           470</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a></a><span class="co"># remove the column</span></span>
+<span id="cb70-2"><a></a>iris_tbl <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">sepal_len_mm =</span> <span class="cn">NULL</span>) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+         &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+1          5.1         3.5          1.4         0.2 setosa 
+2          4.9         3            1.4         0.2 setosa 
+3          4.7         3.2          1.3         0.2 setosa </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a></a><span class="fu">mutate</span>(iris_tbl, <span class="at">sepal_len_mm =</span> Sepal.Length <span class="sc">*</span> <span class="dv">100</span>, <span class="at">petal_len_mm =</span> Petal.Length <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">|&gt;</span></span>
+<span id="cb72-2"><a></a>  <span class="fu">head</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 7
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species sepal_len_mm
+         &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;          &lt;dbl&gt;
+1          5.1         3.5          1.4         0.2 setosa           510
+2          4.9         3            1.4         0.2 setosa           490
+# ℹ 1 more variable: petal_len_mm &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="dplyr---rename-columns" class="slide level2 smaller">
+<h2>{<code>dplyr</code>} - <code>rename()</code> Columns</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a></a>iris_tbl <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">espece =</span> Species, <span class="at">petal_width =</span> Petal.Width)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 150 × 5
+   Sepal.Length Sepal.Width Petal.Length petal_width espece
+          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt; 
+ 1          5.1         3.5          1.4         0.2 setosa
+ 2          4.9         3            1.4         0.2 setosa
+ 3          4.7         3.2          1.3         0.2 setosa
+ 4          4.6         3.1          1.5         0.2 setosa
+ 5          5           3.6          1.4         0.2 setosa
+ 6          5.4         3.9          1.7         0.4 setosa
+ 7          4.6         3.4          1.4         0.3 setosa
+ 8          5           3.4          1.5         0.2 setosa
+ 9          4.4         2.9          1.4         0.2 setosa
+10          4.9         3.1          1.5         0.1 setosa
+# ℹ 140 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="dplyr---filter-rows" class="slide level2 smaller">
+<h2>{<code>dplyr</code>} - <code>filter()</code> Rows</h2>
+<p>Filter rows based on column values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a></a>iris_tbl <span class="sc">|&gt;</span> <span class="fu">filter</span>(Sepal.Length <span class="sc">&gt;</span> <span class="fl">6.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 17 × 5
+   Sepal.Length Sepal.Width Petal.Length Petal.Width Species   
+          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;     
+ 1          7           3.2          4.7         1.4 versicolor
+ 2          6.9         3.1          4.9         1.5 versicolor
+ 3          7.1         3            5.9         2.1 virginica 
+ 4          7.6         3            6.6         2.1 virginica 
+ 5          7.3         2.9          6.3         1.8 virginica 
+ 6          7.2         3.6          6.1         2.5 virginica 
+ 7          7.7         3.8          6.7         2.2 virginica 
+ 8          7.7         2.6          6.9         2.3 virginica 
+ 9          6.9         3.2          5.7         2.3 virginica 
+10          7.7         2.8          6.7         2   virginica 
+11          7.2         3.2          6           1.8 virginica 
+12          7.2         3            5.8         1.6 virginica 
+13          7.4         2.8          6.1         1.9 virginica 
+14          7.9         3.8          6.4         2   virginica 
+15          7.7         3            6.1         2.3 virginica 
+16          6.9         3.1          5.4         2.1 virginica 
+17          6.9         3.1          5.1         2.3 virginica </code></pre>
+</div>
+</div>
+</section>
+<section id="dplyr---filter-rows-1" class="slide level2 smaller">
+<h2>{<code>dplyr</code>} - <code>filter()</code> Rows</h2>
+<p>Filter rows based on column values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a></a><span class="co"># combine conditions</span></span>
+<span id="cb78-2"><a></a>iris_tbl <span class="sc">|&gt;</span> <span class="fu">filter</span>(Sepal.Length <span class="sc">&gt;</span> <span class="fl">6.8</span> <span class="sc">&amp;</span> Species <span class="sc">==</span> <span class="st">"versicolor"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species   
+         &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;     
+1          7           3.2          4.7         1.4 versicolor
+2          6.9         3.1          4.9         1.5 versicolor</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a></a><span class="co"># chaining with other operation</span></span>
+<span id="cb80-2"><a></a>iris_tbl <span class="sc">|&gt;</span></span>
+<span id="cb80-3"><a></a>  <span class="fu">filter</span>(Sepal.Length <span class="sc">&gt;</span> <span class="fl">6.8</span> <span class="sc">&amp;</span> Species <span class="sc">==</span> <span class="st">"versicolor"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb80-4"><a></a>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="fu">c</span>(<span class="st">"sepal"</span>, <span class="st">"speci"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  Sepal.Length Sepal.Width Species   
+         &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;     
+1          7           3.2 versicolor
+2          6.9         3.1 versicolor</code></pre>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<p>Extract rows which correspond to setosa having sepal length smaller than 4.5 cm or versicolor having petal width bigger than 1.5 cm.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="dplyr---arrange-rows" class="slide level2 smaller">
+<h2>{<code>dplyr</code>} - <code>arrange()</code> Rows</h2>
+<p>Order rows based on one column.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a></a><span class="co"># by default in ascending order</span></span>
+<span id="cb82-2"><a></a>iris_tbl <span class="sc">|&gt;</span> <span class="fu">arrange</span>(Sepal.Length) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+         &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+1          4.3         3            1.1         0.1 setosa 
+2          4.4         2.9          1.4         0.2 setosa 
+3          4.4         3            1.3         0.2 setosa </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a></a><span class="co"># by descending order</span></span>
+<span id="cb84-2"><a></a>iris_tbl <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(Sepal.Length)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species  
+         &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;    
+1          7.9         3.8          6.4         2   virginica
+2          7.7         3.8          6.7         2.2 virginica
+3          7.7         2.6          6.9         2.3 virginica</code></pre>
+</div>
+</div>
+</section>
+<section id="dplyr---arrange-rows-1" class="slide level2 smaller">
+<h2>{<code>dplyr</code>} - <code>arrange()</code> Rows</h2>
+<p>Order rows based on multiple columns.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a></a>iris_tbl <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(Sepal.Length), Sepal.Width)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 150 × 5
+   Sepal.Length Sepal.Width Petal.Length Petal.Width Species  
+          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;    
+ 1          7.9         3.8          6.4         2   virginica
+ 2          7.7         2.6          6.9         2.3 virginica
+ 3          7.7         2.8          6.7         2   virginica
+ 4          7.7         3            6.1         2.3 virginica
+ 5          7.7         3.8          6.7         2.2 virginica
+ 6          7.6         3            6.6         2.1 virginica
+ 7          7.4         2.8          6.1         1.9 virginica
+ 8          7.3         2.9          6.3         1.8 virginica
+ 9          7.2         3            5.8         1.6 virginica
+10          7.2         3.2          6           1.8 virginica
+# ℹ 140 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="dplyr---count-rows" class="slide level2 smaller">
+<h2>{<code>dplyr</code>} - <code>count()</code> Rows</h2>
+<ul>
+<li>Check unique values of one or more variables.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a></a><span class="co"># count based on one variable</span></span>
+<span id="cb88-2"><a></a>iris_tbl <span class="sc">|&gt;</span> <span class="fu">count</span>(Species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  Species        n
+  &lt;fct&gt;      &lt;int&gt;
+1 setosa        50
+2 versicolor    50
+3 virginica     50</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a></a><span class="co"># count for the entire data frame</span></span>
+<span id="cb90-2"><a></a>iris_tbl <span class="sc">|&gt;</span> <span class="fu">count</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+      n
+  &lt;int&gt;
+1   150</code></pre>
+</div>
+</div>
+</section>
+<section id="dplyr---summarise-function" class="slide level2 smaller">
+<h2>{<code>dplyr</code>} - <code>summarise()</code> Function</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a></a><span class="co"># across all species</span></span>
+<span id="cb92-2"><a></a>iris_tbl <span class="sc">|&gt;</span></span>
+<span id="cb92-3"><a></a>  <span class="fu">summarise</span>(</span>
+<span id="cb92-4"><a></a>    <span class="at">mean_sepal_len =</span> <span class="fu">mean</span>(Sepal.Length, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb92-5"><a></a>    <span class="at">sd_sepal_len =</span> <span class="fu">sd</span>(Sepal.Length, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb92-6"><a></a>    <span class="at">var_sepal_len =</span> <span class="fu">var</span>(Sepal.Length, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb92-7"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+  mean_sepal_len sd_sepal_len var_sepal_len
+           &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt;
+1           5.84        0.828         0.686</code></pre>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<p>Modify the code to include the calculation of the maximum and minimum sepal lengths.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a></a>iris_tbl <span class="sc">|&gt;</span></span>
+<span id="cb94-2"><a></a>  <span class="fu">summarise</span>(</span>
+<span id="cb94-3"><a></a>    <span class="at">mean_sepal_len =</span> <span class="fu">mean</span>(Sepal.Length, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb94-4"><a></a>    <span class="at">sd_sepal_len =</span> <span class="fu">sd</span>(Sepal.Length, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb94-5"><a></a>    <span class="at">var_sepal_len =</span> <span class="fu">var</span>(Sepal.Length, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb94-6"><a></a>    <span class="at">max_sepal_len =</span> <span class="fu">max</span>(Sepal.Length, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb94-7"><a></a>    <span class="at">min_sepal_len =</span> <span class="fu">min</span>(Sepal.Length, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb94-8"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 5
+  mean_sepal_len sd_sepal_len var_sepal_len max_sepal_len min_sepal_len
+           &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;
+1           5.84        0.828         0.686           7.9           4.3</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="dplyr---group_by-data" class="slide level2 smaller">
+<h2>{<code>dplyr</code>} - <code>group_by</code> Data</h2>
+<ul>
+<li>Use <code>group_by</code> to group data if we need operation based on defined group(s).</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a></a>iris_tbl <span class="sc">|&gt;</span> <span class="fu">group_by</span>(Species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 150 × 5
+# Groups:   Species [3]
+   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+ 1          5.1         3.5          1.4         0.2 setosa 
+ 2          4.9         3            1.4         0.2 setosa 
+ 3          4.7         3.2          1.3         0.2 setosa 
+ 4          4.6         3.1          1.5         0.2 setosa 
+ 5          5           3.6          1.4         0.2 setosa 
+ 6          5.4         3.9          1.7         0.4 setosa 
+ 7          4.6         3.4          1.4         0.3 setosa 
+ 8          5           3.4          1.5         0.2 setosa 
+ 9          4.4         2.9          1.4         0.2 setosa 
+10          4.9         3.1          1.5         0.1 setosa 
+# ℹ 140 more rows</code></pre>
+</div>
+</div>
+<div class="callout callout-note callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<p><code>group_by</code> does not change the actual data, it just adds a grouping structure to it.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="dplyr---group_by-data-1" class="slide level2 smaller">
+<h2>{<code>dplyr</code>} - <code>group_by</code> Data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a></a><span class="co"># summarise by species</span></span>
+<span id="cb98-2"><a></a>iris_tbl <span class="sc">|&gt;</span></span>
+<span id="cb98-3"><a></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span></span>
+<span id="cb98-4"><a></a>  <span class="fu">summarise</span>(</span>
+<span id="cb98-5"><a></a>    <span class="at">mean_sepal_len =</span> <span class="fu">mean</span>(Sepal.Length, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb98-6"><a></a>    <span class="at">sd_sepal_len =</span> <span class="fu">sd</span>(Sepal.Length, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb98-7"><a></a>    <span class="at">var_sepal_len =</span> <span class="fu">var</span>(Sepal.Length, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb98-8"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+  Species    mean_sepal_len sd_sepal_len var_sepal_len
+  &lt;fct&gt;               &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt;
+1 setosa               5.01        0.352         0.124
+2 versicolor           5.94        0.516         0.266
+3 virginica            6.59        0.636         0.404</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a></a><span class="co"># count for the "entire" data frame for each species</span></span>
+<span id="cb100-2"><a></a>iris_tbl <span class="sc">|&gt;</span> <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span> <span class="fu">count</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+# Groups:   Species [3]
+  Species        n
+  &lt;fct&gt;      &lt;int&gt;
+1 setosa        50
+2 versicolor    50
+3 virginica     50</code></pre>
+</div>
+</div>
+</section>
+<section id="dplyr---ungroup-data" class="slide level2 smaller">
+<h2>{<code>dplyr</code>} - <code>ungroup()</code> Data</h2>
+<ul>
+<li>Use <code>ungroup()</code> to remove grouping.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a></a>iris_grouped <span class="ot">&lt;-</span> iris_tbl <span class="sc">|&gt;</span> <span class="fu">group_by</span>(Species)</span>
+<span id="cb102-2"><a></a><span class="fu">head</span>(iris_grouped, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+# Groups:   Species [1]
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+         &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+1          5.1         3.5          1.4         0.2 setosa 
+2          4.9         3            1.4         0.2 setosa 
+3          4.7         3.2          1.3         0.2 setosa </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a></a>iris_ungrouped <span class="ot">&lt;-</span>  iris_grouped <span class="sc">|&gt;</span> <span class="fu">ungroup</span>()</span>
+<span id="cb104-2"><a></a><span class="fu">head</span>(iris_ungrouped, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+         &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+1          5.1         3.5          1.4         0.2 setosa 
+2          4.9         3            1.4         0.2 setosa 
+3          4.7         3.2          1.3         0.2 setosa </code></pre>
+</div>
+</div>
+</section></section>
+<section>
+<section id="lets-practice" class="title-slide slide level1 center">
+<h1>Let’s Practice !</h1>
+
+</section>
+<section id="todays-goals" class="slide level2">
+<h2>Today’s Goals</h2>
+<ul>
+<li>Clean, reshape, and manipulate real-world data using {<code>dplyr</code>} and {<code>tidyr</code>}</li>
+<li>Integrate tidy data into downstream analysis (e.g., for visualization or statistical analysis)</li>
+</ul>
+</section></section>
+<section>
+<section id="appendices" class="title-slide slide level1 center">
+<h1>Appendices</h1>
+
+</section>
+<section id="dplyr---pull-column" class="slide level2 smaller">
+<h2>{<code>dplyr</code>} - <code>pull()</code> Column</h2>
+<p>Similar to <code>$</code> operator, <code>pull()</code> extracts one column and return results in a vector.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a></a><span class="co"># by default extract the last column</span></span>
+<span id="cb106-2"><a></a>iris_tbl <span class="sc">|&gt;</span></span>
+<span id="cb106-3"><a></a>  <span class="fu">pull</span>() <span class="sc">|&gt;</span></span>
+<span id="cb106-4"><a></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] setosa setosa setosa setosa setosa setosa
+Levels: setosa versicolor virginica</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a></a><span class="co"># extract by using explicite column name</span></span>
+<span id="cb108-2"><a></a>iris_tbl <span class="sc">|&gt;</span></span>
+<span id="cb108-3"><a></a>  <span class="fu">pull</span>(Species) <span class="sc">|&gt;</span></span>
+<span id="cb108-4"><a></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] setosa setosa setosa setosa setosa setosa
+Levels: setosa versicolor virginica</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a></a>iris_tbl <span class="sc">|&gt;</span></span>
+<span id="cb110-2"><a></a>  <span class="fu">pull</span>(Sepal.Width) <span class="sc">|&gt;</span></span>
+<span id="cb110-3"><a></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.5 3.0 3.2 3.1 3.6 3.9</code></pre>
+</div>
+</div>
+</section>
+<section id="dplyr---if_else-function" class="slide level2 smaller">
+<h2>{<code>dplyr</code>} - <code>if_else()</code> Function</h2>
+<p>Similar to the <code>ifelse()</code> function, but allow to mange missing values.</p>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span><span class="sc">:</span><span class="dv">2</span>, <span class="cn">NA</span>)</span>
+<span id="cb112-2"><a></a><span class="fu">ifelse</span>(x <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="st">"negative"</span>, <span class="st">"positive"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "negative" "negative" "positive" "positive" "positive" NA        </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a></a><span class="fu">if_else</span>(x <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="st">"negative"</span>, <span class="st">"positive"</span>, <span class="at">missing =</span> <span class="st">"not available"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "negative"      "negative"      "positive"      "positive"     
+[5] "positive"      "not available"</code></pre>
+</div>
+</div>
+</div><div class="column fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a></a>iris_tbl <span class="sc">|&gt;</span></span>
+<span id="cb116-2"><a></a>  <span class="fu">mutate</span>(<span class="at">sepal_len_cat =</span> <span class="fu">if_else</span>(</span>
+<span id="cb116-3"><a></a>    <span class="at">condition =</span> Sepal.Length <span class="sc">&gt;=</span> <span class="dv">7</span>,</span>
+<span id="cb116-4"><a></a>    <span class="at">true =</span> <span class="st">"long"</span>,</span>
+<span id="cb116-5"><a></a>    <span class="at">false =</span> <span class="st">"normal"</span>,</span>
+<span id="cb116-6"><a></a>    <span class="at">missing =</span> <span class="st">"missing"</span></span>
+<span id="cb116-7"><a></a>  )) <span class="sc">|&gt;</span></span>
+<span id="cb116-8"><a></a>  <span class="fu">select</span>(Sepal.Length, Species, sepal_len_cat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 150 × 3
+   Sepal.Length Species sepal_len_cat
+          &lt;dbl&gt; &lt;fct&gt;   &lt;chr&gt;        
+ 1          5.1 setosa  normal       
+ 2          4.9 setosa  normal       
+ 3          4.7 setosa  normal       
+ 4          4.6 setosa  normal       
+ 5          5   setosa  normal       
+ 6          5.4 setosa  normal       
+ 7          4.6 setosa  normal       
+ 8          5   setosa  normal       
+ 9          4.4 setosa  normal       
+10          4.9 setosa  normal       
+# ℹ 140 more rows</code></pre>
+</div>
+</div>
+</div></div>
+</section>
+<section id="dplyr---slice-rows" class="slide level2 smaller">
+<h2>{<code>dplyr</code>} - <code>slice()</code> Rows</h2>
+<ul>
+<li>Use the function <code>slice()</code> to select rows.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a></a><span class="co"># create a column containing row index</span></span>
+<span id="cb118-2"><a></a>iris_tbl <span class="ot">&lt;-</span> <span class="fu">mutate</span>(iris_tbl, <span class="at">index =</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(iris_tbl)))</span>
+<span id="cb118-3"><a></a></span>
+<span id="cb118-4"><a></a><span class="fu">tail</span>(iris_tbl, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 6
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species   index
+         &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;     &lt;int&gt;
+1          6.3         2.5          5           1.9 virginica   147
+2          6.5         3            5.2         2   virginica   148
+3          6.2         3.4          5.4         2.3 virginica   149
+4          5.9         3            5.1         1.8 virginica   150</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a></a><span class="co"># extract rows 5 and 3</span></span>
+<span id="cb120-2"><a></a>iris_tbl <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="dv">5</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 6
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species index
+         &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;   &lt;int&gt;
+1          5           3.6          1.4         0.2 setosa      5
+2          4.7         3.2          1.3         0.2 setosa      3</code></pre>
+</div>
+</div>
+</section>
+<section id="dplyr---slice-rows-1" class="slide level2 smaller">
+<h2>{<code>dplyr</code>} - <code>slice()</code> Rows</h2>
+<ul>
+<li>Use the <code>slice_head()</code> or <code>slice_tail()</code> to select the first or last rows.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a></a>iris_tbl <span class="sc">|&gt;</span> <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 6
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species index
+         &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;   &lt;int&gt;
+1          5.1         3.5          1.4         0.2 setosa      1
+2          4.9         3            1.4         0.2 setosa      2
+3          4.7         3.2          1.3         0.2 setosa      3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a></a>iris_tbl <span class="sc">|&gt;</span> <span class="fu">slice_tail</span>(<span class="at">n =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 6
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species   index
+         &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;     &lt;int&gt;
+1          6.5         3            5.2         2   virginica   148
+2          6.2         3.4          5.4         2.3 virginica   149
+3          5.9         3            5.1         1.8 virginica   150</code></pre>
+</div>
+</div>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="../../images/logoInforBio_fond_blanc_small.png" class="slide-logo"></p>
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/InforBio\.github\.io\/ioc-r-2026\/");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
