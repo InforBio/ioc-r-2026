@@ -61,12 +61,12 @@ Observe your data file:
 - Which character was used for decimal points?
 - Which character was used for missing data (between two seperators where there's no value)?
 
-:::{.callout-tip title="Preview File"}
+:::{.callout-note title="Preview File"}
 You can preview the data file in different ways, such as:
 
 - Opening it with a text editor;
 - Clicking the file name and selecting "View File" in the RStudio *File Pane*;
-- Or by using the terminal: `head -n2 data_anonym_struc1_noise.csv` (to view the first 2 lines) or `more data_anonym_struc1_noise.csv` (to scroll through the file and quit by typing `q`), which is **recommended for large files**.
+- Or by using the terminal if you are using Unix-based system: `head -n2 data_anonym_struc1_noise.csv` (to view the first 2 lines) or `more data_anonym_struc1_noise.csv` (to scroll through the file and quit by typing `q`), which is **recommended for large files**.
 
 :::
 
@@ -117,10 +117,14 @@ data1 <- data1 |>
 
 How should the data be organized?
 
-5. Reshape data to "tidy" format with the `pivot_longer()` function.
-(tidy format: each variable is a column, each observation is a row.)
+5. Reshape the dataset to a longer format using `pivot_longer()`, so that for each mouse:
+
+- The first column shows the age
+- The second column shows the sample ID (*e.g.*, 1MA, 1MB, ...)
+- The third column shows the gene expression value
+
 What are the columns to be included to pivot into longer format?
- 
+
 ```{r}
 # use column index
 data1_long <- data1 |>
@@ -185,33 +189,20 @@ Now, the data is ready for downstream analysis.
 For question 8 to 11, let's focus on gene 1 from the data.
 
 8. At age of 10 days, which animal has the highest expression value for gene 1 overall?
-And which animal has the highest expression value in each sex?
 
 ```{r}
 # overall
 data1_long |>
   filter(gene_id == "1" & age == 10) |>
   arrange(desc(value)) |>
-  slice(1)
-
-
-# in each sex
-data1_long |>
-  filter(gene_id == "1" & age == 10) |>
-  group_by(sex) |>
-  arrange(desc(value)) |>
-  slice(1)
+  head(1)
 ```
 
 9. Is there any missing value for gene 1?
 If yes, how to remove lines with NA?
 
 ```{r}
-data1_long |>
-  filter(gene_id == "1") |>
-  pull(value) |>
-  is.na() |>
-  table()
+table(is.na(data1_long$value[data1_long$gene_id == "1"]))
 
 data1_long |>
   filter(gene_id == "1") |>
@@ -338,41 +329,6 @@ p_animal <- ggplot(data = data1_wider, aes(x = gene4, y = gene5)) +
 p_animal
 ```
 
-
-## Bonus
-
-Use the `read.table()` function to import the data and continue to reshape the data based on the imported data.
-
-(Check the approporiate parameters to be included with `?read.table`)
-
-```{r}
-#| code-fold: true
-#| code-summary: "Correction"
-
-# import data with the basic function
-data1 <- read.table(
-  file = "../exos_data/data_anonym_struc1_noise.csv",
-  header = TRUE, sep = ";", dec = ",", na.strings = ""
-)
-# convert to a tibble
-data1 <- as_tibble(data1)
-
-# transform to long format and 
-data_long <- data1 |>
-  rename(age = X) |>
-  pivot_longer(cols = -1, names_to = "id", values_to = "value") |>
-  mutate(
-    id = sub("X", "", id), # remove the X in ID
-    struc = paste0("s", 1) # store info of brain structure
-  ) |>
-  extract( # extract column into multiple columns
-    id,
-    into = c("gene_id", "sex", "animal"),
-    regex = "([0-9]+)([MF])([A-F])"
-  )
-
-data_long
-```
 
 ---
 

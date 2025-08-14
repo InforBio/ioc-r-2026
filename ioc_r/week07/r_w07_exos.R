@@ -50,8 +50,10 @@
 ### Reshape the Data --------------------------------------------------------------
 
 # How should the data be organized?
-# 5. Reshape data to "tidy" format with the `pivot_longer()` function.
-# (tidy format: each variable is a column, each observation is a row.)
+# 5. Reshape the dataset to a longer format using `pivot_longer()`, so that for each mouse:
+# - The first column shows the age
+# - The second column shows the sample ID (*e.g.*, 1MA, 1MB, ...)
+# - The third column shows the gene expression value
 # What are the columns to be included to pivot into longer format?
 
 # 6. Add a column `struc` which contains the name of the measured structure `s1`.
@@ -68,7 +70,6 @@
 # For question 8 to 11, let's focus on gene 1 from the data.
 
 # 8. At age of 10 days, which animal has the highest expression value for gene 1 overall?
-#     And which animal has the highest expression value in each sex?
 
 # 9. Is there any missing value for gene 1?
 #     If yes, how to remove lines with NA?
@@ -129,8 +130,3 @@ pairs(
 # 15. Draw a scatter plot using {`ggplot2`} to show the expression levels of genes 4 and 5.
 #     Color the points by different categorical variables that we have, *i.e.*, age, sex, and animal.
 #     Is there any categorical variable that can explain the groups we observed in the figure?
-
-# ## Bonus
-
-# # Use the `read.table()` function to import the data and continue to reshape the data based on the imported data.
-# # (Check the approporiate parameters to be included with `?read.table`)
