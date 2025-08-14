@@ -50,7 +50,7 @@ char_name
 char_name <- InforBio
 ```
 
-::: {.callout-note appearance="minimal"}
+::: {.callout-tip appearance="simple"}
 Check the "Environment" pane or type `ls()` in the console, are variables you just created there?
 :::
 
@@ -74,7 +74,7 @@ A box labeled "char_name" containing the platform name "InforBio".
 
 ::: {.column .fragment}
 
-::: {.callout-note appearance="minimal"}
+::: {.callout-tip appearance="simple"}
 Which are valid names?
 :::
 
@@ -99,7 +99,7 @@ DAYone
 :::
 :::
 
-::: {.fragment .callout-note appearance="minimal"}
+::: {.fragment .callout-tip appearance="simple"}
 How to know if a variable name was already used?
 
 - Type `help(reserved)` to check reserved words in R.
@@ -131,7 +131,7 @@ Main data types:
 - Logical (boolean): `TRUE`, `FALSE`
 - Factor: for categorical data
 
-::: {.callout-tip appearance="minimal"}
+::: {.callout-note appearance="simple"}
 We'll see factor next week.
 :::
 
@@ -286,7 +286,7 @@ paste0("gene", 1:3)
 rep(c(TRUE, FALSE), each = 2) # repetition
 ```
 
-::: {.callout-tip appearance="minimal"}
+::: {.callout-note appearance="simple"}
 A single value (scalar) is treated as a vector of length 1. 
 
 ```{r}
@@ -389,7 +389,7 @@ gene_expr
 ```
 
 
-::: {.fragment .callout-note appearance="minimal"}
+::: {.fragment .callout-tip appearance="simple"}
 - How to modify the expression value of "gene1" and "gene2" to 5?
 - How to change the expression value of "gene1" to 0 and "gene2" to 16?
 :::
@@ -437,7 +437,7 @@ num_vec[num_vec < 3]
 :::
 
 ::: {.column width="40%" .fragment}
-::: {.callout-note appearance="minimal"}
+::: {.callout-tip appearance="simple"}
 R use the `>` to test greater than. *E.g.*:
 
 ```{r}
@@ -538,7 +538,7 @@ cbind(vec1, vec2)
 
 <br>
 
-::: {.fragment .callout-note appearance="minimal"}
+::: {.fragment .callout-tip appearance="simple"}
 What is the data structure of each row/column of a matrix?
 :::
 
@@ -568,7 +568,7 @@ mat[, 3] # all rows of the 3rd column
 
 ::: {.column .fragment}
 
-::: {.callout-note appearance="minimal"}
+::: {.callout-tip appearance="simple"}
 - How to get all columns of the 2nd and the 3rd rows?
 - How to get the value 5 from the matrix?
 :::
@@ -613,7 +613,7 @@ mat["r1", ] # all element of the 1st row
 
 ::: {.column .fragment}
 
-::: {.callout-note appearance="minimal"}
+::: {.callout-tip appearance="simple"}
 By using the names of rows and columns:
 
 - How to get 2nd row of the 2nd and the 3rd columns?
@@ -639,7 +639,7 @@ mat[c(TRUE, TRUE, FALSE), ]
 mat[c(TRUE, TRUE, FALSE), c(FALSE, TRUE, TRUE, FALSE)]
 ```
 
-::: {.callout-note appearance="minimal" .fragment}
+::: {.callout-tip appearance="simple" .fragment}
 By using the logical indexing, how to select the 2nd and 3rd rows, the 1st and 2nd columns of the `mat`?
 :::
 
@@ -741,7 +741,7 @@ num_vec
 :::
 :::
 
-::: {.fragment .callout-tip appearance="minimal"}
+::: {.fragment .callout-note appearance="simple"}
 When assigning new values, you must provide either:
 
 - A single value, 

@@ -88,7 +88,7 @@ de_res[abs(de_res$log2FoldChange) > 0.5, ]
 de_res[de_res$log2FoldChange > 0.5 & de_res$padj < 0.05, ]
 ```
 
-::: {.callout-tip title="Stats Time!"}
+::: {.callout-note title="Stats Time!"}
 **Multiple Tests Correction**
 
 <ul>
@@ -168,7 +168,7 @@ de_res[["gene_category"]] <- ifelse(
 table(de_res[["gene_category"]])
 ```
 
-::: {.callout-tip}
+::: {.callout-note}
 **Ensembl Data Base**
 
 [Ensembl](http://www.ensembl.org/index.html)

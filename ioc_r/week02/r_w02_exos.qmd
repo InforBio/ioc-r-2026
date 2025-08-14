@@ -161,7 +161,7 @@ heights
 
 
 
-::: {.callout-tip title="Stats Time!"}
+::: {.callout-note title="Stats Time!"}
 **Normal Distribution**
 
 A normal distribution (also known as Gaussian distribution or "bell curve"),
@@ -210,7 +210,7 @@ and the alternative hypothesis (H1) is the heights are not normally distributed.
 shapiro.test(heights) 
 ```
 
-::: {.callout-tip title="Stats Time!"}
+::: {.callout-note title="Stats Time!"}
 **Type I error ($\alpha$)**
 
 A type I error occurs when we reject the null hypothesis whereas it is actually true (false positive).
