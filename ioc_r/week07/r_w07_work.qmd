@@ -11,10 +11,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-Write your code directly in a Quarto document.
-
-To create a Quarto document: go to **File** -> **New File** -> **Quarto Document**, then click **Create**.
-
 ## Mini Data Project (Part 2)
 
 We already saw how to import and tidy the data for structure 1 during the exercise.
@@ -26,28 +22,32 @@ The data is available in two CSV files:
 - [data_anonym_struc1_noise.csv](../exos_data/data_anonym_struc1_noise.csv)
 - [data_anonym_struc2_noise.csv](../exos_data/data_anonym_struc2_noise.csv)
 
-1. Use `lapply()` to import and reshape the two data files at once. Don't forget to change the necessary parameters.
+1. Import the two data files and reshape them the same way you did up to question 9 of the exercise.
+Then, combine the two datasets into one.
+Make sure to adjust any parameters as needed.
 
-Hints:
-
-- Create a vector to store the data files' path.
-- Use `lapply()` to repeat the import and reshape steps on the created path vector.
-- Bind rows to have a final data frame for both structures. (Use `dplyr::bind_rows()` or `rbind()`)
+Hints: You can combine datasets by stacking their rows together to create one final data frame.
+(Use `dplyr::bind_rows()` or `rbind()` for this.)
 
 
 2. Remove lines with NA in expression value.
 
 
-3. At age 60 and in the brain structure 2, which animal has the smallest expression level in each sex for gene 2 and 16?
+3. For the mice of 20 days, count how many measurements you have for each brain structure in genes 4 and 5 separately.
 
 
-4. Explore how to use `facet_grid()` in ggplot2 to display figures in separate facets.
-Create a boxplot to visualize the expression levels of gene 16 for both sexes at different age time points, with each brain structure shown in its own facet.
+4. Explore how brain structure and genes 16 to 20 relate to each other using the `pairs()` function.
+Hint: Convert struc to a factor before passing it to `pairs()`.
+
+Which pair of variables correlated the most?
+
+
+5. Based on the previous figure, which gene appears to show the largest difference in expression between the two brain structures?
+
+Choose an appropriate figure to display this gene's expression across the brain structures.
 
 
 ---
-
-Click "Render" to generate your Quarto report.
 
 The homework correction is available here:
 [link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week07/.r_w07_work_corr.R)
