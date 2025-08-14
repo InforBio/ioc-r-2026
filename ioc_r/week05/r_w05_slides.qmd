@@ -32,7 +32,7 @@ image: images/ggplot2_logo.png
     - Comparison: `==`, `!=`, `<`, `<=`, `>`, `>=`.
     - The `%in%`: check membership
 
-::: {.callout-note appearance="minimal"}
+::: {.callout-tip appearance="simple"}
 What does the following code do?
 :::
 
@@ -53,7 +53,7 @@ df[df$pvalue < 0.05, ]
     - statements: if, if...else
     - `ifelse()` function
 
-::: {.callout-note appearance="minimal"}
+::: {.callout-tip appearance="simple"}
 What does the following code do?
 :::
 
@@ -102,7 +102,7 @@ By default, R will install the lastest version of a package.
 
 - Via command, *i.e.*, `install.packages("ggplot2")`
 
-::: {.callout-tip appearance="minimal"}
+::: {.callout-note appearance="simple"}
 - **[CRAN](https://cran.r-project.org)** (Comprehensive R Archive Network) is a network of servers around the world that store identical, up-to-date, versions of code and documentation for R.
 - **[Bioconductor](https://bioconductor.org)** is a specialized repository like CRAN, but focused on bioinformatics. It provides R packages for analyzing genomic and biological data.
 :::
@@ -143,7 +143,7 @@ ggplot() # call the function to iniate a ggplot
 
 A loaded package will be checked in the "Packages" panel.
 
-::: {.callout-tip appearance="minimal"}
+::: {.callout-note appearance="simple"}
 You only need to load a package once per R session.
 :::
 
@@ -153,7 +153,7 @@ You only need to load a package once per R session.
 ggplot2::ggplot()
 ```
 
-::: {.callout-tip appearance="minimal"}
+::: {.callout-note appearance="simple"}
 This way is recommanded if you need to use only one function of a package,
 or if you want to make sure you use the wanted function.
 :::
@@ -177,7 +177,7 @@ flowchart LR
 
 <br>
 
-::: {.callout-tip appearance="minimal"}
+::: {.callout-note appearance="simple"}
 Check out these websites: [from Data to Viz](https://www.data-to-viz.com) and [The R Graph Gallery](https://r-graph-gallery.com) (by Yan Holtz)
 :::
 
@@ -240,7 +240,7 @@ p0
 
 Specify data, x and y axes.
 
-:::{.callout-tip appearance="minimal"}
+:::{.callout-important appearance="simple"}
 The data should be a data frame containing both variables needed for the plot.
 :::
 :::
@@ -292,7 +292,7 @@ base_plot
 :::
 :::
 
-::: {.callout-tip appearance="minimal"}
+::: {.callout-note appearance="simple"}
 Reference: <https://ggplot2.tidyverse.org/articles/ggplot2-specs.html>
 :::
 
@@ -319,7 +319,7 @@ p0 + geom_point(aes(shape = Species))
 :::
 :::
 
-::: {.callout-tip appearance="minimal"}
+::: {.callout-note appearance="simple"}
 Reference: <https://ggplot2.tidyverse.org/articles/ggplot2-specs.html>
 :::
 
@@ -346,7 +346,7 @@ p0 + geom_point(aes(size = Petal.Length))
 :::
 :::
 
-::: {.callout-tip appearance="minimal"}
+::: {.callout-note appearance="simple"}
 Reference: <https://ggplot2.tidyverse.org/articles/ggplot2-specs.html>
 :::
 
@@ -373,7 +373,7 @@ p0 + geom_point(size = 3, alpha = 0.5)
 :::
 :::
 
-::: {.callout-tip appearance="minimal"}
+::: {.callout-note appearance="simple"}
 Reference: <https://ggplot2.tidyverse.org/articles/ggplot2-specs.html>
 :::
 
@@ -426,7 +426,7 @@ p_regline
 :::
 :::
 
-:::{.callout-tip appearance="minimal" .fragment}
+:::{.callout-note appearance="simple" .fragment}
 Each `geom_*()` function adds a new layer to the plot, just like stacking transparent sheets on top of each other to build the final image.
 :::
 
@@ -448,7 +448,7 @@ ggplot(
 ```
 :::
 ::: {.column .fragment}
-::: {.callout-note appearance="minimal"}
+::: {.callout-tip appearance="simple"}
 Compare the following code with the code on the left.
 What is different between the codes?
 What is different about the resulting graphs?
@@ -512,7 +512,7 @@ ggplot(iris, aes(x = Species)) +
 :::
 :::
 
-::: {.callout-tip appearance="minimal"}
+::: {.callout-note appearance="simple"}
 `geom_histogram()` and `geom_bar()` only require one variable for the x-axis. The y-axis is automatically calculated.
 :::
 
@@ -579,7 +579,7 @@ ggsave(
 )
 ```
 
-:::{.callout-note appearance="minimal" .fragment}
+:::{.callout-tip appearance="simple" .fragment}
 Save the basic plot to the `outputs` folder in your project.
 Check the saved figure via the *Files* panel in RStudio.
 :::

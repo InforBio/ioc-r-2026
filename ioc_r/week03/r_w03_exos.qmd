@@ -78,7 +78,7 @@ str(expr_wt)
 str(expr_set1)
 ```
 
-::: {.callout-tip title="Stats Time!"}
+::: {.callout-note title="Stats Time!"}
 **Fold change**
 
 Fold change (FC) measures the relative change in gene expression between two conditions or groups.
@@ -115,7 +115,7 @@ lfc <- log2(fc)
 lfc
 ```
 
-::: {.callout-tip title="Stats Time!"}
+::: {.callout-note title="Stats Time!"}
 **Mann-Whitney Wilcoxon Rank Sum Test**
 
 The Wilcoxon Rank Sum test, also called Mann-Whitney test,
@@ -248,7 +248,7 @@ my_list[["gene_description"]] <- c(
 ```
 
 
-::: {.callout-tip title="Bonus!"}
+::: {.callout-note title="Bonus!"}
 Check out this cheat sheet for the basic R commands:
 [Base R Cheat Sheet](https://iqss.github.io/dss-workshops/R/Rintro/base-r-cheat-sheet.pdf)
 :::

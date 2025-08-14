@@ -99,7 +99,7 @@ Integrated Development Environment (IDE)
 2. Environment/History: tracks your variables and past commands.
 3. Files/Plots/Packages: managing your files, viewing graphs, or installing tools.
 
-::: {.callout-tip appearance="minimal"}
+::: {.callout-note appearance="simple"}
 Rstudio [cheat sheet](https://rstudio.github.io/cheatsheets/rstudio-ide.pdf)
 ([and French version](https://rstudio.github.io/cheatsheets/translations/french/rstudio-ide_fr.pdf))
 :::
@@ -281,7 +281,7 @@ r_week1              # Your working directory
 
 . . .
 
-::: {.callout-note appearance="minimal"}
+::: {.callout-tip appearance="simple"}
 - Create `data` and `scripts` folders inside your working directory.
 - Move the `test.R` into the `scripts` folder of your working directory.  
 :::
@@ -338,7 +338,7 @@ r_week1              # Your working directory
 [1] "/Users/lijiao/Documents/r_week1"
 ```
 
-::: {.fragment .callout-note appearance="minimal"}
+::: {.fragment .callout-tip appearance="simple"}
 What are the absolute and relative paths of the folder "data"?
 :::
 
@@ -398,8 +398,8 @@ When you select the file, a preview window will pop up.
 RStudio tries to guess the data's properties, but you should always confirm them.
 :::
 
-::: {.callout-tip appearance="minimal"}
-# Think before you import
+::: {.callout-tip appearance="simple"}
+# Think before you import the data
 
 - How do you want to name the imported data?
 - Is there a header?
@@ -438,7 +438,7 @@ write_csv(iris, file = "outputs/iris_export.csv")
 
 . . .
 
-::: {.callout-note appearance="minimal"}
+::: {.callout-tip appearance="simple"}
 Go to the *Files* pane, can you find the saved file?
 :::
 

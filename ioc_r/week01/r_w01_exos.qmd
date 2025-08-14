@@ -37,7 +37,7 @@ Some rules for naming your project:
   -  An R script named "r_w01_exos.R" for this week's exercise ([here](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week01/r_w01_exos.R)), save it into the `scripts` folder.
   - A data file called "read-counts.csv" ([here](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv)), put it into the `data` folder.
 
-::: {.callout-tip}
+::: {.callout-note}
 If you are using RStudio server, files can be uploaded using the "Upload" icon
 in the *Files* pane.
 :::
@@ -126,7 +126,7 @@ sd(counts[["WT.2"]])
 summary(counts[["WT.2"]])
 ```
 
-::: {.callout-tip title="Stats Time!"}
+::: {.callout-note title="Stats Time!"}
 What are quartiles?
 
 Quartiles are three values that split sorted data into four equal parts.
@@ -141,7 +141,7 @@ IQR (Interquartile range) = Q3 - Q1
 
 6. Generate a histogram for the "WT.2" sample using `hist()`. What does the distribution look like?
 
-::: {.callout-tip title="Stats Time!"}
+::: {.callout-note title="Stats Time!"}
 **Histograms** help us see how data is spread out.
 They show how many data points fall into different intervals, or *bins*.
 By looking at a histogram, we can quickly understand the shape of the data,
@@ -153,7 +153,7 @@ It's a simple way to get an overview of your data.
 hist(counts[["WT.2"]])
 ```
 
-::: {.callout-tip title="Stats Time!"}
+::: {.callout-note title="Stats Time!"}
 **log2 Transformation**
 
 A log2 transformation is commonly used to normalize data and reduce skewness,

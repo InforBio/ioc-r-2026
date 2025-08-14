@@ -46,7 +46,7 @@ A path tells your computer where to find files/folders.
 - **Absolute path**, starts from the very top of your computer’s folder.
 - **Relative path**, starts from your working directory (folder).
 
-::: {.callout-note appearance="minimal" .fragment}
+::: {.callout-tip appearance="simple" .fragment}
 Your working directory is `/Users/lijiao/my_project/`,
 you want to import a file loacated at `/Users/lijiao/Download/data.csv` using the `read_csv()` function.
 
@@ -94,7 +94,7 @@ y <- 2
 total <- x + y
 total
 ```
-:::{.callout-note appearance="minimal"}
+:::{.callout-tip appearance="simple"}
 - If we change `x` to 5, is the value stored in `total` changed?
 - If `total` is not changed, what do you need to do to update the value in `total`?
 :::
@@ -430,7 +430,7 @@ xlsx::write.xlsx(
 )
 ```
 
-:::{.callout-tip appearance="minimal" .fragment}
+:::{.callout-note appearance="simple" .fragment}
 - Don't forget to use arguments to specify if your data has header, row names, *etc.*
 - Cheat sheet for data import/export with {readr} and {readxl} in R: <https://github.com/rstudio/cheatsheets/blob/main/data-import.pdf>
 :::
@@ -480,7 +480,7 @@ load("outputs/analysis_results.RData")
 
 <br>
 
-:::{.callout-tip appearance="minimal" .fragment}
+:::{.callout-note appearance="simple" .fragment}
 Both `.RDS` and `.Rdata` preserve data structures, such as column data types (numeric, character or factor).
 :::
 
@@ -497,7 +497,7 @@ Both `.RDS` and `.Rdata` preserve data structures, such as column data types (nu
 
 Different AI tools: ChatGPT, Gemini, Perplexity, Claude, Le Chat, DeepSeek, *etc.*
 
-:::{.callout-important appearance="minimal"}
+:::{.callout-important appearance="simple"}
 AI is a great assistant, but it can make mistakes, always verify outputs!
 :::
 
