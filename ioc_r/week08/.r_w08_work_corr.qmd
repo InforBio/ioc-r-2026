@@ -1,0 +1,16 @@
+---
+title: "Week 8 - Homework"
+format: 
+  html: default
+date-format: " "
+categories: 
+  - week08
+  - homework
+editor_options: 
+  chunk_output_type: console
+---
+
+
+---
+
+Click "Render" to generate your Quarto report.

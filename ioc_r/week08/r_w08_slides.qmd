@@ -1,0 +1,281 @@
+---
+title: "Graphs Level Up: {ggplot2} (Part 2) & Custom Functions"
+subtitle: "IOC-R Week 8"
+date: "2026-01-26"
+date-format: " "
+format:
+  revealjs: 
+    toc: true
+    toc-title: "Plan"
+    toc-depth: 1
+    slide-number: true
+    preview-links: auto
+    logo: ../../images/logoInforBio_fond_blanc_small.png
+    css: ../custom.css
+  # pdf:
+  #   toc: true
+echo: true
+categories: 
+  - week08
+  - slides
+image: images/preview_w8.png
+---
+
+# Recap Data Wrangling & Basic ggplot2
+
+## Reshape Data with {`tidyr`} {.smaller}
+
+- Reshape data to longer or wider format as needed.
+
+![](images/pivot_img.png){width=70px}
+
+. . .
+
+```r
+data |> tidyr::pivot_longer(cols = -1, names_to = "condition", values_to = "value")
+data |> tidyr::pivot_wider(names_from = gene, values_from = value)
+```
+
+## Manipulate Data with {`dplyr`} {.smaller}
+
+```{r}
+library(dplyr)
+iris_tbl <- as_tibble(iris)
+head(iris_tbl)
+```
+
+::: {.columns}
+::: {.column}
+
+::: {.callout-tip appearance="simple"}
+- Select columns related to petal and show the last 3 rows.
+- Create a new column for the ratio of sepal length and width.
+- How many rows with sepal ratio > 2.8?
+:::
+
+:::
+::: {.column .fragment}
+```{r}
+select(iris_tbl, contains("sepal")) |> tail(3)
+iris_tbl <- iris_tbl |>
+  mutate(sepal_ratio = Sepal.Length / Sepal.Width)
+iris_tbl |> filter(sepal_ratio > 2.8) |> nrow()
+```
+
+:::
+:::
+
+## Basic ggplot2
+
+![(Figure adpated from [QCBS R Workshop Series](https://r.qcbs.ca/workshop03/book-en/grammar-of-graphics-gg-basics.html).)](../week05/images/ggplot_comp.png)
+
+# ggplot2 - Part 2
+
+```{r}
+#| label: increase-fig-font
+#| echo: false
+
+ggplot2::theme_set(ggplot2::theme_grey())
+ggplot2::theme_update(
+  axis.title = ggplot2::element_text(size = ggplot2::rel(2)),
+  axis.text = ggplot2::element_text(size = ggplot2::rel(2)),
+  strip.text = ggplot2::element_text(size = ggplot2::rel(2)),
+  plot.title = ggplot2::element_text(size = ggplot2::rel(2.5)),
+  legend.text = ggplot2::element_text(size = ggplot2::rel(2)),
+  legend.title = ggplot2::element_text(size = ggplot2::rel(2))
+)
+```
+
+
+## Customizing Scales {.smaller}
+
+- `scale_color|fill|shape_manual()`: Assign specific colors, fill colors or shapes.
+
+:::: {.columns}
+::: {.column}
+
+```{r}
+library(ggplot2)
+p0 <- ggplot(iris, aes(x = Petal.Length, y = Sepal.Length)) +
+  geom_point(
+    aes(color = Species, fill = Species, shape = Species),
+    size = 3
+  )
+p0
+```
+:::
+
+::: {.column .fragment}
+
+```{r}
+p0 + scale_color_manual( # Manually set colors
+  values = c(
+    "setosa" = "springgreen3",
+    "versicolor" = "orange", 
+    "virginica" = "steelblue4"
+  )
+)
+```
+
+:::
+::::
+
+(See [colors in R](https://r-charts.com/colors/))
+
+## Customizing Scales {.smaller}
+
+- `scale_color|fill|shape_manual()`: Assign specific colors, fill colors or shapes.
+
+:::: {.columns}
+::: {.column}
+
+```{r}
+p1 <- p0 + scale_shape_manual( # Manually set shape
+  values = c(
+    "setosa" = 21,
+    "versicolor" = 22, 
+    "virginica" = 25
+  )
+)
+p1
+```
+
+:::
+
+::: {.column .fragment}
+
+```{r}
+p1 + scale_fill_manual( # Manually set fill
+  values = c(
+    "setosa" = "springgreen3",
+    "versicolor" = "orange", 
+    "virginica" = "steelblue4"
+  )
+)
+```
+
+:::
+::::
+
+(See [possible shape](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html#sec:shape-spec))
+
+
+## Customizing Scales {.smaller}
+
+- `scale_x|y_continuous(limits)` or `xlim()` or`ylim()`: Change axis limits or continuous scales.
+
+:::: {.columns}
+::: {.column}
+
+```{r}
+p0 + scale_x_continuous(limits = c(0, 7))
+```
+:::
+
+::: {.column}
+
+```{r}
+p0 + xlim(c(0, 7))
+```
+
+:::
+::::
+
+
+## Add Lines to Figures {.smaller}
+
+- Add horizontal line (`geom_hline()`) or vertical line (`geom_vline()`) 
+
+```{r}
+p0 +
+  geom_hline(
+    yintercept = mean(iris$Sepal.Length), 
+    linetype = "dashed", color = "gray50", size = 1
+  ) +
+  geom_vline(
+    xintercept = c(3, 5),
+    linetype = "dotted", color = "red", size = 1
+  )
+```
+
+(See [possible line type](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html#sec:line-type-spec))
+
+
+## Faceting {.smaller}
+
+![Source: [ggplot2 book](https://ggplot2-book.org/facet.html)](images/position-facets.png)
+
+
+## Faceting {.smaller}
+
+::: {.columns}
+::: {.column}
+```{r}
+# table(
+#   "species" = penguins$species,
+#   "island" = penguins$island
+# )
+#            island
+# species     Biscoe Dream Torgersen
+#   Adelie        44    56        52
+#   Chinstrap      0    68         0
+#   Gentoo       124     0         0
+ggplot(penguins, aes(x = bill_len, y = body_mass)) +
+  geom_point(size = 3, alpha = 0.5) +
+  facet_grid(
+    rows = vars(species),
+    cols = vars(island),
+    scales = "fixed" # or "free_x", "free_y", "free"
+  )
+```
+
+:::
+::: {.column}
+```{r}
+ggplot(penguins, aes(x = bill_len, y = body_mass)) +
+  geom_point(size = 3, alpha = 0.5) +
+  facet_wrap(
+    facets = vars(species, island),
+    nrow = 2,
+    scales = "fixed" # or "free_x", "free_y", "free"
+  )
+```
+
+:::
+:::
+
+
+## Useful Extensions {.smaller}
+
+<https://exts.ggplot2.tidyverse.org/gallery/>
+<https://r-graph-gallery.com>
+
+
+
+ggtext: use markdown and html to style text
+ggrepel: prevents labels from overlapping,
+ggdist: visualize distribution
+ggpubr (ggsignif): add stats test results to plot
+ggtheme: more integrated themes
+patchwork: primary tool for creating multi-panel figures
+
+plotly (3D interactive)
+
+tidyplots(https://jbengler.github.io/tidyplots/) and {ggpubr}: publication ready plots
+
+## Plotting Statstical Test Results {.smaller}
+
+
+
+# Custom Functions
+
+## {.smaller}
+
+
+# Let's Practice !
+
+## Today's Goals
+
+- Create more complexe figures
+- Create custom functions to streamline data visualisation
+

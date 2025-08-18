@@ -1,0 +1,18 @@
+---
+title: "Week 8 - Homework"
+format: 
+  html: default
+date: "2026-01-28"
+date-format: " "
+categories: 
+  - week08
+  - homework
+editor_options: 
+  chunk_output_type: console
+---
+
+
+---
+
+The homework correction is available here:
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week08/.r_w08_work_corr.qmd)
