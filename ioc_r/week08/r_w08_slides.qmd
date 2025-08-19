@@ -71,18 +71,34 @@ iris_tbl |> filter(sepal_ratio > 2.8) |> nrow()
 
 # ggplot2 - Part 2
 
+## Set Default Theme {.smaller}
+
+::: {.callout-note appearance="simple"}
+Built-in themes: <https://ggplot2.tidyverse.org/reference/ggtheme.html>
+:::
+
+- Use `theme_set()` to apply a selected theme to all plots.
+- Use `theme_update()` to modify elements of the current theme.
+
 ```{r}
 #| label: increase-fig-font
-#| echo: false
 
-ggplot2::theme_set(ggplot2::theme_grey())
-ggplot2::theme_update(
-  axis.title = ggplot2::element_text(size = ggplot2::rel(2)),
-  axis.text = ggplot2::element_text(size = ggplot2::rel(2)),
-  strip.text = ggplot2::element_text(size = ggplot2::rel(2)),
-  plot.title = ggplot2::element_text(size = ggplot2::rel(2.5)),
-  legend.text = ggplot2::element_text(size = ggplot2::rel(2)),
-  legend.title = ggplot2::element_text(size = ggplot2::rel(2))
+library(ggplot2)
+
+# apply theme_light() to every plot
+theme_set(theme_light())
+
+# modify single elements of the current theme (aka theme_light())
+theme_update(
+  axis.title = element_text(
+    size = rel(2), # twice the default axis title size
+    face = "italic" # make the axis title italic
+  ),
+  axis.text = element_text(size = rel(2)),
+  strip.text = element_text(size = rel(2)),
+  plot.title = element_text(size = rel(2)),
+  legend.text = element_text(size = rel(2)),
+  legend.title = element_text(size = rel(2))
 )
 ```
 
@@ -95,7 +111,6 @@ ggplot2::theme_update(
 ::: {.column}
 
 ```{r}
-library(ggplot2)
 p0 <- ggplot(iris, aes(x = Petal.Length, y = Sepal.Length)) +
   geom_point(
     aes(color = Species, fill = Species, shape = Species),
@@ -120,7 +135,9 @@ p0 + scale_color_manual( # Manually set colors
 :::
 ::::
 
-(See [colors in R](https://r-charts.com/colors/))
+::: {.callout-note appearance="simple"}
+See [colors in R](https://r-charts.com/colors/)
+:::
 
 ## Customizing Scales {.smaller}
 
@@ -157,7 +174,9 @@ p1 + scale_fill_manual( # Manually set fill
 :::
 ::::
 
-(See [possible shape](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html#sec:shape-spec))
+::: {.callout-note appearance="simple"}
+See [possible shape](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html#sec:shape-spec)
+:::
 
 
 ## Customizing Scales {.smaller}
@@ -198,7 +217,9 @@ p0 +
   )
 ```
 
-(See [possible line type](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html#sec:line-type-spec))
+::: {.callout-note appearance="simple"}
+See [possible line type](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html#sec:line-type-spec)
+:::
 
 
 ## Faceting {.smaller}
@@ -232,11 +253,13 @@ ggplot(penguins, aes(x = bill_len, y = body_mass)) +
 :::
 ::: {.column}
 ```{r}
+#| fig-height: 8
+
 ggplot(penguins, aes(x = bill_len, y = body_mass)) +
   geom_point(size = 3, alpha = 0.5) +
   facet_wrap(
     facets = vars(species, island),
-    nrow = 2,
+    nrow = 3,
     scales = "fixed" # or "free_x", "free_y", "free"
   )
 ```
@@ -248,6 +271,9 @@ ggplot(penguins, aes(x = bill_len, y = body_mass)) +
 ## Useful Extensions {.smaller}
 
 <https://exts.ggplot2.tidyverse.org/gallery/>
+
+
+
 <https://r-graph-gallery.com>
 
 
