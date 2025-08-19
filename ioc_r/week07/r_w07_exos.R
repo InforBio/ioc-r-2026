@@ -81,48 +81,17 @@
 ### Explore the Data ---------------------------------------------------------------
 
 # What kind of analysis would you like to perform with this data?
-# In statistics, it's common to begin by exploring the dataset as a whole and visualizing the relationships
-#   between different variables.
-# The basic R function `pairs()` (`?pairs`) is useful for creating a matrix of scatter plots to examine
-#   the relationships between each pair of continuous variables.
-# For instance, we can explore the relationships between continuous variables such as age and
-#   the expression levels of genes 1, 2, 3, *etc.*
+# The function `ggpairs()` from the {[`GGally`](https://ggobi.github.io/ggally/index.html)} package
+# is useful for creating a matrix of scatter plots to examine the relationships between each pair of variables.
+# First, let's install the {`GGally`} package if it is not already installed.
 
-# 12. How will you reshape the `data1_long` to provide the necessary data for the `pairs()` function?
+# install.packages("GGally")
+
+# 12. Load the package and take a look at the help page for `ggpairs()`.
+# How will you reshape the `data1_long` to provide the necessary data for the `[ggpairs()](https://ggobi.github.io/ggally/articles/ggpairs.html)` function?
 
 # To save space, we will focus on examining the relationship between age and the first 5 genes.
 # 13. What did you observe from these scatter plots?
-
-## put histograms on the diagonal
-panel.hist <- function(x, ...) {
-  usr <- par("usr")
-  par(usr = c(usr[1:2], 0, 1.5))
-  h <- hist(x, plot = FALSE)
-  breaks <- h$breaks
-  nB <- length(breaks)
-  y <- h$counts
-  y <- y / max(y)
-  rect(breaks[-nB], 0, breaks[-1], y, col = "cyan", ...)
-}
-## put (absolute) correlations on the upper panels,
-## with size proportional to the correlations.
-panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor, ...) {
-  par(usr = c(0, 1, 0, 1))
-  r <- abs(cor(x, y, use = "na.or.complete")) # modified to allow NA
-  txt <- format(c(r, 0.123456789), digits = digits)[1]
-  txt <- paste0(prefix, txt)
-  if (missing(cex.cor)) {
-    cex.cor <- 0.8 / strwidth(txt)
-  }
-  text(0.5, 0.5, txt, cex = cex.cor * r)
-}
-
-pairs(
-  x = data1_wider[, c(1, 5:9)], # age and the first 5 genes
-  diag.panel = panel.hist,
-  lower.panel = panel.smooth,
-  upper.panel = panel.cor
-)
 
 # 14. Calculate the correlation between gene 1 and 2. (`?cor`)
 

@@ -83,7 +83,7 @@ Convert your imported data to tibble format if it's not the case.
 What is the data dimension?
 
 ```{r}
-data1 <- readr::read_csv2(
+data1 <- read_csv2(
   file = "../exos_data/data_anonym_struc1_noise.csv",
   locale = locale(decimal_mark = ",")
 )
@@ -168,7 +168,7 @@ If you want to write all previous codes together:
 ```{r}
 #| eval: false
 
-data1_long <- readr::read_csv2(
+data1_long <- read_csv2(
     file = "../exos_data/data_anonym_struc1_noise.csv",
     locale = locale(decimal_mark = ",")
   ) |>
@@ -238,11 +238,25 @@ data1_long |>
 What kind of analysis would you like to perform with this data?
 
 In statistics, it's common to begin by exploring the dataset as a whole and visualizing the relationships between different variables.
-The basic R function `pairs()` (`?pairs`) is useful for creating a matrix of scatter plots to examine the relationships between each pair of continuous variables.
+The function `ggpairs()` from the {[`GGally`](https://ggobi.github.io/ggally/index.html)} package
+is useful for creating a matrix of scatter plots to examine the relationships between each pair of variables.
+First, let's install the {`GGally`} package if it is not already installed.
 
-For instance, we can explore the relationships between continuous variables such as age and the expression levels of genes 1, 2, 3, *etc.*
+```{r}
+#| eval: false
 
-12. How will you reshape the `data1_long` to provide the necessary data for the `pairs()` function?
+install.packages("GGally")
+```
+
+12. Load the package and take a look at the help page for `ggpairs()`.
+How will you reshape the `data1_long` to provide the necessary data for the `[ggpairs()](https://ggobi.github.io/ggally/articles/ggpairs.html)` function?
+
+```{r}
+#| eval: false
+
+library(GGally)
+?ggpairs
+```
 
 ```{r}
 data1_wider <- data1_long |>
@@ -260,34 +274,21 @@ To save space, we will focus on examining the relationship between age and the f
 13. What did you observe from these scatter plots?
 
 ```{r}
+#| echo: false
+
+library(GGally)
+```
+
+```{r}
 #| fig-width: 12
 #| fig-height: 12
 
-## put histograms on the diagonal
-panel.hist <- function(x, ...) {
-  usr <- par("usr")
-  par(usr = c(usr[1:2], 0, 1.5) )
-  h <- hist(x, plot = FALSE)
-  breaks <- h$breaks; nB <- length(breaks)
-  y <- h$counts; y <- y/max(y)
-  rect(breaks[-nB], 0, breaks[-1], y, col = "cyan", ...)
-}
-## put (absolute) correlations on the upper panels,
-## with size proportional to the correlations.
-panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor, ...) {
-  par(usr = c(0, 1, 0, 1))
-  r <- abs(cor(x, y, use = "na.or.complete")) # modified to allow NA
-  txt <- format(c(r, 0.123456789), digits = digits)[1]
-  txt <- paste0(prefix, txt)
-  if(missing(cex.cor)) cex.cor <- 0.8/strwidth(txt)
-  text(0.5, 0.5, txt, cex = cex.cor * r)
-}
+ggpairs(select(data1_wider, age, gene1:gene5))
 
-pairs(
-  x = select(data1_wider, age, gene1:gene5),
-  diag.panel = panel.hist,
-  lower.panel = panel.smooth,
-  upper.panel = panel.cor
+# or you can tweak the points for a better look
+ggpairs(
+  select(data1_wider, age, gene1:gene5),
+  lower = list(continuous = wrap("points", alpha = 0.3, size = 0.8))
 )
 ```
 
