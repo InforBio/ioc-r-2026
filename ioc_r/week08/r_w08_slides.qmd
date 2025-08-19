@@ -132,12 +132,13 @@ p0 + scale_color_manual( # Manually set colors
 )
 ```
 
+::: {.callout-note appearance="simple"}
+See [colors in R](https://r-charts.com/colors/).
+:::
+
 :::
 ::::
 
-::: {.callout-note appearance="simple"}
-See [colors in R](https://r-charts.com/colors/)
-:::
 
 ## Customizing Scales {.smaller}
 
@@ -157,6 +158,10 @@ p1 <- p0 + scale_shape_manual( # Manually set shape
 p1
 ```
 
+::: {.callout-note appearance="simple"}
+See [possible shape](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html#sec:shape-spec).
+:::
+
 :::
 
 ::: {.column .fragment}
@@ -173,10 +178,6 @@ p1 + scale_fill_manual( # Manually set fill
 
 :::
 ::::
-
-::: {.callout-note appearance="simple"}
-See [possible shape](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html#sec:shape-spec)
-:::
 
 
 ## Customizing Scales {.smaller}
@@ -270,27 +271,196 @@ ggplot(penguins, aes(x = bill_len, y = body_mass)) +
 
 ## Useful Extensions {.smaller}
 
-<https://exts.ggplot2.tidyverse.org/gallery/>
+::: {.callout-note appearance="simple"}
+Check out the extension gallery: <https://exts.ggplot2.tidyverse.org/gallery/>
+:::
+
+- {`ggrepel`}: prevent labels from overlapping
+- {`patchwork`}: create multi-panel figures
+- {`plotly`}: make interactive graph
+- {`ggpubr`}: make publication ready plots 
 
 
+## Labelling with {`ggrepel`} {.smaller}
 
-<https://r-graph-gallery.com>
+- {[`ggrepel`](https://ggrepel.slowkow.com)}: prevent labels from overlapping
+
+```{r}
+# label penguins with bill depth 17.5
+penguins <- penguins |>
+  mutate(
+    name = ifelse(
+      test = bill_dep == 17.5,
+      yes = paste(species, island, sep = "_"),
+      no = NA
+    )
+  )
+head(penguins, 2)
+filter(penguins, !is.na(name)) |> head(2)
+```
 
 
+## Labelling with {`ggrepel`} {.smaller}
 
-ggtext: use markdown and html to style text
-ggrepel: prevents labels from overlapping,
-ggdist: visualize distribution
-ggpubr (ggsignif): add stats test results to plot
-ggtheme: more integrated themes
-patchwork: primary tool for creating multi-panel figures
+- {[`ggrepel`](https://ggrepel.slowkow.com)}: prevent labels from overlapping
 
-plotly (3D interactive)
+:::::: {.columns}
+::: {.column}
+```{r}
+#| fig-height: 7
 
-tidyplots(https://jbengler.github.io/tidyplots/) and {ggpubr}: publication ready plots
+ggplot(penguins, aes(x = bill_len, y = bill_dep)) +
+  geom_point(alpha = 0.5) +
+  geom_label(aes(label = name), size = 5)
+```
 
-## Plotting Statstical Test Results {.smaller}
+:::
+::: {.column}
+```{r}
+#| fig-height: 7
 
+ggplot(penguins, aes(x = bill_len, y = bill_dep)) +
+  geom_point(alpha = 0.5) +
+  ggrepel::geom_label_repel(
+    aes(label = name),
+    size = 5,
+    min.segment.length = 0,
+    seed = 8
+  )
+```
+
+:::
+:::
+
+
+## Creating {`patchwork`} {.smaller}
+
+{[`patchwork`](https://patchwork.data-imaginist.com)}: create multi-panel figures
+
+```{r}
+# prepare figures
+p1 <- ggplot(penguins, aes(x = bill_len, y = bill_dep)) +
+  geom_point(alpha = 0.5) +
+  labs(title = "Plot 1")
+
+p2 <- ggplot(penguins, aes(x = species, y = bill_len)) +
+  geom_violin() +
+  labs(title = "Plot 2")
+
+p3 <- ggplot(penguins, aes(bill_len)) +
+  geom_histogram(
+    aes(fill = species),
+    position = position_dodge()
+  ) +
+  labs(title = "Plot 3")
+```
+
+How to form a patchwork?
+
+- `+` add plots together and {`patchwork`} will try to keep the grid square.
+- `|` will place the plots beside each other.
+- `/` will stack the plots.
+
+## Creating {`patchwork`} {.smaller}
+
+::: {.columns}
+::: {.column}
+```{r}
+#| fig-height: 7
+
+library(patchwork)
+p1 | p2 / p3
+```
+
+:::
+::: {.column}
+```{r}
+#| fig-height: 7
+
+(p1 | p2) / p3
+```
+
+:::
+:::
+
+:::{.callout-note appearance="simple"}
+For more complex and precise design, use the [`wrap_plots()`](https://patchwork.data-imaginist.com/reference/wrap_plots.html) function. 
+:::
+
+## Interactive Plots with {`plotly`} {.smaller}
+
+Simply wrap the ggplot object in the function `ggplotly()`.
+
+```{r}
+#| fig-height: 4.4
+#| fig-width: 6.3
+
+library(plotly)
+ggplotly(p1)
+```
+
+:::{.callout-note appearance="simple"}
+Check more details here: <https://plotly.com/ggplot2/>
+:::
+
+## Adding Stats with {`ggpubr`} {.smaller}
+
+{`ggpubr`} provides some easy-to-use functions.
+
+::: {.columns}
+::: {.column}
+```{r}
+#| eval: false 
+
+library(ggpubr)
+
+ggboxplot(
+  data = penguins,
+  x = "species", y = "bill_len",
+  color = "species"
+) +
+  # add pairwise comparisons p-values
+  stat_compare_means(
+    method = "wilcox.test",
+    comparisons = list(
+      c("Adelie", "Gentoo"),
+      c("Adelie", "Chinstrap"),
+      c("Gentoo", "Chinstrap")
+    )
+  )
+```
+
+:::
+::: {.column}
+```{r}
+#| echo: false 
+#| fig-height: 7
+
+library(ggpubr)
+
+ggboxplot(
+  data = penguins,
+  x = "species", y = "bill_len",
+  color = "species"
+) +
+  # add pairwise comparisons p-values
+  stat_compare_means(
+    method = "wilcox.test",
+    comparisons = list(
+      c("Adelie", "Gentoo"),
+      c("Adelie", "Chinstrap"),
+      c("Gentoo", "Chinstrap")
+    )
+  ) +
+  labs(x = NULL)
+```
+
+:::
+:::
+
+:::{.callout-note appearance="simple"}
+Check out more details: <https://rpkgs.datanovia.com/ggpubr/index.html>
+:::
 
 
 # Custom Functions
