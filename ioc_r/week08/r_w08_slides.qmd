@@ -586,5 +586,5 @@ When calling a function, the order of arguments matters if you don’t use their
 ## Today's Goals
 
 - Create more complex figures
-- Create custom functions to streamline data visualisation
+- Learn to write custom functions to automate repetitive visualization tasks
 
