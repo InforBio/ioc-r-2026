@@ -25,11 +25,13 @@ The R script is available here:
 
 ## Import Data
 
-We will re-use the gene-level differential expression (DE) analysis results ([`toy_DEanalysis.csv`](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv)) seen on session 4.
-It was obtained by comparing SET1 samples to WT samples using count data from [read-counts.csv](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv).
+We will reuse the gene-level differential expression (DE) results
+([`toy_DEanalysis.csv`](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv)) introduced in session 4.
+These results were obtained by comparing **SET1** samples against **WT** samples using the corresponding count data
+([read-counts.csv](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv)).
 
-- Import the DE results and name it as `de_res`.
-- Import the count data and name it as `counts`.
+- Import the DE results and save them as `de_res`.
+- Import the count data and save it as `counts`.
 
 ```{r}
 library(tidyverse)
@@ -39,20 +41,23 @@ counts <- read_csv("../exos_data/read-counts.csv")
 ```
 
 
-1. Set `theme_minimal()` as the default theme, and a color palette for WT ("#336872") and SET1 ("#EF7B30") samples.
+## Visualisation
+
+1. Set `theme_minimal()` as the default theme,
+and define a custom color palette for WT ("#336872") and SET1 ("#EF7B30").
 
 ```{r}
 theme_set(theme_minimal())
 colors <- c("WT" = "#336872", "SET1" = "#EF7B30")
 ```
 
-2. Pick the up-regulated gene with the smallest adjusted p-value.
-Make a boxplot of the expression counts across WT and SET1 samples,
-using:
-- `geom_boxplot()` and `geom_points()` 
-- custom colors by group
+2. Identify the most significantly up-regulated gene (*i.e.* the one with the lowest adjusted p-value).
+Create a boxplot of its expression counts across WT and SET1 samples, using:
 
-Store the final plot as `p`.
+- `geom_boxplot()` and `geom_points()` 
+- the custom group colors defined above
+
+Store the resulting figure in an object named `p`.
 
 ```{r}
 # find the top up-regulated gene
@@ -81,15 +86,15 @@ p <- ggplot(df_plot, aes(x = group, y = value)) +
 p
 ```
 
-3. Label the top 3 expressed samples in each group in the previous plot,
-using `geom_repel_label()` of {ggrepel} package.
+3. Add labels to the top 3 most highly expressed samples in each group in the previous boxplot,
+using `geom_label_repel()` from the {ggrepel} package. 
 
-Hint:
+Hints:
 
-- Use `group_by()` to manipulate the data by group.
-- Use `rank()` to get the rank of values. (`?rank`)
+- Use `group_by()` to allow downstream operations performed "by group".
+- Use `rank()` to rank expression values. (`?rank`)
 
-Store the final plot as `p_label`.
+Save the final plot as `p_label`.
 
 ```{r}
 # E.g.: rank sample based on values by group
@@ -123,9 +128,9 @@ p_label
 ```
 
 
-4. Based on previous figure, add the adjusted p-value by using `stat_pvalue_manual()` from the {ggpubr} package. (`?stat_pvalue_manual`)
+4. Based on the previous figure, add the adjusted p-value using `stat_pvalue_manual()` from the {ggpubr} package. (`?stat_pvalue_manual`)
 
-Store the final plot as `p_signif`.
+Save the final plot as `p_signif`.
 
 ```{r}
 library(ggpubr)
@@ -146,18 +151,18 @@ p_signif
 ```
 
 
-5. Create a horizontal bar plot showing the log2 fold change for each gene and
-highlight those with an adjusted p-value (`padj`) of less than 0.05.
+5. Create a horizontal bar plot showing the log2 fold change for each gene,
+and highlight those with an adjusted p-value (`padj`) below 0.05.
 
 Hints: 
 
-- Create a new column to store the rank of each gene based on its log2FoldChange value.
-- Create a new column to indicate if the gene satistifies the criteria or not.
+- Add a column ranking genes by their log2 fold change.
+- Add a column indicating whether the gene meets the significance threshold.
 
-Store the final plot as `p_lfc`.
+Save the final plot as `p_lfc`.
 
 ```{r}
-#| fig-height: 8
+#| fig-height: 7
 
 de_res <- de_res |>
   arrange(log2FoldChange) |>
@@ -177,9 +182,10 @@ p_lfc <- ggplot(
 p_lfc
 ```
 
-6. Create a function to plot boxplots as `p` (of question 2) for gene of choice.
-Test your function for the gene *PIR3*.
-Store the figure as `p2`.
+6. Write a custom function that generates a boxplot (like `p` in Question 2 ) for any gene of interest.
+Test your function with the gene *PIR3*.
+
+Save the resulting plot as `p2`.
 
 ```{r}
 draw_boxplot <- function(
@@ -209,11 +215,11 @@ p2 <- draw_boxplot(df_counts = counts, the_gene = "FAR1")
 p2
 ```
 
-7. Create a patchwork layout for `p_lfc`, `p_signif`, and `p2`.
-Place `p_lfc` on the left, and arrange the two boxplots (`p_signif` and `p2`) on the right using the `|` or `/` operators.
+7. Combine `p_lfc`, `p_signif`, and `p2` into a single layout using {patchwork}. 
+Place `p_lfc` on the left, and arrange the two boxplots on the right (one on top of the other) using the `|` or `/` operators.
 
 ```{r}
-#| fig-height: 8
+#| fig-height: 7
 #| #| fig-width: 10
 
 library(patchwork)
@@ -226,19 +232,19 @@ p_lfc | p_signif / p2
 
 8. Explore the `wrap_plots()` function from {`patchwork`}. Try to:
 
-- Recreate the same figure arrangement as in the previous question, this time using the "design" argumen.
+- Recreate the same figure arrangement as in the previous question, this time using the "design" argument.
 - Add panel labels ("A", "B", "C") to the plots with the `plot_annotation()` function.
 
 ```{r}
-#| fig-height: 8
+#| fig-height: 7
 #| fig-width: 10
 
-wrap_plots(p_lfc, p_signif, p2, design = "AB\nAC") +
+wrap_plots(p_lfc, p_signif, p2, design = "12\n13") +
   plot_annotation(tag_level = "A")
 ```
 
 ---
 
-#### Good job! 👏👏 You've made great progress in mastering data manipulation techniques.
+#### Good job! 👏👏 You've made great progress in mastering data visualisation techniques.
 
 
