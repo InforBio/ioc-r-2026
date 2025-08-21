@@ -17,8 +17,6 @@ The R script is available here:
 
 ## Goals
 
-## Today's Goals
-
 - Create more complex figures
 - Learn to write custom functions to automate repetitive visualization tasks
 
@@ -128,7 +126,8 @@ p_label
 ```
 
 
-4. Based on the previous figure, add the adjusted p-value using `stat_pvalue_manual()` from the {ggpubr} package. (`?stat_pvalue_manual`)
+4. Based on the previous figure, add the adjusted p-value using `stat_pvalue_manual()`
+from the {ggpubr} package. (`?stat_pvalue_manual`)
 
 Save the final plot as `p_signif`.
 
@@ -216,7 +215,8 @@ p2
 ```
 
 7. Combine `p_lfc`, `p_signif`, and `p2` into a single layout using {patchwork}. 
-Place `p_lfc` on the left, and arrange the two boxplots on the right (one on top of the other) using the `|` or `/` operators.
+Place `p_lfc` on the left, and arrange the two boxplots on the right (one on top of the other)
+using the `|` or `/` operators.
 
 ```{r}
 #| fig-height: 7
