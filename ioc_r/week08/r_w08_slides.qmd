@@ -15,6 +15,7 @@ format:
   # pdf:
   #   toc: true
 echo: true
+warning: false
 categories: 
   - week08
   - slides
@@ -39,6 +40,8 @@ data |> tidyr::pivot_wider(names_from = gene, values_from = value)
 ## Manipulate Data with {`dplyr`} {.smaller}
 
 ```{r}
+#| message: false
+
 library(dplyr)
 iris_tbl <- as_tibble(iris)
 head(iris_tbl)
@@ -188,14 +191,14 @@ p1 + scale_fill_manual( # Manually set fill
 ::: {.column}
 
 ```{r}
-p0 + scale_x_continuous(limits = c(0, 7))
+p0 + scale_x_continuous(limits = c(0, 8))
 ```
 :::
 
 ::: {.column}
 
 ```{r}
-p0 + xlim(c(0, 7))
+p0 + xlim(c(1, 8))
 ```
 
 :::
@@ -206,15 +209,19 @@ p0 + xlim(c(0, 7))
 
 - Add horizontal line (`geom_hline()`) or vertical line (`geom_vline()`) 
 
+::: {.columns}
+::: {.column}
 ```{r}
+#| eval: false
+
 p0 +
   geom_hline(
     yintercept = mean(iris$Sepal.Length), 
-    linetype = "dashed", color = "gray50", size = 1
+    linetype = "dashed", color = "gray50"
   ) +
   geom_vline(
     xintercept = c(3, 5),
-    linetype = "dotted", color = "red", size = 1
+    linetype = "dotted", color = "red"
   )
 ```
 
@@ -222,11 +229,31 @@ p0 +
 See [possible line types](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html#sec:line-type-spec).
 :::
 
+:::
+
+::: {.column}
+```{r}
+#| echo: false
+
+p0 +
+  geom_hline(
+    yintercept = mean(iris$Sepal.Length), 
+    linetype = "dashed", color = "gray50", linewidth = 1
+  ) +
+  geom_vline(
+    xintercept = c(3, 5),
+    linetype = "dotted", color = "red", linewidth = 1
+  )
+```
+:::
+:::
+
 
 ## Faceting {.smaller}
 
-![Source: [ggplot2 book](https://ggplot2-book.org/facet.html)](images/position-facets.png){width=80%}
+![](images/position-facets.png){width=70%}
 
+(Source: [ggplot2 book](https://ggplot2-book.org/facet.html))
 
 ## Faceting {.smaller}
 
@@ -454,6 +481,7 @@ Simply wrap the ggplot object in the function `ggplotly()`.
 ```{r}
 #| fig-height: 4.3
 #| fig-width: 6.3
+#| message: false
 
 library(plotly)
 ggplotly(p1)
