@@ -1,0 +1,244 @@
+---
+title: "Putting It All Together<br>Reproducible Analysis with Quarto"
+subtitle: "IOC-R Week 9"
+date: "2026-03-09"
+date-format: " "
+format:
+  revealjs: 
+    toc: true
+    toc-title: "Plan"
+    toc-depth: 1
+    slide-number: true
+    preview-links: auto
+    logo: ../../images/logoInforBio_fond_blanc_small.png
+    css: ../custom.css
+  # pdf:
+  #   toc: true
+echo: true
+categories: 
+  - week09
+  - slides
+image: images/preview_w9.jpg
+---
+
+# Automated Reporting
+
+## Quarto
+
+- Open-source tools for creating dynamic and shareable document.
+- Combines narrative text and code (multi-language) in one script (.qmd).
+- Supports multiple output formats: .html, .docx, .pptx, .pdf, *etc.*
+
+::: {.callout-tip appearance="simple"}
+Check out the [Quarto tutorial](https://quarto.org/docs/get-started/hello/rstudio.html).
+:::
+
+## An Example {.smaller}
+
+::: columns
+::: {.column}
+To create: *File* -> *New File* -> *Quarto Document* -> click *Create*.
+![](images/quarto_annot.png)
+
+:::{.fragment}
+Save the document and click **Render** button.
+:::
+:::
+
+:::{.column .fragment}
+Rendered document in HTML format:
+![](images/quarto_output.png)
+:::
+:::
+
+
+## YAML Header {.smaller}
+
+Go at the very beginning of the document, framed by a pair of three dashed `---`.
+
+::: {.columns}
+::: {.column}
+``` yaml
+---
+title: "First Quarto Report"
+author: "InforBio"
+date: "2026-03-09"
+format: html
+---
+```
+:::
+::: {.column .fragment}
+``` yaml
+---
+title: "First Quarto Report"
+author: "InforBio"
+date: "2026-03-09"
+format:
+  html:
+    toc: true
+    embed-resources: true
+  pdf:
+    toc: true
+---
+```
+
+::: {.callout-warning appearance="simple"}
+Be careful with indentation when specifying options.
+:::
+
+:::
+:::
+
+
+## Code Chunks {.smaller}
+
+R code chunks are identified with a pair of three backticks ` ``` ` and `{r}`.
+
+::: {.columns}
+::: {.column}
+```` markdown
+```{{r}}
+dim(iris)
+```
+
+```{{python}}
+from sklearn import datasets
+
+iris = datasets.load_iris()
+iris.data.shape
+```
+````
+
+Insert a chunk: type *Cmd + Option + I / Ctrl + Alt + I* or click ![](images/insert_chunk.png){width=1.5cm}.
+
+:::
+::: {.column .fragment}
+```` markdown
+```{{r}}
+#| label: check-dim
+#| eval: false
+#| echo: false
+#| include: false
+
+dim(iris)
+```
+````
+Options are identified by `#|` at the beginning of the line.
+:::
+::: 
+
+:::{.callout-note appearance="simple" .fragment}
+Options inside a chunk apply only to that specific chunk.
+Global defaults for all chunks can be set under "**execute:**" inside the YAML header.
+:::
+
+
+## Code Chunks Options {.smaller}
+
+![](images/chunk_options.png)
+(Source: [R For Data Science](https://r4ds.hadley.nz/quarto.html#chunk-options))
+
+
+## Code Chunks Execution {.smaller}
+
+- To execute the whole chunk:
+
+![](images/execute_chunk.png){width=20%}
+
+- To execute only some code lines: the same as in an R script (Ctrl/Cmd + Enter)
+
+## Markdown Text {.smaller}
+
+- Headings
+
+
+```` markdown
+# Header 1
+## Header 2
+### Header 3
+````
+
+- Typography
+
+```` markdown
+**Bold**
+*Italic*
+`code`
+`r nrow(iris)`
+Superscript^1^
+Subscript~2~
+![](path/to/image.png)
+- unordered list
+  - unordered sub-list
+1. ordered list
+````
+
+:::{.callout-note appearance="simple"}
+Markdown syntax [cheat sheet](https://www.markdownguide.org/cheat-sheet/)
+:::
+
+:::{.notes}
+Text with formatting, including section headings, hyperlinks, an embedded image, and an inline code chunk.
+:::
+
+
+## Generate The Final Doc {.smaller}
+
+::: {.columns}
+::: {.column}
+- Click the "Render" button.
+
+![](images/render1.png)
+:::
+::: {.column .fragment}
+
+- If you have specified multiple output formats, you can select the wanted format.
+
+![](images/render2.png)
+:::
+:::
+
+
+## HTML Themes {.smaller}
+
+You can specify a wanted theme for the HTML output in the YAML header:
+
+``` yaml
+---
+title: "First Quarto Report"
+author: "InforBio"
+date: "2026-03-09"
+format:
+  html:
+    theme: simplex
+---
+```
+
+:::{.callout-note appearance="simple"}
+More themes available here:
+<https://quarto.org/docs/output-formats/html-themes.html>
+:::
+
+
+# Let's Practice !
+
+## Today's Goals
+
+- Understand the basics of Quarto.
+- Create your first Quarto report by walking through a mini data project.
+
+
+# Final Project
+
+## Reproducing a Scientific Figure with {`ggplot2`} {.smaller}
+
+**Task:** Select a figure from a scientific paper and recreate it using {*ggplot2*}. Document your workflow in a **Quarto document** to generate a report, and present your work (15 min per person).
+
+Your report should include:
+
+- **Figure Selection:** Why did you choose this figure?  
+- **Data & Preprocessing:** Source of data, cleaning, transformations.  
+- **Packages Used:** List and explain key packages.  
+- **Challenges & Solutions:** Issues faced and how you resolved them.  
+- **Plot Construction:** Steps taken to build the visualization.  
+- **Final Comparison & Insights:** How close is your result? What did you learn? 
