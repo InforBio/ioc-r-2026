@@ -36,8 +36,7 @@ Hints: You can combine datasets by stacking their rows together to create one fi
 3. For the mice of 20 days, count how many measurements you have for each brain structure in genes 4 and 5 separately.
 
 
-4. Explore how brain structure and genes 16 to 20 relate to each other using the `pairs()` function.
-Hint: Convert struc to a factor before passing it to `pairs()`.
+4. Explore how brain structure and genes 16 to 20 relate to each other using the `GGally::ggpairs()` function.
 
 Which pair of variables correlated the most?
 

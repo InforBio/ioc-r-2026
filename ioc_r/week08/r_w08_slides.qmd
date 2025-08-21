@@ -1,0 +1,618 @@
+---
+title: "Graphs Level Up: {ggplot2} (Part 2) & Custom Functions"
+subtitle: "IOC-R Week 8"
+date: "2026-01-26"
+date-format: " "
+format:
+  revealjs: 
+    toc: true
+    toc-title: "Plan"
+    toc-depth: 1
+    slide-number: true
+    preview-links: auto
+    logo: ../../images/logoInforBio_fond_blanc_small.png
+    css: ../custom.css
+  # pdf:
+  #   toc: true
+echo: true
+warning: false
+categories: 
+  - week08
+  - slides
+image: images/preview_w8.png
+---
+
+# Recap Data Wrangling & Basic ggplot2
+
+## Reshape Data with {`tidyr`} {.smaller}
+
+- Reshape data to longer or wider format as needed.
+
+![](images/pivot_img.png){width=70px}
+
+. . .
+
+```r
+data |> tidyr::pivot_longer(cols = -1, names_to = "condition", values_to = "value")
+data |> tidyr::pivot_wider(names_from = gene, values_from = value)
+```
+
+## Manipulate Data with {`dplyr`} {.smaller}
+
+```{r}
+#| message: false
+
+library(dplyr)
+iris_tbl <- as_tibble(iris)
+head(iris_tbl)
+```
+
+::: {.columns}
+::: {.column}
+
+::: {.callout-tip appearance="simple"}
+- Select columns related to petal and show the last 3 rows.
+- Create a new column for the ratio of sepal length and width.
+- How many rows with sepal ratio > 2.8?
+:::
+
+:::
+::: {.column .fragment}
+```{r}
+select(iris_tbl, contains("sepal")) |> tail(3)
+iris_tbl <- iris_tbl |>
+  mutate(sepal_ratio = Sepal.Length / Sepal.Width)
+iris_tbl |> filter(sepal_ratio > 2.8) |> nrow()
+```
+
+:::
+:::
+
+## Basic ggplot2
+
+![(Figure adpated from [QCBS R Workshop Series](https://r.qcbs.ca/workshop03/book-en/grammar-of-graphics-gg-basics.html).)](../week05/images/ggplot_comp.png)
+
+# ggplot2 - Part 2
+
+## Set Default Theme {.smaller}
+
+::: {.callout-note appearance="simple"}
+Built-in themes: <https://ggplot2.tidyverse.org/reference/ggtheme.html>
+:::
+
+- Use `theme_set()` to apply a selected theme to all plots.
+- Use `theme_update()` to modify elements of the current theme.
+
+```{r}
+#| label: increase-fig-font
+
+library(ggplot2)
+
+# apply theme_light() to every plot
+theme_set(theme_light())
+
+# modify single elements of the current theme (aka theme_light())
+theme_update(
+  axis.title = element_text(
+    size = rel(2), # twice the default axis title size
+    face = "italic" # make the axis title italic
+  ),
+  axis.text = element_text(size = rel(2)),
+  strip.text = element_text(size = rel(2)),
+  plot.title = element_text(size = rel(2)),
+  legend.text = element_text(size = rel(2)),
+  legend.title = element_text(size = rel(2))
+)
+```
+
+
+## Customizing Scales {.smaller}
+
+- `scale_color|fill|shape_manual()`: Assign specific colors, fill colors or shapes.
+
+:::: {.columns}
+::: {.column}
+
+```{r}
+p0 <- ggplot(iris, aes(x = Petal.Length, y = Sepal.Length)) +
+  geom_point(
+    aes(color = Species, fill = Species, shape = Species),
+    size = 3
+  )
+p0
+```
+:::
+
+::: {.column .fragment}
+
+```{r}
+p0 + scale_color_manual( # Manually set colors
+  values = c(
+    "setosa" = "springgreen3",
+    "versicolor" = "orange", 
+    "virginica" = "steelblue4"
+  )
+)
+```
+
+::: {.callout-note appearance="simple"}
+See [colors in R](https://r-charts.com/colors/) and [Color Palette Finder](https://r-graph-gallery.com/color-palette-finder).
+:::
+
+:::
+::::
+
+
+## Customizing Scales {.smaller}
+
+- `scale_color|fill|shape_manual()`: Assign specific colors, fill colors or shapes.
+
+:::: {.columns}
+::: {.column}
+
+```{r}
+p1 <- p0 + scale_shape_manual( # Manually set shape
+  values = c(
+    "setosa" = 21,     # circle filled
+    "versicolor" = 22, # square filled
+    "virginica" = 25   # triangle down filled
+  )
+)
+p1
+```
+
+::: {.callout-note appearance="simple"}
+See [possible shapes](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html#sec:shape-spec).
+:::
+
+:::
+
+::: {.column .fragment}
+
+```{r}
+p1 + scale_fill_manual( # Manually set fill
+  values = c(
+    "setosa" = "springgreen3",
+    "versicolor" = "orange", 
+    "virginica" = "steelblue4"
+  )
+)
+```
+
+:::
+::::
+
+
+## Customizing Scales {.smaller}
+
+- `scale_x|y_continuous(limits)` or `xlim()` or`ylim()`: Change axis limits or continuous scales.
+
+:::: {.columns}
+::: {.column}
+
+```{r}
+p0 + scale_x_continuous(limits = c(0, 8))
+```
+:::
+
+::: {.column}
+
+```{r}
+p0 + xlim(c(1, 8))
+```
+
+:::
+::::
+
+
+## Add Lines to Figures {.smaller}
+
+- Add horizontal line (`geom_hline()`) or vertical line (`geom_vline()`) 
+
+::: {.columns}
+::: {.column}
+```{r}
+#| eval: false
+
+p0 +
+  geom_hline(
+    yintercept = mean(iris$Sepal.Length), 
+    linetype = "dashed", color = "gray50"
+  ) +
+  geom_vline(
+    xintercept = c(3, 5),
+    linetype = "dotted", color = "red"
+  )
+```
+
+::: {.callout-note appearance="simple"}
+See [possible line types](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html#sec:line-type-spec).
+:::
+
+:::
+
+::: {.column}
+```{r}
+#| echo: false
+
+p0 +
+  geom_hline(
+    yintercept = mean(iris$Sepal.Length), 
+    linetype = "dashed", color = "gray50", linewidth = 1
+  ) +
+  geom_vline(
+    xintercept = c(3, 5),
+    linetype = "dotted", color = "red", linewidth = 1
+  )
+```
+:::
+:::
+
+
+## Faceting {.smaller}
+
+![](images/position-facets.png){width=70%}
+
+(Source: [ggplot2 book](https://ggplot2-book.org/facet.html))
+
+## Faceting {.smaller}
+
+::: {.columns}
+::: {.column}
+```{r}
+# table(
+#   "species" = penguins$species,
+#   "island" = penguins$island
+# )
+#            island
+# species     Biscoe Dream Torgersen
+#   Adelie        44    56        52
+#   Chinstrap      0    68         0
+#   Gentoo       124     0         0
+ggplot(penguins, aes(x = bill_len, y = body_mass)) +
+  geom_point(size = 3, alpha = 0.5) +
+  facet_grid(
+    rows = vars(species),
+    cols = vars(island),
+    scales = "fixed" # or "free_x", "free_y", "free"
+  )
+```
+
+:::
+::: {.column}
+```{r}
+#| fig-height: 8
+
+ggplot(penguins, aes(x = bill_len, y = body_mass)) +
+  geom_point(size = 3, alpha = 0.5) +
+  facet_wrap(
+    facets = vars(species, island),
+    nrow = 3,
+    scales = "fixed" # or "free_x", "free_y", "free"
+  )
+```
+
+:::
+:::
+
+
+## Useful Extensions {.smaller}
+
+::: {.callout-note appearance="simple"}
+Check out the extension gallery: <https://exts.ggplot2.tidyverse.org/gallery/>
+:::
+
+- {`ggrepel`}: prevent labels from overlapping
+- {`ggpubr`}: make publication ready plots 
+- {`patchwork`}: create multi-panel figures
+- {`plotly`}: make interactive graph
+
+
+## Labelling with {`ggrepel`} {.smaller}
+
+- {[`ggrepel`](https://ggrepel.slowkow.com)}: prevent labels from overlapping
+
+```{r}
+# E.g.: label penguins with bill depth 17.5
+penguins <- penguins |>
+  mutate(
+    name = ifelse(
+      test = bill_dep == 17.5,
+      yes = paste(species, island, sep = "_"),
+      no = NA
+    )
+  )
+head(penguins, 2)
+filter(penguins, !is.na(name)) |> head(2)
+filter(penguins, !is.na(name)) |> nrow()
+```
+
+
+## Labelling with {`ggrepel`} {.smaller}
+
+- {[`ggrepel`](https://ggrepel.slowkow.com)}: prevent labels from overlapping
+
+:::::: {.columns}
+::: {.column}
+```{r}
+#| fig-height: 7
+
+ggplot(penguins, aes(x = bill_len, y = bill_dep)) +
+  geom_point(alpha = 0.5) +
+  geom_label(aes(label = name), size = 8)
+```
+
+:::
+::: {.column}
+```{r}
+#| fig-height: 7
+
+ggplot(penguins, aes(x = bill_len, y = bill_dep)) +
+  geom_point(alpha = 0.5) +
+  ggrepel::geom_label_repel(
+    aes(label = name),
+    size = 8,
+    min.segment.length = 0,
+    seed = 8
+  )
+```
+
+:::
+:::
+
+
+## Adding Stats with {`ggpubr`} {.smaller}
+
+{`ggpubr`} provides some easy-to-use functions.
+
+::: {.columns}
+::: {.column}
+```{r}
+#| eval: false 
+
+library(ggpubr)
+
+ggboxplot(
+  data = penguins,
+  x = "species", y = "bill_len",
+  color = "species"
+) +
+  # add pairwise comparisons p-values
+  stat_compare_means(
+    method = "wilcox.test",
+    comparisons = list(
+      c("Adelie", "Gentoo"),
+      c("Adelie", "Chinstrap"),
+      c("Gentoo", "Chinstrap")
+    )
+  )
+```
+
+:::
+::: {.column}
+```{r}
+#| echo: false 
+#| fig-height: 7
+
+library(ggpubr)
+
+ggboxplot(
+  data = penguins,
+  x = "species", y = "bill_len",
+  color = "species"
+) +
+  # add pairwise comparisons p-values
+  stat_compare_means(
+    method = "wilcox.test",
+    comparisons = list(
+      c("Adelie", "Gentoo"),
+      c("Adelie", "Chinstrap"),
+      c("Gentoo", "Chinstrap")
+    )
+  ) +
+  labs(x = NULL)
+```
+
+:::
+:::
+
+:::{.callout-note appearance="simple"}
+Check out more details: <https://rpkgs.datanovia.com/ggpubr/index.html>
+:::
+
+
+## Creating {`patchwork`} {.smaller}
+
+{[`patchwork`](https://patchwork.data-imaginist.com)}: create multi-panel figures
+
+```{r}
+# prepare figures
+p1 <- ggplot(penguins, aes(x = bill_len, y = bill_dep)) +
+  geom_point(aes(color = species), alpha = 0.5) +
+  labs(title = "Plot 1")
+
+p2 <- ggplot(penguins, aes(x = species, y = bill_len)) +
+  geom_violin(aes(color = species)) +
+  labs(title = "Plot 2")
+
+p3 <- ggplot(penguins, aes(bill_len)) +
+  geom_histogram(aes(fill = species), position = position_dodge()) +
+  labs(title = "Plot 3")
+```
+
+. . . 
+
+How to form a patchwork?
+
+- `+` add plots together and {`patchwork`} will try to keep the grid square.
+- `|` will place the plots beside each other.
+- `/` will stack the plots.
+
+## Creating {`patchwork`} {.smaller}
+
+::: {.columns}
+::: {.column}
+```{r}
+#| fig-height: 7
+
+library(patchwork)
+p1 | p2 / p3
+```
+
+:::
+::: {.column}
+```{r}
+#| fig-height: 7
+
+(p1 | p2) / p3
+```
+
+:::
+:::
+
+:::{.callout-note appearance="simple"}
+For more complex and precise design, use the [`wrap_plots()`](https://patchwork.data-imaginist.com/reference/wrap_plots.html) function. 
+:::
+
+## Interactive Plots with {`plotly`} {.smaller}
+
+Simply wrap the ggplot object in the function `ggplotly()`.
+
+```{r}
+#| fig-height: 4.3
+#| fig-width: 6.3
+#| message: false
+
+library(plotly)
+ggplotly(p1)
+
+```
+
+:::{.callout-note appearance="simple"}
+Check more details here: <https://plotly.com/ggplot2/>
+:::
+
+
+# Custom Functions
+
+## Anatomy of a Function {.smaller}
+
+Functions = Reusable blocks of code.
+
+```{mermaid}
+%%| echo: false
+%%| fig-width: 10
+flowchart LR
+  A[Inputs] --> B(Code block for specific task)
+  B --> C[Output]
+```
+
+::: {.columns}
+::: {.column}
+```{r}
+adding <- function(arg1, arg2) {
+  # function body: do something with inputs
+  result <- arg1 + arg2
+  return(result)
+}
+
+adding(3, 5)
+```
+
+:::
+::: {.column}
+- Inputs (arguments/parameters): what you change each time
+- Body: code you want to repeat
+- Return: final output
+:::
+:::
+
+:::{.callout-important appearance="simple" .fragment}
+All arguments and variables created inside a function live only inside that function.
+
+```{r}
+#| error: true
+
+arg1
+result
+```
+
+:::
+
+
+## First Custom Function {.smaller}
+
+To standardise figure style and avoid mistakes...
+
+::: {.columns}
+::: {.column width="40%"}
+```r
+# create a scatter plot for two continuous variables
+ggplot(penguins, aes(bill_len, bill_dep)) +
+  geom_point() +
+  theme_minimal() +
+  labs(x = "bill length", y = "bill depth")
+```
+:::
+
+::: {.column width="60%" .fragment}
+```{r}
+plot_scatter <- function(df, var1, var2) {
+  # use the ".data" pronoun to explicitly refer to the variables in the layer data
+  ggplot(df, aes(x = .data[[var1]], y = .data[[var2]])) +
+    geom_point() +
+    theme_minimal() +
+    labs(x = var1, y = var2)
+}
+```
+:::
+:::
+
+::: {.columns}
+::: {.column .fragment}
+```{r}
+plot_scatter(df = penguins, var1 = "bill_len", var2 = "bill_dep")
+```
+
+:::
+::: {.column .fragment}
+```{r}
+plot_scatter(penguins, "bill_len", "body_mass")
+```
+
+:::
+:::
+
+## First Custom Function {.smaller}
+
+:::{.callout-tip appearance="simple"}
+Use `plot_scatter()` to visualise "Sepal.Length" and "Petal.Length" of `iris` data. 
+:::
+
+. . .
+
+::: {.columns}
+::: {.column}
+```{r}
+plot_scatter(iris, "Sepal.Length", "Petal.Length")
+```
+
+:::
+::: {.column .fragment}
+```{r}
+plot_scatter(iris, "Petal.Length", "Sepal.Length")
+```
+
+:::{.callout-important appearance="simple" .fragment}
+When calling a function, the order of arguments matters if you don’t use their names.
+:::
+:::
+:::
+
+# Let's Practice !
+
+## Today's Goals
+
+- Create more complex figures
+- Learn to write custom functions to automate repetitive visualization tasks
+

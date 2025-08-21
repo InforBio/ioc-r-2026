@@ -22,6 +22,11 @@ jobs:
               any::rmarkdown
               any::tidyverse
               any::ggsignif
+              any::GGally
+              any::ggpubr
+              any::patchwork
+              any::ggrepel
+              any::plotly
 
         - name: Set up Quarto
           uses: quarto-dev/quarto-actions/setup@v2
