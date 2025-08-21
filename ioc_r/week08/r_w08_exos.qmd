@@ -71,6 +71,13 @@ df_plot <- filter(counts, Feature == the_gene) |>
   mutate(group = sub("(.*)\\.([0-9]+)", "\\1", name))
 df_plot
 
+# or first pivot then filter wanted groups
+filter(counts, Feature == the_gene) |>
+  pivot_longer(!Feature) |> # pivot except the 1st column
+  mutate(group = sub("(.*)\\.([0-9]+)", "\\1", name)) |> 
+  filter(group %in% names(colors))
+
+
 # draw the plot
 p <- ggplot(df_plot, aes(x = group, y = value)) +
   geom_boxplot(outlier.shape = NA) +
