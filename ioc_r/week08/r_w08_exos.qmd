@@ -227,7 +227,7 @@ using the `|` or `/` operators.
 
 ```{r}
 #| fig-height: 7
-#| #| fig-width: 10
+#| fig-width: 10
 
 library(patchwork)
 
