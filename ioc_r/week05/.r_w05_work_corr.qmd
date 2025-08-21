@@ -10,6 +10,8 @@ editor_options:
   chunk_output_type: console
 ---
 
+Note: There may be other valid ways to solve this exercise — this is just one possible solution!
+
 # Import Data
 
 We need to use two data for this exercise:

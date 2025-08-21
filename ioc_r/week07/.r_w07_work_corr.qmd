@@ -12,6 +12,8 @@ editor_options:
   chunk_output_type: console
 ---
 
+Note: There may be other valid ways to solve this exercise — this is just one possible solution!
+
 ## Mini Data Project (Part 2)
 
 We already saw how to import and tidy the data for structure 1 during the exercise.
