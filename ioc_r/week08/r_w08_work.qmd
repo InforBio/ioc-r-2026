@@ -11,6 +11,31 @@ editor_options:
   chunk_output_type: console
 ---
 
+1. Import the gene expression count data
+([read-counts.csv](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv)).
+
+
+2. Refer to the question 2 of the hands-on examples.
+
+Write a custom function that reshape the count data for a given gene of interest across any two sample groups.
+The output of this function should be in a format ready to be used for drawing a boxplot.
+
+Test your function with the gene *PIR3*, for the groups:
+
+- "WT" and "SET1".
+- "SET1.RRP6" and "RRP6"
+
+
+3. Refer to the question 3 of the hands-on examples,
+based on the function you wrote in the previous question, 
+extend it by adding an argument that allows labeling the top N most highly expressed samples in each group.
+
+Test your function with:
+
+- the gene *PIR3*
+- the groups "WT" and "SET1"
+- and label the top 2 most highly expressed samples in each group
+
 
 ---
 
