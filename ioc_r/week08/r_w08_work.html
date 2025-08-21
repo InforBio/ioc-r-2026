@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 7 - Homework – IOC-2026</title>
+<title>Week 8 - Homework – IOC-2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -131,23 +131,17 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#mini-data-project-part-2" id="toc-mini-data-project-part-2" class="nav-link active" data-scroll-target="#mini-data-project-part-2">Mini Data Project (Part 2)</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 7 - Homework</h1>
+<h1 class="title">Week 8 - Homework</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">week07</div>
+    <div class="quarto-category">week08</div>
     <div class="quarto-category">homework</div>
   </div>
   </div>
@@ -166,34 +160,29 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="mini-data-project-part-2" class="level2">
-<h2 class="anchored" data-anchor-id="mini-data-project-part-2">Mini Data Project (Part 2)</h2>
-<p>We already saw how to import and tidy the data for structure 1 during the exercise.</p>
-<p>Just a reminder, the expression of 20 genes was measured in mice aged from 10 to 60 days, with both male and female mice, and each group consists of 6 animals. The gene expression data is stored in two files, one for each brain structure. Within each file, rows represent the different ages, and columns represent the gene, sex, and animal.</p>
-<p>The data is available in two CSV files:</p>
-<ul>
-<li><a href="../exos_data/data_anonym_struc1_noise.csv">data_anonym_struc1_noise.csv</a></li>
-<li><a href="../exos_data/data_anonym_struc2_noise.csv">data_anonym_struc2_noise.csv</a></li>
-</ul>
 <ol type="1">
-<li>Import the two data files and reshape them the same way you did up to question 9 of the exercise. Then, combine the two datasets into one. Make sure to adjust any parameters as needed.</li>
+<li><p>Import the gene expression count data (<a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv">read-counts.csv</a>).</p></li>
+<li><p>Refer to the question 2 of the hands-on examples.</p></li>
 </ol>
-<p>Hints: You can combine datasets by stacking their rows together to create one final data frame. (Use <code>dplyr::bind_rows()</code> or <code>rbind()</code> for this.)</p>
-<ol start="2" type="1">
-<li><p>Remove lines with NA in expression value.</p></li>
-<li><p>For the mice of 20 days, count how many measurements you have for each brain structure in genes 4 and 5 separately.</p></li>
-<li><p>Explore how brain structure and genes 16 to 20 relate to each other using the <code>GGally::ggpairs()</code> function.</p></li>
+<p>Write a custom function that reshape the count data for a given gene of interest across any two sample groups. The output of this function should be in a format ready to be used for drawing a boxplot.</p>
+<p>Test your function with the gene <em>PIR3</em>, for the groups:</p>
+<ul>
+<li>“WT” and “SET1”.</li>
+<li>“SET1.RRP6” and “RRP6”</li>
+</ul>
+<ol start="3" type="1">
+<li>Refer to the question 3 of the hands-on examples, based on the function you wrote in the previous question, extend it by adding an argument that allows labeling the top N most highly expressed samples in each group.</li>
 </ol>
-<p>Which pair of variables correlated the most?</p>
-<ol start="5" type="1">
-<li>Based on the previous figure, which gene appears to show the largest difference in expression between the two brain structures?</li>
-</ol>
-<p>Choose an appropriate figure to display this gene’s expression across the brain structures.</p>
+<p>Test your function with:</p>
+<ul>
+<li>the gene <em>PIR3</em></li>
+<li>the groups “WT” and “SET1”</li>
+<li>and label the top 2 most highly expressed samples in each group</li>
+</ul>
 <hr>
-<p>The homework correction is available here: <a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week07/.r_w07_work_corr.R">link</a></p>
+<p>The homework correction is available here: <a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week08/.r_w08_work_corr.qmd">link</a></p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
