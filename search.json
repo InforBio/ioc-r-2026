@@ -434,347 +434,116 @@
     "text": "Test the Normality on Simulated Data\n\nHeight\nUse following code to generate the height (in cm) of 100 students:\n\n# simulate data following a normal distribution\nset.seed(1)\nheights &lt;- round(rnorm(n = 100, mean = 170, sd = 10), 1)\nheights\n\n  [1] 163.7 171.8 161.6 186.0 173.3 161.8 174.9 177.4 175.8 166.9 185.1 173.9\n [13] 163.8 147.9 181.2 169.6 169.8 179.4 178.2 175.9 179.2 177.8 170.7 150.1\n [25] 176.2 169.4 168.4 155.3 165.2 174.2 183.6 169.0 173.9 169.5 156.2 165.9\n [37] 166.1 169.4 181.0 177.6 168.4 167.5 177.0 175.6 163.1 162.9 173.6 177.7\n [49] 168.9 178.8 174.0 163.9 173.4 158.7 184.3 189.8 166.3 159.6 175.7 168.6\n [61] 194.0 169.6 176.9 170.3 162.6 171.9 152.0 184.7 171.5 191.7 174.8 162.9\n [73] 176.1 160.7 157.5 172.9 165.6 170.0 170.7 164.1 164.3 168.6 181.8 154.8\n [85] 175.9 173.3 180.6 167.0 173.7 172.7 164.6 182.1 181.6 177.0 185.9 175.6\n [97] 157.2 164.3 157.8 165.3\n\n\n\n\n\n\n\n\nStats Time!\n\n\n\nNormal Distribution\nA normal distribution (also known as Gaussian distribution or “bell curve”), is a common way in which data tends to organize itself naturally when measured repeatedly in a population.\n  (figure obtained from this source)\nIt’s symmetric around the average (mean, \\(\\mu\\)), and the spread of values depends on the standard deviation (\\(\\sigma\\)). A a smaller \\(\\sigma\\) results in values being tightly concentrated near the mean, while a larger \\(\\sigma\\) results in values being more spread out across the range.\nMany statistical tests, such as t-tests or ANOVAs, assume that the data follows a normal distribution. This assumption is important because it enables the calculation of probabilities and supports making reliable inferences. If the data does not follow a normal distribution, these tests may produce misleading results.\nShapiro-Wilk Test\nThe Shapiro-Wilk test is designed to check for deviations from normality, i.e., to check whether your data follows a normal distribution.\nTest Hypotheses: H0, H1\nWhen performing a statistical test, you start with two opposing ideas, called hypotheses, that you want to evaluate:\n\nNull Hypothesis (H0): This is the default assumption, often stating that there is no effect, no difference, or no relationship in your data.\nAlternative Hypothesis (H1): This is the claim you are testing for something different from the null hypothesis.\n\nWhen you perform a statistical test, the goal is to decide whether you have enough evidence to reject the null hypothesis (H0) in favor of the alternative hypothesis (H1).\n\n\nThe function shapiro.test() in R allows to perform the test of normality.\nHere, the null hypothesis (H0) is the heights are normally distributed, and the alternative hypothesis (H1) is the heights are not normally distributed.\n\nshapiro.test(heights) \n\n\n    Shapiro-Wilk normality test\n\ndata:  heights\nW = 0.99564, p-value = 0.9883\n\n\n\n\n\n\n\n\nStats Time!\n\n\n\nType I error (\\(\\alpha\\))\nA type I error occurs when we reject the null hypothesis whereas it is actually true (false positive).\nThe probability (risk) of making a type I error is denoted as \\(\\alpha\\), which also called the significance level. By choosing \\(\\alpha = 0.05\\), you’re saying: “I’m willing to accept a 5% chance of incorrectly rejecting H0.”\nP-value\nThe p-value is the probability of observing your data (or something more extreme) if the null hypothesis (H0) is true.\n\nIf the p-value is small (e.g., ≤ 0.05):\n\nThere’s strong evidence against H0, so you reject it.\nThis suggests that the alternative hypothesis (H1) might be true.\n\nIf the p-value is large (e.g., &gt; 0.05):\n\nThere’s not enough evidence to reject H0.\nThis doesn’t mean H0 is true, it just means the data doesn’t strongly contradict it.\n\n\n\n\nIf we take \\(\\alpha=0.05\\): since the p-value (0.9876) is greater than 0.05, we fail to reject H0. This means there’s no strong evidence to suggest the heights are not normally distributed.\nLet’s check the heights’ distribution with a histgram!\n\n# Histogram\nhist(\n  heights, probability = TRUE, col = \"lightblue\",\n  main = \"Histogram with Bell Curve\", xlab = \"Heights (cm)\", ylab = \"Density\"\n)\n# Add bell curve\ncurve(dnorm(x, mean = mean(heights), sd = sd(heights)), col = \"red\", lwd = 2, add = TRUE)\n\n\n\n\n\n\n\n\n\n\nGood job! 👏👏 You’ve taken your first big steps into R, and you’re off to a great start, keep it up!"
   },
   {
-    "objectID": "ioc_r/week05/r_w05_slides.html#brief-recap-week-4",
-    "href": "ioc_r/week05/r_w05_slides.html#brief-recap-week-4",
-    "title": "Graphing with {ggplot2} (Part 1)",
-    "section": "Brief Recap Week 4",
-    "text": "Brief Recap Week 4\n\n\n\nOperators\n\nLogical: &, |, !, return TRUE or FALSE.\nComparison: ==, !=, &lt;, &lt;=, &gt;, &gt;=.\nThe %in%: check membership\n\n\n\n\n\n\n\n\nWhat does the following code do?\n\n\n\n(2.1 &gt; 1) & (0.049 &gt; 0.05)\n(2.1 &gt; 1) | (0.049 &gt; 0.05)\n\n# df is a data frame, \n# one of the columns is called \"pvalue\"\ndf[df$pvalue &lt; 0.05, ]\n\n\"a\" %in% c(\"c\", \"ba\")\n\n\nConditions\n\nstatements: if, if…else\nifelse() function\n\n\n\n\n\n\n\n\nWhat does the following code do?\n\n\n\nif (lfc &gt; 2 & pvalue &lt; 0.05 ) {\n  print(\"gene of interest\")\n} else {\n  print(\"gene to remove\")\n}"
-  },
-  {
-    "objectID": "ioc_r/week05/r_w05_slides.html#what-are-packages-in-r",
-    "href": "ioc_r/week05/r_w05_slides.html#what-are-packages-in-r",
-    "title": "Graphing with {ggplot2} (Part 1)",
-    "section": "What are Packages in R?",
-    "text": "What are Packages in R?\nPackages are collections of functions, data, and documentation.\n\nPre-installed packages: {base}, {utils}, {graphics}, etc.\n\ndim() # from {base}\nhead() # from {utils}\nplot() # from {graphics}\n\nTo check the list of installed packages in RStudio:\n\n\nname, description, can delete a pkg here"
-  },
-  {
-    "objectID": "ioc_r/week05/r_w05_slides.html#installing-packages",
-    "href": "ioc_r/week05/r_w05_slides.html#installing-packages",
-    "title": "Graphing with {ggplot2} (Part 1)",
-    "section": "Installing Packages",
-    "text": "Installing Packages\nBy default, R will install the lastest version of a package.\n\nClick-button way:\n\n\n\nVia command, i.e., install.packages(\"ggplot2\")\n\n\n\n\n\n\n\n\nCRAN (Comprehensive R Archive Network) is a network of servers around the world that store identical, up-to-date, versions of code and documentation for R.\nBioconductor is a specialized repository like CRAN, but focused on bioinformatics. It provides R packages for analyzing genomic and biological data.\n\n\n\n\n\nOnly need install once for the system, then load the package."
-  },
-  {
-    "objectID": "ioc_r/week05/r_w05_slides.html#management-of-packages",
-    "href": "ioc_r/week05/r_w05_slides.html#management-of-packages",
-    "title": "Graphing with {ggplot2} (Part 1)",
-    "section": "Management of Packages",
-    "text": "Management of Packages\n\n\n\nUpdate: click on the  and a popup will show you packages that can be updated.\n\n\n\n\nDelete: click on the delete buttom after the package\n\n\nOr use remove.packages(\"tibble\")."
-  },
-  {
-    "objectID": "ioc_r/week05/r_w05_slides.html#using-functions-of-package",
-    "href": "ioc_r/week05/r_w05_slides.html#using-functions-of-package",
-    "title": "Graphing with {ggplot2} (Part 1)",
-    "section": "Using Functions of Package",
-    "text": "Using Functions of Package\nTo use (call) a function from a package, we can either:\n\nload the entire package (attach it to the environment)\n\nlibrary(ggplot2) # load the package\nggplot() # call the function to iniate a ggplot\nA loaded package will be checked in the “Packages” panel.\n\n\n\n\n\n\nYou only need to load a package once per R session.\n\n\n\n\nor load one function of the package at the time with the syntax pkg_name::fct_name\n\nggplot2::ggplot()\n\n\n\n\n\n\nThis way is recommanded if you need to use only one function of a package, or if you want to make sure you use the wanted function."
-  },
-  {
-    "objectID": "ioc_r/week05/r_w05_slides.html#before-plotting",
-    "href": "ioc_r/week05/r_w05_slides.html#before-plotting",
-    "title": "Graphing with {ggplot2} (Part 1)",
-    "section": "Before Plotting …",
-    "text": "Before Plotting …\nWhat message you want to show via your figure?\n\n\n\n\n\nflowchart LR\n  A{Which variables?} --&gt; B{Data properties}\n  B --&gt; C{Figure type}\n\n\n\n\n\n\n\n\n\n\n\n\n\nCheck out these websites: from Data to Viz and The R Graph Gallery (by Yan Holtz)\n\n\n\n\n\nWhat are the variables to be visualized?\nData properties: continuous, discrete, categorical?\nFigure type: dots plot, boxplot, histogram, etc."
-  },
-  {
-    "objectID": "ioc_r/week05/r_w05_slides.html#compositions-of-a-ggplot",
-    "href": "ioc_r/week05/r_w05_slides.html#compositions-of-a-ggplot",
-    "title": "Graphing with {ggplot2} (Part 1)",
-    "section": "Compositions of a ggplot",
-    "text": "Compositions of a ggplot\n\n(Figure adpated from QCBS R Workshop Series.)"
-  },
-  {
-    "objectID": "ioc_r/week05/r_w05_slides.html#how-to-build-a-ggplot",
-    "href": "ioc_r/week05/r_w05_slides.html#how-to-build-a-ggplot",
-    "title": "Graphing with {ggplot2} (Part 1)",
-    "section": "How to Build a ggplot",
-    "text": "How to Build a ggplot\n\nAll ggplot2 plots begin with a call to ggplot(), supplying default data and aesthethic mappings, specified by aes(). You Then add layers, scales, coords and facets with +. —— ggplot2 Reference\n\n\n\nExample using the built-in dataset iris:\n\nstr(iris) # data overview\n\n'data.frame':   150 obs. of  5 variables:\n $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...\n $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...\n $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...\n $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...\n $ Species     : Factor w/ 3 levels \"setosa\",\"versicolor\",..: 1 1 1 1 1 1 1 1 1 1 ..."
-  },
-  {
-    "objectID": "ioc_r/week05/r_w05_slides.html#basic-plot",
-    "href": "ioc_r/week05/r_w05_slides.html#basic-plot",
-    "title": "Graphing with {ggplot2} (Part 1)",
-    "section": "Basic Plot",
-    "text": "Basic Plot\n\nlibrary(\"ggplot2\") # load package\n\n\n\nStart by calling ggplot():\n\np0 &lt;- ggplot(\n  data = iris, # a data frame\n  mapping = aes(x = Sepal.Length, y = Petal.Length)\n)\np0\n\n\n\n\n\n\n\n\nSpecify data, x and y axes.\n\n\n\n\n\n\nThe data should be a data frame containing both variables needed for the plot.\n\n\n\n\nAdd a geometric layer:\n\n# geom_point() is used for scatter plots\nbase_plot &lt;- p0 + geom_point()\n\n\nbase_plot\n\n\n\n\n\n\n\n\nUse points for visualisation.\n\n\nggplot() creates a canvas to draw on. data contains columns fro the plot aes() matches columns of data to aesthetics of the plot. geom_point() adds point geometry."
-  },
-  {
-    "objectID": "ioc_r/week05/r_w05_slides.html#aesthetics---color",
-    "href": "ioc_r/week05/r_w05_slides.html#aesthetics---color",
-    "title": "Graphing with {ggplot2} (Part 1)",
-    "section": "Aesthetics - Color",
-    "text": "Aesthetics - Color\nThe most common aesthetics: color, fill, shape, size, alpha (transparency), etc.\n\n\n\nStatic aesthetics: a fixed value and apply to the whole layer\n\n\nbase_plot_red &lt;- p0 + geom_point(color = \"red\")\nbase_plot_red\n\n\n\n\n\n\n\n\n\n\nAesthetic mappings: visual preoperties that depend on data values (to be used in aes())\n\n\nbase_plot &lt;- p0 + geom_point(aes(color = Species))\nbase_plot\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReference: https://ggplot2.tidyverse.org/articles/ggplot2-specs.html"
-  },
-  {
-    "objectID": "ioc_r/week05/r_w05_slides.html#aesthetics---shape",
-    "href": "ioc_r/week05/r_w05_slides.html#aesthetics---shape",
-    "title": "Graphing with {ggplot2} (Part 1)",
-    "section": "Aesthetics - Shape",
-    "text": "Aesthetics - Shape\nThe most common aesthetics: color, fill, shape, size, alpha (transparency), etc.\n\n\n\nStatic aesthetics: a fixed value and apply to the whole layer\n\n\np0 + geom_point(shape = 3)\n\n\n\n\n\n\n\n\n\n\nAesthetic mappings: visual preoperties that depend on data values (to be used in aes())\n\n\np0 + geom_point(aes(shape = Species))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReference: https://ggplot2.tidyverse.org/articles/ggplot2-specs.html"
-  },
-  {
-    "objectID": "ioc_r/week05/r_w05_slides.html#aesthetics---size",
-    "href": "ioc_r/week05/r_w05_slides.html#aesthetics---size",
-    "title": "Graphing with {ggplot2} (Part 1)",
-    "section": "Aesthetics - Size",
-    "text": "Aesthetics - Size\nThe most common aesthetics: color, fill, shape, size, alpha (transparency), etc.\n\n\n\nStatic aesthetics: a fixed value and apply to the whole layer\n\n\np0 + geom_point(size = 3)\n\n\n\n\n\n\n\n\n\n\nAesthetic mappings: visual preoperties that depend on data values (to be used in aes())\n\n\np0 + geom_point(aes(size = Petal.Length))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReference: https://ggplot2.tidyverse.org/articles/ggplot2-specs.html"
-  },
-  {
-    "objectID": "ioc_r/week05/r_w05_slides.html#aesthetics---alpha",
-    "href": "ioc_r/week05/r_w05_slides.html#aesthetics---alpha",
-    "title": "Graphing with {ggplot2} (Part 1)",
-    "section": "Aesthetics - Alpha",
-    "text": "Aesthetics - Alpha\nThe most common aesthetics: color, fill, shape, size, alpha (transparency), etc.\n\n\nWith no transparency:\n\np0 + geom_point(size = 3)\n\n\n\n\n\n\n\n\n\nUse the alpha (between 0 and 1) parameter:\n\np0 + geom_point(size = 3, alpha = 0.5)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReference: https://ggplot2.tidyverse.org/articles/ggplot2-specs.html"
-  },
-  {
-    "objectID": "ioc_r/week05/r_w05_slides.html#labels-axes---titles---legend",
-    "href": "ioc_r/week05/r_w05_slides.html#labels-axes---titles---legend",
-    "title": "Graphing with {ggplot2} (Part 1)",
-    "section": "Labels (Axes - Titles - Legend)",
-    "text": "Labels (Axes - Titles - Legend)\n\n\n\nbase_plot\n\n\n\n\n\n\n\n\nUse labs() to modify labels of plot, axes, legend.\n\n\np_labs &lt;- base_plot + labs(\n  x = \"Sepal Length (cm)\",\n  y = \"Petal Length (cm)\",\n  title = \"Scatter plot with customized labels.\",\n  color = NULL # remove legend title\n)\np_labs"
-  },
-  {
-    "objectID": "ioc_r/week05/r_w05_slides.html#add-other-layers",
-    "href": "ioc_r/week05/r_w05_slides.html#add-other-layers",
-    "title": "Graphing with {ggplot2} (Part 1)",
-    "section": "Add Other Layers",
-    "text": "Add Other Layers\n\n\n\n# the scatter plot with modified lables\np_labs\n\n\n\n\n\n\n\n\n\nAdd a linear regression line using geom_smooth():\n\np_regline &lt;- p_labs + geom_smooth(method = \"lm\", se = FALSE)\np_regline\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEach geom_*() function adds a new layer to the plot, just like stacking transparent sheets on top of each other to build the final image."
-  },
-  {
-    "objectID": "ioc_r/week05/r_w05_slides.html#aesthetic-mappings",
-    "href": "ioc_r/week05/r_w05_slides.html#aesthetic-mappings",
-    "title": "Graphing with {ggplot2} (Part 1)",
-    "section": "Aesthetic Mappings",
-    "text": "Aesthetic Mappings\n\n\n\nggplot(\n  data = iris,\n  mapping = aes(\n    x = Sepal.Length,\n    y = Petal.Length\n  )\n) +\n  geom_point(aes(color = Species)) +\n  geom_smooth(method = \"lm\", se = FALSE)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCompare the following code with the code on the left. What is different between the codes? What is different about the resulting graphs?\n\n\n\n\nggplot(\n  data = iris,\n  mapping = aes(\n    x = Sepal.Length,\n    y = Petal.Length,\n    color = Species\n  )\n) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE)\n\n\n\n\n\n\n\n\n\n\naes() in ggplot() or in geom_*(), if multiple layers"
-  },
-  {
-    "objectID": "ioc_r/week05/r_w05_slides.html#common-used-geometries-1",
-    "href": "ioc_r/week05/r_w05_slides.html#common-used-geometries-1",
-    "title": "Graphing with {ggplot2} (Part 1)",
-    "section": "Common Used Geometries (1)",
-    "text": "Common Used Geometries (1)\n\n\n\nBoxplot:\n\n\nggplot(iris, aes(x = Species, y = Sepal.Length)) +\n  geom_boxplot()\n\n\n\n\n\n\n\n\n\n\nViolin plot:\n\n\nggplot(iris, aes(x = Species, y = Sepal.Length)) +\n  geom_violin()"
-  },
-  {
-    "objectID": "ioc_r/week05/r_w05_slides.html#common-used-geometries-2",
-    "href": "ioc_r/week05/r_w05_slides.html#common-used-geometries-2",
-    "title": "Graphing with {ggplot2} (Part 1)",
-    "section": "Common Used Geometries (2)",
-    "text": "Common Used Geometries (2)\n\n\n\nHistogram:\n\n\nggplot(iris, aes(x = Sepal.Length)) +\n  geom_histogram()\n\n\n\n\n\n\n\n\n\n\nBar plot:\n\n\nggplot(iris, aes(x = Species)) +\n  geom_bar()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngeom_histogram() and geom_bar() only require one variable for the x-axis. The y-axis is automatically calculated."
-  },
-  {
-    "objectID": "ioc_r/week05/r_w05_slides.html#themes",
-    "href": "ioc_r/week05/r_w05_slides.html#themes",
-    "title": "Graphing with {ggplot2} (Part 1)",
-    "section": "Themes",
-    "text": "Themes\n\n\n\nBuilt-in themes (theme_*()): theme_grey() (default),theme_bw(), theme_light(), theme_classic(), etc.\n\n\np_labs + theme_classic()\n\n\n\n\n\n\n\n\n\n\n\n\nUse theme() function to tweak elements, e.g.:\n\n\np_labs + theme(\n  legend.position = \"none\", # hide legend\n  plot.title = element_text(\n    hjust = 0.5, # center plot title\n    size = 5, # plot title size\n  ), \n  axis.text.x = element_text(angle = 90) # rotate axis' text\n)"
-  },
-  {
-    "objectID": "ioc_r/week05/r_w05_slides.html#saving-your-graphs",
-    "href": "ioc_r/week05/r_w05_slides.html#saving-your-graphs",
-    "title": "Graphing with {ggplot2} (Part 1)",
-    "section": "Saving Your Graphs",
-    "text": "Saving Your Graphs\nUse ggsave() to save plots in high resolution for publications.\nggsave(\n  filename = \"path/to/figure.png\", # figure file name\n  plot = last_plot(), \n  # save by default the last figure,\n  # you can provide the figure name to specify the plot to be saved.\n  device = \"png\",\n  # can be one of \"eps\", \"ps\", \"tex\" (pictex), \"pdf\",\n  # \"jpeg\", \"tiff\", \"png\", \"bmp\", \"svg\" or \"wmf\"\n  width = 6.3,\n  height = 4.7,\n  units = \"in\", # can be one of \"in\", \"cm\", \"mm\" or \"px\"\n  dpi = 300 # plot resolution\n)\n\n\n\n\n\n\n\nSave the basic plot to the outputs folder in your project. Check the saved figure via the Files panel in RStudio.\n\n\n\n\n\n\nggsave(\n  filename = \"../outputs/basic_scatter_plot.png\",\n  plot = base_plot,\n  width = 5, height = 5, units = \"cm\", dpi = 150\n)"
-  },
-  {
-    "objectID": "ioc_r/week05/r_w05_slides.html#todays-goals",
-    "href": "ioc_r/week05/r_w05_slides.html#todays-goals",
-    "title": "Graphing with {ggplot2} (Part 1)",
-    "section": "Today’s Goals",
-    "text": "Today’s Goals\n\nInstall new R packages\nCreate basic plots with ggplot2"
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_slides.html#welcome-to-r",
-    "href": "ioc_r/week01/r_w01_slides.html#welcome-to-r",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Welcome to R!",
-    "text": "Welcome to R!\nR is a programming language and software environment designed for statistical computing and data analysis.\n\n\nWhy R?\n\nBiologist friendly!\nFree and open-source\nSupported by a huge community\n\n\nWhat you can do with R?\n\nAnalyze your data\nVisualize your findings\nAutomate your workflow\nShare reproducible research\n\n\nThe official website: https://www.r-project.org"
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_slides.html#the-r-console",
-    "href": "ioc_r/week01/r_w01_slides.html#the-r-console",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "The R Console",
-    "text": "The R Console\n\n\n\n\nIn the R console:\n\n&gt; (The prompt): R is ready for your command. Type your code and press Enter to run it.\n[1] (Output): This indicates the start of an output line.\n+ (Continuation): R is waiting for you to finish your command. You can either finish the command or press Esc to cancel it.\n\n\n\nIn the R Console, the &gt; prompt lets you know that R is ready for your command. Just type your code and hit Enter. When you see the output, it will start with [1], which indicates the position of the first element. If you see a + at the beginning of a new line, it means R is waiting for you to finish your command, this often happens if you forget a parenthesis or a comma. You can either finish it by typing the rest of the code or press the Esc key to cancel the input completely and get a fresh &gt; prompt."
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_slides.html#rstudio-login",
-    "href": "ioc_r/week01/r_w01_slides.html#rstudio-login",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Rstudio Login",
-    "text": "Rstudio Login\nIf you use the RStudio Server, you need to connect to your account first."
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_slides.html#rstudio-ide",
-    "href": "ioc_r/week01/r_w01_slides.html#rstudio-ide",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Rstudio IDE",
-    "text": "Rstudio IDE\nIntegrated Development Environment (IDE)\n\n\n\n\n\nConsole: enter and execute R commands interactively.\nEnvironment/History: tracks your variables and past commands.\nFiles/Plots/Packages: managing your files, viewing graphs, or installing tools.\n\n\n\n\n\n\n\nRstudio cheat sheet (and French version)\n\n\n\n\n\nEverything you need in one organized window. Save your work as a script, RStudio includes many useful features which let us code easily. notebook, show results"
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_slides.html#getting-started",
-    "href": "ioc_r/week01/r_w01_slides.html#getting-started",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Getting Started",
-    "text": "Getting Started\n\n\n\nOpen your RStudio.\nCreate an R script: File -&gt; New File -&gt; R Script or click . (Will appeared at 4)\nWrite your codes in the script.\nSave script: Cmd/Ctrl + S, name your script.\nExecute code: Click  or press Cmd/Ctrl + Enter"
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_slides.html#getting-started-1",
-    "href": "ioc_r/week01/r_w01_slides.html#getting-started-1",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Getting Started",
-    "text": "Getting Started\nCopy paste following codes into your script and save the script as test.R.\n\nBasic codes (commands):\n\n# Use `#` to write a comment (line) in your script\n# Math with R:\n2 + 2    # Yes, R can do math!\nsqrt(16) # Square root.\n\n# Create a variable:\nx &lt;- 5 # Now x is 5. You can reuse it!\nx + 1\n\n# Inspect your environment:\n## Look at the \"Environment\" pane, do you see your x?\nls()\n\n# Load a package:\nlibrary(stats)\n\n# Get help of a function (documentation):\n?mean\n\n# Quit RStudio properly\nq()"
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_slides.html#some-configuration",
-    "href": "ioc_r/week01/r_w01_slides.html#some-configuration",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Some Configuration",
-    "text": "Some Configuration\nGo to Tools -&gt; Global Options…\n\n\n\nUnder the General tab:\n\nUncheck the box “Restore .RData…”\nSet “Save workspace to .RData on exit” to Never.\n\n\nThen click “Apply”."
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_slides.html#some-configuration-1",
-    "href": "ioc_r/week01/r_w01_slides.html#some-configuration-1",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Some Configuration",
-    "text": "Some Configuration\nGo to Tools -&gt; Global Options…\n\n\n\nUnder the Code tab:\n\nIn the Display panel, check the box “Use rainbow parentheses”\nThen click “Apply”."
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_slides.html#some-configuration-2",
-    "href": "ioc_r/week01/r_w01_slides.html#some-configuration-2",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Some Configuration",
-    "text": "Some Configuration\nGo to Tools -&gt; Global Options…\n\n\n\nUnder the Appearance tab:\n\nYou can select a theme for you RStudio, e.g., the “Cobalt” for a dark theme.\n\nUnder the Pane Layout tab:\n\nYou can arrange the four panels as you prefer.\nIn addition, click “Add Column” lets you open an extra “Source” code column, allowing you to view your scripts side by side!\nThen click “Apply”."
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_slides.html#create-an-r-project",
-    "href": "ioc_r/week01/r_w01_slides.html#create-an-r-project",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Create an R Project",
-    "text": "Create an R Project\nAn R project keeps everything for your project in one working directory and helps R to know where to look for your files.\n\n\nIn RStudio, go to File -&gt; New Project\nChoose New Directory and click New Project\nSet a folder name (e.g., r_week1) and select where to save it.\nClick Create Project\n\n\n\nYou’ll notice RStudio restarts, and now your project is set up!\n\n\nAn R Project is a way to keep everything for your work (scripts, data, outputs) in one place. Think of it like a special folder where RStudio automatically knows where to look for your files. It helps avoid problems with messy file paths."
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_slides.html#create-an-r-project-1",
-    "href": "ioc_r/week01/r_w01_slides.html#create-an-r-project-1",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Create an R Project",
-    "text": "Create an R Project"
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_slides.html#a-well-organized-project-folder",
-    "href": "ioc_r/week01/r_w01_slides.html#a-well-organized-project-folder",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "A Well Organized Project Folder",
-    "text": "A Well Organized Project Folder\n\nTree structure:\n\nr_week1              # Your working directory    \n├── r_week1.Rproj    # The R project configuration file\n├── README.md           # A short introduction of the project\n├── data                # Raw data files\n│   └── raw_count.tsv\n├── scripts             # Your R code files\n│   └── 01-analysis.R\n│   └── 02-figures.R\n└── outputs             # Results, e.g., graphs, reports\n\n\nManaging Files (via the File pane):\n\nTo create a new folder: click . The folder will be created in the current directory.\nTo move a file or folder: check the box next to its name, click  and then select Move… to choose a new destination.\n\n\n\n\n\n\n\n\n\n\n\nCreate data and scripts folders inside your working directory.\nMove the test.R into the scripts folder of your working directory.\n\n\n\n\n\n\nexample of bad home organisation: pillow in kitchen and microoven in the bathroom The trunk is the main folder (your R Project). Branches are subfolders for scripts, data, and output, ect. By building a clear structure, you’ll: Always know where to find things. Save time when coding in R or sharing your project with others. Avoid messy files scattered everywhere."
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_slides.html#understanding-file-paths",
-    "href": "ioc_r/week01/r_w01_slides.html#understanding-file-paths",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Understanding File Paths",
-    "text": "Understanding File Paths\nHow to tell your computer where to find the test.R?\n\n\n\nAbsolute path, starts from the very top of your computer’s folder. E.g.:\n\nLinux/Mac: /Users/lijiao/Documents/r_week1/scripts/test.R\nWindows: C:\\Users\\lijiao\\Documents\\r_week1\\scripts\\test.R"
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_slides.html#understanding-file-paths-1",
-    "href": "ioc_r/week01/r_w01_slides.html#understanding-file-paths-1",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Understanding File Paths",
-    "text": "Understanding File Paths\nA path tells your computer where to find files/folders.\n\nRelative path, starts from your working directory (folder). E.g.:\n\nLinux/Mac: scripts/test.R\nWindows: scripts\\test.R"
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_slides.html#where-are-you",
-    "href": "ioc_r/week01/r_w01_slides.html#where-are-you",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Where Are You?",
-    "text": "Where Are You?\nr_week1              # Your working directory\n├── r_week1.Rproj    # The R project configuration file\n├── data             # Raw data files\n└── scripts          # Your R code files\n    └── test.R\n\n&gt; getwd() # Get working directory\n[1] \"/Users/lijiao/Documents/r_week1\"\n\n\n\n\n\n\n\nWhat are the absolute and relative paths of the folder “data”?\n\n\n\n\n\nabsolute path: /Users/lijiao/Documents/r_week1/data\nrelative path: data\n\n\n&gt; file.exists(\"/Users/lijiao/Documents/r_week1/data\")\n[1] TRUE\n&gt; file.exists(\"data\")\n[1] TRUE"
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_slides.html#import-data",
-    "href": "ioc_r/week01/r_w01_slides.html#import-data",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Import Data",
-    "text": "Import Data\n\n\n\nSupported formats:\n\ntext files (.txt, .csv, etc.)\nExcel files\ndata from other softwares (e.g.: SAS)\n\nClick-button methods:\n\nFrom menu bar: File -&gt; Import Dataset -&gt; Select the format -&gt; Choose your file\nFrom the “Environment” pane: click Import Dataset -&gt; Select the format -&gt; Choose your file\nFrom the “Files” pane: Navigate to your file location -&gt; Click the file and select Import Dataset (need the {readr} package)\n\n\n\n\n\n\nPop-up window using the {readr} import wizard."
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_slides.html#import-data-1",
-    "href": "ioc_r/week01/r_w01_slides.html#import-data-1",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Import Data",
-    "text": "Import Data\nImporting your first file: shiny_sample_data.csv\n\nRight click the link and select “Download Linked File As…” (or the equivalent on your system).\nSave the file into the data folder of the R project r_week1\nImport the data with one of the three click-button ways.\n\n\nWhen you select the file, a preview window will pop up. RStudio tries to guess the data’s properties, but you should always confirm them.\n\n\n\n\n\n\n\nThink before you import the data\n\n\n\nHow do you want to name the imported data?\nIs there a header?\nWhat is the column separator?\nWhich sign is used as the decimal?\n\n\n\n\nOnce you’ve checked these settings and the preview looks correct, click Import."
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_slides.html#import-data-2",
-    "href": "ioc_r/week01/r_w01_slides.html#import-data-2",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Import Data",
-    "text": "Import Data"
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_slides.html#export-data",
-    "href": "ioc_r/week01/r_w01_slides.html#export-data",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Export Data",
-    "text": "Export Data\nWe’ll use the built-in iris dataset and save it in the CSV format using the write_csv() function from the {readr} package.\nhead(iris) # show the first lines of the dataset\nView(iris) # preview the whole dataset\n?write_csv # get help of the function\nGoal: Save the built-in iris dataset as a CSV file named iris_export.csv inside the outputs folder of the project.\n\n\nCreate the outputs folder.\nType the following command and execute it:\n\nwrite_csv(iris, file = \"outputs/iris_export.csv\")\n\n\n\n\n\n\n\n\nGo to the Files pane, can you find the saved file?\n\n\n\n\n\n(We’ll talk about other formats in the future!)\n\nOnce you’ve cleaned, analyzed, or modified a dataset in R, you’ll want to save it. While you can save data in many formats, we’ll use the most common one, a CSV file, as our example. We’ll use the built-in iris dataset."
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_slides.html#different-solutions",
-    "href": "ioc_r/week01/r_w01_slides.html#different-solutions",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Different Solutions",
-    "text": "Different Solutions\n\nGoogle it!\nForums: Stack Overflow, Cirad(francophone), etc.\nAsk/discuss your question via Slack.\nAI tools (like ChatGPT or Gemini) can be very helpful resources😉, but be careful of false answers! (More details in session 6)\n\nKey points:\n\nBe specific.\nProvide context: code, error, etc.\nAlways verify.\nProtect sensitive data.\n\n\ngoogle/forum stack overFlow - what are you trying to do / what did you try? - the warning or error message / your code / your data structure - language name / function or package name / a specific problem - try and iterate"
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_slides.html#pdf-of-slides",
-    "href": "ioc_r/week01/r_w01_slides.html#pdf-of-slides",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "PDF of Slides",
-    "text": "PDF of Slides\nTo save the slides as a PDF:\n\nOpen the presentation in a web browser\nPress “e” to enable PDF export mode\nPress Cmd/Ctrl + P to open the in-browser print dialog.\nChange layout to “Landscape”.\nSelect “save as PDF” as the printer option and save the file.\n\nAfter saving, press “e” again to return to presentation mode."
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_slides.html#todays-goals",
-    "href": "ioc_r/week01/r_w01_slides.html#todays-goals",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Today’s Goals",
-    "text": "Today’s Goals\n\nGet familiar with the RStudio\nCreate an R project in RStudio\nImport data file into RStudio\nExport data from RStudio"
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_work.html",
-    "href": "ioc_r/week01/r_w01_work.html",
-    "title": "Week 1 - Homework",
+    "objectID": "ioc_r/week09/r_w09_exos.html",
+    "href": "ioc_r/week09/r_w09_exos.html",
+    "title": "Week 9 - Hands-On Examples",
     "section": "",
-    "text": "Write your code in a new R script. You can use # at the beginning of a line to add a comment in your script.\n\nImport the data file “visceral_fat.csv”.\n\n\nFirst, download the visceral_fat.csv file via this link.\nThen, upload the file to a folder of your choice within your RStudio project.\nNext, import the data into RStudio and name the data frame visceral_fat.\n\nTip:\nUse the click-button method in RStudio to upload and import the file. Then, copy and paste the R commands generated into your script.\nOnce imported, you can use the visceral_fat dataset for further analysis in your report.\n\nSummarize the dataset.\n\nRun the function summary(visceral_fat) to generate a summary of the dataset. Describe what information you obtained.\n\nDraw a histogram.\n\nCreate a histogram for the diastolic blood pressure using the column visceral_fat[[\"diastolic_bp__mmhg\"]]. Describe what you observe from the plot.\n\nHandle an outlier.\n\nAfter consulting with a clinician, you discover that the 27th value of the diastolic blood pressure was incorrectly recorded.\n\nIgnore this value using visceral_fat[[\"diastolic_bp__mmhg\"]][-27]\nRedraw the histogram after excluding the outlier and describe any changes you observe.\n\n\nCompare mean and median.\n\nCalculate the mean (mean()) and the median (median()) for the diastolic blood pressure\n\nbefore ignoring the 27th value: visceral_fat[[\"diastolic_bp__mmhg\"]]\nafter ignoring the 27th value: visceral_fat[[\"diastolic_bp__mmhg\"]][-27]\n\nDescribe how the outlier affects the mean and median.\nThe homework correction is available here: link"
+    "text": "Write your code directly in a Quarto document.\nThe template is available here: link"
   },
   {
-    "objectID": "ioc_r/week07/r_w07_exos.html",
-    "href": "ioc_r/week07/r_w07_exos.html",
-    "title": "Week 7 - Hands-On Examples",
+    "objectID": "ioc_r/week09/r_w09_exos.html#goals",
+    "href": "ioc_r/week09/r_w09_exos.html#goals",
+    "title": "Week 9 - Hands-On Examples",
+    "section": "Goals",
+    "text": "Goals\n\nUnderstand the basics of Quarto.\nCreate your first Quarto report by walking through a mini data project."
+  },
+  {
+    "objectID": "ioc_r/week09/r_w09_exos.html#mini-data-project",
+    "href": "ioc_r/week09/r_w09_exos.html#mini-data-project",
+    "title": "Week 9 - Hands-On Examples",
+    "section": "Mini Data Project",
+    "text": "Mini Data Project\n\nData Import & Exploration\n\nImport the two data datasets with read_csv() using following links:\n\n\nYeast gene annotation data: \"https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/mart_export.txt.gz\", name the data as annot.\nGene differential expression analysis (SET1 vs. WT): \"https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv\", name the data as de_res.\n\nWhat are the dimensions of each dataset?\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.2     ✔ tibble    3.3.0\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.1.0     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nannot &lt;- read_csv(\n  \"https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/mart_export.txt.gz\"\n)\n\nRows: 7127 Columns: 9\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (5): Gene stable ID, Gene type, Gene name, Chromosome/scaffold name, Gen...\ndbl (4): Gene % GC content, Transcript count, Gene start (bp), Gene end (bp)\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nde_res &lt;- read_csv(\n  \"https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv\"\n)\n\nRows: 45 Columns: 7\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (1): gene_name\ndbl (6): baseMean, log2FoldChange, lfcSE, stat, pvalue, padj\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\n\nWhich chromosome has the highest number of genes? Which chromosome has the lowest number of genes?\n\n\nannot |&gt;\n  count(`Chromosome/scaffold name`) |&gt;\n  arrange(n)\n\n# A tibble: 17 × 2\n   `Chromosome/scaffold name`     n\n   &lt;chr&gt;                      &lt;int&gt;\n 1 Mito                          55\n 2 I                            126\n 3 VI                           156\n 4 III                          202\n 5 IX                           259\n 6 VIII                         340\n 7 V                            356\n 8 XI                           369\n 9 X                            434\n10 XIV                          459\n11 II                           478\n12 XVI                          545\n13 XIII                         549\n14 XV                           636\n15 VII                          639\n16 XII                          639\n17 IV                           885\n\nannot |&gt;\n  count(`Chromosome/scaffold name`) |&gt;\n  filter(n == max(n))\n\n# A tibble: 1 × 2\n  `Chromosome/scaffold name`     n\n  &lt;chr&gt;                      &lt;int&gt;\n1 IV                           885\n\nannot |&gt;\n  count(`Chromosome/scaffold name`) |&gt;\n  filter(n %in% range(n)) # filter on the max or the min count\n\n# A tibble: 2 × 2\n  `Chromosome/scaffold name`     n\n  &lt;chr&gt;                      &lt;int&gt;\n1 IV                           885\n2 Mito                          55\n\n\n\nFor protein-coding genes, calculate the maximum, minimum, average, and median percentage of GC content for each chromosome.\n\n\nannot |&gt;\n  filter(`Gene type` == \"protein_coding\") |&gt;\n  group_by(`Chromosome/scaffold name`) |&gt;\n  summarise(\n    min_gc = min(`Gene % GC content`),\n    max_gc = max(`Gene % GC content`),\n    mean_gc = mean(`Gene % GC content`),\n    median_gc = median(`Gene % GC content`)\n  )\n\n# A tibble: 17 × 5\n   `Chromosome/scaffold name` min_gc max_gc mean_gc median_gc\n   &lt;chr&gt;                       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;\n 1 I                           25.8    58.0    41.6      41.3\n 2 II                          20      55      40.1      39.7\n 3 III                         30.0    54.6    41.2      40.3\n 4 IV                          25.2    54.2    39.6      39.3\n 5 IX                          32.7    56      40.6      40.2\n 6 Mito                         8.18   44.9    22.3      22.9\n 7 V                           27.6    56.2    40.7      40.3\n 8 VI                          32.7    54.2    41.2      40.9\n 9 VII                         27.4    55.3    39.9      39.6\n10 VIII                        30.1    52.4    40.7      40.3\n11 X                           31.7    52.8    40.4      39.6\n12 XI                          26      59.1    40.0      39.5\n13 XII                         26.0    58.4    40.5      39.7\n14 XIII                        28.9    53.5    39.9      39.6\n15 XIV                         28.7    53.8    40.3      39.9\n16 XV                          28.9    55.2    39.9      39.3\n17 XVI                         28.1    53.6    39.9      39.5\n\n\n\nComparing de_res and annot genes. Do all genes in de_res exist in annot? How many genes in de_res lack annotation information?\n\n\ntable(de_res$gene_name %in% annot[[\"Gene name\"]])\n\n\nFALSE  TRUE \n    7    38 \n\n\n\nAdd the annotation information to de_res, merge the annot data with de_res using either:\n\n\nthe merge() function (base R), or\nthe left_join() function (from the dplyr package, ?left_join)\n\n\nde_res_annot &lt;- merge(\n  x = de_res, y = annot,\n  by.x = \"gene_name\", by.y = \"Gene name\",\n  all.x = TRUE\n) # the output is no longer a tibble but data frame\nde_res_annot &lt;- as_tibble(de_res_annot) # convert to a tibble\n\n# or with left_join\nde_res_annot &lt;- de_res |&gt;\n  left_join(annot, by = c(\"gene_name\" = \"Gene name\"))\n\n\n\nData Visualization & Statistical Analysis\n\nGenerate a Volcano plot for differential expression results with the following specifications:\n\n\nX-axis: Log2 fold change\nY-axis: -log10(p-value)\nColor: Highlight genes with adjusted p-values below 0.5 in red color (consider creating a new column to flag these).\nDisplay gene names for points with absolute log2 fold change greater than 1.5 (use geom_text_repel()).\nReference lines:\n\nHorizontal red dash line at the Bonferroni-adjusted p-value threshold (0.05 / Ntest)\nVertical dash lines at log2 fold change values of 1.5 and -1.5\n\nTheme: Apply theme_light() for the plot appearance.\n\n\nde_res_annot |&gt;\n  mutate(significant = ifelse(padj &lt; 0.05, \"yes\", \"no\")) |&gt;\n  ggplot(aes(x = log2FoldChange, y = -log10(pvalue))) +\n  geom_point(aes(color = significant), alpha = 0.7) +\n  scale_color_manual(values = c(\"yes\" = \"red\", \"no\" = \"grey\")) +\n  labs(color = \"adj.p &lt; 0.05\") +\n  ggrepel::geom_text_repel(\n    data = filter(de_res_annot, abs(log2FoldChange) &gt; 1.5),\n    aes(label = gene_name) # use gene name as lable\n  ) +\n  geom_hline(\n    yintercept = -log10(0.05 / nrow(de_res_annot)),\n    color = \"red\",\n    linetype = \"dashed\" \n  ) +\n  geom_vline(xintercept = c(1.5, -1.5), linetype = \"dashed\") +\n  theme_light()\n\n\n\n\n\n\n\n# or without create new column for colors\nde_res_annot |&gt;\n  ggplot(aes(x = log2FoldChange, y = -log10(pvalue))) +\n  geom_point(aes(color = padj &lt; 0.05), alpha = 0.7) +\n  scale_color_manual(values = c(\"TRUE\" = \"red\", \"FALSE\" = \"grey\")) +\n  labs(color = \"adj.p &lt; 0.05\") +\n  ggrepel::geom_text_repel(\n    data = filter(de_res_annot, abs(log2FoldChange) &gt; 1.5),\n    aes(label = gene_name) # use gene name as lable\n  ) +\n  geom_hline(\n    yintercept = -log10(0.05 / nrow(de_res_annot)),\n    color = \"red\",\n    linetype = \"dashed\" \n  ) +\n  geom_vline(xintercept = c(1.5, -1.5), linetype = \"dashed\") +\n  theme_light()\n\n\n\n\n\n\n\n\nSo far, we’ve analyzed gene expression between two groups (SET1 vs. WT). How can we compare expression levels across four groups (WT, SET1, SET1.RRP6, RRP6)? For example, how can we test if the average expression level of a gene is the same across these four groups?\n\n\n\n\n\n\nStats Time!\n\n\n\nOne-way ANOVA\nANOVA (ANalysis Of VAriance) helps us determine whether the means of multiple groups are different. Instead of comparing means directly (as in t-tests), ANOVA compares the variances within (intra) and between groups (inter) to infer differences in means.\nWe assume that the variance within each group is the same across all groups.\n\n(Figure credit: Lorette Noiret)\n\n\\(H_0: \\mu_1 = \\mu_2 = ... = \\mu_n\\)\n\\(H_1\\): there is at least one group which has an average different than other groups.\n\nWhich is equals to test:\n\n\\(H_0: \\sigma^2_{\\text{inter group}} = \\sigma^2_{\\text{intra group}}\\)\n\\(H_1: \\sigma^2_{\\text{inter group}} &gt; \\sigma^2_{\\text{intra group}}\\)\n\nIf the means are truly different, the variation between groups (\\(\\sigma^2_{\\text{inter group}}\\)) should be greater than the variation within groups (\\(\\sigma^2_{\\text{intra group}}\\)).\nANOVA calculates the F statistic, which is a ratio:\n\\(F = \\frac{\\sigma^2_{\\text{inter group}}}{\\sigma^2_{\\text{intra group}}}\\)\n, and the probability of obtaining an F-statistic as extreme as the observed one (the p-value), assuming the null hypothesis is true.\nConditions of applying ANOVA:\n\nIndependence: Observations in each group must be independent.\nNormality: Data should be approximately normally distributed (can be checked using the Shapiro test).\nHomoscedasticity (homogeneity of variance): Variances across groups should be roughly equal (Levene’s test or Bartlett’s test can check this).\n\nIn R, the function aov() is used to perform ANOVA.\n\n\nLet’s take the gene LOH1 as example.\n\nImport the expression data using this link: \"https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv\"\n\n\ncounts &lt;- read_csv(\n  \"https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv\"\n)\n\nRows: 45 Columns: 41\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (1): Feature\ndbl (40): WT.1, WT.2, WT.3, WT.4, WT.5, WT.6, WT.7, WT.8, WT.9, WT.10, SET1....\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\n\nGiven the imported counts data, how can we reshape it to extract the necessary information and obtain a tibble with the following columns?\n\n\n“value”: Expression values of the gene LOH1\n“group”: Sample groups (Explore how to use the str_replace() function to extract group based on sample name)\n\n\n?str_replace\n\nanova_data &lt;- counts |&gt;\n  filter(Feature == \"LOH1\") |&gt;\n  pivot_longer(\n    cols = -1,\n    names_to = \"sample_id\",\n    values_to = \"value\"\n  ) |&gt;\n  mutate(\n    group = str_replace(\n      string = sample_id,\n      pattern = \"\\\\.([0-9]+)$\",\n      replace = \"\"\n    )\n  )\nanova_data\n\n# A tibble: 40 × 4\n   Feature sample_id value group\n   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;\n 1 LOH1    WT.1         10 WT   \n 2 LOH1    WT.2          2 WT   \n 3 LOH1    WT.3         14 WT   \n 4 LOH1    WT.4         19 WT   \n 5 LOH1    WT.5         35 WT   \n 6 LOH1    WT.6         17 WT   \n 7 LOH1    WT.7          6 WT   \n 8 LOH1    WT.8          3 WT   \n 9 LOH1    WT.9         31 WT   \n10 LOH1    WT.10        13 WT   \n# ℹ 30 more rows\n\n\n\nAssume that all conditions of ANOVA are verified. Perform an ANOVA (aov()) test and use summary() to obtain the results. If we take \\(\\alpha=0.05\\), what is your conclusion?\n\n\nres_aov &lt;- aov(value ~ group, data = anova_data)\nsummary(res_aov)\n\n            Df Sum Sq Mean Sq F value  Pr(&gt;F)    \ngroup        3  45166   15055   13.69 4.1e-06 ***\nResiduals   36  39603    1100                    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nConduct a Tukey Honest Significant Differences (TukeyHSD) test to check which groups differ significantly. (?TukeyHSD)\n\n\nTukeyHSD(res_aov)\n\n  Tukey multiple comparisons of means\n    95% family-wise confidence level\n\nFit: aov(formula = value ~ group, data = anova_data)\n\n$group\n                diff        lwr        upr     p adj\nSET1-RRP6       62.1   22.15167 102.048326 0.0009619\nSET1.RRP6-RRP6   7.7  -32.24833  47.648326 0.9539581\nWT-RRP6        -31.2  -71.14833   8.748326 0.1713841\nSET1.RRP6-SET1 -54.4  -94.34833 -14.451674 0.0041844\nWT-SET1        -93.3 -133.24833 -53.351674 0.0000017\nWT-SET1.RRP6   -38.9  -78.84833   1.048326 0.0587008\n\n\n\nVisualize the expression levels of the LOH1 gene across the four groups using a boxplot.\n\n\nggplot(\n  anova_data,\n  aes(\n    x = factor(group, levels = c(\"WT\", \"SET1\", \"SET1.RRP6\", \"RRP6\")),\n    y = value\n  )\n) +\n  geom_boxplot(\n    outliers = FALSE # do not display outliers by boxplot\n  ) +\n  geom_point(\n    aes(color = group),\n    position = position_jitter(height = 0, width = 0.3, seed = 1)\n  ) +\n  labs(x = NULL, title = \"Expression of LOH1\") +\n  theme_light() +\n  theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\n\n\nBonus\nVerify the assumptions for conducting an ANOVA test:\n\n# Check data normality with Shapiro test\nshapiro.test(anova_data$value[anova_data$group == \"WT\"])\n\n\n    Shapiro-Wilk normality test\n\ndata:  anova_data$value[anova_data$group == \"WT\"]\nW = 0.92104, p-value = 0.3657\n\nshapiro.test(anova_data$value[anova_data$group == \"SET1\"])\n\n\n    Shapiro-Wilk normality test\n\ndata:  anova_data$value[anova_data$group == \"SET1\"]\nW = 0.90683, p-value = 0.2599\n\nshapiro.test(anova_data$value[anova_data$group == \"SET1.RRP6\"])\n\n\n    Shapiro-Wilk normality test\n\ndata:  anova_data$value[anova_data$group == \"SET1.RRP6\"]\nW = 0.92342, p-value = 0.3864\n\nshapiro.test(anova_data$value[anova_data$group == \"RRP6\"])\n\n\n    Shapiro-Wilk normality test\n\ndata:  anova_data$value[anova_data$group == \"RRP6\"]\nW = 0.81775, p-value = 0.02381\n\n# or use lapply() to repeat test for each group\n# lapply(\n#   X = unique(anova_data$group),\n#   FUN = function(grp) {\n#     shapiro.test(anova_data$value[anova_data$group == grp])\n#   }\n# )\n\nThe RRP6 data does not follow a normal distribution.\n\n# Check homogeneity of variance with Bartlett test\nbartlett.test(value ~ group, data = anova_data)\n\n\n    Bartlett test of homogeneity of variances\n\ndata:  value by group\nBartlett's K-squared = 25.242, df = 3, p-value = 1.374e-05\n\n\nMoreover, the assumption of homoscedasticity (equal variance) is not met.\nTherefore, an ANOVA is not appropriate, and a non-parametric Kruskal-Wallis test should be used instead.\n\nkruskal.test(value ~ group, data = anova_data)\n\n\n    Kruskal-Wallis rank sum test\n\ndata:  value by group\nKruskal-Wallis chi-squared = 24.631, df = 3, p-value = 1.845e-05\n\n\n\n\nGreat work, you’ve made it to the end! 🎉 and now you’re ready to take on even more! Keep exploring new things, there’s so much more R can do for you!"
+  },
+  {
+    "objectID": "ioc_r/week05/r_w05_exos.html",
+    "href": "ioc_r/week05/r_w05_exos.html",
+    "title": "Week 5 - Hands-On Examples",
     "section": "",
     "text": "The R script is available here: link"
   },
   {
-    "objectID": "ioc_r/week07/r_w07_exos.html#goals",
-    "href": "ioc_r/week07/r_w07_exos.html#goals",
-    "title": "Week 7 - Hands-On Examples",
+    "objectID": "ioc_r/week05/r_w05_exos.html#goals",
+    "href": "ioc_r/week05/r_w05_exos.html#goals",
+    "title": "Week 5 - Hands-On Examples",
     "section": "Goals",
-    "text": "Goals\n\nClean, reshape, and manipulate real-world data using {dplyr} and {tidyr}\nIntegrate tidy data into downstream analysis (e.g., for visualization or statistical analysis)"
+    "text": "Goals\n\nInstall new R packages\nCreate basic plots with ggplot2"
   },
   {
-    "objectID": "ioc_r/week07/r_w07_exos.html#install-tidyverse-and-load-the-package",
-    "href": "ioc_r/week07/r_w07_exos.html#install-tidyverse-and-load-the-package",
-    "title": "Week 7 - Hands-On Examples",
-    "section": "Install {tidyverse} and Load the Package",
-    "text": "Install {tidyverse} and Load the Package\n\n# install.packages(\"tidyverse\")\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.2     ✔ tibble    3.3.0\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.1.0     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors"
+    "objectID": "ioc_r/week05/r_w05_exos.html#install-new-packages",
+    "href": "ioc_r/week05/r_w05_exos.html#install-new-packages",
+    "title": "Week 5 - Hands-On Examples",
+    "section": "Install New Packages",
+    "text": "Install New Packages\nWe will use a couple of additional R packages for this training in session 9, for example:\n\n{tidyr}: provides functions that help you get to tidy data\n{dplyr}: provides functions that help you to manipulate data\n\n\nInstall the {dplyr} and {tidyr} packages.\n\n\n# install.packages(\"dplyr\") # you only need to install it once\n# install.packages(\"tidyr\") # you only need to install it once\n\n\nCheck if you can find {dplyr} and {tidyr} in the “Packages” panel in RStudio.\nPlease use the following code to create a data frame of all installed packages in your system. Show a couple of first lines of the data frame.\n\n\nmy_pkgs &lt;- as.data.frame(installed.packages()[, c(1, 3:4)])\nhead(my_pkgs)\n\n            Package Version Priority\nabind         abind   1.4-8     &lt;NA&gt;\naskpass     askpass   1.2.1     &lt;NA&gt;\nbackports backports   1.5.0     &lt;NA&gt;\nbase64enc base64enc   0.1-3     &lt;NA&gt;\nbit             bit   4.6.0     &lt;NA&gt;\nbit64         bit64 4.6.0-1     &lt;NA&gt;\n\n\n\nAccording to my_pkgs, how many packages are installed in your system?\n\n\nnrow(my_pkgs) # the number can be different\n\n[1] 168\n\n\n\nExtract the rows for the “ggplot2”, “tidyr”, “dplyr” packages from my_pkgs.\n\n\n# extract by rownames\nmy_pkgs[c(\"ggplot2\", \"tidyr\", \"dplyr\"), ]\n\n        Package Version Priority\nggplot2 ggplot2   3.5.2     &lt;NA&gt;\ntidyr     tidyr   1.3.1     &lt;NA&gt;\ndplyr     dplyr   1.1.4     &lt;NA&gt;\n\n## or\n# extract by filtering the names in the \"Package\" column\nmy_pkgs[my_pkgs$Package %in% c(\"ggplot2\", \"tidyr\", \"dplyr\"), ]\n\n        Package Version Priority\ndplyr     dplyr   1.1.4     &lt;NA&gt;\nggplot2 ggplot2   3.5.2     &lt;NA&gt;\ntidyr     tidyr   1.3.1     &lt;NA&gt;"
   },
   {
-    "objectID": "ioc_r/week07/r_w07_exos.html#mini-data-project",
-    "href": "ioc_r/week07/r_w07_exos.html#mini-data-project",
-    "title": "Week 7 - Hands-On Examples",
-    "section": "Mini Data Project",
-    "text": "Mini Data Project\nThis mini data project is based on a real project that focuses on gene expression across different time points.\nA researcher has measured the expression levels of 20 genes (anonymed as 1 to 20) using the RT-qPCR technique. The gene expression was assessed in two structures of the mouse brain. Mice ranged in age from 10 to 60 days (10, 15, 20, 25, 30, 35, 40, 45, 50, 60 days), and the experiment was repeated with both male and female mice, with 6 animals (named from A to F) in each group.\nAccording to the researcher, the data was stored in two files, one for each brain structure. Within each file, rows represent the different ages, and columns represent the gene, sex, and animal.\nA small Gaussian noise has been added to the original data, preserving the overall structure.\nThe data is available in two CSV files:\n\ndata_anonym_struc1_noise.csv\ndata_anonym_struc2_noise.csv\n\nWe will focus on the data from the brain structure 1.\n\nImport the Data\n\nPlease download the data_anonym_struc1_noise.csv file. Observe your data file:\n\n\nIs there a header line?\nWhat is the separator between columns?\nWhich character was used for decimal points?\nWhich character was used for missing data (between two seperators where there’s no value)?\n\n\n\n\n\n\n\nPreview File\n\n\n\nYou can preview the data file in different ways, such as:\n\nOpening it with a text editor;\nClicking the file name and selecting “View File” in the RStudio File Pane;\nOr by using the terminal if you are using Unix-based system: head -n2 data_anonym_struc1_noise.csv (to view the first 2 lines) or more data_anonym_struc1_noise.csv (to scroll through the file and quit by typing q), which is recommended for large files.\n\n\n\n\nImport the data_anonym_struc1_noise.csv into RStudio, you can use either:\n\n\nthe read_csv2() from the package {readr} (?readr::read_csv2), or\nuse the click-button way and copy-paste the code in your script.\n\nDon’t forget to use/select the appropriate parameters to make sure you import correctly the data.\nName the data as data1. Convert your imported data to tibble format if it’s not the case.\nWhat is the data dimension?\n\ndata1 &lt;- read_csv2(\n  file = \"../exos_data/data_anonym_struc1_noise.csv\",\n  locale = locale(decimal_mark = \",\")\n)\n\nNew names:\nRows: 10 Columns: 241\n── Column specification\n──────────────────────────────────────────────────────── Delimiter: \";\" dbl\n(241): ...1, 1MA, 1MB, 1MC, 1MD, 1ME, 1MF, 2MA, 2MB, 2MC, 2MD, 2ME, 2MF,...\nℹ Use `spec()` to retrieve the full column specification for this data. ℹ\nSpecify the column types or set `show_col_types = FALSE` to quiet this message.\n• `` -&gt; `...1`\n\n# or use the read_delim() with appropriate parameters\n# data1 &lt;- read_delim(\n#   \"../exos_data/data_anonym_struc1_noise.csv\", \n#   delim = \";\", locale = locale(decimal_mark = \",\")\n# )\n\n\nShow the first 10 columns of your data.\n\n\n# classic way\ndata1[, 1:10]\n\n# A tibble: 10 × 10\n    ...1 `1MA` `1MB` `1MC` `1MD`  `1ME` `1MF` `2MA` `2MB` `2MC`\n   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n 1    10 1.93  0.413 1.21  1.40   1.02  0.795 1.51  0.476 1.32 \n 2    15 1.39  1.79  1.31  1.80   1.37  1.58  1.03  1.28  1.14 \n 3    20 2.12  2.07  0.690 0.406  0.809 1.73  1.59  1.67  0.608\n 4    25 1.71  0.544 0.862 0.444  1.01  1.32  1.17  0.508 0.882\n 5    30 0.974 0.695 0.436 0.212  0.246 0.526 0.716 0.564 0.439\n 6    35 1.90  0.955 0.396 0.922  1.50  1.15  1.14  0.920 0.423\n 7    40 1.10  0.548 0.891 1.01   0.438 0.809 0.861 0.501 1.02 \n 8    45 1.53  2.07  1.07  1.29   1.56  1.79  0.984 1.39  1.10 \n 9    50 1.30  1.09  0.913 0.958  0.983 1.18  0.967 1.01  0.926\n10    60 0.906 1.15  1.16  1.21  NA     1.12  0.948 0.872 1.15 \n\n# use select()\nselect(data1, 1:10)\n\n# A tibble: 10 × 10\n    ...1 `1MA` `1MB` `1MC` `1MD`  `1ME` `1MF` `2MA` `2MB` `2MC`\n   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n 1    10 1.93  0.413 1.21  1.40   1.02  0.795 1.51  0.476 1.32 \n 2    15 1.39  1.79  1.31  1.80   1.37  1.58  1.03  1.28  1.14 \n 3    20 2.12  2.07  0.690 0.406  0.809 1.73  1.59  1.67  0.608\n 4    25 1.71  0.544 0.862 0.444  1.01  1.32  1.17  0.508 0.882\n 5    30 0.974 0.695 0.436 0.212  0.246 0.526 0.716 0.564 0.439\n 6    35 1.90  0.955 0.396 0.922  1.50  1.15  1.14  0.920 0.423\n 7    40 1.10  0.548 0.891 1.01   0.438 0.809 0.861 0.501 1.02 \n 8    45 1.53  2.07  1.07  1.29   1.56  1.79  0.984 1.39  1.10 \n 9    50 1.30  1.09  0.913 0.958  0.983 1.18  0.967 1.01  0.926\n10    60 0.906 1.15  1.16  1.21  NA     1.12  0.948 0.872 1.15 \n\n\n\nRename the first column as age.\n\n\ndata1 &lt;- data1 |&gt;\n  rename(age = ...1)\n\n\n\nReshape the Data\nHow should the data be organized?\n\nReshape the dataset to a longer format using pivot_longer(), so that for each mouse:\n\n\nThe first column shows the age\nThe second column shows the sample ID (e.g., 1MA, 1MB, …)\nThe third column shows the gene expression value\n\nWhat are the columns to be included to pivot into longer format?\n\n# use column index\ndata1_long &lt;- data1 |&gt;\n  pivot_longer(cols = -1, names_to = \"id\", values_to = \"value\")\n\n# use column name\n# data1_long &lt;- data1 |&gt;\n#   pivot_longer(cols = -age, names_to = \"id\", values_to = \"value\")\n\ndata1_long \n\n# A tibble: 2,400 × 3\n     age id    value\n   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;\n 1    10 1MA   1.93 \n 2    10 1MB   0.413\n 3    10 1MC   1.21 \n 4    10 1MD   1.40 \n 5    10 1ME   1.02 \n 6    10 1MF   0.795\n 7    10 2MA   1.51 \n 8    10 2MB   0.476\n 9    10 2MC   1.32 \n10    10 2MD   1.57 \n# ℹ 2,390 more rows\n\n\n\nAdd a column struc which contains the name of the measured structure s1.\n\n\ndata1_long &lt;- data1_long |&gt;\n  mutate(struc = \"s1\")\ndata1_long\n\n# A tibble: 2,400 × 4\n     age id    value struc\n   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;\n 1    10 1MA   1.93  s1   \n 2    10 1MB   0.413 s1   \n 3    10 1MC   1.21  s1   \n 4    10 1MD   1.40  s1   \n 5    10 1ME   1.02  s1   \n 6    10 1MF   0.795 s1   \n 7    10 2MA   1.51  s1   \n 8    10 2MB   0.476 s1   \n 9    10 2MC   1.32  s1   \n10    10 2MD   1.57  s1   \n# ℹ 2,390 more rows\n\n\n\nExtract information about gene, sex and animal from the column id using the extract() function. Name the new columns as “gene_id”, “sex” and “animal”.\n\nHint: Find the patterns for the extraction. You can use AI to help you to write the regular expression.\n\n# check how id (the colnames before reshape) was constructed.\nhead(data1_long$id)\n\n[1] \"1MA\" \"1MB\" \"1MC\" \"1MD\" \"1ME\" \"1MF\"\n\ntail(data1_long$id)\n\n[1] \"20FA\" \"20FB\" \"20FC\" \"20FD\" \"20FE\" \"20FF\"\n\ndata1_long &lt;- data1_long |&gt;\n  extract(\n    col = id,\n    into = c(\"gene_id\", \"sex\", \"animal\"),\n    regex = \"([0-9]+)([MF])([A-F])\"\n  )\n\nIf you want to write all previous codes together:\n\ndata1_long &lt;- read_csv2(\n    file = \"../exos_data/data_anonym_struc1_noise.csv\",\n    locale = locale(decimal_mark = \",\")\n  ) |&gt;\n  rename(age = ...1) |&gt; # not necessary if the next line \"cols\" based on index\n  pivot_longer(cols = -1, names_to = \"id\", values_to = \"value\") |&gt;\n  mutate(struc = \"s1\") |&gt;\n  extract(\n    col = id,\n    into = c(\"gene_id\", \"sex\", \"animal\"),\n    regex = \"([0-9]+)([MF])([A-F])\"\n  )\n\nNow, the data is ready for downstream analysis.\n\n\nManipulate the Data\nFor question 8 to 11, let’s focus on gene 1 from the data.\n\nAt age of 10 days, which animal has the highest expression value for gene 1 overall?\n\n\n# overall\ndata1_long |&gt;\n  filter(gene_id == \"1\" & age == 10) |&gt;\n  arrange(desc(value)) |&gt;\n  head(1)\n\n# A tibble: 1 × 6\n    age gene_id sex   animal value struc\n  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;\n1    10 1       F     A       2.93 s1   \n\n\n\nIs there any missing value for gene 1? If yes, how to remove lines with NA?\n\n\ntable(is.na(data1_long$value[data1_long$gene_id == \"1\"]))\n\n\nFALSE  TRUE \n  106    14 \n\ndata1_long |&gt;\n  filter(gene_id == \"1\") |&gt;\n  drop_na(value)\n\n# A tibble: 106 × 6\n     age gene_id sex   animal value struc\n   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;\n 1    10 1       M     A      1.93  s1   \n 2    10 1       M     B      0.413 s1   \n 3    10 1       M     C      1.21  s1   \n 4    10 1       M     D      1.40  s1   \n 5    10 1       M     E      1.02  s1   \n 6    10 1       M     F      0.795 s1   \n 7    10 1       F     A      2.93  s1   \n 8    10 1       F     B      1.47  s1   \n 9    10 1       F     C      2.44  s1   \n10    10 1       F     D      2.71  s1   \n# ℹ 96 more rows\n\n\n\nAfter removing NAs, how many animals are there for each sex in gene 1?\n\n\ndata1_long |&gt;\n  filter(gene_id == \"1\") |&gt;\n  drop_na(value) |&gt;\n  group_by(sex) |&gt;\n  count()\n\n# A tibble: 2 × 2\n# Groups:   sex [2]\n  sex       n\n  &lt;chr&gt; &lt;int&gt;\n1 F        47\n2 M        59\n\n\n\nSummarize the median, mean, and standard deviation of gene 1 expression for both sexes.\n\n\ndata1_long |&gt;\n  filter(gene_id == \"1\") |&gt;\n  drop_na(value) |&gt;\n  group_by(sex) |&gt;\n  summarise(\n    median_gene1 = median(value),\n    mean_gene1 = mean(value),\n    sd_gene1 = sd(value)\n  )\n\n# A tibble: 2 × 4\n  sex   median_gene1 mean_gene1 sd_gene1\n  &lt;chr&gt;        &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;\n1 F             1.21       1.37    0.639\n2 M             1.09       1.11    0.488\n\n\n\n\nExplore the Data\nWhat kind of analysis would you like to perform with this data?\nIn statistics, it’s common to begin by exploring the dataset as a whole and visualizing the relationships between different variables. The function ggpairs() from the {GGally} package is useful for creating a matrix of scatter plots to examine the relationships between each pair of variables. First, let’s install the {GGally} package if it is not already installed.\n\ninstall.packages(\"GGally\")\n\n\nLoad the package and take a look at the help page for ggpairs(). How will you reshape the data1_long to provide the necessary data for the [ggpairs()](https://ggobi.github.io/ggally/articles/ggpairs.html) function?\n\n\nlibrary(GGally)\n?ggpairs\n\n\ndata1_wider &lt;- data1_long |&gt;\n  pivot_wider(\n    names_from = \"gene_id\",\n    values_from = \"value\",\n    names_prefix = \"gene\" # to avoid name starts with number\n  )\n\ndata1_wider\n\n# A tibble: 120 × 24\n     age sex   animal struc gene1 gene2 gene3 gene4  gene5  gene6  gene7  gene8\n   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n 1    10 M     A      s1    1.93  1.51  1.18  1.32   1.22   0.916  1.11   1.12 \n 2    10 M     B      s1    0.413 0.476 0.539 0.624  0.418  0.426  0.718  0.806\n 3    10 M     C      s1    1.21  1.32  1.22  1.07   1.38   1.28   0.829  1.10 \n 4    10 M     D      s1    1.40  1.57  1.44  1.33   1.33   1.65   1.33   1.15 \n 5    10 M     E      s1    1.02  0.918 1.06  0.816  0.848  1.47   1.13   0.941\n 6    10 M     F      s1    0.795 0.775 0.788 1.04   1.15   0.945  1.03   0.906\n 7    10 F     A      s1    2.93  2.36  2.13  1.92   0.846  1.93   1.38   0.532\n 8    10 F     B      s1    1.47  1.05  0.788 0.623  0.803  0.921  1.45   0.693\n 9    10 F     C      s1    2.44  1.73  1.44  1.33   0.892  2.87   1.88   0.646\n10    10 F     D      s1    2.71  1.90  2.28  1.79  NA     NA     NA     NA    \n# ℹ 110 more rows\n# ℹ 12 more variables: gene9 &lt;dbl&gt;, gene10 &lt;dbl&gt;, gene11 &lt;dbl&gt;, gene12 &lt;dbl&gt;,\n#   gene13 &lt;dbl&gt;, gene14 &lt;dbl&gt;, gene15 &lt;dbl&gt;, gene16 &lt;dbl&gt;, gene17 &lt;dbl&gt;,\n#   gene18 &lt;dbl&gt;, gene19 &lt;dbl&gt;, gene20 &lt;dbl&gt;\n\n\nTo save space, we will focus on examining the relationship between age and the first 5 genes.\n\nWhat did you observe from these scatter plots?\n\n\nggpairs(select(data1_wider, age, gene1:gene5))\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 13 rows containing missing values\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 16 rows containing missing values\n\n\nWarning: Removed 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\nWarning: Removed 14 rows containing non-finite outside the scale range\n(`stat_density()`).\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 16 rows containing missing values\n\n\nWarning: Removed 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\nWarning: Removed 14 rows containing non-finite outside the scale range\n(`stat_density()`).\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 16 rows containing missing values\n\n\nWarning: Removed 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\nWarning: Removed 14 rows containing non-finite outside the scale range\n(`stat_density()`).\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 16 rows containing missing values\n\n\nWarning: Removed 13 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\nWarning: Removed 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\nWarning: Removed 13 rows containing non-finite outside the scale range\n(`stat_density()`).\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 16 rows containing missing values\n\n\nWarning: Removed 16 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 16 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 16 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 16 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 16 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\nWarning: Removed 16 rows containing non-finite outside the scale range\n(`stat_density()`).\n\n\n\n\n\n\n\n\n# or you can tweak the points for a better look\nggpairs(\n  select(data1_wider, age, gene1:gene5),\n  lower = list(continuous = wrap(\"points\", alpha = 0.3, size = 0.8))\n)\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 13 rows containing missing values\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 16 rows containing missing values\n\n\nWarning: Removed 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\nWarning: Removed 14 rows containing non-finite outside the scale range\n(`stat_density()`).\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 16 rows containing missing values\n\n\nWarning: Removed 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\nWarning: Removed 14 rows containing non-finite outside the scale range\n(`stat_density()`).\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 16 rows containing missing values\n\n\nWarning: Removed 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\nWarning: Removed 14 rows containing non-finite outside the scale range\n(`stat_density()`).\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 16 rows containing missing values\n\n\nWarning: Removed 13 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\nWarning: Removed 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\nWarning: Removed 13 rows containing non-finite outside the scale range\n(`stat_density()`).\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 16 rows containing missing values\n\n\nWarning: Removed 16 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 16 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 16 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 16 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 16 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\nWarning: Removed 16 rows containing non-finite outside the scale range\n(`stat_density()`).\n\n\n\n\n\n\n\n\n\n\nCalculate the correlation between gene 1 and 2. (?cor)\n\n\ncor(\n  x = data1_wider$gene1,\n  y = data1_wider$gene2,\n  use = \"na.or.complet\"\n) # by default use the pearson's method\n\n[1] 0.8935659\n\n\nIt seems that there are two groups of mice that express genes 4 and 5 in a similar way.\n\nDraw a scatter plot using {ggplot2} to show the expression levels of genes 4 and 5. Color the points by different categorical variables that we have, i.e., age, sex, and animal.\n\nIs there any categorical variable that can explain the groups we observed in the figure?\n\np_age &lt;- ggplot(data = data1_wider, aes(x = gene4, y = gene5)) +\n  geom_point(aes(color = age)) +\n  labs(title = \"Expression Level of Genes 4 and 5\") +\n  theme_light()\np_age\n\nWarning: Removed 16 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\np_sex &lt;- ggplot(data = data1_wider, aes(x = gene4, y = gene5)) +\n  geom_point(aes(color = sex)) +\n  labs(title = \"Expression Level of Genes 4 and 5\") +\n  theme_light()\np_sex\n\nWarning: Removed 16 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\np_animal &lt;- ggplot(data = data1_wider, aes(x = gene4, y = gene5)) +\n  geom_point(aes(color = animal)) +\n  labs(title = \"Expression Level of Genes 4 and 5\") +\n  theme_light()\np_animal\n\nWarning: Removed 16 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\n\n\nGood job! 👏👏 You’ve made great progress in mastering data manipulation techniques."
+    "objectID": "ioc_r/week05/r_w05_exos.html#create-a-basic-histogram",
+    "href": "ioc_r/week05/r_w05_exos.html#create-a-basic-histogram",
+    "title": "Week 5 - Hands-On Examples",
+    "section": "Create a Basic Histogram",
+    "text": "Create a Basic Histogram\nIn the hands-on examples of session 1 and 2, we have drawn histograms with the basic R function hist().\nNow let’s try with functions from {ggplot2} package.\n\nImport the read-counts.csv file into RStudio and name the data as counts.\n\n\nlibrary(readr)\ncounts &lt;- read_csv(\"../exos_data/read-counts.csv\") # replace the path by the yours\n\nRows: 45 Columns: 41\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (1): Feature\ndbl (40): WT.1, WT.2, WT.3, WT.4, WT.5, WT.6, WT.7, WT.8, WT.9, WT.10, SET1....\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\ndim(counts)\n\n[1] 45 41\n\n\n\nLoad the {ggplot2} package. Then create a histogram with the function geom_histogram() for all genes of the sample “WT.2”. Have you noticed the message from geom_histogram() about the bins?\n\n\nlibrary(ggplot2)\nggplot(data = counts, aes(x = WT.2)) +\n  geom_histogram()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\n\n\n\n\n\n\nCreate a new histogram for the sample “WT.2”, but this time use the log2 of the gene counts. Do you see the messages from geom_histogram()?\n\n\nggplot(data = counts, aes(x = log2(WT.2))) +\n  geom_histogram()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 5 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\n\nTry 10 and 20 for the bins parameter of geom_histogram(). Observe how the histogram changes.\n\n\nggplot(data = counts, aes(x = log2(WT.2))) +\n  geom_histogram(bins = 10) +\n  labs(title = \"10 bins\")\n\nWarning: Removed 5 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\nggplot(data = counts, aes(x = log2(WT.2))) +\n  geom_histogram(bins = 20) +\n  labs(title = \"20 bins\")\n\nWarning: Removed 5 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\n\nWe will use 10 bins for the histogram. Change the color of the bars to blue.\n\n\nggplot(data = counts, aes(x = log2(WT.2))) +\n  geom_histogram(bins = 10, color = \"blue\")\n\nWarning: Removed 5 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\n\nBased on the previous figure, fill the bars in orange.\n\n\nggplot(data = counts, aes(x = log2(WT.2))) +\n  geom_histogram(bins = 10, color = \"blue\", fill = \"orange\")\n\nWarning: Removed 5 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\n\nBased on the previous figure, change:\n\n\nx-axis title to be: “log2 gene expression”\ny-axis title to be: “Counts”\nplot title to show sample name and the number of genes used.\n\n\nggplot(data = counts, aes(x = log2(WT.2))) +\n  geom_histogram(bins = 10, color = \"blue\", fill = \"orange\") +\n  labs(\n    x = \"log2 gene expression\",\n    y = \"Counts\",\n    title = paste0(nrow(counts), \" genes of WT.2 sample\")\n  )\n\nWarning: Removed 5 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\n\nBased on the previous figure, use the theme theme_bw().\n\n\nggplot(data = counts, aes(x = log2(WT.2))) +\n  geom_histogram(bins = 10, color = \"blue\", fill = \"orange\") +\n  labs(\n    x = \"log2 gene expression\",\n    y = \"Counts\",\n    title = paste0(nrow(counts), \" genes of WT.2 sample\")\n  ) +\n  theme_bw()\n\nWarning: Removed 5 rows containing non-finite outside the scale range\n(`stat_bin()`)."
   },
   {
-    "objectID": "ioc_r_toc.html",
-    "href": "ioc_r_toc.html",
-    "title": "Materials for the IOC-R",
+    "objectID": "ioc_r/week05/r_w05_exos.html#create-a-boxplot-with-ggplot",
+    "href": "ioc_r/week05/r_w05_exos.html#create-a-boxplot-with-ggplot",
+    "title": "Week 5 - Hands-On Examples",
+    "section": "Create a Boxplot with ggplot",
+    "text": "Create a Boxplot with ggplot\nIn the hands-on examples of session 3, we demonstrated that there is a significant difference in the expression of LOH1 between WT and SET1 samples.\nThis gene is upregulated in SET1 samples compared to WT samples, the log2 fold change is 2.85.\nNow, let’s draw a more sophisticated boxplot with ggplot2.\n\nPrepare a data frame for the boxplot. We need:\n\n\na column for the expression levels of different samples\na column to indicate what is the sample group (WT or SET1)\n\n\ngg_df &lt;- data.frame(\n  expr_value = c(\n    unlist(counts[counts$Feature == \"LOH1\", paste0(\"WT.\", 1:10)]),\n    unlist(counts[counts$Feature == \"LOH1\", paste0(\"SET1.\", 1:10)])\n  ),\n  gp = rep(c(\"WT\", \"SET1\"), each = 10)\n)\ngg_df\n\n        expr_value   gp\nWT.1            10   WT\nWT.2             2   WT\nWT.3            14   WT\nWT.4            19   WT\nWT.5            35   WT\nWT.6            17   WT\nWT.7             6   WT\nWT.8             3   WT\nWT.9            31   WT\nWT.10           13   WT\nSET1.1          67 SET1\nSET1.2          49 SET1\nSET1.3          83 SET1\nSET1.4         185 SET1\nSET1.5         203 SET1\nSET1.6          83 SET1\nSET1.7          40 SET1\nSET1.8          84 SET1\nSET1.9         134 SET1\nSET1.10        155 SET1\n\n\n\nCreate a boxplot for the expression level by sample group.\n\n\np_base &lt;- ggplot(gg_df, aes(x = gp, y = expr_value)) +\n  geom_boxplot()\n\np_base\n\n\n\n\n\n\n\n\n\nModify labels:\n\n\nRemove x-axis title\nChange y-axis title to “Expression Level”\nAdd a plot title “Expression of LOH1 in SET1 and WT samples”\nAdd a subtitle “log2FoldChange = 2.85”\n\n\np_base &lt;- p_base + labs(\n  x = NULL,\n  y = \"Expression Level\",\n  title = \"Expression of LOH1 in SET1 and WT samples\",\n  subtitle = \"log2FoldChange = 2.85\"\n)\np_base\n\n\n\n\n\n\n\n\n\nAdd a layer of scatter plot over the boxplot.\n\n\nColor the points by sample group.\nUse the alpha parameter to let points be semi-transparent.\n\n\np_base &lt;- p_base +\n  geom_point(\n    aes(color = gp),\n    alpha = 0.5\n  )\np_base\n\n\n\n\n\n\n\n\n\nChange the theme to theme_minimal().\n\n\np_base &lt;- p_base + theme_minimal()\np_base\n\n\n\n\n\n\n\n\n\nWith the theme() function:\n\n\nMove the plot title to the center.\nHide the legend.\n\n\np_base &lt;- p_base + theme(\n  plot.title = element_text(hjust = 0.5), # center plot title\n  legend.position = \"none\"\n)\np_base\n\n\n\n\n\n\n\n\n\n\nGood job! 👏👏 You’ve taken your first big steps into ggplot2, keep it up!"
+  },
+  {
+    "objectID": "ioc_r/week05/r_w05_work.html",
+    "href": "ioc_r/week05/r_w05_work.html",
+    "title": "Week 5 - Homework",
     "section": "",
-    "text": "Kickstart with R:Your Gateway to Data Science\n\n\n\nweek01\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 1 - Hands-On Examples\n\n\n\nweek01\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 1 - Homework\n\n\n\nweek01\n\nhomework\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nData Foundations:Vectors and Matrices\n\n\n\nweek02\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 2 - Hands-On Examples\n\n\n\nweek02\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 2 - Homework\n\n\n\nweek02\n\nhomework\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMore Complex Data Structures:Data Frames and Lists\n\n\n\nweek03\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 3 - Hands-On Examples\n\n\n\nweek03\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 3 - Homework\n\n\n\nweek03\n\nhomework\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBuilding Logic:Operators, Conditions, and Functions\n\n\n\nweek04\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 4 - Hands-On Examples\n\n\n\nweek04\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 4 - Homework\n\n\n\nweek04\n\nhomework\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGraphing with {ggplot2} (Part 1)\n\n\n\nweek05\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 5 - Hands-On Examples\n\n\n\nweek05\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 5 - Homework\n\n\n\nweek05\n\nhomework\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nR-fresh:Revisiting the Essentials\n\n\n\nweek06\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 6 - Hands-On Examples\n\n\n\nweek06\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 6 - Homework\n\n\n\nweek06\n\nhomework\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Up: Wrangling Data with {dplyr} and {tidyr}\n\n\n\nweek07\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 7 - Hands-On Examples\n\n\n\nweek07\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 7 - Homework\n\n\n\nweek07\n\nhomework\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGraphs Level Up: {ggplot2} (Part 2) & Custom Functions\n\n\n\nweek08\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 8 - Hands-On Examples\n\n\n\nweek08\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 8 - Homework\n\n\n\nweek08\n\nhomework\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Import Data\nWe need to use two data for this exercise:\n\nthe bulk RNAseq gene expression data from the read-counts.csv file.\nthe diffenrential expression (DE) analysis results toy_DEanalysis.\n\nReminder: the DE results were obtained by comparing SET1 samples to WT samples using data from read-counts.csv\n\nImport DE analysis result (toy_DEanalysis.csv) and name it as de_res.\n\n(You can either use the basic function read.csv() or the function read_csv() from the {readr} package.)\n\nImport the read-counts.csv file and name it counts.\n\nYou can either use the first column (Feature) to name the rows of your data frame or keep the fisrt column as is. It will just change how you filter data later.\n\n\nFind Genes of Interest\n\nFind the genes which satisfy the following conditions:\n\n\nlog2 fold change &lt; -1 or &gt; 1 (a.k.a, the absolute log2 fold change is bigger than 1)\nadjusted p-value &lt; 0.05\n\nStore the results in a variable target_genes.\n\n\nDraw Boxplots\n\nLoad the {ggplot2} package.\nDraw a boxplot for the 1st gene of the target_genes to show the expression level between SET1 and WT samples.\n\nHints: you need to extract the expression data for the gene from the counts and build a data frame for the boxplot.\n\nRefine the boxplot from question 5 to include the following customizations:\n\n\nA subtitle showing the gene’s log2 fold change.\nFill the boxplot with different colors for the “WT” and “SET1” groups.\nApply the theme_minimal() theme.\nHide the legend.\n\n\nThe homework correction is available here: link"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_exos.html",
+    "href": "ioc_r/week01/r_w01_exos.html",
+    "title": "Week 1 - Hands-On Examples",
+    "section": "",
+    "text": "Get familiar with the RStudio\nCreate an R project in RStudio\nImport data file into RStudio\nExport data from RStudio"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_exos.html#goals",
+    "href": "ioc_r/week01/r_w01_exos.html#goals",
+    "title": "Week 1 - Hands-On Examples",
+    "section": "",
+    "text": "Get familiar with the RStudio\nCreate an R project in RStudio\nImport data file into RStudio\nExport data from RStudio"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_exos.html#create-an-r-project",
+    "href": "ioc_r/week01/r_w01_exos.html#create-an-r-project",
+    "title": "Week 1 - Hands-On Examples",
+    "section": "Create an R project",
+    "text": "Create an R project\n\nOpen RStudio, create a new R project in the folder of your choice.\n\nSome rules for naming your project:\n\nChoose a short and descriptive name.\nUse snake case (lowercase letters and underscores only). Avoid special characters (such as !, #, ) and spaces.\nThe name cannot starts with numbers.\n\n\nOpen your R project, create three new folders, i.e., data, scripts, outputs.\nDownload two files:\n\n\nAn R script named “r_w01_exos.R” for this week’s exercise (here), save it into the scripts folder.\nA data file called “read-counts.csv” (here), put it into the data folder.\n\n\n\n\n\n\n\nNote\n\n\n\nIf you are using RStudio server, files can be uploaded using the “Upload” icon in the Files pane."
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_exos.html#files-description",
+    "href": "ioc_r/week01/r_w01_exos.html#files-description",
+    "title": "Week 1 - Hands-On Examples",
+    "section": "Files Description",
+    "text": "Files Description\n\nData File\nWe’ll be working with a gene expression dataset as an example, sourced from this link.\nThe data comes from an experiment using PCR to study 44 genes. The results were measured to see which genes are active at different stages in Yeast cell cycling. Several strains were tested, including wildtype and some with specific genes knock-downs. Samples were taken at nine time points over two cell cycles (two hours).\n\n\nThe R script\nThe r_w01_exos.R script contains all commands R for the exercise."
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_exos.html#play-with-rstudio",
+    "href": "ioc_r/week01/r_w01_exos.html#play-with-rstudio",
+    "title": "Week 1 - Hands-On Examples",
+    "section": "Play with RStudio",
+    "text": "Play with RStudio\nIn your R project, open the downloaded R script r_w01_exos.R: In RStudio menu bar, click File -&gt; Open File -&gt; selec the Rscript, or click the file in the Files pane.\n\nImport Data\n\nIf you are not familiar with the file content, click on the CSV file in Files pane to “View” it. Identify the column separator and the decimal sign.\nImport the file into R and call the imported data “counts”.\nCopy paste the command shown in the R console.\n\n\n\nExercises\n\nWhat is the absolute file path of the imported data counts? What is its relative path? Verify your answer using the function file.exists().\n\n\ngetwd() # show the current working directory\n\nabs_path &lt;- \"\" # put your answer between quotes\nrel_path &lt;- \"\" # put your answer between quotes\n\nfile.exists(abs_path) # check if R finds your file using absolute path\nfile.exists(rel_path) # check if R finds your file using relative path\n\n\nWhat is the dimension (number of rows and columns) of the data frame? Check the “Environment” panel or use the function dim().\n\n\ndim(counts)\n\n[1] 45 41\n\n\nIn the “Environment” panel, click on the tabular icon next to the dataset to visualize the it.\nWe can extract all gene expressions for the sample named “WT.2” using counts[[\"WT.2\"]].\n\nTry mode() on the expression data for “WT.2”, what does it return?\n\n\nmode(counts[[\"WT.2\"]])\n\n[1] \"numeric\"\n\n\n\nCalculate the average expression (mean()) and standard deviation (sd()) of genes from the sample “WT.2”.\n\n\nmean(counts[[\"WT.2\"]])\n\n[1] 148\n\nsd(counts[[\"WT.2\"]])\n\n[1] 392.7854\n\n\n\nGenerate descriptive statistics for all genes from the sample “WT.2” using summary().\n\n\nsummary(counts[[\"WT.2\"]])\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n      0       6      27     148     110    2527 \n\n\n\n\n\n\n\n\nStats Time!\n\n\n\nWhat are quartiles?\nQuartiles are three values that split sorted data into four equal parts.\n\n(figure modified from this source)\nIQR (Interquartile range) = Q3 - Q1\n\n\n\nGenerate a histogram for the “WT.2” sample using hist(). What does the distribution look like?\n\n\n\n\n\n\n\nStats Time!\n\n\n\nHistograms help us see how data is spread out. They show how many data points fall into different intervals, or bins. By looking at a histogram, we can quickly understand the shape of the data, like if it’s skewed or has outliers. It’s a simple way to get an overview of your data.\n\n\n\nhist(counts[[\"WT.2\"]])\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStats Time!\n\n\n\nlog2 Transformation\nA log2 transformation is commonly used to normalize data and reduce skewness, especially in datasets with values spanning several orders of magnitude. Many biological data, like gene expression counts, tend to have a highly skewed distribution with a long tail of large values. The log2 transformation helps:\n\nStabilize variance – Makes data with large differences more comparable.\nHandle ratios – Converts multiplicative relationships into additive ones, simplifying interpretation.\nImprove normality – Makes the data distribution closer to normal, which is often required for statistical tests.\n\n\n\n\nplot(\n  x = counts[[\"WT.2\"]], y = log2(counts[[\"WT.2\"]]),\n  xlab = \"Original Scale\", ylab = \"log2 Scale\",\n  main = \"Gene expression for the sample WT.2\"\n)\nabline(v = 256, col = \"red\", lty = 2) # Add vertical line \nabline(h = 8, col = \"red\", lty = 2) # Add horizontal line\ntext(x = 500, y = 7, labels = expression(2^8 == 256)) # Add equation\n\n\n\n\n\n\n\n\nRe draw the histogram with the log2 transformed data, what does the distribution look like now?\n\nhist(log2(counts[[\"WT.2\"]]))\n\n\n\n\n\n\n\n\n\nWe can extract the gene name column (called “Feature”) and the column for sample “WT.2” using this command: counts[, c(\"Feature\", \"WT.2\")]. Export the data to a file called WT_2_expression.csv, store this file in the outputs folder.\n\n\nwrite_csv(counts[, c(\"Feature\", \"WT.2\")], file = \"outputs/WT_2_expression.csv\")\n\nCheck in the outputs folder, do you see the saved file? Does the content correspond to your expectations?\n\n\nGood job! 👏👏 You’ve taken your first big steps into R, and you’re off to a great start, keep it up!"
+  },
+  {
+    "objectID": "ioc_r/week07/r_w07_work.html",
+    "href": "ioc_r/week07/r_w07_work.html",
+    "title": "Week 7 - Homework",
+    "section": "",
+    "text": "We already saw how to import and tidy the data for structure 1 during the exercise.\nJust a reminder, the expression of 20 genes was measured in mice aged from 10 to 60 days, with both male and female mice, and each group consists of 6 animals. The gene expression data is stored in two files, one for each brain structure. Within each file, rows represent the different ages, and columns represent the gene, sex, and animal.\nThe data is available in two CSV files:\n\ndata_anonym_struc1_noise.csv\ndata_anonym_struc2_noise.csv\n\n\nImport the two data files and reshape them the same way you did up to question 9 of the exercise. Then, combine the two datasets into one. Make sure to adjust any parameters as needed.\n\nHints: You can combine datasets by stacking their rows together to create one final data frame. (Use dplyr::bind_rows() or rbind() for this.)\n\nRemove lines with NA in expression value.\nFor the mice of 20 days, count how many measurements you have for each brain structure in genes 4 and 5 separately.\nExplore how brain structure and genes 16 to 20 relate to each other using the GGally::ggpairs() function.\n\nWhich pair of variables correlated the most?\n\nBased on the previous figure, which gene appears to show the largest difference in expression between the two brain structures?\n\nChoose an appropriate figure to display this gene’s expression across the brain structures.\n\nThe homework correction is available here: link"
+  },
+  {
+    "objectID": "ioc_r/week07/r_w07_work.html#mini-data-project-part-2",
+    "href": "ioc_r/week07/r_w07_work.html#mini-data-project-part-2",
+    "title": "Week 7 - Homework",
+    "section": "",
+    "text": "We already saw how to import and tidy the data for structure 1 during the exercise.\nJust a reminder, the expression of 20 genes was measured in mice aged from 10 to 60 days, with both male and female mice, and each group consists of 6 animals. The gene expression data is stored in two files, one for each brain structure. Within each file, rows represent the different ages, and columns represent the gene, sex, and animal.\nThe data is available in two CSV files:\n\ndata_anonym_struc1_noise.csv\ndata_anonym_struc2_noise.csv\n\n\nImport the two data files and reshape them the same way you did up to question 9 of the exercise. Then, combine the two datasets into one. Make sure to adjust any parameters as needed.\n\nHints: You can combine datasets by stacking their rows together to create one final data frame. (Use dplyr::bind_rows() or rbind() for this.)\n\nRemove lines with NA in expression value.\nFor the mice of 20 days, count how many measurements you have for each brain structure in genes 4 and 5 separately.\nExplore how brain structure and genes 16 to 20 relate to each other using the GGally::ggpairs() function.\n\nWhich pair of variables correlated the most?\n\nBased on the previous figure, which gene appears to show the largest difference in expression between the two brain structures?\n\nChoose an appropriate figure to display this gene’s expression across the brain structures.\n\nThe homework correction is available here: link"
   },
   {
     "objectID": "ioc_r/week07/r_w07_slides.html#why-do-we-need-tidyverse",
@@ -959,95 +728,445 @@
     "text": "{dplyr} - slice() Rows\n\nUse the slice_head() or slice_tail() to select the first or last rows.\n\n\niris_tbl |&gt; slice_head(n = 3)\n\n# A tibble: 3 × 6\n  Sepal.Length Sepal.Width Petal.Length Petal.Width Species index\n         &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;   &lt;int&gt;\n1          5.1         3.5          1.4         0.2 setosa      1\n2          4.9         3            1.4         0.2 setosa      2\n3          4.7         3.2          1.3         0.2 setosa      3\n\niris_tbl |&gt; slice_tail(n = 3)\n\n# A tibble: 3 × 6\n  Sepal.Length Sepal.Width Petal.Length Petal.Width Species   index\n         &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;     &lt;int&gt;\n1          6.5         3            5.2         2   virginica   148\n2          6.2         3.4          5.4         2.3 virginica   149\n3          5.9         3            5.1         1.8 virginica   150"
   },
   {
-    "objectID": "ioc_r/week07/r_w07_work.html",
-    "href": "ioc_r/week07/r_w07_work.html",
-    "title": "Week 7 - Homework",
+    "objectID": "ioc_r_toc.html",
+    "href": "ioc_r_toc.html",
+    "title": "Materials for the IOC-R",
     "section": "",
-    "text": "We already saw how to import and tidy the data for structure 1 during the exercise.\nJust a reminder, the expression of 20 genes was measured in mice aged from 10 to 60 days, with both male and female mice, and each group consists of 6 animals. The gene expression data is stored in two files, one for each brain structure. Within each file, rows represent the different ages, and columns represent the gene, sex, and animal.\nThe data is available in two CSV files:\n\ndata_anonym_struc1_noise.csv\ndata_anonym_struc2_noise.csv\n\n\nImport the two data files and reshape them the same way you did up to question 9 of the exercise. Then, combine the two datasets into one. Make sure to adjust any parameters as needed.\n\nHints: You can combine datasets by stacking their rows together to create one final data frame. (Use dplyr::bind_rows() or rbind() for this.)\n\nRemove lines with NA in expression value.\nFor the mice of 20 days, count how many measurements you have for each brain structure in genes 4 and 5 separately.\nExplore how brain structure and genes 16 to 20 relate to each other using the GGally::ggpairs() function.\n\nWhich pair of variables correlated the most?\n\nBased on the previous figure, which gene appears to show the largest difference in expression between the two brain structures?\n\nChoose an appropriate figure to display this gene’s expression across the brain structures.\n\nThe homework correction is available here: link"
+    "text": "Kickstart with R:Your Gateway to Data Science\n\n\n\nweek01\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 1 - Hands-On Examples\n\n\n\nweek01\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 1 - Homework\n\n\n\nweek01\n\nhomework\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nData Foundations:Vectors and Matrices\n\n\n\nweek02\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 2 - Hands-On Examples\n\n\n\nweek02\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 2 - Homework\n\n\n\nweek02\n\nhomework\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMore Complex Data Structures:Data Frames and Lists\n\n\n\nweek03\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 3 - Hands-On Examples\n\n\n\nweek03\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 3 - Homework\n\n\n\nweek03\n\nhomework\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBuilding Logic:Operators, Conditions, and Functions\n\n\n\nweek04\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 4 - Hands-On Examples\n\n\n\nweek04\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 4 - Homework\n\n\n\nweek04\n\nhomework\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGraphing with {ggplot2} (Part 1)\n\n\n\nweek05\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 5 - Hands-On Examples\n\n\n\nweek05\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 5 - Homework\n\n\n\nweek05\n\nhomework\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nR-fresh:Revisiting the Essentials\n\n\n\nweek06\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 6 - Homework\n\n\n\nweek06\n\nhomework\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Up: Wrangling Data with {dplyr} and {tidyr}\n\n\n\nweek07\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 7 - Hands-On Examples\n\n\n\nweek07\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 7 - Homework\n\n\n\nweek07\n\nhomework\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 9 - Hands-On Examples\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 6 - Hands-On Examples\n\n\n\nweek06\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGraphs Level Up: {ggplot2} (Part 2) & Custom Functions\n\n\n\nweek08\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 8 - Hands-On Examples\n\n\n\nweek08\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 8 - Homework\n\n\n\nweek08\n\nhomework\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPutting It All TogetherReproducible Analysis with Quarto\n\n\n\nweek09\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 9 - Hands-On Examples\n\n\n\nweek09\n\nexercise\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "ioc_r/week07/r_w07_work.html#mini-data-project-part-2",
-    "href": "ioc_r/week07/r_w07_work.html#mini-data-project-part-2",
-    "title": "Week 7 - Homework",
-    "section": "",
-    "text": "We already saw how to import and tidy the data for structure 1 during the exercise.\nJust a reminder, the expression of 20 genes was measured in mice aged from 10 to 60 days, with both male and female mice, and each group consists of 6 animals. The gene expression data is stored in two files, one for each brain structure. Within each file, rows represent the different ages, and columns represent the gene, sex, and animal.\nThe data is available in two CSV files:\n\ndata_anonym_struc1_noise.csv\ndata_anonym_struc2_noise.csv\n\n\nImport the two data files and reshape them the same way you did up to question 9 of the exercise. Then, combine the two datasets into one. Make sure to adjust any parameters as needed.\n\nHints: You can combine datasets by stacking their rows together to create one final data frame. (Use dplyr::bind_rows() or rbind() for this.)\n\nRemove lines with NA in expression value.\nFor the mice of 20 days, count how many measurements you have for each brain structure in genes 4 and 5 separately.\nExplore how brain structure and genes 16 to 20 relate to each other using the GGally::ggpairs() function.\n\nWhich pair of variables correlated the most?\n\nBased on the previous figure, which gene appears to show the largest difference in expression between the two brain structures?\n\nChoose an appropriate figure to display this gene’s expression across the brain structures.\n\nThe homework correction is available here: link"
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_exos.html",
-    "href": "ioc_r/week01/r_w01_exos.html",
-    "title": "Week 1 - Hands-On Examples",
-    "section": "",
-    "text": "Get familiar with the RStudio\nCreate an R project in RStudio\nImport data file into RStudio\nExport data from RStudio"
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_exos.html#goals",
-    "href": "ioc_r/week01/r_w01_exos.html#goals",
-    "title": "Week 1 - Hands-On Examples",
-    "section": "",
-    "text": "Get familiar with the RStudio\nCreate an R project in RStudio\nImport data file into RStudio\nExport data from RStudio"
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_exos.html#create-an-r-project",
-    "href": "ioc_r/week01/r_w01_exos.html#create-an-r-project",
-    "title": "Week 1 - Hands-On Examples",
-    "section": "Create an R project",
-    "text": "Create an R project\n\nOpen RStudio, create a new R project in the folder of your choice.\n\nSome rules for naming your project:\n\nChoose a short and descriptive name.\nUse snake case (lowercase letters and underscores only). Avoid special characters (such as !, #, ) and spaces.\nThe name cannot starts with numbers.\n\n\nOpen your R project, create three new folders, i.e., data, scripts, outputs.\nDownload two files:\n\n\nAn R script named “r_w01_exos.R” for this week’s exercise (here), save it into the scripts folder.\nA data file called “read-counts.csv” (here), put it into the data folder.\n\n\n\n\n\n\n\nNote\n\n\n\nIf you are using RStudio server, files can be uploaded using the “Upload” icon in the Files pane."
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_exos.html#files-description",
-    "href": "ioc_r/week01/r_w01_exos.html#files-description",
-    "title": "Week 1 - Hands-On Examples",
-    "section": "Files Description",
-    "text": "Files Description\n\nData File\nWe’ll be working with a gene expression dataset as an example, sourced from this link.\nThe data comes from an experiment using PCR to study 44 genes. The results were measured to see which genes are active at different stages in Yeast cell cycling. Several strains were tested, including wildtype and some with specific genes knock-downs. Samples were taken at nine time points over two cell cycles (two hours).\n\n\nThe R script\nThe r_w01_exos.R script contains all commands R for the exercise."
-  },
-  {
-    "objectID": "ioc_r/week01/r_w01_exos.html#play-with-rstudio",
-    "href": "ioc_r/week01/r_w01_exos.html#play-with-rstudio",
-    "title": "Week 1 - Hands-On Examples",
-    "section": "Play with RStudio",
-    "text": "Play with RStudio\nIn your R project, open the downloaded R script r_w01_exos.R: In RStudio menu bar, click File -&gt; Open File -&gt; selec the Rscript, or click the file in the Files pane.\n\nImport Data\n\nIf you are not familiar with the file content, click on the CSV file in Files pane to “View” it. Identify the column separator and the decimal sign.\nImport the file into R and call the imported data “counts”.\nCopy paste the command shown in the R console.\n\n\n\nExercises\n\nWhat is the absolute file path of the imported data counts? What is its relative path? Verify your answer using the function file.exists().\n\n\ngetwd() # show the current working directory\n\nabs_path &lt;- \"\" # put your answer between quotes\nrel_path &lt;- \"\" # put your answer between quotes\n\nfile.exists(abs_path) # check if R finds your file using absolute path\nfile.exists(rel_path) # check if R finds your file using relative path\n\n\nWhat is the dimension (number of rows and columns) of the data frame? Check the “Environment” panel or use the function dim().\n\n\ndim(counts)\n\n[1] 45 41\n\n\nIn the “Environment” panel, click on the tabular icon next to the dataset to visualize the it.\nWe can extract all gene expressions for the sample named “WT.2” using counts[[\"WT.2\"]].\n\nTry mode() on the expression data for “WT.2”, what does it return?\n\n\nmode(counts[[\"WT.2\"]])\n\n[1] \"numeric\"\n\n\n\nCalculate the average expression (mean()) and standard deviation (sd()) of genes from the sample “WT.2”.\n\n\nmean(counts[[\"WT.2\"]])\n\n[1] 148\n\nsd(counts[[\"WT.2\"]])\n\n[1] 392.7854\n\n\n\nGenerate descriptive statistics for all genes from the sample “WT.2” using summary().\n\n\nsummary(counts[[\"WT.2\"]])\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n      0       6      27     148     110    2527 \n\n\n\n\n\n\n\n\nStats Time!\n\n\n\nWhat are quartiles?\nQuartiles are three values that split sorted data into four equal parts.\n\n(figure modified from this source)\nIQR (Interquartile range) = Q3 - Q1\n\n\n\nGenerate a histogram for the “WT.2” sample using hist(). What does the distribution look like?\n\n\n\n\n\n\n\nStats Time!\n\n\n\nHistograms help us see how data is spread out. They show how many data points fall into different intervals, or bins. By looking at a histogram, we can quickly understand the shape of the data, like if it’s skewed or has outliers. It’s a simple way to get an overview of your data.\n\n\n\nhist(counts[[\"WT.2\"]])\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStats Time!\n\n\n\nlog2 Transformation\nA log2 transformation is commonly used to normalize data and reduce skewness, especially in datasets with values spanning several orders of magnitude. Many biological data, like gene expression counts, tend to have a highly skewed distribution with a long tail of large values. The log2 transformation helps:\n\nStabilize variance – Makes data with large differences more comparable.\nHandle ratios – Converts multiplicative relationships into additive ones, simplifying interpretation.\nImprove normality – Makes the data distribution closer to normal, which is often required for statistical tests.\n\n\n\n\nplot(\n  x = counts[[\"WT.2\"]], y = log2(counts[[\"WT.2\"]]),\n  xlab = \"Original Scale\", ylab = \"log2 Scale\",\n  main = \"Gene expression for the sample WT.2\"\n)\nabline(v = 256, col = \"red\", lty = 2) # Add vertical line \nabline(h = 8, col = \"red\", lty = 2) # Add horizontal line\ntext(x = 500, y = 7, labels = expression(2^8 == 256)) # Add equation\n\n\n\n\n\n\n\n\nRe draw the histogram with the log2 transformed data, what does the distribution look like now?\n\nhist(log2(counts[[\"WT.2\"]]))\n\n\n\n\n\n\n\n\n\nWe can extract the gene name column (called “Feature”) and the column for sample “WT.2” using this command: counts[, c(\"Feature\", \"WT.2\")]. Export the data to a file called WT_2_expression.csv, store this file in the outputs folder.\n\n\nwrite_csv(counts[, c(\"Feature\", \"WT.2\")], file = \"outputs/WT_2_expression.csv\")\n\nCheck in the outputs folder, do you see the saved file? Does the content correspond to your expectations?\n\n\nGood job! 👏👏 You’ve taken your first big steps into R, and you’re off to a great start, keep it up!"
-  },
-  {
-    "objectID": "ioc_r/week05/r_w05_work.html",
-    "href": "ioc_r/week05/r_w05_work.html",
-    "title": "Week 5 - Homework",
-    "section": "",
-    "text": "Import Data\nWe need to use two data for this exercise:\n\nthe bulk RNAseq gene expression data from the read-counts.csv file.\nthe diffenrential expression (DE) analysis results toy_DEanalysis.\n\nReminder: the DE results were obtained by comparing SET1 samples to WT samples using data from read-counts.csv\n\nImport DE analysis result (toy_DEanalysis.csv) and name it as de_res.\n\n(You can either use the basic function read.csv() or the function read_csv() from the {readr} package.)\n\nImport the read-counts.csv file and name it counts.\n\nYou can either use the first column (Feature) to name the rows of your data frame or keep the fisrt column as is. It will just change how you filter data later.\n\n\nFind Genes of Interest\n\nFind the genes which satisfy the following conditions:\n\n\nlog2 fold change &lt; -1 or &gt; 1 (a.k.a, the absolute log2 fold change is bigger than 1)\nadjusted p-value &lt; 0.05\n\nStore the results in a variable target_genes.\n\n\nDraw Boxplots\n\nLoad the {ggplot2} package.\nDraw a boxplot for the 1st gene of the target_genes to show the expression level between SET1 and WT samples.\n\nHints: you need to extract the expression data for the gene from the counts and build a data frame for the boxplot.\n\nRefine the boxplot from question 5 to include the following customizations:\n\n\nA subtitle showing the gene’s log2 fold change.\nFill the boxplot with different colors for the “WT” and “SET1” groups.\nApply the theme_minimal() theme.\nHide the legend.\n\n\nThe homework correction is available here: link"
-  },
-  {
-    "objectID": "ioc_r/week05/r_w05_exos.html",
-    "href": "ioc_r/week05/r_w05_exos.html",
-    "title": "Week 5 - Hands-On Examples",
+    "objectID": "ioc_r/week07/r_w07_exos.html",
+    "href": "ioc_r/week07/r_w07_exos.html",
+    "title": "Week 7 - Hands-On Examples",
     "section": "",
     "text": "The R script is available here: link"
   },
   {
-    "objectID": "ioc_r/week05/r_w05_exos.html#goals",
-    "href": "ioc_r/week05/r_w05_exos.html#goals",
-    "title": "Week 5 - Hands-On Examples",
+    "objectID": "ioc_r/week07/r_w07_exos.html#goals",
+    "href": "ioc_r/week07/r_w07_exos.html#goals",
+    "title": "Week 7 - Hands-On Examples",
     "section": "Goals",
-    "text": "Goals\n\nInstall new R packages\nCreate basic plots with ggplot2"
+    "text": "Goals\n\nClean, reshape, and manipulate real-world data using {dplyr} and {tidyr}\nIntegrate tidy data into downstream analysis (e.g., for visualization or statistical analysis)"
   },
   {
-    "objectID": "ioc_r/week05/r_w05_exos.html#install-new-packages",
-    "href": "ioc_r/week05/r_w05_exos.html#install-new-packages",
-    "title": "Week 5 - Hands-On Examples",
-    "section": "Install New Packages",
-    "text": "Install New Packages\nWe will use a couple of additional R packages for this training in session 9, for example:\n\n{tidyr}: provides functions that help you get to tidy data\n{dplyr}: provides functions that help you to manipulate data\n\n\nInstall the {dplyr} and {tidyr} packages.\n\n\n# install.packages(\"dplyr\") # you only need to install it once\n# install.packages(\"tidyr\") # you only need to install it once\n\n\nCheck if you can find {dplyr} and {tidyr} in the “Packages” panel in RStudio.\nPlease use the following code to create a data frame of all installed packages in your system. Show a couple of first lines of the data frame.\n\n\nmy_pkgs &lt;- as.data.frame(installed.packages()[, c(1, 3:4)])\nhead(my_pkgs)\n\n            Package Version Priority\nabind         abind   1.4-8     &lt;NA&gt;\naskpass     askpass   1.2.1     &lt;NA&gt;\nbackports backports   1.5.0     &lt;NA&gt;\nbase64enc base64enc   0.1-3     &lt;NA&gt;\nbit             bit   4.6.0     &lt;NA&gt;\nbit64         bit64 4.6.0-1     &lt;NA&gt;\n\n\n\nAccording to my_pkgs, how many packages are installed in your system?\n\n\nnrow(my_pkgs) # the number can be different\n\n[1] 168\n\n\n\nExtract the rows for the “ggplot2”, “tidyr”, “dplyr” packages from my_pkgs.\n\n\n# extract by rownames\nmy_pkgs[c(\"ggplot2\", \"tidyr\", \"dplyr\"), ]\n\n        Package Version Priority\nggplot2 ggplot2   3.5.2     &lt;NA&gt;\ntidyr     tidyr   1.3.1     &lt;NA&gt;\ndplyr     dplyr   1.1.4     &lt;NA&gt;\n\n## or\n# extract by filtering the names in the \"Package\" column\nmy_pkgs[my_pkgs$Package %in% c(\"ggplot2\", \"tidyr\", \"dplyr\"), ]\n\n        Package Version Priority\ndplyr     dplyr   1.1.4     &lt;NA&gt;\nggplot2 ggplot2   3.5.2     &lt;NA&gt;\ntidyr     tidyr   1.3.1     &lt;NA&gt;"
+    "objectID": "ioc_r/week07/r_w07_exos.html#install-tidyverse-and-load-the-package",
+    "href": "ioc_r/week07/r_w07_exos.html#install-tidyverse-and-load-the-package",
+    "title": "Week 7 - Hands-On Examples",
+    "section": "Install {tidyverse} and Load the Package",
+    "text": "Install {tidyverse} and Load the Package\n\n# install.packages(\"tidyverse\")\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.2     ✔ tibble    3.3.0\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.1.0     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors"
   },
   {
-    "objectID": "ioc_r/week05/r_w05_exos.html#create-a-basic-histogram",
-    "href": "ioc_r/week05/r_w05_exos.html#create-a-basic-histogram",
-    "title": "Week 5 - Hands-On Examples",
-    "section": "Create a Basic Histogram",
-    "text": "Create a Basic Histogram\nIn the hands-on examples of session 1 and 2, we have drawn histograms with the basic R function hist().\nNow let’s try with functions from {ggplot2} package.\n\nImport the read-counts.csv file into RStudio and name the data as counts.\n\n\nlibrary(readr)\ncounts &lt;- read_csv(\"../exos_data/read-counts.csv\") # replace the path by the yours\n\nRows: 45 Columns: 41\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (1): Feature\ndbl (40): WT.1, WT.2, WT.3, WT.4, WT.5, WT.6, WT.7, WT.8, WT.9, WT.10, SET1....\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\ndim(counts)\n\n[1] 45 41\n\n\n\nLoad the {ggplot2} package. Then create a histogram with the function geom_histogram() for all genes of the sample “WT.2”. Have you noticed the message from geom_histogram() about the bins?\n\n\nlibrary(ggplot2)\nggplot(data = counts, aes(x = WT.2)) +\n  geom_histogram()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\n\n\n\n\n\n\nCreate a new histogram for the sample “WT.2”, but this time use the log2 of the gene counts. Do you see the messages from geom_histogram()?\n\n\nggplot(data = counts, aes(x = log2(WT.2))) +\n  geom_histogram()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 5 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\n\nTry 10 and 20 for the bins parameter of geom_histogram(). Observe how the histogram changes.\n\n\nggplot(data = counts, aes(x = log2(WT.2))) +\n  geom_histogram(bins = 10) +\n  labs(title = \"10 bins\")\n\nWarning: Removed 5 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\nggplot(data = counts, aes(x = log2(WT.2))) +\n  geom_histogram(bins = 20) +\n  labs(title = \"20 bins\")\n\nWarning: Removed 5 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\n\nWe will use 10 bins for the histogram. Change the color of the bars to blue.\n\n\nggplot(data = counts, aes(x = log2(WT.2))) +\n  geom_histogram(bins = 10, color = \"blue\")\n\nWarning: Removed 5 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\n\nBased on the previous figure, fill the bars in orange.\n\n\nggplot(data = counts, aes(x = log2(WT.2))) +\n  geom_histogram(bins = 10, color = \"blue\", fill = \"orange\")\n\nWarning: Removed 5 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\n\nBased on the previous figure, change:\n\n\nx-axis title to be: “log2 gene expression”\ny-axis title to be: “Counts”\nplot title to show sample name and the number of genes used.\n\n\nggplot(data = counts, aes(x = log2(WT.2))) +\n  geom_histogram(bins = 10, color = \"blue\", fill = \"orange\") +\n  labs(\n    x = \"log2 gene expression\",\n    y = \"Counts\",\n    title = paste0(nrow(counts), \" genes of WT.2 sample\")\n  )\n\nWarning: Removed 5 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\n\nBased on the previous figure, use the theme theme_bw().\n\n\nggplot(data = counts, aes(x = log2(WT.2))) +\n  geom_histogram(bins = 10, color = \"blue\", fill = \"orange\") +\n  labs(\n    x = \"log2 gene expression\",\n    y = \"Counts\",\n    title = paste0(nrow(counts), \" genes of WT.2 sample\")\n  ) +\n  theme_bw()\n\nWarning: Removed 5 rows containing non-finite outside the scale range\n(`stat_bin()`)."
+    "objectID": "ioc_r/week07/r_w07_exos.html#mini-data-project",
+    "href": "ioc_r/week07/r_w07_exos.html#mini-data-project",
+    "title": "Week 7 - Hands-On Examples",
+    "section": "Mini Data Project",
+    "text": "Mini Data Project\nThis mini data project is based on a real project that focuses on gene expression across different time points.\nA researcher has measured the expression levels of 20 genes (anonymed as 1 to 20) using the RT-qPCR technique. The gene expression was assessed in two structures of the mouse brain. Mice ranged in age from 10 to 60 days (10, 15, 20, 25, 30, 35, 40, 45, 50, 60 days), and the experiment was repeated with both male and female mice, with 6 animals (named from A to F) in each group.\nAccording to the researcher, the data was stored in two files, one for each brain structure. Within each file, rows represent the different ages, and columns represent the gene, sex, and animal.\nA small Gaussian noise has been added to the original data, preserving the overall structure.\nThe data is available in two CSV files:\n\ndata_anonym_struc1_noise.csv\ndata_anonym_struc2_noise.csv\n\nWe will focus on the data from the brain structure 1.\n\nImport the Data\n\nPlease download the data_anonym_struc1_noise.csv file. Observe your data file:\n\n\nIs there a header line?\nWhat is the separator between columns?\nWhich character was used for decimal points?\nWhich character was used for missing data (between two seperators where there’s no value)?\n\n\n\n\n\n\n\nPreview File\n\n\n\nYou can preview the data file in different ways, such as:\n\nOpening it with a text editor;\nClicking the file name and selecting “View File” in the RStudio File Pane;\nOr by using the terminal if you are using Unix-based system: head -n2 data_anonym_struc1_noise.csv (to view the first 2 lines) or more data_anonym_struc1_noise.csv (to scroll through the file and quit by typing q), which is recommended for large files.\n\n\n\n\nImport the data_anonym_struc1_noise.csv into RStudio, you can use either:\n\n\nthe read_csv2() from the package {readr} (?readr::read_csv2), or\nuse the click-button way and copy-paste the code in your script.\n\nDon’t forget to use/select the appropriate parameters to make sure you import correctly the data.\nName the data as data1. Convert your imported data to tibble format if it’s not the case.\nWhat is the data dimension?\n\ndata1 &lt;- read_csv2(\n  file = \"../exos_data/data_anonym_struc1_noise.csv\",\n  locale = locale(decimal_mark = \",\")\n)\n\nNew names:\nRows: 10 Columns: 241\n── Column specification\n──────────────────────────────────────────────────────── Delimiter: \";\" dbl\n(241): ...1, 1MA, 1MB, 1MC, 1MD, 1ME, 1MF, 2MA, 2MB, 2MC, 2MD, 2ME, 2MF,...\nℹ Use `spec()` to retrieve the full column specification for this data. ℹ\nSpecify the column types or set `show_col_types = FALSE` to quiet this message.\n• `` -&gt; `...1`\n\n# or use the read_delim() with appropriate parameters\n# data1 &lt;- read_delim(\n#   \"../exos_data/data_anonym_struc1_noise.csv\", \n#   delim = \";\", locale = locale(decimal_mark = \",\")\n# )\n\n\nShow the first 10 columns of your data.\n\n\n# classic way\ndata1[, 1:10]\n\n# A tibble: 10 × 10\n    ...1 `1MA` `1MB` `1MC` `1MD`  `1ME` `1MF` `2MA` `2MB` `2MC`\n   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n 1    10 1.93  0.413 1.21  1.40   1.02  0.795 1.51  0.476 1.32 \n 2    15 1.39  1.79  1.31  1.80   1.37  1.58  1.03  1.28  1.14 \n 3    20 2.12  2.07  0.690 0.406  0.809 1.73  1.59  1.67  0.608\n 4    25 1.71  0.544 0.862 0.444  1.01  1.32  1.17  0.508 0.882\n 5    30 0.974 0.695 0.436 0.212  0.246 0.526 0.716 0.564 0.439\n 6    35 1.90  0.955 0.396 0.922  1.50  1.15  1.14  0.920 0.423\n 7    40 1.10  0.548 0.891 1.01   0.438 0.809 0.861 0.501 1.02 \n 8    45 1.53  2.07  1.07  1.29   1.56  1.79  0.984 1.39  1.10 \n 9    50 1.30  1.09  0.913 0.958  0.983 1.18  0.967 1.01  0.926\n10    60 0.906 1.15  1.16  1.21  NA     1.12  0.948 0.872 1.15 \n\n# use select()\nselect(data1, 1:10)\n\n# A tibble: 10 × 10\n    ...1 `1MA` `1MB` `1MC` `1MD`  `1ME` `1MF` `2MA` `2MB` `2MC`\n   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n 1    10 1.93  0.413 1.21  1.40   1.02  0.795 1.51  0.476 1.32 \n 2    15 1.39  1.79  1.31  1.80   1.37  1.58  1.03  1.28  1.14 \n 3    20 2.12  2.07  0.690 0.406  0.809 1.73  1.59  1.67  0.608\n 4    25 1.71  0.544 0.862 0.444  1.01  1.32  1.17  0.508 0.882\n 5    30 0.974 0.695 0.436 0.212  0.246 0.526 0.716 0.564 0.439\n 6    35 1.90  0.955 0.396 0.922  1.50  1.15  1.14  0.920 0.423\n 7    40 1.10  0.548 0.891 1.01   0.438 0.809 0.861 0.501 1.02 \n 8    45 1.53  2.07  1.07  1.29   1.56  1.79  0.984 1.39  1.10 \n 9    50 1.30  1.09  0.913 0.958  0.983 1.18  0.967 1.01  0.926\n10    60 0.906 1.15  1.16  1.21  NA     1.12  0.948 0.872 1.15 \n\n\n\nRename the first column as age.\n\n\ndata1 &lt;- data1 |&gt;\n  rename(age = ...1)\n\n\n\nReshape the Data\nHow should the data be organized?\n\nReshape the dataset to a longer format using pivot_longer(), so that for each mouse:\n\n\nThe first column shows the age\nThe second column shows the sample ID (e.g., 1MA, 1MB, …)\nThe third column shows the gene expression value\n\nWhat are the columns to be included to pivot into longer format?\n\n# use column index\ndata1_long &lt;- data1 |&gt;\n  pivot_longer(cols = -1, names_to = \"id\", values_to = \"value\")\n\n# use column name\n# data1_long &lt;- data1 |&gt;\n#   pivot_longer(cols = -age, names_to = \"id\", values_to = \"value\")\n\ndata1_long \n\n# A tibble: 2,400 × 3\n     age id    value\n   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;\n 1    10 1MA   1.93 \n 2    10 1MB   0.413\n 3    10 1MC   1.21 \n 4    10 1MD   1.40 \n 5    10 1ME   1.02 \n 6    10 1MF   0.795\n 7    10 2MA   1.51 \n 8    10 2MB   0.476\n 9    10 2MC   1.32 \n10    10 2MD   1.57 \n# ℹ 2,390 more rows\n\n\n\nAdd a column struc which contains the name of the measured structure s1.\n\n\ndata1_long &lt;- data1_long |&gt;\n  mutate(struc = \"s1\")\ndata1_long\n\n# A tibble: 2,400 × 4\n     age id    value struc\n   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;\n 1    10 1MA   1.93  s1   \n 2    10 1MB   0.413 s1   \n 3    10 1MC   1.21  s1   \n 4    10 1MD   1.40  s1   \n 5    10 1ME   1.02  s1   \n 6    10 1MF   0.795 s1   \n 7    10 2MA   1.51  s1   \n 8    10 2MB   0.476 s1   \n 9    10 2MC   1.32  s1   \n10    10 2MD   1.57  s1   \n# ℹ 2,390 more rows\n\n\n\nExtract information about gene, sex and animal from the column id using the extract() function. Name the new columns as “gene_id”, “sex” and “animal”.\n\nHint: Find the patterns for the extraction. You can use AI to help you to write the regular expression.\n\n# check how id (the colnames before reshape) was constructed.\nhead(data1_long$id)\n\n[1] \"1MA\" \"1MB\" \"1MC\" \"1MD\" \"1ME\" \"1MF\"\n\ntail(data1_long$id)\n\n[1] \"20FA\" \"20FB\" \"20FC\" \"20FD\" \"20FE\" \"20FF\"\n\ndata1_long &lt;- data1_long |&gt;\n  extract(\n    col = id,\n    into = c(\"gene_id\", \"sex\", \"animal\"),\n    regex = \"([0-9]+)([MF])([A-F])\"\n  )\n\nIf you want to write all previous codes together:\n\ndata1_long &lt;- read_csv2(\n    file = \"../exos_data/data_anonym_struc1_noise.csv\",\n    locale = locale(decimal_mark = \",\")\n  ) |&gt;\n  rename(age = ...1) |&gt; # not necessary if the next line \"cols\" based on index\n  pivot_longer(cols = -1, names_to = \"id\", values_to = \"value\") |&gt;\n  mutate(struc = \"s1\") |&gt;\n  extract(\n    col = id,\n    into = c(\"gene_id\", \"sex\", \"animal\"),\n    regex = \"([0-9]+)([MF])([A-F])\"\n  )\n\nNow, the data is ready for downstream analysis.\n\n\nManipulate the Data\nFor question 8 to 11, let’s focus on gene 1 from the data.\n\nAt age of 10 days, which animal has the highest expression value for gene 1 overall?\n\n\n# overall\ndata1_long |&gt;\n  filter(gene_id == \"1\" & age == 10) |&gt;\n  arrange(desc(value)) |&gt;\n  head(1)\n\n# A tibble: 1 × 6\n    age gene_id sex   animal value struc\n  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;\n1    10 1       F     A       2.93 s1   \n\n\n\nIs there any missing value for gene 1? If yes, how to remove lines with NA?\n\n\ntable(is.na(data1_long$value[data1_long$gene_id == \"1\"]))\n\n\nFALSE  TRUE \n  106    14 \n\ndata1_long |&gt;\n  filter(gene_id == \"1\") |&gt;\n  drop_na(value)\n\n# A tibble: 106 × 6\n     age gene_id sex   animal value struc\n   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;\n 1    10 1       M     A      1.93  s1   \n 2    10 1       M     B      0.413 s1   \n 3    10 1       M     C      1.21  s1   \n 4    10 1       M     D      1.40  s1   \n 5    10 1       M     E      1.02  s1   \n 6    10 1       M     F      0.795 s1   \n 7    10 1       F     A      2.93  s1   \n 8    10 1       F     B      1.47  s1   \n 9    10 1       F     C      2.44  s1   \n10    10 1       F     D      2.71  s1   \n# ℹ 96 more rows\n\n\n\nAfter removing NAs, how many animals are there for each sex in gene 1?\n\n\ndata1_long |&gt;\n  filter(gene_id == \"1\") |&gt;\n  drop_na(value) |&gt;\n  group_by(sex) |&gt;\n  count()\n\n# A tibble: 2 × 2\n# Groups:   sex [2]\n  sex       n\n  &lt;chr&gt; &lt;int&gt;\n1 F        47\n2 M        59\n\n\n\nSummarize the median, mean, and standard deviation of gene 1 expression for both sexes.\n\n\ndata1_long |&gt;\n  filter(gene_id == \"1\") |&gt;\n  drop_na(value) |&gt;\n  group_by(sex) |&gt;\n  summarise(\n    median_gene1 = median(value),\n    mean_gene1 = mean(value),\n    sd_gene1 = sd(value)\n  )\n\n# A tibble: 2 × 4\n  sex   median_gene1 mean_gene1 sd_gene1\n  &lt;chr&gt;        &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;\n1 F             1.21       1.37    0.639\n2 M             1.09       1.11    0.488\n\n\n\n\nExplore the Data\nWhat kind of analysis would you like to perform with this data?\nIn statistics, it’s common to begin by exploring the dataset as a whole and visualizing the relationships between different variables. The function ggpairs() from the {GGally} package is useful for creating a matrix of scatter plots to examine the relationships between each pair of variables. First, let’s install the {GGally} package if it is not already installed.\n\ninstall.packages(\"GGally\")\n\n\nLoad the package and take a look at the help page for ggpairs(). How will you reshape the data1_long to provide the necessary data for the [ggpairs()](https://ggobi.github.io/ggally/articles/ggpairs.html) function?\n\n\nlibrary(GGally)\n?ggpairs\n\n\ndata1_wider &lt;- data1_long |&gt;\n  pivot_wider(\n    names_from = \"gene_id\",\n    values_from = \"value\",\n    names_prefix = \"gene\" # to avoid name starts with number\n  )\n\ndata1_wider\n\n# A tibble: 120 × 24\n     age sex   animal struc gene1 gene2 gene3 gene4  gene5  gene6  gene7  gene8\n   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n 1    10 M     A      s1    1.93  1.51  1.18  1.32   1.22   0.916  1.11   1.12 \n 2    10 M     B      s1    0.413 0.476 0.539 0.624  0.418  0.426  0.718  0.806\n 3    10 M     C      s1    1.21  1.32  1.22  1.07   1.38   1.28   0.829  1.10 \n 4    10 M     D      s1    1.40  1.57  1.44  1.33   1.33   1.65   1.33   1.15 \n 5    10 M     E      s1    1.02  0.918 1.06  0.816  0.848  1.47   1.13   0.941\n 6    10 M     F      s1    0.795 0.775 0.788 1.04   1.15   0.945  1.03   0.906\n 7    10 F     A      s1    2.93  2.36  2.13  1.92   0.846  1.93   1.38   0.532\n 8    10 F     B      s1    1.47  1.05  0.788 0.623  0.803  0.921  1.45   0.693\n 9    10 F     C      s1    2.44  1.73  1.44  1.33   0.892  2.87   1.88   0.646\n10    10 F     D      s1    2.71  1.90  2.28  1.79  NA     NA     NA     NA    \n# ℹ 110 more rows\n# ℹ 12 more variables: gene9 &lt;dbl&gt;, gene10 &lt;dbl&gt;, gene11 &lt;dbl&gt;, gene12 &lt;dbl&gt;,\n#   gene13 &lt;dbl&gt;, gene14 &lt;dbl&gt;, gene15 &lt;dbl&gt;, gene16 &lt;dbl&gt;, gene17 &lt;dbl&gt;,\n#   gene18 &lt;dbl&gt;, gene19 &lt;dbl&gt;, gene20 &lt;dbl&gt;\n\n\nTo save space, we will focus on examining the relationship between age and the first 5 genes.\n\nWhat did you observe from these scatter plots?\n\n\nggpairs(select(data1_wider, age, gene1:gene5))\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 13 rows containing missing values\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 16 rows containing missing values\n\n\nWarning: Removed 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\nWarning: Removed 14 rows containing non-finite outside the scale range\n(`stat_density()`).\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 16 rows containing missing values\n\n\nWarning: Removed 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\nWarning: Removed 14 rows containing non-finite outside the scale range\n(`stat_density()`).\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 16 rows containing missing values\n\n\nWarning: Removed 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\nWarning: Removed 14 rows containing non-finite outside the scale range\n(`stat_density()`).\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 16 rows containing missing values\n\n\nWarning: Removed 13 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\nWarning: Removed 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\nWarning: Removed 13 rows containing non-finite outside the scale range\n(`stat_density()`).\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 16 rows containing missing values\n\n\nWarning: Removed 16 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 16 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 16 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 16 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 16 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\nWarning: Removed 16 rows containing non-finite outside the scale range\n(`stat_density()`).\n\n\n\n\n\n\n\n\n# or you can tweak the points for a better look\nggpairs(\n  select(data1_wider, age, gene1:gene5),\n  lower = list(continuous = wrap(\"points\", alpha = 0.3, size = 0.8))\n)\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 13 rows containing missing values\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 16 rows containing missing values\n\n\nWarning: Removed 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\nWarning: Removed 14 rows containing non-finite outside the scale range\n(`stat_density()`).\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 16 rows containing missing values\n\n\nWarning: Removed 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\nWarning: Removed 14 rows containing non-finite outside the scale range\n(`stat_density()`).\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 16 rows containing missing values\n\n\nWarning: Removed 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\nWarning: Removed 14 rows containing non-finite outside the scale range\n(`stat_density()`).\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 14 rows containing missing values\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 16 rows containing missing values\n\n\nWarning: Removed 13 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\nWarning: Removed 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 14 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\nWarning: Removed 13 rows containing non-finite outside the scale range\n(`stat_density()`).\n\n\nWarning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :\nRemoved 16 rows containing missing values\n\n\nWarning: Removed 16 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 16 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 16 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 16 rows containing missing values or values outside the scale range\n(`geom_point()`).\nRemoved 16 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\nWarning: Removed 16 rows containing non-finite outside the scale range\n(`stat_density()`).\n\n\n\n\n\n\n\n\n\n\nCalculate the correlation between gene 1 and 2. (?cor)\n\n\ncor(\n  x = data1_wider$gene1,\n  y = data1_wider$gene2,\n  use = \"na.or.complet\"\n) # by default use the pearson's method\n\n[1] 0.8935659\n\n\nIt seems that there are two groups of mice that express genes 4 and 5 in a similar way.\n\nDraw a scatter plot using {ggplot2} to show the expression levels of genes 4 and 5. Color the points by different categorical variables that we have, i.e., age, sex, and animal.\n\nIs there any categorical variable that can explain the groups we observed in the figure?\n\np_age &lt;- ggplot(data = data1_wider, aes(x = gene4, y = gene5)) +\n  geom_point(aes(color = age)) +\n  labs(title = \"Expression Level of Genes 4 and 5\") +\n  theme_light()\np_age\n\nWarning: Removed 16 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\np_sex &lt;- ggplot(data = data1_wider, aes(x = gene4, y = gene5)) +\n  geom_point(aes(color = sex)) +\n  labs(title = \"Expression Level of Genes 4 and 5\") +\n  theme_light()\np_sex\n\nWarning: Removed 16 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\np_animal &lt;- ggplot(data = data1_wider, aes(x = gene4, y = gene5)) +\n  geom_point(aes(color = animal)) +\n  labs(title = \"Expression Level of Genes 4 and 5\") +\n  theme_light()\np_animal\n\nWarning: Removed 16 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\n\n\nGood job! 👏👏 You’ve made great progress in mastering data manipulation techniques."
   },
   {
-    "objectID": "ioc_r/week05/r_w05_exos.html#create-a-boxplot-with-ggplot",
-    "href": "ioc_r/week05/r_w05_exos.html#create-a-boxplot-with-ggplot",
-    "title": "Week 5 - Hands-On Examples",
-    "section": "Create a Boxplot with ggplot",
-    "text": "Create a Boxplot with ggplot\nIn the hands-on examples of session 3, we demonstrated that there is a significant difference in the expression of LOH1 between WT and SET1 samples.\nThis gene is upregulated in SET1 samples compared to WT samples, the log2 fold change is 2.85.\nNow, let’s draw a more sophisticated boxplot with ggplot2.\n\nPrepare a data frame for the boxplot. We need:\n\n\na column for the expression levels of different samples\na column to indicate what is the sample group (WT or SET1)\n\n\ngg_df &lt;- data.frame(\n  expr_value = c(\n    unlist(counts[counts$Feature == \"LOH1\", paste0(\"WT.\", 1:10)]),\n    unlist(counts[counts$Feature == \"LOH1\", paste0(\"SET1.\", 1:10)])\n  ),\n  gp = rep(c(\"WT\", \"SET1\"), each = 10)\n)\ngg_df\n\n        expr_value   gp\nWT.1            10   WT\nWT.2             2   WT\nWT.3            14   WT\nWT.4            19   WT\nWT.5            35   WT\nWT.6            17   WT\nWT.7             6   WT\nWT.8             3   WT\nWT.9            31   WT\nWT.10           13   WT\nSET1.1          67 SET1\nSET1.2          49 SET1\nSET1.3          83 SET1\nSET1.4         185 SET1\nSET1.5         203 SET1\nSET1.6          83 SET1\nSET1.7          40 SET1\nSET1.8          84 SET1\nSET1.9         134 SET1\nSET1.10        155 SET1\n\n\n\nCreate a boxplot for the expression level by sample group.\n\n\np_base &lt;- ggplot(gg_df, aes(x = gp, y = expr_value)) +\n  geom_boxplot()\n\np_base\n\n\n\n\n\n\n\n\n\nModify labels:\n\n\nRemove x-axis title\nChange y-axis title to “Expression Level”\nAdd a plot title “Expression of LOH1 in SET1 and WT samples”\nAdd a subtitle “log2FoldChange = 2.85”\n\n\np_base &lt;- p_base + labs(\n  x = NULL,\n  y = \"Expression Level\",\n  title = \"Expression of LOH1 in SET1 and WT samples\",\n  subtitle = \"log2FoldChange = 2.85\"\n)\np_base\n\n\n\n\n\n\n\n\n\nAdd a layer of scatter plot over the boxplot.\n\n\nColor the points by sample group.\nUse the alpha parameter to let points be semi-transparent.\n\n\np_base &lt;- p_base +\n  geom_point(\n    aes(color = gp),\n    alpha = 0.5\n  )\np_base\n\n\n\n\n\n\n\n\n\nChange the theme to theme_minimal().\n\n\np_base &lt;- p_base + theme_minimal()\np_base\n\n\n\n\n\n\n\n\n\nWith the theme() function:\n\n\nMove the plot title to the center.\nHide the legend.\n\n\np_base &lt;- p_base + theme(\n  plot.title = element_text(hjust = 0.5), # center plot title\n  legend.position = \"none\"\n)\np_base\n\n\n\n\n\n\n\n\n\n\nGood job! 👏👏 You’ve taken your first big steps into ggplot2, keep it up!"
+    "objectID": "ioc_r/week01/r_w01_work.html",
+    "href": "ioc_r/week01/r_w01_work.html",
+    "title": "Week 1 - Homework",
+    "section": "",
+    "text": "Write your code in a new R script. You can use # at the beginning of a line to add a comment in your script.\n\nImport the data file “visceral_fat.csv”.\n\n\nFirst, download the visceral_fat.csv file via this link.\nThen, upload the file to a folder of your choice within your RStudio project.\nNext, import the data into RStudio and name the data frame visceral_fat.\n\nTip:\nUse the click-button method in RStudio to upload and import the file. Then, copy and paste the R commands generated into your script.\nOnce imported, you can use the visceral_fat dataset for further analysis in your report.\n\nSummarize the dataset.\n\nRun the function summary(visceral_fat) to generate a summary of the dataset. Describe what information you obtained.\n\nDraw a histogram.\n\nCreate a histogram for the diastolic blood pressure using the column visceral_fat[[\"diastolic_bp__mmhg\"]]. Describe what you observe from the plot.\n\nHandle an outlier.\n\nAfter consulting with a clinician, you discover that the 27th value of the diastolic blood pressure was incorrectly recorded.\n\nIgnore this value using visceral_fat[[\"diastolic_bp__mmhg\"]][-27]\nRedraw the histogram after excluding the outlier and describe any changes you observe.\n\n\nCompare mean and median.\n\nCalculate the mean (mean()) and the median (median()) for the diastolic blood pressure\n\nbefore ignoring the 27th value: visceral_fat[[\"diastolic_bp__mmhg\"]]\nafter ignoring the 27th value: visceral_fat[[\"diastolic_bp__mmhg\"]][-27]\n\nDescribe how the outlier affects the mean and median.\nThe homework correction is available here: link"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#welcome-to-r",
+    "href": "ioc_r/week01/r_w01_slides.html#welcome-to-r",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Welcome to R!",
+    "text": "Welcome to R!\nR is a programming language and software environment designed for statistical computing and data analysis.\n\n\nWhy R?\n\nBiologist friendly!\nFree and open-source\nSupported by a huge community\n\n\nWhat you can do with R?\n\nAnalyze your data\nVisualize your findings\nAutomate your workflow\nShare reproducible research\n\n\nThe official website: https://www.r-project.org"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#the-r-console",
+    "href": "ioc_r/week01/r_w01_slides.html#the-r-console",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "The R Console",
+    "text": "The R Console\n\n\n\n\nIn the R console:\n\n&gt; (The prompt): R is ready for your command. Type your code and press Enter to run it.\n[1] (Output): This indicates the start of an output line.\n+ (Continuation): R is waiting for you to finish your command. You can either finish the command or press Esc to cancel it.\n\n\n\nIn the R Console, the &gt; prompt lets you know that R is ready for your command. Just type your code and hit Enter. When you see the output, it will start with [1], which indicates the position of the first element. If you see a + at the beginning of a new line, it means R is waiting for you to finish your command, this often happens if you forget a parenthesis or a comma. You can either finish it by typing the rest of the code or press the Esc key to cancel the input completely and get a fresh &gt; prompt."
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#rstudio-login",
+    "href": "ioc_r/week01/r_w01_slides.html#rstudio-login",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Rstudio Login",
+    "text": "Rstudio Login\nIf you use the RStudio Server, you need to connect to your account first."
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#rstudio-ide",
+    "href": "ioc_r/week01/r_w01_slides.html#rstudio-ide",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Rstudio IDE",
+    "text": "Rstudio IDE\nIntegrated Development Environment (IDE)\n\n\n\n\n\nConsole: enter and execute R commands interactively.\nEnvironment/History: tracks your variables and past commands.\nFiles/Plots/Packages: managing your files, viewing graphs, or installing tools.\n\n\n\n\n\n\n\nRstudio cheat sheet (and French version)\n\n\n\n\n\nEverything you need in one organized window. Save your work as a script, RStudio includes many useful features which let us code easily. notebook, show results"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#getting-started",
+    "href": "ioc_r/week01/r_w01_slides.html#getting-started",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Getting Started",
+    "text": "Getting Started\n\n\n\nOpen your RStudio.\nCreate an R script: File -&gt; New File -&gt; R Script or click . (Will appeared at 4)\nWrite your codes in the script.\nSave script: Cmd/Ctrl + S, name your script.\nExecute code: Click  or press Cmd/Ctrl + Enter"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#getting-started-1",
+    "href": "ioc_r/week01/r_w01_slides.html#getting-started-1",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Getting Started",
+    "text": "Getting Started\nCopy paste following codes into your script and save the script as test.R.\n\nBasic codes (commands):\n\n# Use `#` to write a comment (line) in your script\n# Math with R:\n2 + 2    # Yes, R can do math!\nsqrt(16) # Square root.\n\n# Create a variable:\nx &lt;- 5 # Now x is 5. You can reuse it!\nx + 1\n\n# Inspect your environment:\n## Look at the \"Environment\" pane, do you see your x?\nls()\n\n# Load a package:\nlibrary(stats)\n\n# Get help of a function (documentation):\n?mean\n\n# Quit RStudio properly\nq()"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#some-configuration",
+    "href": "ioc_r/week01/r_w01_slides.html#some-configuration",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Some Configuration",
+    "text": "Some Configuration\nGo to Tools -&gt; Global Options…\n\n\n\nUnder the General tab:\n\nUncheck the box “Restore .RData…”\nSet “Save workspace to .RData on exit” to Never.\n\n\nThen click “Apply”."
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#some-configuration-1",
+    "href": "ioc_r/week01/r_w01_slides.html#some-configuration-1",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Some Configuration",
+    "text": "Some Configuration\nGo to Tools -&gt; Global Options…\n\n\n\nUnder the Code tab:\n\nIn the Display panel, check the box “Use rainbow parentheses”\nThen click “Apply”."
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#some-configuration-2",
+    "href": "ioc_r/week01/r_w01_slides.html#some-configuration-2",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Some Configuration",
+    "text": "Some Configuration\nGo to Tools -&gt; Global Options…\n\n\n\nUnder the Appearance tab:\n\nYou can select a theme for you RStudio, e.g., the “Cobalt” for a dark theme.\n\nUnder the Pane Layout tab:\n\nYou can arrange the four panels as you prefer.\nIn addition, click “Add Column” lets you open an extra “Source” code column, allowing you to view your scripts side by side!\nThen click “Apply”."
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#create-an-r-project",
+    "href": "ioc_r/week01/r_w01_slides.html#create-an-r-project",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Create an R Project",
+    "text": "Create an R Project\nAn R project keeps everything for your project in one working directory and helps R to know where to look for your files.\n\n\nIn RStudio, go to File -&gt; New Project\nChoose New Directory and click New Project\nSet a folder name (e.g., r_week1) and select where to save it.\nClick Create Project\n\n\n\nYou’ll notice RStudio restarts, and now your project is set up!\n\n\nAn R Project is a way to keep everything for your work (scripts, data, outputs) in one place. Think of it like a special folder where RStudio automatically knows where to look for your files. It helps avoid problems with messy file paths."
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#create-an-r-project-1",
+    "href": "ioc_r/week01/r_w01_slides.html#create-an-r-project-1",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Create an R Project",
+    "text": "Create an R Project"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#a-well-organized-project-folder",
+    "href": "ioc_r/week01/r_w01_slides.html#a-well-organized-project-folder",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "A Well Organized Project Folder",
+    "text": "A Well Organized Project Folder\n\nTree structure:\n\nr_week1              # Your working directory    \n├── r_week1.Rproj    # The R project configuration file\n├── README.md           # A short introduction of the project\n├── data                # Raw data files\n│   └── raw_count.tsv\n├── scripts             # Your R code files\n│   └── 01-analysis.R\n│   └── 02-figures.R\n└── outputs             # Results, e.g., graphs, reports\n\n\nManaging Files (via the File pane):\n\nTo create a new folder: click . The folder will be created in the current directory.\nTo move a file or folder: check the box next to its name, click  and then select Move… to choose a new destination.\n\n\n\n\n\n\n\n\n\n\n\nCreate data and scripts folders inside your working directory.\nMove the test.R into the scripts folder of your working directory.\n\n\n\n\n\n\nexample of bad home organisation: pillow in kitchen and microoven in the bathroom The trunk is the main folder (your R Project). Branches are subfolders for scripts, data, and output, ect. By building a clear structure, you’ll: Always know where to find things. Save time when coding in R or sharing your project with others. Avoid messy files scattered everywhere."
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#understanding-file-paths",
+    "href": "ioc_r/week01/r_w01_slides.html#understanding-file-paths",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Understanding File Paths",
+    "text": "Understanding File Paths\nHow to tell your computer where to find the test.R?\n\n\n\nAbsolute path, starts from the very top of your computer’s folder. E.g.:\n\nLinux/Mac: /Users/lijiao/Documents/r_week1/scripts/test.R\nWindows: C:\\Users\\lijiao\\Documents\\r_week1\\scripts\\test.R"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#understanding-file-paths-1",
+    "href": "ioc_r/week01/r_w01_slides.html#understanding-file-paths-1",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Understanding File Paths",
+    "text": "Understanding File Paths\nA path tells your computer where to find files/folders.\n\nRelative path, starts from your working directory (folder). E.g.:\n\nLinux/Mac: scripts/test.R\nWindows: scripts\\test.R"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#where-are-you",
+    "href": "ioc_r/week01/r_w01_slides.html#where-are-you",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Where Are You?",
+    "text": "Where Are You?\nr_week1              # Your working directory\n├── r_week1.Rproj    # The R project configuration file\n├── data             # Raw data files\n└── scripts          # Your R code files\n    └── test.R\n\n&gt; getwd() # Get working directory\n[1] \"/Users/lijiao/Documents/r_week1\"\n\n\n\n\n\n\n\nWhat are the absolute and relative paths of the folder “data”?\n\n\n\n\n\nabsolute path: /Users/lijiao/Documents/r_week1/data\nrelative path: data\n\n\n&gt; file.exists(\"/Users/lijiao/Documents/r_week1/data\")\n[1] TRUE\n&gt; file.exists(\"data\")\n[1] TRUE"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#import-data",
+    "href": "ioc_r/week01/r_w01_slides.html#import-data",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Import Data",
+    "text": "Import Data\n\n\n\nSupported formats:\n\ntext files (.txt, .csv, etc.)\nExcel files\ndata from other softwares (e.g.: SAS)\n\nClick-button methods:\n\nFrom menu bar: File -&gt; Import Dataset -&gt; Select the format -&gt; Choose your file\nFrom the “Environment” pane: click Import Dataset -&gt; Select the format -&gt; Choose your file\nFrom the “Files” pane: Navigate to your file location -&gt; Click the file and select Import Dataset (need the {readr} package)\n\n\n\n\n\n\nPop-up window using the {readr} import wizard."
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#import-data-1",
+    "href": "ioc_r/week01/r_w01_slides.html#import-data-1",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Import Data",
+    "text": "Import Data\nImporting your first file: shiny_sample_data.csv\n\nRight click the link and select “Download Linked File As…” (or the equivalent on your system).\nSave the file into the data folder of the R project r_week1\nImport the data with one of the three click-button ways.\n\n\nWhen you select the file, a preview window will pop up. RStudio tries to guess the data’s properties, but you should always confirm them.\n\n\n\n\n\n\n\nThink before you import the data\n\n\n\nHow do you want to name the imported data?\nIs there a header?\nWhat is the column separator?\nWhich sign is used as the decimal?\n\n\n\n\nOnce you’ve checked these settings and the preview looks correct, click Import."
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#import-data-2",
+    "href": "ioc_r/week01/r_w01_slides.html#import-data-2",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Import Data",
+    "text": "Import Data"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#export-data",
+    "href": "ioc_r/week01/r_w01_slides.html#export-data",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Export Data",
+    "text": "Export Data\nWe’ll use the built-in iris dataset and save it in the CSV format using the write_csv() function from the {readr} package.\nhead(iris) # show the first lines of the dataset\nView(iris) # preview the whole dataset\n?write_csv # get help of the function\nGoal: Save the built-in iris dataset as a CSV file named iris_export.csv inside the outputs folder of the project.\n\n\nCreate the outputs folder.\nType the following command and execute it:\n\nwrite_csv(iris, file = \"outputs/iris_export.csv\")\n\n\n\n\n\n\n\n\nGo to the Files pane, can you find the saved file?\n\n\n\n\n\n(We’ll talk about other formats in the future!)\n\nOnce you’ve cleaned, analyzed, or modified a dataset in R, you’ll want to save it. While you can save data in many formats, we’ll use the most common one, a CSV file, as our example. We’ll use the built-in iris dataset."
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#different-solutions",
+    "href": "ioc_r/week01/r_w01_slides.html#different-solutions",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Different Solutions",
+    "text": "Different Solutions\n\nGoogle it!\nForums: Stack Overflow, Cirad(francophone), etc.\nAsk/discuss your question via Slack.\nAI tools (like ChatGPT or Gemini) can be very helpful resources😉, but be careful of false answers! (More details in session 6)\n\nKey points:\n\nBe specific.\nProvide context: code, error, etc.\nAlways verify.\nProtect sensitive data.\n\n\ngoogle/forum stack overFlow - what are you trying to do / what did you try? - the warning or error message / your code / your data structure - language name / function or package name / a specific problem - try and iterate"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#pdf-of-slides",
+    "href": "ioc_r/week01/r_w01_slides.html#pdf-of-slides",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "PDF of Slides",
+    "text": "PDF of Slides\nTo save the slides as a PDF:\n\nOpen the presentation in a web browser\nPress “e” to enable PDF export mode\nPress Cmd/Ctrl + P to open the in-browser print dialog.\nChange layout to “Landscape”.\nSelect “save as PDF” as the printer option and save the file.\n\nAfter saving, press “e” again to return to presentation mode."
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#todays-goals",
+    "href": "ioc_r/week01/r_w01_slides.html#todays-goals",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Today’s Goals",
+    "text": "Today’s Goals\n\nGet familiar with the RStudio\nCreate an R project in RStudio\nImport data file into RStudio\nExport data from RStudio"
+  },
+  {
+    "objectID": "ioc_r/week05/r_w05_slides.html#brief-recap-week-4",
+    "href": "ioc_r/week05/r_w05_slides.html#brief-recap-week-4",
+    "title": "Graphing with {ggplot2} (Part 1)",
+    "section": "Brief Recap Week 4",
+    "text": "Brief Recap Week 4\n\n\n\nOperators\n\nLogical: &, |, !, return TRUE or FALSE.\nComparison: ==, !=, &lt;, &lt;=, &gt;, &gt;=.\nThe %in%: check membership\n\n\n\n\n\n\n\n\nWhat does the following code do?\n\n\n\n(2.1 &gt; 1) & (0.049 &gt; 0.05)\n(2.1 &gt; 1) | (0.049 &gt; 0.05)\n\n# df is a data frame, \n# one of the columns is called \"pvalue\"\ndf[df$pvalue &lt; 0.05, ]\n\n\"a\" %in% c(\"c\", \"ba\")\n\n\nConditions\n\nstatements: if, if…else\nifelse() function\n\n\n\n\n\n\n\n\nWhat does the following code do?\n\n\n\nif (lfc &gt; 2 & pvalue &lt; 0.05 ) {\n  print(\"gene of interest\")\n} else {\n  print(\"gene to remove\")\n}"
+  },
+  {
+    "objectID": "ioc_r/week05/r_w05_slides.html#what-are-packages-in-r",
+    "href": "ioc_r/week05/r_w05_slides.html#what-are-packages-in-r",
+    "title": "Graphing with {ggplot2} (Part 1)",
+    "section": "What are Packages in R?",
+    "text": "What are Packages in R?\nPackages are collections of functions, data, and documentation.\n\nPre-installed packages: {base}, {utils}, {graphics}, etc.\n\ndim() # from {base}\nhead() # from {utils}\nplot() # from {graphics}\n\nTo check the list of installed packages in RStudio:\n\n\nname, description, can delete a pkg here"
+  },
+  {
+    "objectID": "ioc_r/week05/r_w05_slides.html#installing-packages",
+    "href": "ioc_r/week05/r_w05_slides.html#installing-packages",
+    "title": "Graphing with {ggplot2} (Part 1)",
+    "section": "Installing Packages",
+    "text": "Installing Packages\nBy default, R will install the lastest version of a package.\n\nClick-button way:\n\n\n\nVia command, i.e., install.packages(\"ggplot2\")\n\n\n\n\n\n\n\n\nCRAN (Comprehensive R Archive Network) is a network of servers around the world that store identical, up-to-date, versions of code and documentation for R.\nBioconductor is a specialized repository like CRAN, but focused on bioinformatics. It provides R packages for analyzing genomic and biological data.\n\n\n\n\n\nOnly need install once for the system, then load the package."
+  },
+  {
+    "objectID": "ioc_r/week05/r_w05_slides.html#management-of-packages",
+    "href": "ioc_r/week05/r_w05_slides.html#management-of-packages",
+    "title": "Graphing with {ggplot2} (Part 1)",
+    "section": "Management of Packages",
+    "text": "Management of Packages\n\n\n\nUpdate: click on the  and a popup will show you packages that can be updated.\n\n\n\n\nDelete: click on the delete buttom after the package\n\n\nOr use remove.packages(\"tibble\")."
+  },
+  {
+    "objectID": "ioc_r/week05/r_w05_slides.html#using-functions-of-package",
+    "href": "ioc_r/week05/r_w05_slides.html#using-functions-of-package",
+    "title": "Graphing with {ggplot2} (Part 1)",
+    "section": "Using Functions of Package",
+    "text": "Using Functions of Package\nTo use (call) a function from a package, we can either:\n\nload the entire package (attach it to the environment)\n\nlibrary(ggplot2) # load the package\nggplot() # call the function to iniate a ggplot\nA loaded package will be checked in the “Packages” panel.\n\n\n\n\n\n\nYou only need to load a package once per R session.\n\n\n\n\nor load one function of the package at the time with the syntax pkg_name::fct_name\n\nggplot2::ggplot()\n\n\n\n\n\n\nThis way is recommanded if you need to use only one function of a package, or if you want to make sure you use the wanted function."
+  },
+  {
+    "objectID": "ioc_r/week05/r_w05_slides.html#before-plotting",
+    "href": "ioc_r/week05/r_w05_slides.html#before-plotting",
+    "title": "Graphing with {ggplot2} (Part 1)",
+    "section": "Before Plotting …",
+    "text": "Before Plotting …\nWhat message you want to show via your figure?\n\n\n\n\n\nflowchart LR\n  A{Which variables?} --&gt; B{Data properties}\n  B --&gt; C{Figure type}\n\n\n\n\n\n\n\n\n\n\n\n\n\nCheck out these websites: from Data to Viz and The R Graph Gallery (by Yan Holtz)\n\n\n\n\n\nWhat are the variables to be visualized?\nData properties: continuous, discrete, categorical?\nFigure type: dots plot, boxplot, histogram, etc."
+  },
+  {
+    "objectID": "ioc_r/week05/r_w05_slides.html#compositions-of-a-ggplot",
+    "href": "ioc_r/week05/r_w05_slides.html#compositions-of-a-ggplot",
+    "title": "Graphing with {ggplot2} (Part 1)",
+    "section": "Compositions of a ggplot",
+    "text": "Compositions of a ggplot\n\n(Figure adpated from QCBS R Workshop Series.)"
+  },
+  {
+    "objectID": "ioc_r/week05/r_w05_slides.html#how-to-build-a-ggplot",
+    "href": "ioc_r/week05/r_w05_slides.html#how-to-build-a-ggplot",
+    "title": "Graphing with {ggplot2} (Part 1)",
+    "section": "How to Build a ggplot",
+    "text": "How to Build a ggplot\n\nAll ggplot2 plots begin with a call to ggplot(), supplying default data and aesthethic mappings, specified by aes(). You Then add layers, scales, coords and facets with +. —— ggplot2 Reference\n\n\n\nExample using the built-in dataset iris:\n\nstr(iris) # data overview\n\n'data.frame':   150 obs. of  5 variables:\n $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...\n $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...\n $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...\n $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...\n $ Species     : Factor w/ 3 levels \"setosa\",\"versicolor\",..: 1 1 1 1 1 1 1 1 1 1 ..."
+  },
+  {
+    "objectID": "ioc_r/week05/r_w05_slides.html#basic-plot",
+    "href": "ioc_r/week05/r_w05_slides.html#basic-plot",
+    "title": "Graphing with {ggplot2} (Part 1)",
+    "section": "Basic Plot",
+    "text": "Basic Plot\n\nlibrary(\"ggplot2\") # load package\n\n\n\nStart by calling ggplot():\n\np0 &lt;- ggplot(\n  data = iris, # a data frame\n  mapping = aes(x = Sepal.Length, y = Petal.Length)\n)\np0\n\n\n\n\n\n\n\n\nSpecify data, x and y axes.\n\n\n\n\n\n\nThe data should be a data frame containing both variables needed for the plot.\n\n\n\n\nAdd a geometric layer:\n\n# geom_point() is used for scatter plots\nbase_plot &lt;- p0 + geom_point()\n\n\nbase_plot\n\n\n\n\n\n\n\n\nUse points for visualisation.\n\n\nggplot() creates a canvas to draw on. data contains columns fro the plot aes() matches columns of data to aesthetics of the plot. geom_point() adds point geometry."
+  },
+  {
+    "objectID": "ioc_r/week05/r_w05_slides.html#aesthetics---color",
+    "href": "ioc_r/week05/r_w05_slides.html#aesthetics---color",
+    "title": "Graphing with {ggplot2} (Part 1)",
+    "section": "Aesthetics - Color",
+    "text": "Aesthetics - Color\nThe most common aesthetics: color, fill, shape, size, alpha (transparency), etc.\n\n\n\nStatic aesthetics: a fixed value and apply to the whole layer\n\n\nbase_plot_red &lt;- p0 + geom_point(color = \"red\")\nbase_plot_red\n\n\n\n\n\n\n\n\n\n\nAesthetic mappings: visual preoperties that depend on data values (to be used in aes())\n\n\nbase_plot &lt;- p0 + geom_point(aes(color = Species))\nbase_plot\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReference: https://ggplot2.tidyverse.org/articles/ggplot2-specs.html"
+  },
+  {
+    "objectID": "ioc_r/week05/r_w05_slides.html#aesthetics---shape",
+    "href": "ioc_r/week05/r_w05_slides.html#aesthetics---shape",
+    "title": "Graphing with {ggplot2} (Part 1)",
+    "section": "Aesthetics - Shape",
+    "text": "Aesthetics - Shape\nThe most common aesthetics: color, fill, shape, size, alpha (transparency), etc.\n\n\n\nStatic aesthetics: a fixed value and apply to the whole layer\n\n\np0 + geom_point(shape = 3)\n\n\n\n\n\n\n\n\n\n\nAesthetic mappings: visual preoperties that depend on data values (to be used in aes())\n\n\np0 + geom_point(aes(shape = Species))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReference: https://ggplot2.tidyverse.org/articles/ggplot2-specs.html"
+  },
+  {
+    "objectID": "ioc_r/week05/r_w05_slides.html#aesthetics---size",
+    "href": "ioc_r/week05/r_w05_slides.html#aesthetics---size",
+    "title": "Graphing with {ggplot2} (Part 1)",
+    "section": "Aesthetics - Size",
+    "text": "Aesthetics - Size\nThe most common aesthetics: color, fill, shape, size, alpha (transparency), etc.\n\n\n\nStatic aesthetics: a fixed value and apply to the whole layer\n\n\np0 + geom_point(size = 3)\n\n\n\n\n\n\n\n\n\n\nAesthetic mappings: visual preoperties that depend on data values (to be used in aes())\n\n\np0 + geom_point(aes(size = Petal.Length))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReference: https://ggplot2.tidyverse.org/articles/ggplot2-specs.html"
+  },
+  {
+    "objectID": "ioc_r/week05/r_w05_slides.html#aesthetics---alpha",
+    "href": "ioc_r/week05/r_w05_slides.html#aesthetics---alpha",
+    "title": "Graphing with {ggplot2} (Part 1)",
+    "section": "Aesthetics - Alpha",
+    "text": "Aesthetics - Alpha\nThe most common aesthetics: color, fill, shape, size, alpha (transparency), etc.\n\n\nWith no transparency:\n\np0 + geom_point(size = 3)\n\n\n\n\n\n\n\n\n\nUse the alpha (between 0 and 1) parameter:\n\np0 + geom_point(size = 3, alpha = 0.5)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReference: https://ggplot2.tidyverse.org/articles/ggplot2-specs.html"
+  },
+  {
+    "objectID": "ioc_r/week05/r_w05_slides.html#labels-axes---titles---legend",
+    "href": "ioc_r/week05/r_w05_slides.html#labels-axes---titles---legend",
+    "title": "Graphing with {ggplot2} (Part 1)",
+    "section": "Labels (Axes - Titles - Legend)",
+    "text": "Labels (Axes - Titles - Legend)\n\n\n\nbase_plot\n\n\n\n\n\n\n\n\nUse labs() to modify labels of plot, axes, legend.\n\n\np_labs &lt;- base_plot + labs(\n  x = \"Sepal Length (cm)\",\n  y = \"Petal Length (cm)\",\n  title = \"Scatter plot with customized labels.\",\n  color = NULL # remove legend title\n)\np_labs"
+  },
+  {
+    "objectID": "ioc_r/week05/r_w05_slides.html#add-other-layers",
+    "href": "ioc_r/week05/r_w05_slides.html#add-other-layers",
+    "title": "Graphing with {ggplot2} (Part 1)",
+    "section": "Add Other Layers",
+    "text": "Add Other Layers\n\n\n\n# the scatter plot with modified lables\np_labs\n\n\n\n\n\n\n\n\n\nAdd a linear regression line using geom_smooth():\n\np_regline &lt;- p_labs + geom_smooth(method = \"lm\", se = FALSE)\np_regline\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEach geom_*() function adds a new layer to the plot, just like stacking transparent sheets on top of each other to build the final image."
+  },
+  {
+    "objectID": "ioc_r/week05/r_w05_slides.html#aesthetic-mappings",
+    "href": "ioc_r/week05/r_w05_slides.html#aesthetic-mappings",
+    "title": "Graphing with {ggplot2} (Part 1)",
+    "section": "Aesthetic Mappings",
+    "text": "Aesthetic Mappings\n\n\n\nggplot(\n  data = iris,\n  mapping = aes(\n    x = Sepal.Length,\n    y = Petal.Length\n  )\n) +\n  geom_point(aes(color = Species)) +\n  geom_smooth(method = \"lm\", se = FALSE)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCompare the following code with the code on the left. What is different between the codes? What is different about the resulting graphs?\n\n\n\n\nggplot(\n  data = iris,\n  mapping = aes(\n    x = Sepal.Length,\n    y = Petal.Length,\n    color = Species\n  )\n) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE)\n\n\n\n\n\n\n\n\n\n\naes() in ggplot() or in geom_*(), if multiple layers"
+  },
+  {
+    "objectID": "ioc_r/week05/r_w05_slides.html#common-used-geometries-1",
+    "href": "ioc_r/week05/r_w05_slides.html#common-used-geometries-1",
+    "title": "Graphing with {ggplot2} (Part 1)",
+    "section": "Common Used Geometries (1)",
+    "text": "Common Used Geometries (1)\n\n\n\nBoxplot:\n\n\nggplot(iris, aes(x = Species, y = Sepal.Length)) +\n  geom_boxplot()\n\n\n\n\n\n\n\n\n\n\nViolin plot:\n\n\nggplot(iris, aes(x = Species, y = Sepal.Length)) +\n  geom_violin()"
+  },
+  {
+    "objectID": "ioc_r/week05/r_w05_slides.html#common-used-geometries-2",
+    "href": "ioc_r/week05/r_w05_slides.html#common-used-geometries-2",
+    "title": "Graphing with {ggplot2} (Part 1)",
+    "section": "Common Used Geometries (2)",
+    "text": "Common Used Geometries (2)\n\n\n\nHistogram:\n\n\nggplot(iris, aes(x = Sepal.Length)) +\n  geom_histogram()\n\n\n\n\n\n\n\n\n\n\nBar plot:\n\n\nggplot(iris, aes(x = Species)) +\n  geom_bar()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngeom_histogram() and geom_bar() only require one variable for the x-axis. The y-axis is automatically calculated."
+  },
+  {
+    "objectID": "ioc_r/week05/r_w05_slides.html#themes",
+    "href": "ioc_r/week05/r_w05_slides.html#themes",
+    "title": "Graphing with {ggplot2} (Part 1)",
+    "section": "Themes",
+    "text": "Themes\n\n\n\nBuilt-in themes (theme_*()): theme_grey() (default),theme_bw(), theme_light(), theme_classic(), etc.\n\n\np_labs + theme_classic()\n\n\n\n\n\n\n\n\n\n\n\n\nUse theme() function to tweak elements, e.g.:\n\n\np_labs + theme(\n  legend.position = \"none\", # hide legend\n  plot.title = element_text(\n    hjust = 0.5, # center plot title\n    size = 5, # plot title size\n  ), \n  axis.text.x = element_text(angle = 90) # rotate axis' text\n)"
+  },
+  {
+    "objectID": "ioc_r/week05/r_w05_slides.html#saving-your-graphs",
+    "href": "ioc_r/week05/r_w05_slides.html#saving-your-graphs",
+    "title": "Graphing with {ggplot2} (Part 1)",
+    "section": "Saving Your Graphs",
+    "text": "Saving Your Graphs\nUse ggsave() to save plots in high resolution for publications.\nggsave(\n  filename = \"path/to/figure.png\", # figure file name\n  plot = last_plot(), \n  # save by default the last figure,\n  # you can provide the figure name to specify the plot to be saved.\n  device = \"png\",\n  # can be one of \"eps\", \"ps\", \"tex\" (pictex), \"pdf\",\n  # \"jpeg\", \"tiff\", \"png\", \"bmp\", \"svg\" or \"wmf\"\n  width = 6.3,\n  height = 4.7,\n  units = \"in\", # can be one of \"in\", \"cm\", \"mm\" or \"px\"\n  dpi = 300 # plot resolution\n)\n\n\n\n\n\n\n\nSave the basic plot to the outputs folder in your project. Check the saved figure via the Files panel in RStudio.\n\n\n\n\n\n\nggsave(\n  filename = \"../outputs/basic_scatter_plot.png\",\n  plot = base_plot,\n  width = 5, height = 5, units = \"cm\", dpi = 150\n)"
+  },
+  {
+    "objectID": "ioc_r/week05/r_w05_slides.html#todays-goals",
+    "href": "ioc_r/week05/r_w05_slides.html#todays-goals",
+    "title": "Graphing with {ggplot2} (Part 1)",
+    "section": "Today’s Goals",
+    "text": "Today’s Goals\n\nInstall new R packages\nCreate basic plots with ggplot2"
+  },
+  {
+    "objectID": "ioc_r/week09/r_w09_example.html",
+    "href": "ioc_r/week09/r_w09_example.html",
+    "title": "Week 9 - Hands-On Examples",
+    "section": "",
+    "text": "Understand the basics of Quarto.\nCreate your first Quarto report by walking through a mini data project."
+  },
+  {
+    "objectID": "ioc_r/week09/r_w09_example.html#goals",
+    "href": "ioc_r/week09/r_w09_example.html#goals",
+    "title": "Week 9 - Hands-On Examples",
+    "section": "",
+    "text": "Understand the basics of Quarto.\nCreate your first Quarto report by walking through a mini data project."
+  },
+  {
+    "objectID": "ioc_r/week09/r_w09_example.html#mini-data-project",
+    "href": "ioc_r/week09/r_w09_example.html#mini-data-project",
+    "title": "Week 9 - Hands-On Examples",
+    "section": "Mini Data Project",
+    "text": "Mini Data Project\n\nData Import & Exploration\n\nImport the two data datasets with read_csv() using following links:\n\n\nYeast gene annotation data: \"https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/mart_export.txt.gz\", name the data as annot.\nGene differential expression analysis (SET1 vs. WT): \"https://inforbio.github.io/ioc-r-2026/ioc_r/exos_data/toy_DEanalysis.csv\", name the data as de_res.\n\nWhat are the dimensions of each dataset?\n\nWhich chromosome has the highest number of genes? Which chromosome has the lowest number of genes?\n\n\nFor protein-coding genes, calculate the maximum, minimum, average, and median percentage of GC content for each chromosome.\n\n\nComparing de_res and annot genes. Do all genes in de_res exist in annot? How many genes in de_res lack annotation information?\n\n\nAdd the annotation information to de_res, merge the annot data with de_res using either:\n\n\nthe merge() function (base R), or\nthe left_join() function (from the dplyr package, ?left_join)\n\n\n\nData Visualization & Statistical Analysis\n\nGenerate a Volcano plot for differential expression results with the following specifications:\n\n\nX-axis: Log2 fold change\nY-axis: -log10(p-value)\nColor: Highlight genes with adjusted p-values below 0.5 in red color (consider creating a new column to flag these).\nDisplay gene names for points with absolute log2 fold change greater than 1.5 (use geom_text_repel()).\nReference lines:\n\nHorizontal red dash line at the Bonferroni-adjusted p-value threshold (0.05 / Ntest)\nVertical dash lines at log2 fold change values of 1.5 and -1.5\n\nTheme: Apply theme_light() for the plot appearance.\n\nSo far, we’ve analyzed gene expression between two groups (SET1 vs. WT). How can we compare expression levels across four groups (WT, SET1, SET1.RRP6, RRP6)? For example, how can we test if the average expression level of a gene is the same across these four groups?\n\n\n\n\n\n\nStats Time!\n\n\n\nOne-way ANOVA\nANOVA (ANalysis Of VAriance) helps us determine whether the means of multiple groups are different. Instead of comparing means directly (as in t-tests), ANOVA compares the variances within (intra) and between groups (inter) to infer differences in means.\nWe assume that the variance within each group is the same across all groups.\n\n(Figure credit: Lorette Noiret)\n\n\\(H_0: \\mu_1 = \\mu_2 = ... = \\mu_n\\)\n\\(H_1\\): there is at least one group which has an average different than other groups.\n\nWhich is equals to test:\n\n\\(H_0: \\sigma^2_{\\text{inter group}} = \\sigma^2_{\\text{intra group}}\\)\n\\(H_1: \\sigma^2_{\\text{inter group}} &gt; \\sigma^2_{\\text{intra group}}\\)\n\nIf the means are truly different, the variation between groups (\\(\\sigma^2_{\\text{inter group}}\\)) should be greater than the variation within groups (\\(\\sigma^2_{\\text{intra group}}\\)).\nANOVA calculates the F statistic, which is a ratio:\n\\(F = \\frac{\\sigma^2_{\\text{inter group}}}{\\sigma^2_{\\text{intra group}}}\\)\n, and the probability of obtaining an F-statistic as extreme as the observed one (the p-value), assuming the null hypothesis is true.\nConditions of applying ANOVA:\n\nIndependence: Observations in each group must be independent.\nNormality: Data should be approximately normally distributed (can be checked using the Shapiro test).\nHomoscedasticity (homogeneity of variance): Variances across groups should be roughly equal (Levene’s test or Bartlett’s test can check this).\n\nIn R, the function aov() is used to perform ANOVA.\n\n\nLet’s take the gene LOH1 as example.\n\nImport the expression data using this link: \"https://inforbio.github.io/ioc-r-2026/ioc_r/exos_data/read-counts.csv\"\n\n\nGiven the imported counts data, how can we reshape it to extract the necessary information and obtain a tibble with the following columns?\n\n\n“value”: Expression values of the gene LOH1\n“group”: Sample groups (Explore how to use the str_replace() function to extract group based on sample name)\n\n\n?str_replace\n\nNo documentation for 'str_replace' in specified packages and libraries:\nyou could try '??str_replace'\n\n\n\nAssume that all conditions of ANOVA are verified. Perform an ANOVA (aov()) test and use summary() to obtain the results. If we take \\(\\alpha=0.05\\), what is your conclusion?\n\n\nConduct a Tukey Honest Significant Differences (TukeyHSD) test to check which groups differ significantly. (?TukeyHSD)\n\n\nVisualize the expression levels of the LOH1 gene across the four groups using a boxplot.\n\n\n\nBonus\nVerify the assumptions for conducting an ANOVA test:\nThe RRP6 data does not follow a normal distribution.\nMoreover, the assumption of homoscedasticity (equal variance) is not met.\nTherefore, an ANOVA is not appropriate, and a non-parametric Kruskal-Wallis test should be used instead.\n\n\nGreat work, you’ve made it to the end! 🎉 and now you’re ready to take on even more! Keep exploring new things, there’s so much more R can do for you!"
+  },
+  {
+    "objectID": "ioc_r/week09/r_w09_slides.html#quarto",
+    "href": "ioc_r/week09/r_w09_slides.html#quarto",
+    "title": "Putting It All TogetherReproducible Analysis with Quarto",
+    "section": "Quarto",
+    "text": "Quarto\n\nOpen-source tools for creating dynamic and shareable document.\nCombines narrative text and code (multi-language) in one script (.qmd).\nSupports multiple output formats: .html, .docx, .pptx, .pdf, etc.\n\n\n\n\n\n\n\nCheck out the Quarto tutorial."
+  },
+  {
+    "objectID": "ioc_r/week09/r_w09_slides.html#an-example",
+    "href": "ioc_r/week09/r_w09_slides.html#an-example",
+    "title": "Putting It All TogetherReproducible Analysis with Quarto",
+    "section": "An Example",
+    "text": "An Example\n\n\nTo create: File -&gt; New File -&gt; Quarto Document -&gt; click Create. \n\nSave the document and click Render button.\n\n\nRendered document in HTML format:"
+  },
+  {
+    "objectID": "ioc_r/week09/r_w09_slides.html#yaml-header",
+    "href": "ioc_r/week09/r_w09_slides.html#yaml-header",
+    "title": "Putting It All TogetherReproducible Analysis with Quarto",
+    "section": "YAML Header",
+    "text": "YAML Header\nGo at the very beginning of the document, framed by a pair of three dashed ---.\n\n\n---\ntitle: \"First Quarto Report\"\nauthor: \"InforBio\"\ndate: \"2026-03-09\"\nformat: html\n---\n\n---\ntitle: \"First Quarto Report\"\nauthor: \"InforBio\"\ndate: \"2026-03-09\"\nformat:\n  html:\n    toc: true\n    embed-resources: true\n  pdf:\n    toc: true\n---\n\n\n\n\n\n\nBe careful with indentation when specifying options."
+  },
+  {
+    "objectID": "ioc_r/week09/r_w09_slides.html#code-chunks",
+    "href": "ioc_r/week09/r_w09_slides.html#code-chunks",
+    "title": "Putting It All TogetherReproducible Analysis with Quarto",
+    "section": "Code Chunks",
+    "text": "Code Chunks\nR code chunks are identified with a pair of three backticks ``` and {r}.\n\n\n```{r}\ndim(iris)\n```\n\n```{python}\nfrom sklearn import datasets\n\niris = datasets.load_iris()\niris.data.shape\n```\nInsert a chunk: type Cmd + Option + I / Ctrl + Alt + I or click .\n\n```{r}\n#| label: check-dim\n#| eval: false\n#| echo: false\n#| include: false\n\ndim(iris)\n```\nOptions are identified by #| at the beginning of the line.\n\n\n\n\n\n\n\n\nOptions inside a chunk apply only to that specific chunk. Global defaults for all chunks can be set under “execute:” inside the YAML header."
+  },
+  {
+    "objectID": "ioc_r/week09/r_w09_slides.html#code-chunks-options",
+    "href": "ioc_r/week09/r_w09_slides.html#code-chunks-options",
+    "title": "Putting It All TogetherReproducible Analysis with Quarto",
+    "section": "Code Chunks Options",
+    "text": "Code Chunks Options\n (Source: R For Data Science)"
+  },
+  {
+    "objectID": "ioc_r/week09/r_w09_slides.html#code-chunks-execution",
+    "href": "ioc_r/week09/r_w09_slides.html#code-chunks-execution",
+    "title": "Putting It All TogetherReproducible Analysis with Quarto",
+    "section": "Code Chunks Execution",
+    "text": "Code Chunks Execution\n\nTo execute the whole chunk:\n\n\n\nTo execute only some code lines: the same as in an R script (Ctrl/Cmd + Enter)"
+  },
+  {
+    "objectID": "ioc_r/week09/r_w09_slides.html#markdown-text",
+    "href": "ioc_r/week09/r_w09_slides.html#markdown-text",
+    "title": "Putting It All TogetherReproducible Analysis with Quarto",
+    "section": "Markdown Text",
+    "text": "Markdown Text\n\nHeadings\n\n# Header 1\n## Header 2\n### Header 3\n\nTypography\n\n**Bold**\n*Italic*\n`code`\n`r nrow(iris)`\nSuperscript^1^\nSubscript~2~\n![](path/to/image.png)\n- unordered list\n  - unordered sub-list\n1. ordered list\n\n\n\n\n\n\nMarkdown syntax cheat sheet\n\n\n\n\nText with formatting, including section headings, hyperlinks, an embedded image, and an inline code chunk."
+  },
+  {
+    "objectID": "ioc_r/week09/r_w09_slides.html#generate-the-final-doc",
+    "href": "ioc_r/week09/r_w09_slides.html#generate-the-final-doc",
+    "title": "Putting It All TogetherReproducible Analysis with Quarto",
+    "section": "Generate The Final Doc",
+    "text": "Generate The Final Doc\n\n\n\nClick the “Render” button.\n\n\n\n\nIf you have specified multiple output formats, you can select the wanted format."
+  },
+  {
+    "objectID": "ioc_r/week09/r_w09_slides.html#html-themes",
+    "href": "ioc_r/week09/r_w09_slides.html#html-themes",
+    "title": "Putting It All TogetherReproducible Analysis with Quarto",
+    "section": "HTML Themes",
+    "text": "HTML Themes\nYou can specify a wanted theme for the HTML output in the YAML header:\n---\ntitle: \"First Quarto Report\"\nauthor: \"InforBio\"\ndate: \"2026-03-09\"\nformat:\n  html:\n    theme: simplex\n---\n\n\n\n\n\n\nMore themes available here: https://quarto.org/docs/output-formats/html-themes.html"
+  },
+  {
+    "objectID": "ioc_r/week09/r_w09_slides.html#todays-goals",
+    "href": "ioc_r/week09/r_w09_slides.html#todays-goals",
+    "title": "Putting It All TogetherReproducible Analysis with Quarto",
+    "section": "Today’s Goals",
+    "text": "Today’s Goals\n\nUnderstand the basics of Quarto.\nCreate your first Quarto report by walking through a mini data project."
+  },
+  {
+    "objectID": "ioc_r/week09/r_w09_slides.html#reproducing-a-scientific-figure-with-ggplot2",
+    "href": "ioc_r/week09/r_w09_slides.html#reproducing-a-scientific-figure-with-ggplot2",
+    "title": "Putting It All TogetherReproducible Analysis with Quarto",
+    "section": "Reproducing a Scientific Figure with {ggplot2}",
+    "text": "Reproducing a Scientific Figure with {ggplot2}\nTask: Select a figure from a scientific paper and recreate it using {ggplot2}. Document your workflow in a Quarto document to generate a report, and present your work (15 min per person).\nYour report should include:\n\nFigure Selection: Why did you choose this figure?\n\nData & Preprocessing: Source of data, cleaning, transformations.\n\nPackages Used: List and explain key packages.\n\nChallenges & Solutions: Issues faced and how you resolved them.\n\nPlot Construction: Steps taken to build the visualization.\n\nFinal Comparison & Insights: How close is your result? What did you learn?"
   },
   {
     "objectID": "ioc_r/week02/r_w02_slides.html#brief-recap-week-1",
