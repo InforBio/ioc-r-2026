@@ -1,0 +1,193 @@
+---
+title: "Week 9 - Hands-On Examples"
+author: "Your Name"
+format: 
+  html:
+    toc: true
+    embed-resources: true
+date: "2026-XX-XX"
+editor_options: 
+  chunk_output_type: console
+---
+
+## Goals
+
+- Understand the basics of Quarto.
+- Create your first Quarto report by walking through a mini data project.
+
+## Mini Data Project
+
+### Data Import & Exploration
+
+1. Import the two data datasets with `read_csv()` using following links:
+
+- Yeast gene annotation data:
+`"https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/mart_export.txt.gz"`,
+  name the data as `annot`.
+- Gene differential expression analysis (SET1 *vs.* WT):
+`"https://inforbio.github.io/ioc-r-2026/ioc_r/exos_data/toy_DEanalysis.csv"`, name the data as `de_res`.
+
+What are the dimensions of each dataset?
+
+```{r}
+
+
+```
+
+2. Which chromosome has the highest number of genes?
+Which chromosome has the lowest number of genes?
+
+```{r}
+
+```
+
+3. For protein-coding genes, calculate the maximum, minimum, average, and median percentage of GC content for each chromosome.
+
+```{r}
+
+```
+
+4. Comparing `de_res` and `annot` genes. Do all genes in `de_res` exist in `annot`? How many genes in `de_res` lack annotation information?
+
+```{r}
+
+```
+
+
+5. Add the annotation information to `de_res`, merge the `annot` data with `de_res` using either:
+- the `merge()` function (base R), or
+- the `left_join()` function (from the dplyr package, `?left_join`)
+
+```{r}
+
+
+```
+
+### Data Visualization & Statistical Analysis
+
+6. Generate a Volcano plot for differential expression results with the following specifications:
+
+- X-axis: Log2 fold change
+- Y-axis: -log10(p-value)
+- Color: Highlight genes with adjusted p-values below 0.5 in red color (consider creating a new column to flag these).
+- Display gene names for points with absolute log2 fold change greater than 1.5 (use `geom_text_repel()`).
+- Reference lines:
+  - Horizontal red dash line at the Bonferroni-adjusted p-value threshold (0.05 / Ntest)
+  - Vertical dash lines at log2 fold change values of 1.5 and -1.5
+- Theme: Apply `theme_light()` for the plot appearance.
+
+```{r}
+
+```
+
+So far, we've analyzed gene expression between two groups (SET1 *vs.* WT).
+How can we compare expression levels across four groups (WT, SET1, SET1.RRP6, RRP6)?
+For example, how can we test if the average expression level of a gene is the same across these four groups?
+
+:::{.callout-tip title="Stats Time!"}
+**One-way ANOVA**
+
+ANOVA (**AN**alysis **O**f **VA**riance) helps us determine whether the means of multiple groups are different. Instead of comparing means directly (as in t-tests),
+ANOVA compares the variances within (intra) and between groups (inter) to infer differences in means.
+
+We assume that the variance within each group is the same across all groups.
+
+![](https://inforbio.github.io/ioc-r-2026/ioc_r/week09/images/anova_img.png){width=80%}
+
+(Figure credit: Lorette Noiret)
+
+- $H_0: \mu_1 = \mu_2 = ... = \mu_n$
+- $H_1$: there is at least one group which has an average different than other groups.
+
+Which is equals to test:
+
+- $H_0: \sigma^2_{\text{inter group}} = \sigma^2_{\text{intra group}}$
+- $H_1: \sigma^2_{\text{inter group}} > \sigma^2_{\text{intra group}}$
+
+If the means are truly different, the variation between groups ($\sigma^2_{\text{inter group}}$) should be greater than the variation within groups ($\sigma^2_{\text{intra group}}$).
+
+ANOVA calculates the F statistic, which is a ratio:
+
+$F = \frac{\sigma^2_{\text{inter group}}}{\sigma^2_{\text{intra group}}}$
+
+, and the probability of obtaining an F-statistic as extreme as the observed one (the p-value), assuming the null hypothesis is true.
+
+Conditions of applying ANOVA:
+
+- Independence: Observations in each group must be independent.
+- Normality: Data should be approximately normally distributed (can be checked using the Shapiro test).
+- Homoscedasticity (homogeneity of variance): Variances across groups should be roughly equal (Levene’s test or Bartlett’s test can check this).
+
+In R, the function `aov()` is used to perform ANOVA.
+::: 
+
+Let's take the gene *LOH1* as example.
+
+7. Import the expression data using this link:
+`"https://inforbio.github.io/ioc-r-2026/ioc_r/exos_data/read-counts.csv"`
+
+```{r}
+
+```
+
+
+8. Given the imported counts data, how can we reshape it to extract the necessary information and obtain a tibble with the following columns?
+
+- "value": Expression values of the gene *LOH1*
+- "group": Sample groups (Explore how to use the `str_replace()` function to extract group based on sample name)
+
+```{r}
+?str_replace
+
+
+```
+
+9. Assume that all conditions of ANOVA are verified.
+Perform an ANOVA (`aov()`) test and use `summary()` to obtain the results.
+If we take $\alpha=0.05$, what is your conclusion?
+
+```{r}
+
+
+```
+
+10. Conduct a Tukey Honest Significant Differences (TukeyHSD) test to check which groups differ significantly. (`?TukeyHSD`)
+
+```{r}
+
+```
+
+11. Visualize the expression levels of the *LOH1* gene across the four groups using a boxplot.
+
+```{r}
+
+
+```
+
+### Bonus
+
+Verify the assumptions for conducting an ANOVA test:
+
+```{r}
+
+
+```
+
+The RRP6 data does not follow a normal distribution.
+
+```{r}
+
+
+```
+
+Moreover, the assumption of homoscedasticity (equal variance) is not met.
+
+Therefore, an ANOVA is not appropriate, and a non-parametric Kruskal-Wallis test should be used instead.
+
+```{r}
+
+```
+
+---
+
+#### Great work, you’ve made it to the end! 🎉 and now you're ready to take on even more! Keep exploring new things, there's so much more R can do for you!

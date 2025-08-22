@@ -1,0 +1,309 @@
+---
+title: "Week 9 - Hands-On Examples"
+format: 
+  html: default
+  # pdf: default
+date: "2026-03-10"
+date-format: " "
+categories: 
+  - week09
+  - exercise
+editor_options: 
+  chunk_output_type: console
+---
+
+Write your code directly in a Quarto document.
+
+The template is available here:
+[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week09/r_w09_example.qmd)
+
+## Goals
+
+- Understand the basics of Quarto.
+- Create your first Quarto report by walking through a mini data project.
+
+## Mini Data Project
+
+### Data Import & Exploration
+
+1. Import the two data datasets with `read_csv()` using following links:
+
+- Yeast gene annotation data:
+`"https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/mart_export.txt.gz"`,
+  name the data as `annot`.
+- Gene differential expression analysis (SET1 *vs.* WT):
+`"https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv"`, name the data as `de_res`.
+
+What are the dimensions of each dataset?
+
+```{r}
+library(tidyverse)
+annot <- read_csv(
+  "https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/mart_export.txt.gz"
+)
+de_res <- read_csv(
+  "https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv"
+)
+```
+
+2. Which chromosome has the highest number of genes?
+Which chromosome has the lowest number of genes?
+
+```{r}
+annot |>
+  count(`Chromosome/scaffold name`) |>
+  arrange(n)
+
+annot |>
+  count(`Chromosome/scaffold name`) |>
+  filter(n == max(n))
+
+annot |>
+  count(`Chromosome/scaffold name`) |>
+  filter(n %in% range(n)) # filter on the max or the min count
+
+```
+
+3. For protein-coding genes, calculate the maximum, minimum, average, and median percentage of GC content for each chromosome.
+
+```{r}
+annot |>
+  filter(`Gene type` == "protein_coding") |>
+  group_by(`Chromosome/scaffold name`) |>
+  summarise(
+    min_gc = min(`Gene % GC content`),
+    max_gc = max(`Gene % GC content`),
+    mean_gc = mean(`Gene % GC content`),
+    median_gc = median(`Gene % GC content`)
+  )
+
+```
+
+4. Comparing `de_res` and `annot` genes. Do all genes in `de_res` exist in `annot`? How many genes in `de_res` lack annotation information?
+
+```{r}
+table(de_res$gene_name %in% annot[["Gene name"]])
+```
+
+
+5. Add the annotation information to `de_res`, merge the `annot` data with `de_res` using either:
+- the `merge()` function (base R), or
+- the `left_join()` function (from the dplyr package, `?left_join`)
+
+```{r}
+de_res_annot <- merge(
+  x = de_res, y = annot,
+  by.x = "gene_name", by.y = "Gene name",
+  all.x = TRUE
+) # the output is no longer a tibble but data frame
+de_res_annot <- as_tibble(de_res_annot) # convert to a tibble
+
+# or with left_join
+de_res_annot <- de_res |>
+  left_join(annot, by = c("gene_name" = "Gene name"))
+```
+
+### Data Visualization & Statistical Analysis
+
+6. Generate a Volcano plot for differential expression results with the following specifications:
+
+- X-axis: Log2 fold change
+- Y-axis: -log10(p-value)
+- Color: Highlight genes with adjusted p-values below 0.5 in red color (consider creating a new column to flag these).
+- Display gene names for points with absolute log2 fold change greater than 1.5 (use `geom_text_repel()`).
+- Reference lines:
+  - Horizontal red dash line at the Bonferroni-adjusted p-value threshold (0.05 / Ntest)
+  - Vertical dash lines at log2 fold change values of 1.5 and -1.5
+- Theme: Apply `theme_light()` for the plot appearance.
+
+```{r}
+de_res_annot |>
+  mutate(significant = ifelse(padj < 0.05, "yes", "no")) |>
+  ggplot(aes(x = log2FoldChange, y = -log10(pvalue))) +
+  geom_point(aes(color = significant), alpha = 0.7) +
+  scale_color_manual(values = c("yes" = "red", "no" = "grey")) +
+  labs(color = "adj.p < 0.05") +
+  ggrepel::geom_text_repel(
+    data = filter(de_res_annot, abs(log2FoldChange) > 1.5),
+    aes(label = gene_name) # use gene name as lable
+  ) +
+  geom_hline(
+    yintercept = -log10(0.05 / nrow(de_res_annot)),
+    color = "red",
+    linetype = "dashed" 
+  ) +
+  geom_vline(xintercept = c(1.5, -1.5), linetype = "dashed") +
+  theme_light()
+
+# or without create new column for colors
+de_res_annot |>
+  ggplot(aes(x = log2FoldChange, y = -log10(pvalue))) +
+  geom_point(aes(color = padj < 0.05), alpha = 0.7) +
+  scale_color_manual(values = c("TRUE" = "red", "FALSE" = "grey")) +
+  labs(color = "adj.p < 0.05") +
+  ggrepel::geom_text_repel(
+    data = filter(de_res_annot, abs(log2FoldChange) > 1.5),
+    aes(label = gene_name) # use gene name as lable
+  ) +
+  geom_hline(
+    yintercept = -log10(0.05 / nrow(de_res_annot)),
+    color = "red",
+    linetype = "dashed" 
+  ) +
+  geom_vline(xintercept = c(1.5, -1.5), linetype = "dashed") +
+  theme_light()
+```
+
+So far, we've analyzed gene expression between two groups (SET1 *vs.* WT).
+How can we compare expression levels across four groups (WT, SET1, SET1.RRP6, RRP6)?
+For example, how can we test if the average expression level of a gene is the same across these four groups?
+
+:::{.callout-tip title="Stats Time!"}
+**One-way ANOVA**
+
+ANOVA (**AN**alysis **O**f **VA**riance) helps us determine whether the means of multiple groups are different. Instead of comparing means directly (as in t-tests),
+ANOVA compares the variances within (intra) and between groups (inter) to infer differences in means.
+
+We assume that the variance within each group is the same across all groups.
+
+![](images/anova_img.png){width=80%}
+
+(Figure credit: Lorette Noiret)
+
+- $H_0: \mu_1 = \mu_2 = ... = \mu_n$
+- $H_1$: there is at least one group which has an average different than other groups.
+
+Which is equals to test:
+
+- $H_0: \sigma^2_{\text{inter group}} = \sigma^2_{\text{intra group}}$
+- $H_1: \sigma^2_{\text{inter group}} > \sigma^2_{\text{intra group}}$
+
+If the means are truly different, the variation between groups ($\sigma^2_{\text{inter group}}$) should be greater than the variation within groups ($\sigma^2_{\text{intra group}}$).
+
+ANOVA calculates the F statistic, which is a ratio:
+
+$F = \frac{\sigma^2_{\text{inter group}}}{\sigma^2_{\text{intra group}}}$
+
+, and the probability of obtaining an F-statistic as extreme as the observed one (the p-value), assuming the null hypothesis is true.
+
+Conditions of applying ANOVA:
+
+- Independence: Observations in each group must be independent.
+- Normality: Data should be approximately normally distributed (can be checked using the Shapiro test).
+- Homoscedasticity (homogeneity of variance): Variances across groups should be roughly equal (Levene’s test or Bartlett’s test can check this).
+
+In R, the function `aov()` is used to perform ANOVA.
+::: 
+
+Let's take the gene *LOH1* as example.
+
+7. Import the expression data using this link:
+`"https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv"`
+
+```{r}
+counts <- read_csv(
+  "https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv"
+)
+```
+
+
+8. Given the imported counts data, how can we reshape it to extract the necessary information and obtain a tibble with the following columns?
+
+- "value": Expression values of the gene *LOH1*
+- "group": Sample groups (Explore how to use the `str_replace()` function to extract group based on sample name)
+
+```{r}
+?str_replace
+
+anova_data <- counts |>
+  filter(Feature == "LOH1") |>
+  pivot_longer(
+    cols = -1,
+    names_to = "sample_id",
+    values_to = "value"
+  ) |>
+  mutate(
+    group = str_replace(
+      string = sample_id,
+      pattern = "\\.([0-9]+)$",
+      replace = ""
+    )
+  )
+anova_data
+```
+
+9. Assume that all conditions of ANOVA are verified.
+Perform an ANOVA (`aov()`) test and use `summary()` to obtain the results.
+If we take $\alpha=0.05$, what is your conclusion?
+
+```{r}
+res_aov <- aov(value ~ group, data = anova_data)
+summary(res_aov)
+```
+
+10. Conduct a Tukey Honest Significant Differences (TukeyHSD) test to check which groups differ significantly. (`?TukeyHSD`)
+
+```{r}
+TukeyHSD(res_aov)
+```
+
+11. Visualize the expression levels of the *LOH1* gene across the four groups using a boxplot.
+
+```{r}
+ggplot(
+  anova_data,
+  aes(
+    x = factor(group, levels = c("WT", "SET1", "SET1.RRP6", "RRP6")),
+    y = value
+  )
+) +
+  geom_boxplot(
+    outliers = FALSE # do not display outliers by boxplot
+  ) +
+  geom_point(
+    aes(color = group),
+    position = position_jitter(height = 0, width = 0.3, seed = 1)
+  ) +
+  labs(x = NULL, title = "Expression of LOH1") +
+  theme_light() +
+  theme(legend.position = "none")
+```
+
+### Bonus
+
+Verify the assumptions for conducting an ANOVA test:
+
+```{r}
+# Check data normality with Shapiro test
+shapiro.test(anova_data$value[anova_data$group == "WT"])
+shapiro.test(anova_data$value[anova_data$group == "SET1"])
+shapiro.test(anova_data$value[anova_data$group == "SET1.RRP6"])
+shapiro.test(anova_data$value[anova_data$group == "RRP6"])
+
+# or use lapply() to repeat test for each group
+# lapply(
+#   X = unique(anova_data$group),
+#   FUN = function(grp) {
+#     shapiro.test(anova_data$value[anova_data$group == grp])
+#   }
+# )
+```
+
+The RRP6 data does not follow a normal distribution.
+
+```{r}
+# Check homogeneity of variance with Bartlett test
+bartlett.test(value ~ group, data = anova_data)
+```
+
+Moreover, the assumption of homoscedasticity (equal variance) is not met.
+
+Therefore, an ANOVA is not appropriate, and a non-parametric Kruskal-Wallis test should be used instead.
+
+```{r}
+kruskal.test(value ~ group, data = anova_data)
+```
+
+---
+
+#### Great work, you’ve made it to the end! 🎉 and now you're ready to take on even more! Keep exploring new things, there's so much more R can do for you!
