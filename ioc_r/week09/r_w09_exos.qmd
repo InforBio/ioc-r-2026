@@ -15,7 +15,7 @@ editor_options:
 Write your code directly in a Quarto document.
 
 The template is available here:
-[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week09/r_w09_example.qmd.txt). Download it and remove the suffix ".txt".
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week09/r_w09_example.qmd.txt). Download it and remove the suffix ".txt".
 
 ## Goals
 
