@@ -1,5 +1,5 @@
 ---
-title: "Putting It All Together<br>Reproducible Analysis with Quarto"
+title: "Putting It All Together: <br>Reproducible Analysis with Quarto"
 subtitle: "IOC-R Week 9"
 date: "2026-03-09"
 date-format: " "
@@ -163,8 +163,8 @@ Global defaults for all chunks can be set under "**execute:**" inside the YAML h
 ```` markdown
 **Bold**
 *Italic*
-`code`
-`r nrow(iris)`
+`code`           # text in code style
+`r nrow(iris)`   # inline R code 
 Superscript^1^
 Subscript~2~
 ![](path/to/image.png)
@@ -192,7 +192,7 @@ Text with formatting, including section headings, hyperlinks, an embedded image,
 :::
 ::: {.column .fragment}
 
-- If you have specified multiple output formats, you can select the wanted format.
+- If you have specified multiple output formats in the YAML header, you can select the wanted one to render.
 
 ![](images/render2.png)
 :::

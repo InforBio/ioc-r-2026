@@ -213,8 +213,6 @@ counts <- read_csv(
 - "group": Sample groups (Explore how to use the `str_replace()` function to extract group based on sample name)
 
 ```{r}
-# ?str_replace
-
 anova_data <- counts |>
   filter(Feature == "LOH1") |>
   pivot_longer(
@@ -222,13 +220,7 @@ anova_data <- counts |>
     names_to = "sample_id",
     values_to = "value"
   ) |>
-  mutate(
-    group = str_replace(
-      string = sample_id,
-      pattern = "\\.([0-9]+)$",
-      replace = ""
-    )
-  )
+  mutate(group = sub("(.*)\\.([0-9]+)", "\\1", sample_id)) # use regular expression
 anova_data
 ```
 

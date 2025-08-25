@@ -137,7 +137,6 @@ Let's take the gene *LOH1* as example.
 - "group": Sample groups (Explore how to use the `str_replace()` function to extract group based on sample name)
 
 ```{r}
-?str_replace
 
 
 ```

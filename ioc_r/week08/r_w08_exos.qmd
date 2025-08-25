@@ -68,13 +68,13 @@ the_gene <- "LOH1"
 df_plot <- filter(counts, Feature == the_gene) |>
   select(contains(names(colors)), -contains("RRP6")) |>
   pivot_longer(everything()) |>
-  mutate(group = sub("(.*)\\.([0-9]+)", "\\1", name))
+  mutate(group = sub("(.*)\\.([0-9]+)", "\\1", name)) # use regular expression, ?sub
 df_plot
 
 # or first pivot then filter wanted groups
 filter(counts, Feature == the_gene) |>
   pivot_longer(!Feature) |> # pivot except the 1st column
-  mutate(group = sub("(.*)\\.([0-9]+)", "\\1", name)) |> 
+  mutate(group = sub("(.*)\\.([0-9]+)", "\\1", name)) |> # use regular expression
   filter(group %in% names(colors))
 
 
