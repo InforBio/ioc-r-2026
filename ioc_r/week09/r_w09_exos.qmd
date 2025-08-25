@@ -15,7 +15,7 @@ editor_options:
 Write your code directly in a Quarto document.
 
 The template is available here:
-[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week09/r_w09_example.qmd)
+[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week09/r_w09_example.qmd.txt). Download it and remove the suffix ".txt".
 
 ## Goals
 
@@ -213,7 +213,7 @@ counts <- read_csv(
 - "group": Sample groups (Explore how to use the `str_replace()` function to extract group based on sample name)
 
 ```{r}
-?str_replace
+# ?str_replace
 
 anova_data <- counts |>
   filter(Feature == "LOH1") |>
