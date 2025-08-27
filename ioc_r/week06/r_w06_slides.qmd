@@ -68,312 +68,6 @@ read_csv(file = "/Users/lijiao/Download/data.csv")
 :::
 
 
-# Variables & Data Types
-
-## What’s in Your Data? {.smaller}
-
-| Data Type  |	Example in Biology |
-|:-----------|:---------------------|
-| Numeric    |	Expression levels (`25.3`)|
-| Character  |	Gene names (`"TP53"`,` "BRCA1"`)|
-| Logical    |	Mutation status (`TRUE` for mutated, `FALSE` for WT)|
-
-<br>
-
-::: {.columns}
-::: {.column}
-```{r}
-expression <- 25.3   # Numeric
-gene <- "TP53"       # Character
-is_mutant <- TRUE    # Logical
-```
-
-:::
-::: {.column .fragment}
-
-```{r}
-x <- 1
-y <- 2
-total <- x + y
-total
-```
-:::{.callout-tip appearance="simple"}
-- If we change `x` to 5, is the value stored in `total` changed?
-- If `total` is not changed, what do you need to do to update the value in `total`?
-:::
-:::
-:::
-
-
-# Data Structures
-
-## Where Do You Store Your Data? {.smaller}
-
-::: {.columns}
-::: {.column}
-- **Vectors**
-
-  - 1D homogeneous data (all elements of the same type).
-  - Use cases: A list of gene names, expression levels, or p-values.
-  - Use `[]` for indexing
-:::
-::: {.column}
-```{r}
-gene_names <- c("TP53", "BRCA1", "EGFR", "INS")
-gene_names[1]  # First gene: "TP53"
-gene_names[c(2, 4)]  # Select multiple genes
-
-# factor
-mut_gp <- factor(c("wt", "wt", "mut", "mut"))
-mut_gp
-mut_gp[3]
-```
-
-:::
-:::
-
-
-## Where Do You Store Your Data? {.smaller}
-
-::: {.columns}
-::: {.column}
-- **Matrices**:
-
-  - 2D homogeneous data, a collection of equal-length vectors of the same data type.
-  - Use case: gene expression counting table, rows = genes, columns = samples
-  - Use `[, ]` for indexing.
-
-```{r}
-expr_matrix <- matrix(
-  c(10, 12, 15, 20, 8, 30),
-  nrow = 3, byrow = TRUE,
-  dimnames = list( # name the rows and columns   
-    c("gene1", "gene2", "gene3"),
-    c("sample1", "sample2")
-  )
-)
-```
-
-:::
-::: {.column}
-```{r}
-expr_matrix
-expr_matrix["gene1", ]  # Expression of Gene1 across samples
-expr_matrix[, "sample2"]  # All gene expressions in Sample2
-expr_matrix[2, 1]  # Specific value at row 2, column 1
-```
-
-:::
-:::
-
-## Where Do You Store Your Data? {.smaller}
-
-::: {.columns}
-::: {.column}
-- **Data Frames**
-
-  - 2D heterogeneous data, a collection of equal-length vectors of one or more data types.
-  - Use `[, ]` for indexing
-  - Use `$` and `[[ ]]` to extract one column.
-
-```{r}
-df <- data.frame(
-  Gene = c("TP53", "BRCA1", "EGFR"),
-  Expression = c(25.3, 12.5, 30.1),
-  Mutation = c(TRUE, FALSE, TRUE)
-)
-df
-```
-
-:::
-::: {.column}
-
-```{r}
-df$Gene  # Select column as a vector
-df[, "Expression"]  # Same as df$Expression
-df[[2]]  # Same as df$Expression
-df[1, ]  # First row
-df[df$Expression > 30, ]  # Filter expression bigger than 30
-df[which(df$Mutation), ]  # Filter mutated genes
-```
-
-:::
-:::
-
-## Where Do You Store Your Data? {.smaller}
-
-::: {.columns}
-::: {.column}
-- **Lists**
-
-  - Flexible structure, can hold anything (vectors, matrices, data frames or lists).
-  - Use `[]` to subset a list.
-  - Use `[[ ]]` or `$` to select a specific component of a list.
-
-```{r}
-bio_data <- list(
-  genes = c("TP53", "BRCA1"),
-  expression = matrix(c(20, 15, 30, 25), nrow = 2),
-  metadata = data.frame(Sample = c("A", "B"), Condition = c("WT", "KO"))
-)
-```
-
-:::
-::: {.column}
-
-```{r}
-bio_data
-bio_data[1]  # A sub list
-bio_data[[1]]  # Get gene names
-bio_data$expression  # Get expression matrix
-bio_data$metadata$Condition  # Get sample conditions
-```
-
-:::
-:::
-
-# Conditions & Operators
-
-## Filtering Data with Accuracy in R {.smaller}
-
-| Type |	Operator |	Example |
-|:----------|:---------------------:|:--------------:|
-|Comparison |	==, !=, >, <, >=, <=	| p_value < 0.05 |
-|Logical    | `&` (AND), `|` (OR), `!` (NOT) | TRUE & FALSE |
-
-<br>
-
-::: {.columns}
-::: {.column .fragment}
-
-```{r}
-expression <- 25.3
-
-if (expression > 20) {
-  print("High expression")
-} else {
-  print("Low expression")
-}
-
-ifelse(test = expression > 20, yes = "High expression", no = "Low expression")
-```
-
-:::{.fragment}
-
-```{r}
-age <- c(18, 27, 20, 23, 22)
-age[age < 20 | age > 25]
-```
-:::
-:::
-::: {.column .fragment}
-
-```{r}
-genes <- data.frame(
-  gene = c("TP53", "BRCA1", "EGFR"),
-  expr = c(25.3, 12.5, 30.1),
-  gene_family = c("A", "A", "B")
-  
-)
-genes[genes$expr > 20, ]
-# subset(genes, expr > 20) # idem
-
-subset(genes, expr > 20, select = c("gene", "expr")) # filter and select some columns
-```
-
-:::
-:::
-
-# Functions
-
-## Using Functions {.smaller}
-
-A function is a block of code that performs a specific task.
-
-How to use a function?
-
-```{r}
-mean(x = c(1:3, NA), na.rm = TRUE)
-```
-
-. . .
-
-Get help:
-
-```r
-?mean # get help of the function
-help(mean)
-```
-
-. . .
-
-If you use functions from packages other than the built-in ones:
-
-```r
-install.packages("readr")           # install it if never done
-library(readr)                      # load the package
-read_csv(file = "path/to/file.txt") # use the function with necessary inputs
-```
-
-
-
-# ggplot2: Visualizing Your Results
-
-## Basic Graphing {.smaller}
-
-Syntax: `ggplot(data, aes(x, y)) + geom_*()`
-
-```{r}
-#| echo: false
-
-library(ggplot2)
-theme_set(theme_grey())
-theme_update(
-  axis.title = element_text(size = rel(2)),
-  axis.text = element_text(size = rel(2)),
-  strip.text = element_text(size = rel(2)),
-  plot.title = element_text(size = rel(2.5)),
-  legend.text = element_text(size = rel(2)),
-  legend.title = element_text(size = rel(2))
-)
-```
-
-::: {.columns}
-::: {.column}
-```{r}
-library(ggplot2)
-df <- data.frame(
-  Expression = c(
-    25.3, 12.5, 30.1, 27.8, 18.2, 35.6
-  ),
-  Condition = rep(c("WT", "KO"), 3)
-)
-df
-```
-
-:::
-::: {.column}
-```{r}
-ggplot(
-  data = df,
-  aes(x = Condition, y = Expression)
-) +
-  geom_boxplot()
-```
-
-:::{.content-smaller}
-Possible to change aesthetics (color, fill, shape, alpha (transparency), *etc.*), theme, scales, *etc.*
-:::
-
-```{r}
-#| eval: false
-
-## save figure
-ggsave(filename = "path/to/my_figure.png")
-```
-:::
-:::
-
 # Data Import and Export
 
 ## Text and Excel Files {.smaller}
@@ -485,6 +179,188 @@ load("outputs/analysis_results.RData")
 
 :::{.callout-note appearance="simple" .fragment}
 Both `.RDS` and `.Rdata` preserve data structures, such as column data types (numeric, character or factor).
+:::
+
+
+# Variables & Data Types
+
+## What’s in Your Data? {.smaller}
+
+| Data Type  |	Example in Biology |
+|:-----------|:---------------------|
+| Numeric    |	Expression levels (`25.3`)|
+| Character  |	Gene names (`"TP53"`,` "BRCA1"`)|
+| Logical    |	Mutation status (`TRUE` for mutated, `FALSE` for WT)|
+
+::: {.fragment}
+```{r}
+x <- 1
+y <- 2
+total <- x + y
+total
+```
+
+:::{.callout-tip appearance="simple"}
+- If we change `x` to 5, is the value stored in `total` changed?
+- If `total` is not changed, what do you need to do to update the value in `total`?
+:::
+
+:::
+
+# Data Structures
+
+## How Do You Store Your Data? {.smaller}
+
+::: {.columns}
+::: {.column}
+- **Vectors**
+
+  - 1D homogeneous data (all elements of the same type).
+  - Use cases: A list of gene names, expression levels, or p-values.
+  - Use `[]` for indexing
+:::
+::: {.column}
+```{r}
+gene_names <- c("TP53", "BRCA1", "EGFR", "INS")
+gene_names[1]  # First gene: "TP53"
+gene_names[c(2, 4)]  # Select multiple genes
+
+# factor
+mut_gp <- factor(c("wt", "wt", "mut", "mut"))
+mut_gp
+mut_gp[3]
+```
+
+:::
+:::
+
+
+## How Do You Store Your Data? {.smaller}
+
+::: {.columns}
+::: {.column}
+- **Data Frames**
+
+  - 2D heterogeneous data, a collection of equal-length vectors of one or more data types.
+  - Use `[, ]` for indexing
+  - Use `$` and `[[ ]]` to extract one column.
+
+```{r}
+df <- data.frame(
+  Gene = c("TP53", "BRCA1", "EGFR"),
+  Expression = c(25.3, 12.5, 30.1),
+  Mutation = c(TRUE, FALSE, TRUE)
+)
+df
+```
+
+:::
+::: {.column}
+
+```{r}
+df$Gene  # Select column as a vector
+df[, "Expression"]  # Same as df$Expression
+df[[2]]  # Same as df$Expression
+df[1, ]  # First row
+df[df$Expression > 30, ]  # Filter expression bigger than 30
+df[which(df$Mutation), ]  # Filter mutated genes
+```
+
+:::
+:::
+
+
+# Conditions & Operators
+
+## Filtering Data with Accuracy in R {.smaller}
+
+| Type |	Operator |	Example |
+|:----------|:---------------------:|:--------------:|
+|Comparison |	==, !=, >, <, >=, <=	| p_value < 0.05 |
+|Logical    | `&` (AND), `|` (OR), `!` (NOT) | TRUE & FALSE |
+
+<br>
+
+::: {.fragment}
+
+```{r}
+age <- c(18, 27, 20, 23, 22)
+# extract age between 20 and 25
+age[age < 20 | age > 25]
+```
+
+:::
+::: {.fragment}
+
+```{r}
+genes <- data.frame(
+  gene = c("TP53", "BRCA1", "EGFR"),
+  expr = c(25.3, 12.5, 30.1),
+  gene_family = c("A", "A", "B")
+  
+)
+# filter gene with expression greater than 20
+genes[genes$expr > 20, ]
+```
+
+:::
+
+
+# ggplot2: Visualizing Your Results
+
+## Basic Graphing {.smaller}
+
+Syntax: `ggplot(data, aes(x, y)) + geom_*()`
+
+```{r}
+#| echo: false
+
+library(ggplot2)
+theme_set(theme_grey())
+theme_update(
+  axis.title = element_text(size = rel(2)),
+  axis.text = element_text(size = rel(2)),
+  strip.text = element_text(size = rel(2)),
+  plot.title = element_text(size = rel(2.5)),
+  legend.text = element_text(size = rel(2)),
+  legend.title = element_text(size = rel(2))
+)
+```
+
+::: {.columns}
+::: {.column}
+```{r}
+library(ggplot2)
+df <- data.frame(
+  Expression = c(
+    25.3, 12.5, 30.1, 27.8, 18.2, 35.6
+  ),
+  Condition = rep(c("WT", "KO"), 3)
+)
+df
+```
+
+:::
+::: {.column}
+```{r}
+ggplot(
+  data = df,
+  aes(x = Condition, y = Expression)
+) +
+  geom_boxplot()
+```
+
+:::{.content-smaller}
+Possible to change aesthetics (color, fill, shape, alpha (transparency), *etc.*), theme, scales, *etc.*
+:::
+
+```{r}
+#| eval: false
+
+## save figure
+ggsave(filename = "path/to/my_figure.png")
+```
+:::
 :::
 
 
