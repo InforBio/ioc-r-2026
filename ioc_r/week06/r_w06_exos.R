@@ -96,7 +96,7 @@ data
 
 
 
-## 6. To go futhur: Let's visualise the average expression of each group using barplot,
+## 6. To go futher: Let's visualise the average expression of each group using barplot,
 ##                  with the help of ChatGPT (or any other AI tool).
 
 ## 6a. Prepare data for barplot with error bars.
