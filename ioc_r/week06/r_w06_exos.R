@@ -5,7 +5,7 @@
 
 ## 1. Fix the data frame error.
 data <- data.frame(
-  gene = c("BRCA1", "TP53", "MYC"),
+  gene = c("BRCA1", "TP53", "MYC")
   expression = c(10.5, 8.2, 12.7)
   condition = c("Tumor", "Normal", "Tumor")
 )
@@ -22,10 +22,9 @@ mean(counts["gene3", ])
 
 
 ## 3. Fix error in condition.
-x <- 10
-if (x = 5) {
-  print("x is 5")
-}
+##    The goal is to find which value is 3 from the vector.
+vec_num <- c(4, 6, 8, 3, 2, 4, 7, 3, 9, 3)
+which(vec_num = 3)
 
 
 ## 4. Fix error in ggplot2.
@@ -57,61 +56,53 @@ data[data$value<-0.5, ]
 
 ## Mini Data Project -------------------------------------------------------------------------
 
-## A researcher has collected some gene expression data from 12 samples.
-## However, some expression values are missing.
-## Please help the researcher to clean the data and to performs some basic analyses.
+## Gene expression data were collected from 12 samples of two groups.
+## Help the researcher to perform data quality control and
+## check if the expression is different between groups.
 
-# Simulated dataset with missing values
-data <- data.frame(
-  sample_id = paste0("sample", 1:12),
-  expression = c(
-    10.2, 15.2, NA, NA, 9.4, 18.1,
-    8.9, 16.0, 10.5, 15.5, 11.5, 13.4
-  ),
-  sample_group = rep(c("Control", "Case"), times = 6)
-)
-
-data
 
 ## Tasks:
-## 1. Find missing values.
-## Which rows contain missing values?
-## Hint: Use `is.na()`
+## 1. Download the data: https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/rna_seq_simulated_data.csv
+##    and import it into Rstudio, name it `rnaseq_data`.
 
-## 2. Remove rows with missing values.
+
+## 2. Perform data quality control and describe the data.
+## - If missing value exists, which variable(s) and sample(s) are concerned?
+## - Do we need to recode variable?
+
+## 3. Remove rows with missing values.
 ## Create a new dataset without missing values.
-
-
-## 3. Basic summary statistics
-##    - What is the mean expression level (after removing missing values)?
-##    - What is the max and min expression?
 
 
 ## 4. Find the average expression (`mean()`) and the standard deviation (`sd()`)
 ##    for each sample group (Control *vs.* Case)
 
 
-## 5. Use `data_clean` to draw a graph you have already seen,
-##    e.g.: box plots, scatter plots, etc.
+## 5. Use `data_clean` to visualize expression between two groups.
 
 
 
-## 6. To go futher: Let's visualise the average expression of each group using barplot,
+## 6. To go futher: Let's visualise the average expression of each group using a barplot,
 ##                  with the help of ChatGPT (or any other AI tool).
 
 ## 6a. Prepare data for barplot with error bars.
 ##    We need to reorganize the data in a dataframe with 2 rows and 3 columns:
 ##    - the column `group` contain the name of each group
-##    - the column `mean` contain the mean expression in  of each group
-##    - the column `mean` contain the standard deviations
+##    - the column `mean_val` contain the mean expression in  of each group
+##    - the column `se_val` contain the standard errors (SE) (SE = SD / sqrt(n))
 
 
 ## 6b. Draw the bar plot:
 ##    - Plot bars for mean expression (`geom_bar(stat = "identity")`)
-##    - Add error bars for standard deviation (`geom_errorbar()`)
+##    - Add error bars for standard errors (`geom_errorbar()`)
 ##    - Change the aesthetic apsects as you want, *e.g.*: color, title, legend, *etc.*
 
 
 ## 6c. What if we want to add the expression level of each sample to the bar plot?
 ## Hint: Add another layer for drawing points (`geom_point`),
 ##       using the data frame that contains the individual data (`data_clean`).
+
+
+## 7. Is the expression different between groups?
+## Select a test to compare the expression between groups.
+## What is your conclusion?
