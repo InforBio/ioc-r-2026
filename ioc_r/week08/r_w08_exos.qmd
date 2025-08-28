@@ -94,10 +94,10 @@ p
 3. Add labels to the top 3 most highly expressed samples in each group in the previous boxplot,
 using `geom_label_repel()` from the {ggrepel} package. 
 
-Hints:
-
+::: {.callout-tip collapse="true" title="Hints"}
 - Use `group_by()` to allow downstream operations performed "by group".
 - Use `rank()` to rank expression values. (`?rank`)
+:::
 
 Save the final plot as `p_label`.
 
@@ -160,10 +160,10 @@ p_signif
 5. Create a horizontal bar plot showing the log2 fold change for each gene,
 and highlight those with an adjusted p-value (`padj`) below 0.05.
 
-Hints: 
-
+::: {.callout-tip collapse="true" title="Hints"}
 - Add a column ranking genes by their log2 fold change.
 - Add a column indicating whether the gene meets the significance threshold.
+:::
 
 Save the final plot as `p_lfc`.
 

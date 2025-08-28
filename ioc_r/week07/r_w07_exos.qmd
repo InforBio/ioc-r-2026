@@ -155,8 +155,10 @@ data1_long
 
 7. Extract information about gene, sex and animal from the column `id` using the `extract()` function. Name the new columns as "gene_id", "sex" and "animal".
 
-**Hint**: Find the patterns for the extraction.
+::: {.callout-tip collapse="true" title="Hints"}
+Find the patterns for the extraction.
 You can use AI to help you to write the regular expression.
+:::
 
 ```{r}
 # check how id (the colnames before reshape) was constructed.

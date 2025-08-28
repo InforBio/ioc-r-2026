@@ -86,13 +86,13 @@ What is your observation for Adelie and Chinstrap penguins?
 
 8. Based on your observation from question 7, test if your hypothesis is statistically valid (using significance level at 5%). 
 
-Hints:
-
+::: {.callout-tip collapse="true" title="Hints"}
 - Check the distribution of body mass or bill length,
 test the normality of data distribution of each species.
 - If both group are normally distributed, use a t-test (`?t.test`);
 If one or both groups are not normally distributed, use a Wilcoxon rank-sum test.
 - Report the p-value and state your conclusion in one sentence.
+:::
 
 ```{r}
 

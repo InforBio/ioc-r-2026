@@ -77,11 +77,11 @@ Store the results in a variable called `avg_wt`.
 9. What is the absolute difference between the average expression of WT and SET1 samples for each gene? 
 Which gene shows the biggest difference?
 
-Hints:
-
+::: {.callout-tip collapse="true" title="Hints"}
 - Use `abs()` to get the absolute value. (`?abs`)
 - The `max()` function helps to find the maximum value from a vector. (`?max`)
 - The `which.max()` function helps to find the index of the maximum value from a vector. (`?which.max`)
+:::
 
 ```{r}
 

@@ -45,7 +45,9 @@ Store the results in a variable `target_genes`.
 
 5. Draw a boxplot for the 1st gene of the `target_genes` to show the expression level between SET1 and WT samples.
 
-Hints: you need to extract the expression data for the gene from the `counts` and build a data frame for the boxplot.
+::: {.callout-tip collapse="true" title="Hints"}
+You need to extract the expression data for the gene from the `counts` and build a data frame for the boxplot.
+:::
 
 6. Refine the boxplot from question 5 to include the following customizations:
 

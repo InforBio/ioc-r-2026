@@ -26,9 +26,10 @@ The data is available in two CSV files:
 Then, combine the two datasets into one.
 Make sure to adjust any parameters as needed.
 
-Hints: You can combine datasets by stacking their rows together to create one final data frame.
+::: {.callout-tip collapse="true" title="Hints"}
+You can combine datasets by stacking their rows together to create one final data frame.
 (Use `dplyr::bind_rows()` or `rbind()` for this.)
-
+:::
 
 2. Remove lines with NA in expression value.
 
