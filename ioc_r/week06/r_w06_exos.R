@@ -88,8 +88,8 @@ data[data$value<-0.5, ]
 ## 6a. Prepare data for barplot with error bars.
 ##    We need to reorganize the data in a dataframe with 2 rows and 3 columns:
 ##    - the column `group` contain the name of each group
-##    - the column `mean_val` contain the mean expression in  of each group
-##    - the column `se_val` contain the standard errors (SE) (SE = SD / sqrt(n))
+##    - the column `mean_val` contain the average expression of each group
+##    - the column `se_val` contain the standard error of each group
 
 
 ## 6b. Draw the bar plot:

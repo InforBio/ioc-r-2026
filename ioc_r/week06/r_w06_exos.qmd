@@ -301,12 +301,26 @@ ggplot(data_clean, aes(x = sample_group, y = expression)) +
     alpha = 0.5
   ) +
   labs(
-    title = "Mean Gene Expression by Sample Group",
+    title = "Average Gene Expression by Sample Group",
     subtitle = "The error bars represent the standard errors.",
-    x = NULL, y = "Mean Expression Level"
+    x = NULL, y = "Average Expression Level"
   ) +
   theme_minimal()
 ```
+
+::: {.callout-note title="Stats Time!"}
+- **Standard Deviation** (SD) measures the variability of values in a sample (dataset).
+$$
+SD = \sqrt{\frac{\sum(x_i - \bar{x})^2}{n-1}} = \sqrt{\text{variance}}
+$$
+
+- **Standard Error** (SE), usually we talk about the SE of the mean (SEM), it measures the variability of the mean of a sample compared to the mean of the population.
+
+$$
+SE = \frac{SD}{\sqrt{n}}
+$$
+
+:::
 
 6a. Prepare data for barplot with error bars.
 
@@ -314,8 +328,8 @@ ggplot(data_clean, aes(x = sample_group, y = expression)) +
 We need to reorganize the data in a dataframe with 2 rows and 3 columns:
 
 - the column `group` contain the name of each group 
-- the column `mean_val` contain the mean expression in  of each group 
-- the column `se_val` contain the standard errors (SE) ($SE_{gr_i} = \frac{SD_{gr_i}}{sqrt(n_{gr_i})}$)
+- the column `mean_val` contain the average expression of each group 
+- the column `se_val` contain the standard error of each group
 :::
 
 ```{r}
@@ -360,9 +374,9 @@ p_bar_error <- p_bar +
 # change labels and theme
 p_bar_error +
   labs(
-    title = "Mean Gene Expression by Sample Group",
+    title = "Average Gene Expression by Sample Group",
     subtitle = "The error bars represent the standard errors.",
-    x = NULL, y = "Mean Expression Level"
+    x = NULL, y = "Average Expression Level"
   ) +
   theme_minimal()
 ```
@@ -381,9 +395,9 @@ Add another layer for drawing points (`geom_point`), using the data frame that c
 # change labels and theme
 p_bar_error +
   labs(
-    title = "Mean Gene Expression by Sample Group",
+    title = "Average Gene Expression by Sample Group",
     subtitle = "The error bars represent the standard errors.",
-    x = NULL, y = "Mean Expression Level"
+    x = NULL, y = "Average Expression Level"
   ) +
   theme_minimal() +
   geom_point( # add the layer of points
@@ -412,7 +426,7 @@ ggplot(data_clean, aes(x = sample_group, y = expression)) +
     alpha = 0.5
   ) +
   labs(
-    title = "Mean Gene Expression by Sample Group",
+    title = "Average Gene Expression by Sample Group",
     subtitle = "The error bars represent the standard errors.",
     x = NULL, y = "Mean Expression Level"
   ) +
