@@ -44,14 +44,14 @@ image: images/preview_w7.png
 
 
 ```r
-## install the core tidyverse packages
+## install the tidyverse package
 install.packages("tidyverse")
 ```
 
 ```{r}
 #| message: true
 
-## load the core tidyverse packages
+## load the package
 library(tidyverse)
 ```
 
@@ -70,7 +70,7 @@ Compare the 3 ways to do calculate the square root of the mean of abolute values
 # create a vector
 x <- c(-3, -5, NA, 8)
 
-# version 1: calculation with nested function
+# version 1: calculation with nested functions
 sqrt(mean(abs(x), na.rm = TRUE))
 
 # version 2: use variables to store intermediate results
@@ -89,7 +89,8 @@ abs(x) |>
   mean(na.rm = TRUE) |>
   sqrt()
 
-## version 3bis: or each function in one line
+## version 3bis: 
+## you can write code in one line if it's not too long
 abs(x) |> mean(na.rm = TRUE) |> sqrt()
 
 ```
@@ -162,9 +163,13 @@ wider_data <- tibble(
 )
 wider_data
 ```
+
+:::{.callout-tip appearance="simple"}
+What to do if we want to put conditions in a column and expression values in another column?
+(*E.g.*: for data visualisation)
 :::
 
-::: {.column}
+::: {.column .fragment}
 
 ```{r}
 wider_data |>
