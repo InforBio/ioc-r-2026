@@ -15,6 +15,18 @@ editor_options:
 - Understand the basics of Quarto.
 - Create your first Quarto report by walking through a mini data project.
 
+
+## Quarto Document
+
+A template is available here:
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week09/r_w09_example.qmd.txt). Download it and remove the suffix ".txt".
+
+- Modify the YAML header at the top of the Quarto file:
+change the `title`, `author`, or any other metadata to personalize the document.
+- Write your R code directly in the Quarto document in code chunks (` ```{r}...``` `) to complete this exercise.
+- Render the document (click “Render” in RStudio) to generate your first report.
+
+
 ## Mini Data Project
 
 ### Data Import & Exploration
@@ -156,7 +168,7 @@ If we take $\alpha=0.05$, what is your conclusion?
 
 ```
 
-11. Visualize the expression levels of the *LOH1* gene across the four groups using a boxplot.
+11. Visualize the expression levels of the *LOH1* gene across the four groups using a boxplot. Comment on the figure.
 
 ```{r}
 
