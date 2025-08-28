@@ -233,15 +233,21 @@ More themes available here:
 
 # Final Project
 
-## Reproducing a Scientific Figure with {`ggplot2`} {.smaller}
+## Recreate a Figure with {`ggplot2`} {.smaller}
 
-**Task:** Select a figure from a scientific paper and recreate it using {*ggplot2*}. Document your workflow in a **Quarto document** to generate a report, and present your work (15 min per person).
+**Task**: Select a figure from a scientific paper and recreate it using {*ggplot2*}. You can either use the publicly available data or your own dataset.
 
-Your report should include:
+:::{.callout-important appearance="simple"}
+Document your workflow in a **Quarto document** to generate a report, and present your work (15 min per person).
+:::
 
-- **Figure Selection:** Why did you choose this figure?  
-- **Data & Preprocessing:** Source of data, cleaning, transformations.  
-- **Packages Used:** List and explain key packages.  
-- **Challenges & Solutions:** Issues faced and how you resolved them.  
-- **Plot Construction:** Steps taken to build the visualization.  
-- **Final Comparison & Insights:** How close is your result? What did you learn? 
+:::{.callout-tip appearance="simple" title="What to include in your report:"}
+
+- **Why this figure?** Explain your choice or inspiration.
+- **Data & Preprocessing:** Source, cleaning, transformations, *etc.*  
+- **Exploration & Statistics:** Summary stats, comparisons, or any tests that help to understand the data.
+- **Plot Construction:** Steps taken to build the visualization.
+- **Challenges & Solutions:** Issues faced and how you resolved them.   
+- **Comparison & Insights:** How close is it to the original? What did you learn?
+
+:::
