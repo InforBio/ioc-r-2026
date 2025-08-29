@@ -8,12 +8,10 @@ Please bookmark this page for quick access.
 
 ## Calendar
 
-#### **French Group**
-
 - Starts from: the week of 3rd November 2025  
 - Time slots: **9:30 am – 12:30 pm**
 - Format: Hybrid -- with **weeks 1, 5 and 9 held in-persion** at InforBio office; all other sessions take place online.
-- Provisional Schedule:  
+- Provisional schedule:  
 
   | **Week**           | **Session**                                                   | **Date**      | **Time**           |
   |--------------------|---------------------------------------------------------------|---------------|--------------------|
@@ -24,31 +22,10 @@ Please bookmark this page for quick access.
   | **Week 5 (in-person)** | Graphing with {`ggplot2`}  (Part 1)                       |  1st December | 9:30 am – 12:30 pm |
   | Week 6             | R-fresh: Revisiting the Essentials                            |  5th January  | 9:30 am – 12:30 pm |
   | Week 7             | Tidy Up: Wrangling Data with {`dplyr`} and {`tidyr`}   | 12th January  | 9:30 am – 12:30 pm |
-  | Week 8 | Graphs Level Up: {`ggplot2`} (Part 2) & Custom Functions  | 26th January  | 9:30 am – 12:30 pm |
-  | **Week 9 (in-person)**             | Putting It All Together: Reproducible Analysis with Quarto |  9th March    | 9:30 am – 12:30 pm |
+  | Week 8 | Graphs Level Up: {`ggplot2`} (Part 2) & Custom Functions  | 19th January  | 9:30 am – 12:30 pm |
+  | **Week 9 (in-person)** | Putting It All Together: Reproducible Analysis with Quarto |  26th January    | 9:30 am – 12:30 pm |
   | Week 10            | Your project presentation                                     | **TBD**       | **TBD** |
 
-
-#### **English Group**
-
-- Starts from: Monday, 13th January 2025  
-- Time slots: **Mondays 9:30 am – 12:00 pm**  
-- Location: Online (Zoom link will be shared prior to the session by email)
-- Provisional Schedule:  
-
-  | **Week**       | **Session**          | **Date**         | **Time**           |
-  |----------------|----------------------|------------------|--------------------|
-  | Week 1         | Kickstart with R: Your Gateway to Data Science       | 13th January  | 9:30 am – 12:00 pm |
-  | Week 2         | Data Foundations: Vectors and Matrices               | 20th January  | 9:30 am – 12:00 pm |
-  | Week 3         | More Complex Data Structures: Data Frames and Lists  | 27th January  | 9:30 am – 12:00 pm |
-  | Week 4         | Building Logic: Operators, Conditions, and Functions |  3rd February | 9:30 am – 12:00 pm |
-  | Week 5         | Graphing with {`ggplot2`}                            | 10th February | 9:30 am – 12:00 pm |
-  | Week 6         | R-fresh: Revisiting the Essentials                   |  3rd March    | 2:00 pm – 4:30 pm  |
-  | Week 7         | Smart Shortcuts: Mastering the `apply` Family        | 10th March    | 9:30 am – 12:00 pm |
-  | Week 8         | Tidy Your Data: Exploring {`tidyr`} and {`dplyr`}    | 17th March    | 9:30 am – 12:00 pm |
-  | Week 9         | String Tricks & Final Review                         | 24nd March    | 9:30 am – 12:00 pm |
-  | Week 10        | Your project presentation                            | **6th May**   | **1:00 pm - 4:00 pm** |
-  
 
 ## Recommended Readings
 
