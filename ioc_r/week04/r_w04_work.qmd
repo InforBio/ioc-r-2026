@@ -43,7 +43,7 @@ Show the head lines of your data frame.
 
 ```
 
-:::{.callout-tip}
+:::{.callout-note}
 A data frame can be considered as a list of equal-length vectors.
 :::
 

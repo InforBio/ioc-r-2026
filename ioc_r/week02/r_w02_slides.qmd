@@ -102,7 +102,7 @@ DAYone
 :::
 :::
 
-::: {.fragment .callout-tip appearance="simple"}
+::: {.fragment .callout-note appearance="simple"}
 How to know if a variable name was already used?
 
 - Type `help(reserved)` to check reserved words in R.

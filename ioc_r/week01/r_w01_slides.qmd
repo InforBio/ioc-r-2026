@@ -401,7 +401,7 @@ When you select the file, a preview window will pop up.
 RStudio tries to guess the data's properties, but you should always confirm them.
 :::
 
-::: {.callout-tip appearance="simple"}
+::: {.callout-note appearance="simple"}
 # Think before you import the data
 
 - How do you want to name the imported data?

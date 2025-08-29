@@ -32,7 +32,7 @@ image: images/preview_w9.jpg
 - Combines narrative text and code (multi-language) in one script (.qmd).
 - Supports multiple output formats: .html, .docx, .pptx, .pdf, *etc.*
 
-::: {.callout-tip appearance="simple"}
+::: {.callout-note appearance="simple"}
 Check out the [Quarto tutorial](https://quarto.org/docs/get-started/hello/rstudio.html).
 :::
 
