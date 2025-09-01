@@ -257,7 +257,7 @@ p0 +
 
 ## Faceting (Subplots) {.smaller}
 
-![](images/position-facets.png){width=70%}
+![](images/position-facets.png){.nostretch width=70%}
 
 (Source: [ggplot2 book](https://ggplot2-book.org/facet.html))
 

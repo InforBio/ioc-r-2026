@@ -138,7 +138,8 @@ Global defaults for all chunks can be set under "**execute:**" inside the YAML h
 
 ## Code Chunks Options {.smaller}
 
-![](images/chunk_options.png)
+![](images/chunk_options.png){.nostretch width=80%}
+
 (Source: [R For Data Science](https://r4ds.hadley.nz/quarto.html#chunk-options))
 
 
@@ -146,7 +147,7 @@ Global defaults for all chunks can be set under "**execute:**" inside the YAML h
 
 - To execute the whole chunk:
 
-![](images/execute_chunk.png){width=20%}
+![](images/execute_chunk.png){.nostretch width=50%}
 
 - To execute only some code lines: the same as in an R script (Ctrl/Cmd + Enter)
 
