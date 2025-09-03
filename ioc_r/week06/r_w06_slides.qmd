@@ -27,16 +27,19 @@ image: images/xkcd_parenthesis.png
 
 # Mini Test
 
-## Test Your Level 
-
-![](https://imgs.xkcd.com/comics/3x9.png){.nostretch}
-
-Click [this link](https://app.wooclap.com/UBZAPL/questionnaires/68b1b13144df9e61ac1f4172) to start the test, you have 30 minutes.
-
-
 ## Test Your Level {.smaller}
 
-<iframe allowfullscreen frameborder="0" height="80%" mozallowfullscreen src="https://app.wooclap.com/UBZAPL/questionnaires/68b1b13144df9e61ac1f4172" style="min-height: 250px; min-width: 500px" width="100%"></iframe>
+<div style="transform: scale(0.75); transform-origin: top left; width: 100%; height: 100%;">
+  <iframe
+    allowfullscreen
+    mozallowfullscreen
+    frameborder="0"
+    width="1000px" 
+    height="750px"
+    src="https://app.wooclap.com/UBZAPL/questionnaires/68b1b13144df9e61ac1f4172" style="border:0;">
+  </iframe>
+</div>
+
 
 # R Projects
 
