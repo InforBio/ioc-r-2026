@@ -78,25 +78,20 @@ A box labeled "char_name" containing the platform name "InforBio".
 ::: {.column .fragment}
 
 ::: {.callout-tip appearance="simple"}
-Which are valid names?
+Which are valid names for variables?
 :::
 
-``` {.r code-line-numbers="1-16|5,8-10"}
+``` {.r code-line-numbers="1-15|3,5-7"}
 foo
-test
 var
-var2
 exam_results
-a_variable_with_a_name_super_long
-
+a_variable_with_a_super_long_name
 day_1
 day_one
 day1
-first_day_of_the_month
-DayOne
-dayOne
-DAYONE
-DAYone
+day-1
+1day
+day.1
 ```
 
 :::
