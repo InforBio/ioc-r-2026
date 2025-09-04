@@ -33,7 +33,7 @@ image: images/preview_w9.jpg
 - Supports multiple output formats: .html, .docx, .pptx, .pdf, *etc.*
 
 ::: {.callout-note appearance="simple"}
-Check out the [Quarto tutorial](https://quarto.org/docs/get-started/hello/rstudio.html).
+Check out the [Quarto tutorial](https://quarto.org/docs/get-started/hello/rstudio.html){target="_blank"}.
 :::
 
 ## An Example {.smaller}
@@ -140,7 +140,7 @@ Global defaults for all chunks can be set under "**execute:**" inside the YAML h
 
 ![](images/chunk_options.png){.nostretch width=80%}
 
-(Source: [R For Data Science](https://r4ds.hadley.nz/quarto.html#chunk-options))
+(Source: [R For Data Science](https://r4ds.hadley.nz/quarto.html#chunk-options){target="_blank"})
 
 
 ## Code Chunks Execution {.smaller}
@@ -178,7 +178,7 @@ Subscript~2~
 ````
 
 :::{.callout-note appearance="simple"}
-Markdown syntax [cheat sheet](https://www.markdownguide.org/cheat-sheet/)
+Markdown syntax [cheat sheet](https://www.markdownguide.org/cheat-sheet/){target="_blank"}
 :::
 
 :::{.notes}

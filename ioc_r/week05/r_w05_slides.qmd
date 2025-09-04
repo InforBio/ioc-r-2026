@@ -122,8 +122,8 @@ By default, R will install the lastest version of a package.
 - Via command, *i.e.*, `install.packages("ggplot2")`
 
 ::: {.callout-note appearance="simple"}
-- **[CRAN](https://cran.r-project.org)** (Comprehensive R Archive Network) is a network of servers around the world that store identical, up-to-date, versions of code and documentation for R.
-- **[Bioconductor](https://bioconductor.org)** is a specialized repository like CRAN, but focused on bioinformatics. It provides R packages for analyzing genomic and biological data.
+- **[CRAN](https://cran.r-project.org){target="_blank"}** (Comprehensive R Archive Network) is a network of servers around the world that store identical, up-to-date, versions of code and documentation for R.
+- **[Bioconductor](https://bioconductor.org){target="_blank"}** is a specialized repository like CRAN, but focused on bioinformatics. It provides R packages for analyzing genomic and biological data.
 :::
 
 ::: {.notes}
@@ -197,7 +197,9 @@ flowchart LR
 <br>
 
 ::: {.callout-note appearance="simple"}
-Check out these websites: [from Data to Viz](https://www.data-to-viz.com) and [The R Graph Gallery](https://r-graph-gallery.com) (by Yan Holtz)
+Check out these websites:
+[from Data to Viz](https://www.data-to-viz.com){target="_blank"} and
+[The R Graph Gallery](https://r-graph-gallery.com){target="_blank"} (by Yan Holtz)
 :::
 
 ::: {.notes}
@@ -208,7 +210,7 @@ Check out these websites: [from Data to Viz](https://www.data-to-viz.com) and [T
 
 ## Compositions of a ggplot {.smaller}
 
-![(Figure adpated from [QCBS R Workshop Series](https://r.qcbs.ca/workshop03/book-en/grammar-of-graphics-gg-basics.html).)](images/ggplot_comp.png)
+![(Figure adpated from [QCBS R Workshop Series](https://r.qcbs.ca/workshop03/book-en/grammar-of-graphics-gg-basics.html){target="_blank"}.)](images/ggplot_comp.png)
 
 
 ## How to Build a ggplot {.smaller}

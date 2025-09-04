@@ -32,13 +32,13 @@ image: images/preview_w7.png
 
 ::: {.columns}
 ::: {.column}
-- [readr](https://readr.tidyverse.org/): import data into R
-- [ggplot2](https://ggplot2.tidyverse.org/): visualisation
+- [readr](https://readr.tidyverse.org/){target="_blank"}: import data into R
+- [ggplot2](https://ggplot2.tidyverse.org/){target="_blank"}: visualisation
 :::
 ::: {.column}
-- [**tidyr**](https://tidyr.tidyverse.org/): restructure data
-- [**dplyr**](https://dplyr.tidyverse.org/): manipulate data
-- [stringr](https://stringr.tidyverse.org/): manipulate strings
+- [**tidyr**](https://tidyr.tidyverse.org/){target="_blank"}: restructure data
+- [**dplyr**](https://dplyr.tidyverse.org/){target="_blank"}: manipulate data
+- [stringr](https://stringr.tidyverse.org/){target="_blank"}: manipulate strings
 :::
 :::
 
