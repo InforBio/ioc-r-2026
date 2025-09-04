@@ -43,6 +43,7 @@ format:
   html:
     theme: cosmo
     toc: true
+    history: false
   # pdf:
   #   toc: true
     
