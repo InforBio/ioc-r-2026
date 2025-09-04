@@ -16,3 +16,12 @@
 .content-smaller {
   font-size: 0.8em;
 }
+
+
+/* Reduce callout width */
+.narrow-callout {
+  max-width: 350px;
+  /* margin: 0 auto;   /* center it */
+  margin-left: 0;   /* stick to the left edge */
+  margin-right: auto; /* optional: push any extra space to the right */
+}

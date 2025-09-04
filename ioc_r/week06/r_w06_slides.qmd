@@ -66,22 +66,8 @@ A path tells your computer where to find files/folders.
 - **Absolute path**, starts from the very top of your computer’s folder.
 - **Relative path**, starts from your working directory (folder).
 
-::: {.callout-tip appearance="simple" .fragment}
-Your working directory is `/Users/lijiao/my_project/`,
-you want to import a file loacated at `/Users/lijiao/Download/data.csv` using the `read_csv()` function.
-
-Which of the following is the correct way to read the file?
-
-```r
-# option A
-read_csv(file = "data.csv")
-
-# option B
-read_csv(file = "Download/data.csv")
-
-# option C
-read_csv(file = "/Users/lijiao/Download/data.csv")
-```
+:::{.callout-tip .narrow-callout .fragment appearance="simple" title="Quiz Time!"}
+Click [here](https://app.wooclap.com/IXBNKE?from=instruction-slide){target="_blank"} to start the quiz.
 :::
 
 

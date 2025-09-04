@@ -24,13 +24,17 @@ image: images/preview_w2.png
 
 # Last Week Review
 
-## Brief Recap Week 1
+## Brief Recap Week 1 {.smaller}
 
 - With RStudio:
   - Creating an R project
   - Managing files (create, move, *etc.*)
   - Importing and exporting data with RStudio
 - Understanding absolute and relative paths
+
+:::{.callout-tip .narrow-callout .fragment appearance="simple" title="Quiz Time!"}
+Click [here](https://app.wooclap.com/ZCRSNB?from=instruction-slide){target="_blank"} to start the quiz.
+:::
 
 
 # Variables and Data Types in R
@@ -77,22 +81,9 @@ A box labeled "char_name" containing the platform name "InforBio".
 
 ::: {.column .fragment}
 
-::: {.callout-tip appearance="simple"}
-Which are valid names for variables?
+:::{.callout-tip .narrow-callout appearance="simple" title="Quiz Time!"}
+Click [here](https://app.wooclap.com/ZCRSNB?from=instruction-slide){target="_blank"} to start the quiz.
 :::
-
-``` {.r code-line-numbers="1-15|3,5-7"}
-foo
-var
-exam_results
-a_variable_with_a_super_long_name
-day_1
-day_one
-day1
-day-1
-1day
-day.1
-```
 
 :::
 :::
@@ -120,6 +111,8 @@ How R understands and stores information?
 
 . . .
 
+::: {.columns}
+::: {.column}
 Main data types:
 
 - Numeric
@@ -128,9 +121,15 @@ Main data types:
 - Character: `"A"`, `"InforBio"`, `"I love R"`
 - Logical (boolean): `TRUE`, `FALSE`
 - Factor: for categorical data
+:::
+::: {.column}
 
-::: {.callout-note appearance="simple"}
-We'll see factor next week.
+::: {.callout-note .fragment appearance="simple"}
+- We'll see factor next week.
+- In R, missing values are represented by `NA` (Not Available).  
+:::
+
+:::
 :::
 
 ## Numeric {.smaller}
