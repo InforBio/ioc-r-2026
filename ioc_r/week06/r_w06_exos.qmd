@@ -15,7 +15,7 @@ execute:
 ---
 
 The R script is available here:
-[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week06/r_w06_exos.R)
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week06/r_w06_exos.R){target='_blank'}
 
 ## Goals
 
@@ -31,7 +31,7 @@ The R script is available here:
 
 ```{r}
 data <- data.frame(
-  gene = c("BRCA1", "TP53", "MYC"),
+  gene = c("BRCA1", "TP53", "MYC")
   expression = c(10.5, 8.2, 12.7)
   condition = c("Tumor", "Normal", "Tumor")
 )
@@ -71,23 +71,18 @@ mean(unlist(counts["gene3", ]))
 mean(as.matrix(counts)["gene3", ])
 ```
 
-3. Fix error in condition.
+3. Fix error in condition. The goal is to find which value is 3 from the vector.
 
 ```{r}
-x <- 10
-if (x = 5) {
-  print("x is 5")
-}
+vec_num <- c(4, 6, 8, 3, 2, 4, 7, 3, 9, 3)
+which(vec_num = 3)
 ```
 
 ```{r}
 #| code-fold: true
 #| code-summary: "Correction"
 
-x <- 10
-if (x == 5) {
-  print("x is 5")
-}
+which(vec_num == 3)
 ```
 
 
@@ -98,6 +93,7 @@ The goal is to show petal length with a boxplot for each species.
 ggplot(iris, aes(x = Sepal.Length, y = Species))
 geom_boxplot()
 ```
+
 ```{r}
 #| echo: false
 ggplot(iris, aes(x = Sepal.Length, y = Species))
@@ -159,49 +155,65 @@ data <- data.frame(
 data[data$value < -0.5, ]
 ```
 
+## Basic Analysis Workflow
+
+- Data collection
+- Quality control & Data preparation
+  - Check missing values, outliers, input error, *etc.*
+  - Clean the dataset, reshape the data, recode variables, transform data if needed.
+- Exploratory analysis
+  - Use summary statistics (means, medians, counts, *etc.*)
+  - Visualize with tables and plots to understand distributions and trends.
+- Inferential statistics & modeling
+  - Apply statistical tests or fit models to answer the biological question.
+  - Example: t-test, ANOVA, linear regression, *etc.*
+- Results interpretation
+
 ## Mini Data Project
 
-A researcher has collected some gene expression data from 12 samples.
-However, some expression values are missing.
-Please help the researcher to clean the data and to performs some basic analyses.
-
-```{r}
-# Simulated dataset with missing values
-data <- data.frame(
-  sample_id = paste0("sample", 1:12),
-  expression = c(
-    10.2, 15.2, NA, NA, 9.4, 18.1,
-    8.9, 16.0, 10.5, 15.5, 11.5, 13.4
-  ),
-  sample_group = rep(c("Control", "Case"), times = 6)
-)
-
-# Show the dataset
-data
-```
+Gene expression data were collected from samples of two groups.
+Help the researcher to perform data quality control and
+check if the expression is different between groups.
 
 Tasks:
 
-1. Find missing values.
-Which rows contain missing values?
-→ Hint: Use `is.na()`
+1. Download the data ([link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/rna_seq_simulated_data.csv){target='_blank'}) and import it into Rstudio, name it `rnaseq_data`.
 
 ```{r}
 #| code-fold: true
 #| code-summary: "Correction"
 
-# Check which values are missing
-is.na(data$expression)
-
-# Show only rows with missing values
-data[is.na(data$expression), ]
-
-## or find the index of NAs
-which(is.na(data$expression))
-data[which(is.na(data$expression)), ]
+rnaseq_data <- readr::read_csv("../exos_data/rna_seq_simulated_data.csv")
+rnaseq_data
 ```
 
-2. Remove rows with missing values.
+
+2. Perform data quality control and describe the data.
+
+::: {.callout-tip collapse="true" title="Hints"}
+- If missing value exists, which variable(s) and sample(s) are concerned?
+- Do we need to recode variable?
+:::
+
+```{r}
+#| code-fold: true
+#| code-summary: "Correction"
+
+# Summarise data
+summary(rnaseq_data)
+
+# Show only rows with missing values
+rnaseq_data[is.na(rnaseq_data$expression), ]
+
+## or find the index of NAs
+which(is.na(rnaseq_data$expression))
+rnaseq_data[which(is.na(rnaseq_data$expression)), ]
+
+## recode the sample_group as factor
+rnaseq_data$sample_group <- factor(rnaseq_data$sample_group, levels = c("Control", "Case"))
+```
+
+3. Remove rows with missing values.
 Create a new dataset without missing values.
 
 ```{r}
@@ -209,33 +221,10 @@ Create a new dataset without missing values.
 #| code-summary: "Correction"
 
 # Remove rows where expression is NA
-data_clean <- data[!is.na(data$expression), ]
+data_clean <- rnaseq_data[!is.na(rnaseq_data$expression), ]
 
 # Show the cleaned dataset
 data_clean
-```
-
-3. Basic summary statistics
-
-- What is the mean expression level (after removing missing values)?
-- What is the max and min expression?
-
-```{r}
-#| code-fold: true
-#| code-summary: "Correction"
-
-# Compute summary statistics
-mean_expression <- mean(data_clean$expression)
-mean_expression
-
-max_expression <- max(data_clean$expression)
-max_expression
-
-min_expression <- min(data_clean$expression)
-min_expression
-
-## or use the range() function for the min and max
-range(data_clean$expression)
 ```
 
 4. Find the average expression (`mean()`) and the standard deviation (`sd()`) 
@@ -255,18 +244,22 @@ mean(expr_case)
 sd(expr_case)
 ```
 
-5. Use `data_clean` to draw a graph you have already seen, *e.g.*: box plots, scatter plots, *etc.*
+5. Use `data_clean` to visualize expression between two groups.
 
 ```{r}
 #| code-fold: true
 #| code-summary: "Correction"
 
-## a boxplot to show if "Case" has higher/lower expression than "Control."
+## Boxplot
 ggplot(
   data_clean,
   aes(x = sample_group, y = expression, fill = sample_group)
 ) +
   geom_boxplot() +
+  geom_point(
+    position = position_jitter(height = 0, width = 0.2, seed = 1),
+    alpha = 0.5
+  ) +
   labs(
     title = "Expression Levels by Group",
     x = NULL,
@@ -280,6 +273,10 @@ ggplot(
   aes(x = sample_group, y = expression, fill = sample_group)
 ) +
   geom_violin() +
+  geom_point(
+    position = position_jitter(height = 0, width = 0.2, seed = 1),
+    alpha = 0.5
+  ) +
   labs(
     title = "Violin Plot - Expression Distribution per Group",
     x = NULL,
@@ -287,63 +284,65 @@ ggplot(
   ) +
   theme(legend.position = "none")
 
-## Spotting individual variations
-ggplot(
-  data_clean,
-  aes(x = sample_id, y = expression, color = sample_group)
-) +
-  geom_point(size = 3) +
-  labs(
-    title = "Scatter Plot - Expression per Sample",
-    x = NULL,
-    y = "Expression",
-    color = NULL
-  )
-
-## better solution
-ggplot(
-  data_clean,
-  aes(
-    # recode variable as factor with the wanted order
-    x = factor(sample_id, levels = sample_id),
-    y = expression,
-    color = sample_group
-  )
-) +
-  geom_point(size = 3) +
-  labs(
-    title = "Scatter Plot - Expression per Sample",
-    subtitle = "Improved Version :)",
-    x = NULL,
-    y = "Expression",
-    color = NULL
-  ) +
-  theme(
-    # rotate x-axis' text to avoid overlap
-    axis.text.x = element_text(angle = 30, hjust = 1)
-  )
 ```
 
 
-6. **To go futhur**: Let's visualise the average expression of each group using barplot,
+6. **To go futher**: Let's visualise the average expression of each group using a barplot as shown below,
 with the help of ChatGPT (or any other AI tool).
 
+```{r}
+#| echo: false
+
+ggplot(data_clean, aes(x = sample_group, y = expression)) +
+  stat_summary(fun = mean, geom = "bar", fill = "orange", width = 0.5) +
+  stat_summary(fun.data = mean_se, geom = "errorbar", width = 0.2) +
+  geom_point(
+    position = position_jitter(width = 0.1, height = 0, seed = 1),
+    alpha = 0.5
+  ) +
+  labs(
+    title = "Average Gene Expression by Sample Group",
+    subtitle = "The error bars represent the standard errors.",
+    x = NULL, y = "Average Expression Level"
+  ) +
+  theme_minimal()
+```
+
+::: {.callout-note title="Stats Time!"}
+- **Standard Deviation** (SD) measures the variability of values in a sample (dataset).
+$$
+SD = \sqrt{\frac{\sum(x_i - \bar{x})^2}{n-1}} = \sqrt{\text{variance}}
+$$
+
+- **Standard Error** (SE), usually we talk about the SE of the mean (SEM), it measures the variability of the mean of a sample compared to the mean of the population.
+
+$$
+SE = \frac{SD}{\sqrt{n}}
+$$
+
+:::
+
 6a. Prepare data for barplot with error bars.
+
+::: {.callout-tip collapse="true" title="Hints"}
 We need to reorganize the data in a dataframe with 2 rows and 3 columns:
 
 - the column `group` contain the name of each group 
-- the column `mean` contain the mean expression in  of each group 
-- the column `mean` contain the standard deviations
-
+- the column `mean_val` contain the average expression of each group 
+- the column `se_val` contain the standard error of each group
+:::
 
 ```{r}
 #| code-fold: true
 #| code-summary: "Correction"
 
 gg_data <- data.frame(
-  group = c("Control", "Case"),
+  group = factor(c("Control", "Case"), levels = c("Control", "Case")),
   mean_val = c(mean(expr_ctrl), mean(expr_case)),
-  sd_val = c(sd(expr_ctrl), sd(expr_case))
+  se_val = c(
+    sd(expr_ctrl) / sqrt(length(expr_ctrl)),
+    sd(expr_case) / sqrt(length(expr_case))
+  )
 )
 
 gg_data
@@ -352,7 +351,7 @@ gg_data
 6b. Draw the bar plot:
 
 - Plot bars for mean expression (`geom_bar(stat = "identity")`)
-- Add error bars for standard deviation (`geom_errorbar()`)
+- Add error bars for standard errors (`geom_errorbar()`)
 - Change the aesthetic apsects as you want, *e.g.*: color, title, legend, *etc.*
 
 ```{r}
@@ -366,8 +365,8 @@ p_bar
 p_bar_error <- p_bar +
   geom_errorbar( # add errorbar
     aes(
-      ymin = mean_val - sd_val, 
-      ymax = mean_val + sd_val
+      ymin = mean_val - se_val, 
+      ymax = mean_val + se_val
     ), 
     width = 0.2 # smaller width of error bar
   )
@@ -375,9 +374,9 @@ p_bar_error <- p_bar +
 # change labels and theme
 p_bar_error +
   labs(
-    title = "Mean Gene Expression by Sample Group",
-    subtitle = "The error bars represent the standard deviation.",
-    x = NULL, y = "Mean Expression Level"
+    title = "Average Gene Expression by Sample Group",
+    subtitle = "The error bars represent the standard errors.",
+    x = NULL, y = "Average Expression Level"
   ) +
   theme_minimal()
 ```
@@ -385,7 +384,9 @@ p_bar_error +
 
 6c: What if we want to add the expression level of each sample to the bar plot?
 
-Hint: Add another layer for drawing points (`geom_point`), using the data frame that contains the individual data (`data_clean`).
+::: {.callout-tip collapse="true" title="Hints"}
+Add another layer for drawing points (`geom_point`), using the data frame that contains the individual data (`data_clean`).
+:::
 
 ```{r}
 #| code-fold: true
@@ -394,9 +395,9 @@ Hint: Add another layer for drawing points (`geom_point`), using the data frame 
 # change labels and theme
 p_bar_error +
   labs(
-    title = "Mean Gene Expression by Sample Group",
-    subtitle = "The error bars represent the standard deviation.",
-    x = NULL, y = "Mean Expression Level"
+    title = "Average Gene Expression by Sample Group",
+    subtitle = "The error bars represent the standard errors.",
+    x = NULL, y = "Average Expression Level"
   ) +
   theme_minimal() +
   geom_point( # add the layer of points
@@ -406,11 +407,44 @@ p_bar_error +
       width = 0.1, height = 0, # allow the points to be spread across a small horizontal range (width = 0.1),
       # while keeping the value on y-axis fixed (height = 0)
       seed = 1
-    ) 
+    ),
+    alpha = 0.5 # transparency
   )
 ```
 
+```{r}
+#| eval: false
+#| code-fold: true
+#| code-summary: "Alternative"
 
+# alternative use stat_summary
+ggplot(data_clean, aes(x = sample_group, y = expression)) +
+  stat_summary(fun = mean, geom = "bar", fill = "orange", width = 0.5) +
+  stat_summary(fun.data = mean_se, geom = "errorbar", width = 0.2) +
+  geom_point(
+    position = position_jitter(width = 0.1, height = 0, seed = 1),
+    alpha = 0.5
+  ) +
+  labs(
+    title = "Average Gene Expression by Sample Group",
+    subtitle = "The error bars represent the standard errors.",
+    x = NULL, y = "Mean Expression Level"
+  ) +
+  theme_minimal()
+```
+
+7. Is the expression different between groups?
+Select a test to compare the expression between groups.
+What is your conclusion?
+
+```{r}
+wilcox.test(expr_ctrl, expr_case)
+
+# or check the normality and perform a t-test
+shapiro.test(expr_ctrl)
+shapiro.test(expr_case)
+t.test(expr_ctrl, expr_case)
+```
 
 ---
 

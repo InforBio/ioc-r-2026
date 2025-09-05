@@ -14,6 +14,8 @@
 # According to the researcher, the data was stored in two files, one for each brain structure.
 # Within each file, rows represent the different ages,
 # and columns represent the gene, sex, and animal.
+# For example, column `1MA` represents the expression level of gene 1 from the male mouse A,
+# column `15FD` represents the expression level of gene 15 from the female mouse D.
 
 # A small Gaussian noise has been added to the original data, preserving the overall structure.
 
@@ -49,7 +51,10 @@
 
 ### Reshape the Data --------------------------------------------------------------
 
-# How should the data be organized?
+# What can we do with the current data format?
+# If we want to calculate the average expression value of a given gene by sex or by age,
+# how should the data be organized?
+
 # 5. Reshape the dataset to a longer format using `pivot_longer()`, so that for each mouse:
 # - The first column shows the age
 # - The second column shows the sample ID (*e.g.*, 1MA, 1MB, ...)
@@ -95,7 +100,6 @@
 
 # 14. Calculate the correlation between gene 1 and 2. (`?cor`)
 
-# It seems that there are two groups of mice that express genes 4 and 5 in a similar way.
-# 15. Draw a scatter plot using {`ggplot2`} to show the expression levels of genes 4 and 5.
+# 15. Draw a scatter plot using {`ggplot2`} to show the expression levels of genes 3 and 5.
 #     Color the points by different categorical variables that we have, *i.e.*, age, sex, and animal.
 #     Is there any categorical variable that can explain the groups we observed in the figure?

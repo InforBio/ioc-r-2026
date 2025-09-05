@@ -12,6 +12,9 @@ format:
     preview-links: auto
     logo: ../../images/logoInforBio_fond_blanc_small.png
     css: ../custom.css
+    footer: '<div style="position: absolute; bottom: 0px; left: 70px; font-size:18px">
+               <a href="https://inforbio.github.io/ioc-r-2026/ioc_r_toc.html">Back to ToC</a>
+             </div>'
   # pdf:
   #   toc: true
 echo: true
@@ -58,12 +61,28 @@ What does the following code do?
 :::
 
 ```r
-if (lfc > 2 & pvalue < 0.05 ) {
+if (pvalue < 0.05 ) {
   print("gene of interest")
 } else {
   print("gene to remove")
 }
 ```
+
+::::{.fragment}
+- Functions: `fct_name(arg = value)`
+
+::: {.callout-tip appearance="simple"}
+What is the nature of `x` and `y` in following codes?
+:::
+
+```r
+x[1]
+x(1)
+y(x = 2)
+```
+
+::::
+
 :::
 :::
 
@@ -103,8 +122,8 @@ By default, R will install the lastest version of a package.
 - Via command, *i.e.*, `install.packages("ggplot2")`
 
 ::: {.callout-note appearance="simple"}
-- **[CRAN](https://cran.r-project.org)** (Comprehensive R Archive Network) is a network of servers around the world that store identical, up-to-date, versions of code and documentation for R.
-- **[Bioconductor](https://bioconductor.org)** is a specialized repository like CRAN, but focused on bioinformatics. It provides R packages for analyzing genomic and biological data.
+- **[CRAN](https://cran.r-project.org){target="_blank"}** (Comprehensive R Archive Network) is a network of servers around the world that store identical, up-to-date, versions of code and documentation for R.
+- **[Bioconductor](https://bioconductor.org){target="_blank"}** is a specialized repository like CRAN, but focused on bioinformatics. It provides R packages for analyzing genomic and biological data.
 :::
 
 ::: {.notes}
@@ -178,7 +197,9 @@ flowchart LR
 <br>
 
 ::: {.callout-note appearance="simple"}
-Check out these websites: [from Data to Viz](https://www.data-to-viz.com) and [The R Graph Gallery](https://r-graph-gallery.com) (by Yan Holtz)
+Check out these websites:
+[from Data to Viz](https://www.data-to-viz.com){target="_blank"} and
+[The R Graph Gallery](https://r-graph-gallery.com){target="_blank"} (by Yan Holtz)
 :::
 
 ::: {.notes}
@@ -189,7 +210,7 @@ Check out these websites: [from Data to Viz](https://www.data-to-viz.com) and [T
 
 ## Compositions of a ggplot {.smaller}
 
-![(Figure adpated from [QCBS R Workshop Series](https://r.qcbs.ca/workshop03/book-en/grammar-of-graphics-gg-basics.html).)](images/ggplot_comp.png)
+![(Figure adpated from [QCBS R Workshop Series](https://r.qcbs.ca/workshop03/book-en/grammar-of-graphics-gg-basics.html){target="_blank"}.)](images/ggplot_comp.png)
 
 
 ## How to Build a ggplot {.smaller}
@@ -448,11 +469,6 @@ ggplot(
 ```
 :::
 ::: {.column .fragment}
-::: {.callout-tip appearance="simple"}
-Compare the following code with the code on the left.
-What is different between the codes?
-What is different about the resulting graphs?
-:::
 
 ```{r}
 ggplot(
@@ -468,6 +484,12 @@ ggplot(
 ```
 
 :::
+:::
+
+::: {.callout-tip appearance="simple" .fragment}
+Compare the following code with the code on the left.
+What is different between the codes?
+What is different about the resulting graphs?
 :::
 
 ::: {.notes}
@@ -550,7 +572,7 @@ p_labs + theme(
   legend.position = "none", # hide legend
   plot.title = element_text(
     hjust = 0.5, # center plot title
-    size = 5, # plot title size
+    size = 40, # plot title size
   ), 
   axis.text.x = element_text(angle = 90) # rotate axis' text
 )
@@ -564,6 +586,21 @@ p_labs + theme(
 Use `ggsave()` to save plots in high resolution for publications.
 
 ```r
+ggsave(
+  filename = "outputs/basic_scatter_plot.png",
+  plot = base_plot
+)
+```
+
+:::{.callout-tip appearance="simple" .fragment}
+Save the basic plot to the `outputs` folder in your project.
+Check the saved figure via the *Files* panel in RStudio.
+:::
+
+. . .
+
+```r
+?ggsave
 ggsave(
   filename = "path/to/figure.png", # figure file name
   plot = last_plot(), 
@@ -579,22 +616,6 @@ ggsave(
 )
 ```
 
-:::{.callout-tip appearance="simple" .fragment}
-Save the basic plot to the `outputs` folder in your project.
-Check the saved figure via the *Files* panel in RStudio.
-:::
-
-. . .
-
-```{r}
-#| eval: false
-
-ggsave(
-  filename = "../outputs/basic_scatter_plot.png",
-  plot = base_plot,
-  width = 5, height = 5, units = "cm", dpi = 150
-)
-```
 
 # Let's Practice !
 

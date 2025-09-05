@@ -20,4 +20,4 @@ To create a Quarto document: go to **File** -> **New File** -> **Quarto Document
 Click "Render" to generate your Quarto report.
 
 The homework correction is available here:
-[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/weekXX/.r_wXX_work_corr.qmd)
+[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/weekXX/.r_wXX_work_corr.qmd){target='_blank'}

@@ -53,9 +53,13 @@ Please follow the rules for usage:
 
 Slack is a dedicated workspace for communication and staying connected between sessions.
 
-If you haven't already use it, you need to create a [Slack account](https://slack.com/get-started#/createnew).
+If you haven't already use it, you need to create a [Slack account](https://slack.com/get-started#/createnew){target='_blank'}.
 
-If you have a Slack account, you can either connect to the account using this [webpage](https://slack.com/signin#/signin), or use a desktop version on your computer. ([Slack Windows desktop](https://slack.com/intl/fr-fr/downloads/windows), [Slack Mac desktop](https://apps.apple.com/us/app/slack-for-desktop/id803453959?mt=12))
+If you have a Slack account, you can either connect to the account using this
+[webpage](https://slack.com/signin#/signin){target='_blank'},
+or use a desktop version on your computer.
+([Slack Windows desktop](https://slack.com/intl/fr-fr/downloads/windows){target='_blank'},
+[Slack Mac desktop](https://apps.apple.com/us/app/slack-for-desktop/id803453959?mt=12){target='_blank'})
 
 And you will receive an invitation link to join the IOC Slack of your group.
 

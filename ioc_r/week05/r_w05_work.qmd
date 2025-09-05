@@ -15,8 +15,8 @@ editor_options:
 
 We need to use two data for this exercise:
 
-- the bulk RNAseq gene expression data from the [`read-counts.csv`](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv) file.
-- the diffenrential expression (DE) analysis results [`toy_DEanalysis`](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv).
+- the bulk RNAseq gene expression data from the [`read-counts.csv`](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv){target='_blank'} file.
+- the diffenrential expression (DE) analysis results [`toy_DEanalysis`](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv){target='_blank'}.
 
 Reminder: the DE results were obtained by comparing SET1 samples to WT samples using data from `read-counts.csv`
 
@@ -45,7 +45,9 @@ Store the results in a variable `target_genes`.
 
 5. Draw a boxplot for the 1st gene of the `target_genes` to show the expression level between SET1 and WT samples.
 
-Hints: you need to extract the expression data for the gene from the `counts` and build a data frame for the boxplot.
+::: {.callout-tip collapse="true" title="Hints"}
+You need to extract the expression data for the gene from the `counts` and build a data frame for the boxplot.
+:::
 
 6. Refine the boxplot from question 5 to include the following customizations:
 
@@ -57,4 +59,4 @@ Hints: you need to extract the expression data for the gene from the `counts` an
 ---
 
 The homework correction is available here:
-[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week05/.r_w05_work_corr.R)
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week05/.r_w05_work_corr.R){target='_blank'}

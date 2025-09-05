@@ -16,8 +16,8 @@ Note: There may be other valid ways to solve this exercise — this is just one 
 
 We need to use two data for this exercise:
 
-- the bulk RNAseq gene expression data from the [`read-counts.csv`](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv) file.
-- the diffenrential expression (DE) analysis results [`toy_DEanalysis`](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv).
+- the bulk RNAseq gene expression data from the [`read-counts.csv`](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv){target='_blank'} file.
+- the diffenrential expression (DE) analysis results [`toy_DEanalysis`](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv){target='_blank'}.
 
 Reminder: the DE results were obtained by comparing SET1 samples to WT samples using data from `read-counts.csv`
 

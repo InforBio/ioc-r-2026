@@ -62,7 +62,7 @@ avg_df <- as.data.frame(avg_list)
 head(avg_df)
 ```
 
-:::{.callout-tip}
+:::{.callout-note}
 A data frame can be considered as a list of equal-length vectors.
 :::
 

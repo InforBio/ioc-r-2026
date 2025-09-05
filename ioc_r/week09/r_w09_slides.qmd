@@ -12,6 +12,9 @@ format:
     preview-links: auto
     logo: ../../images/logoInforBio_fond_blanc_small.png
     css: ../custom.css
+    footer: '<div style="position: absolute; bottom: 0px; left: 70px; font-size:18px">
+               <a href="https://inforbio.github.io/ioc-r-2026/ioc_r_toc.html">Back to ToC</a>
+             </div>'
   # pdf:
   #   toc: true
 echo: true
@@ -29,8 +32,8 @@ image: images/preview_w9.jpg
 - Combines narrative text and code (multi-language) in one script (.qmd).
 - Supports multiple output formats: .html, .docx, .pptx, .pdf, *etc.*
 
-::: {.callout-tip appearance="simple"}
-Check out the [Quarto tutorial](https://quarto.org/docs/get-started/hello/rstudio.html).
+::: {.callout-note appearance="simple"}
+Check out the [Quarto tutorial](https://quarto.org/docs/get-started/hello/rstudio.html){target="_blank"}.
 :::
 
 ## An Example {.smaller}
@@ -135,15 +138,16 @@ Global defaults for all chunks can be set under "**execute:**" inside the YAML h
 
 ## Code Chunks Options {.smaller}
 
-![](images/chunk_options.png)
-(Source: [R For Data Science](https://r4ds.hadley.nz/quarto.html#chunk-options))
+![](images/chunk_options.png){.nostretch width=80%}
+
+(Source: [R For Data Science](https://r4ds.hadley.nz/quarto.html#chunk-options){target="_blank"})
 
 
 ## Code Chunks Execution {.smaller}
 
 - To execute the whole chunk:
 
-![](images/execute_chunk.png){width=20%}
+![](images/execute_chunk.png){.nostretch width=50%}
 
 - To execute only some code lines: the same as in an R script (Ctrl/Cmd + Enter)
 
@@ -174,7 +178,7 @@ Subscript~2~
 ````
 
 :::{.callout-note appearance="simple"}
-Markdown syntax [cheat sheet](https://www.markdownguide.org/cheat-sheet/)
+Markdown syntax [cheat sheet](https://www.markdownguide.org/cheat-sheet/){target="_blank"}
 :::
 
 :::{.notes}
@@ -230,15 +234,21 @@ More themes available here:
 
 # Final Project
 
-## Reproducing a Scientific Figure with {`ggplot2`} {.smaller}
+## Recreate a Figure with {`ggplot2`} {.smaller}
 
-**Task:** Select a figure from a scientific paper and recreate it using {*ggplot2*}. Document your workflow in a **Quarto document** to generate a report, and present your work (15 min per person).
+**Task**: Select a figure from a scientific paper and recreate it using {*ggplot2*}. You can either use the publicly available data or your own dataset.
 
-Your report should include:
+:::{.callout-important appearance="simple"}
+Document your workflow in a **Quarto document** to generate a report, and present your work (15 min per person).
+:::
 
-- **Figure Selection:** Why did you choose this figure?  
-- **Data & Preprocessing:** Source of data, cleaning, transformations.  
-- **Packages Used:** List and explain key packages.  
-- **Challenges & Solutions:** Issues faced and how you resolved them.  
-- **Plot Construction:** Steps taken to build the visualization.  
-- **Final Comparison & Insights:** How close is your result? What did you learn? 
+:::{.callout-tip appearance="simple" title="What to include in your report:"}
+
+- **Why this figure?** Explain your choice or inspiration.
+- **Data & Preprocessing:** Source, cleaning, transformations, *etc.*  
+- **Exploration & Statistics:** Summary stats, comparisons, or any tests that help to understand the data.
+- **Plot Construction:** Steps taken to build the visualization.
+- **Challenges & Solutions:** Issues faced and how you resolved them.   
+- **Comparison & Insights:** How close is it to the original? What did you learn?
+
+:::

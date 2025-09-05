@@ -5,6 +5,7 @@ date: "2025-11-03"
 date-format: " "
 format:
   revealjs: 
+    history: false
     toc: true
     toc-title: "Plan"
     toc-depth: 1
@@ -12,6 +13,9 @@ format:
     preview-links: auto
     logo: ../../images/logoInforBio_fond_blanc_small.png
     css: ../custom.css
+    footer: '<div style="position: absolute; bottom: 0px; left: 70px; font-size:18px">
+            <a href="https://inforbio.github.io/ioc-r-2026/ioc_r_toc.html">Back to ToC</a>
+          </div>'
   # pdf:
   #   toc: true
 categories: 
@@ -100,8 +104,8 @@ Integrated Development Environment (IDE)
 3. Files/Plots/Packages: managing your files, viewing graphs, or installing tools.
 
 ::: {.callout-note appearance="simple"}
-Rstudio [cheat sheet](https://rstudio.github.io/cheatsheets/rstudio-ide.pdf)
-([and French version](https://rstudio.github.io/cheatsheets/translations/french/rstudio-ide_fr.pdf))
+Rstudio [cheat sheet](https://rstudio.github.io/cheatsheets/rstudio-ide.pdf){target="_blank"}
+([and French version](https://rstudio.github.io/cheatsheets/translations/french/rstudio-ide_fr.pdf){target="_blank"})
 :::
 :::
 :::
@@ -387,7 +391,7 @@ relative path: `data`
 
 ## Import Data {.smaller}
 
-Importing your first file: [shiny_sample_data.csv](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/dev-r/ioc_r/exos_data/shiny_sample_data.csv)
+Importing your first file: [shiny_sample_data.csv](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/dev-r/ioc_r/exos_data/shiny_sample_data.csv){target="_blank"}
 
 1. Right click the link and select "Download Linked File As..." (or the equivalent on your system).
 2. Save the file into the `data` folder of the R project `r_week1`
@@ -398,7 +402,7 @@ When you select the file, a preview window will pop up.
 RStudio tries to guess the data's properties, but you should always confirm them.
 :::
 
-::: {.callout-tip appearance="simple"}
+::: {.callout-note appearance="simple"}
 # Think before you import the data
 
 - How do you want to name the imported data?
@@ -456,7 +460,7 @@ Once you've cleaned, analyzed, or modified a dataset in R, you'll want to save i
 ## Different Solutions {.smaller}
 
 - Google it!
-- Forums: Stack Overflow, [Cirad](https://forums.cirad.fr/logiciel-R/)(francophone), *etc.*
+- Forums: Stack Overflow, [Cirad](https://forums.cirad.fr/logiciel-R/){target="_blank"}(francophone), *etc.*
 - Ask/discuss your question via Slack.
 - AI tools (like ChatGPT or Gemini) can be very helpful resources😉, but be careful of false answers! (More details in session 6)
 

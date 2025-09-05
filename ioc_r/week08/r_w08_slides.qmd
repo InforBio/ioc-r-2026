@@ -12,6 +12,9 @@ format:
     preview-links: auto
     logo: ../../images/logoInforBio_fond_blanc_small.png
     css: ../custom.css
+    footer: '<div style="position: absolute; bottom: 0px; left: 70px; font-size:18px">
+               <a href="https://inforbio.github.io/ioc-r-2026/ioc_r_toc.html">Back to ToC</a>
+             </div>'
   # pdf:
   #   toc: true
 echo: true
@@ -70,7 +73,7 @@ iris_tbl |> filter(sepal_ratio > 2.8) |> nrow()
 
 ## Basic ggplot2
 
-![(Figure adpated from [QCBS R Workshop Series](https://r.qcbs.ca/workshop03/book-en/grammar-of-graphics-gg-basics.html).)](../week05/images/ggplot_comp.png)
+![(Figure adpated from [QCBS R Workshop Series](https://r.qcbs.ca/workshop03/book-en/grammar-of-graphics-gg-basics.html){target="_blank"}.)](../week05/images/ggplot_comp.png)
 
 # ggplot2 - Part 2
 
@@ -136,7 +139,8 @@ p0 + scale_color_manual( # Manually set colors
 ```
 
 ::: {.callout-note appearance="simple"}
-See [colors in R](https://r-charts.com/colors/) and [Color Palette Finder](https://r-graph-gallery.com/color-palette-finder).
+See [colors in R](https://r-charts.com/colors/){target="_blank"} and
+[Color Palette Finder](https://r-graph-gallery.com/color-palette-finder){target="_blank"}.
 :::
 
 :::
@@ -162,7 +166,7 @@ p1
 ```
 
 ::: {.callout-note appearance="simple"}
-See [possible shapes](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html#sec:shape-spec).
+See [possible shapes](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html#sec:shape-spec){target="_blank"}.
 :::
 
 :::
@@ -185,7 +189,7 @@ p1 + scale_fill_manual( # Manually set fill
 
 ## Customizing Scales {.smaller}
 
-- `scale_x|y_continuous(limits)` or `xlim()` or`ylim()`: Change axis limits or continuous scales.
+- `scale_*_continuous(limits = ...)` or `xlim()` or`ylim()`: Change axis limits or continuous scales.
 
 :::: {.columns}
 ::: {.column}
@@ -198,12 +202,15 @@ p0 + scale_x_continuous(limits = c(0, 8))
 ::: {.column}
 
 ```{r}
-p0 + xlim(c(1, 8))
+p0 + xlim(c(1, 5))
 ```
 
 :::
 ::::
 
+:::{.callout-note appearance="simple"}
+use `scale_*_discrete()` if the axis mapped to a discrete variable.
+:::
 
 ## Add Lines to Figures {.smaller}
 
@@ -226,7 +233,7 @@ p0 +
 ```
 
 ::: {.callout-note appearance="simple"}
-See [possible line types](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html#sec:line-type-spec).
+See [possible line types](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html#sec:line-type-spec){target="_blank"}.
 :::
 
 :::
@@ -249,13 +256,19 @@ p0 +
 :::
 
 
-## Faceting {.smaller}
+## Faceting (Subplots) {.smaller}
 
-![](images/position-facets.png){width=70%}
+![](images/position-facets.png){.nostretch width=70%}
 
-(Source: [ggplot2 book](https://ggplot2-book.org/facet.html))
+(Source: [ggplot2 book](https://ggplot2-book.org/facet.html){target="_blank"})
 
-## Faceting {.smaller}
+:::{.notes}
+Faceting (or splitting into panels) allows us to compare patterns across groups,
+like plotting gene expression separately for each tissue.
+:::
+
+
+## Faceting (Subplots) {.smaller}
 
 ::: {.columns}
 ::: {.column}
@@ -310,7 +323,7 @@ Check out the extension gallery: <https://exts.ggplot2.tidyverse.org/gallery/>
 
 ## Labelling with {`ggrepel`} {.smaller}
 
-- {[`ggrepel`](https://ggrepel.slowkow.com)}: prevent labels from overlapping
+- {[`ggrepel`](https://ggrepel.slowkow.com){target="_blank"}}: prevent labels from overlapping
 
 ```{r}
 # E.g.: label penguins with bill depth 17.5
@@ -330,7 +343,7 @@ filter(penguins, !is.na(name)) |> nrow()
 
 ## Labelling with {`ggrepel`} {.smaller}
 
-- {[`ggrepel`](https://ggrepel.slowkow.com)}: prevent labels from overlapping
+- {[`ggrepel`](https://ggrepel.slowkow.com){target="_blank"}}: prevent labels from overlapping
 
 :::::: {.columns}
 ::: {.column}
@@ -423,7 +436,7 @@ Check out more details: <https://rpkgs.datanovia.com/ggpubr/index.html>
 
 ## Creating {`patchwork`} {.smaller}
 
-{[`patchwork`](https://patchwork.data-imaginist.com)}: create multi-panel figures
+{[`patchwork`](https://patchwork.data-imaginist.com){target="_blank"}}: create multi-panel figures
 
 ```{r}
 # prepare figures
@@ -471,7 +484,7 @@ p1 | p2 / p3
 :::
 
 :::{.callout-note appearance="simple"}
-For more complex and precise design, use the [`wrap_plots()`](https://patchwork.data-imaginist.com/reference/wrap_plots.html) function. 
+For more complex and precise design, use the [`wrap_plots()`](https://patchwork.data-imaginist.com/reference/wrap_plots.html){target="_blank"} function. 
 :::
 
 ## Interactive Plots with {`plotly`} {.smaller}
@@ -499,29 +512,21 @@ Check more details here: <https://plotly.com/ggplot2/>
 
 Functions = Reusable blocks of code.
 
-```{mermaid}
-%%| echo: false
-%%| fig-width: 10
-flowchart LR
-  A[Inputs] --> B(Code block for specific task)
-  B --> C[Output]
-```
-
 ::: {.columns}
 ::: {.column}
 ```{r}
-adding <- function(arg1, arg2) {
-  # function body: do something with inputs
-  result <- arg1 + arg2
-  return(result)
+#| echo: false
+add_one <- function(argument) {
+  output <- argument + 1
+  return(output)
 }
-
-adding(3, 5)
 ```
+
+![](images/fct_anatomy.png)
 
 :::
 ::: {.column}
-- Inputs (arguments/parameters): what you change each time
+- Arguments/Parameters: what you change each time
 - Body: code you want to repeat
 - Return: final output
 :::
@@ -532,9 +537,9 @@ All arguments and variables created inside a function live only inside that func
 
 ```{r}
 #| error: true
-
-arg1
-result
+add_one(argument = 3)
+argument
+output
 ```
 
 :::
@@ -542,72 +547,99 @@ result
 
 ## First Custom Function {.smaller}
 
-To standardise figure style and avoid mistakes...
+Create a scatter plot for bill length and depth of penguins,
+color those will bill length greater than a specified cutoff, *e.g.*: 40 mm.
 
-::: {.columns}
-::: {.column width="40%"}
-```r
-# create a scatter plot for two continuous variables
-ggplot(penguins, aes(bill_len, bill_dep)) +
-  geom_point() +
-  theme_minimal() +
-  labs(x = "bill length", y = "bill depth")
-```
-:::
-
-::: {.column width="60%" .fragment}
 ```{r}
-plot_scatter <- function(df, var1, var2) {
-  # use the ".data" pronoun to explicitly refer to the variables in the layer data
-  ggplot(df, aes(x = .data[[var1]], y = .data[[var2]])) +
-    geom_point() +
-    theme_minimal() +
-    labs(x = var1, y = var2)
-}
+#| echo: false 
+theme_set(theme_light())
 ```
-:::
-:::
-
-::: {.columns}
-::: {.column .fragment}
-```{r}
-plot_scatter(df = penguins, var1 = "bill_len", var2 = "bill_dep")
-```
-
-:::
-::: {.column .fragment}
-```{r}
-plot_scatter(penguins, "bill_len", "body_mass")
-```
-
-:::
-:::
-
-## First Custom Function {.smaller}
-
-:::{.callout-tip appearance="simple"}
-Use `plot_scatter()` to visualise "Sepal.Length" and "Petal.Length" of `iris` data. 
-:::
-
-. . .
 
 ::: {.columns}
 ::: {.column}
+
 ```{r}
-plot_scatter(iris, "Sepal.Length", "Petal.Length")
+penguins |>
+  mutate(colored = ifelse(bill_len > 40, "yes", "no")) |>
+  ggplot(aes(bill_len, bill_dep)) +
+  geom_point(aes(color = colored)) +
+  scale_color_manual(values = c("yes" = "red", "no" = "grey70")) +
+  labs(title = "Penguins with bill length > 40 mm are colored")
 ```
+
+:::
+
+::: {.column}
+
+:::{.callout-tip appearance="simple" .fragment}
+- Which line(s) should we change if we want cutoff = 50 instead of 40?
+:::
+
+:::{.fragment}
+```{.r code-line-numbers="2|6"}
+penguins |>
+  mutate(colored = ifelse(bill_len > 40, "yes", "no")) |>
+  ggplot(aes(bill_len, bill_dep)) +
+  geom_point(aes(color = colored)) +
+  scale_color_manual(values = c("yes" = "red", "no" = "grey70")) +
+  labs(title = "Penguins with bill length > 40 mm are colored")
+```
+:::
+
+:::
+:::
+
+## First Custom Function {.smaller}
+
+::: {.columns}
+::: {.column}
+
+```{.r code-line-numbers="3,7"}
+# identified place to change
+penguins |>
+  mutate(colored = ifelse(bill_len > 40, "yes", "no")) |>
+  ggplot(aes(bill_len, bill_dep)) +
+  geom_point(aes(color = colored)) +
+  scale_color_manual(values = c("yes" = "red", "no" = "grey70")) +
+  labs(title = "Penguins with bill length > 40 mm are colored")
+```
+
+:::{.callout-tip appearance="simple"}
+- Write a function to automate the visualisation with different cutoff.
+:::
 
 :::
 ::: {.column .fragment}
+
 ```{r}
-plot_scatter(iris, "Petal.Length", "Sepal.Length")
+plot_scatter <- function(cutoff) {
+  penguins |>
+    mutate(colored = ifelse(bill_len > cutoff, "yes", "no")) |>
+    ggplot(aes(bill_len, bill_dep)) +
+    geom_point(aes(color = colored)) +
+    scale_color_manual(values = c("yes" = "red", "no" = "grey70")) +
+    labs(title = paste("Penguins with bill length >", cutoff, "mm are colored"))
+}
+
 ```
 
-:::{.callout-important appearance="simple" .fragment}
-When calling a function, the order of arguments matters if you don’t use their names.
+:::{.fragment}
+
+```{r}
+plot_scatter(cutoff =  50)
+```
+:::
+
 :::
 :::
-:::
+
+
+## First Custom Function {.smaller}
+
+```{r}
+plot_scatter(cutoff =  40) + plot_scatter(cutoff =  50)
+```
+
 
 # Let's Practice !
 
