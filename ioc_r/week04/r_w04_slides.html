@@ -7,8 +7,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.33">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.34">
 
   <title>IOC-2026 – Building Logic: Operators, Conditions, and Functions</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -603,7 +603,7 @@ $y
 </div>
 </div>
 </div></div>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>For more detail, check the <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Syntax.html">operator documentation</a>.</p></li></ol></aside></section>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>For more detail, check the <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Syntax.html" target="_blank">operator documentation</a>.</p></li></ol></aside></section>
 <section id="any-all-and-which" class="slide level2 smaller">
 <h2><code>any()</code>, <code>all()</code> and <code>which()</code></h2>
 <div class="columns">
@@ -678,11 +678,11 @@ $y
 <p></p><figure class=""><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart LR
-  AA[temperature] --&gt; A((&amp;gt; 37))
+  AA[Age] --&gt; A((&amp;gt; 18))
   A --&gt; B(TRUE)
   A --&gt; C(FALSE)
-  B --&gt; D[Fever]
-  C --&gt; E[Normal]
+  B --&gt; D[print &amp;quot;Adult&amp;quot;]
+  C --&gt; E[print &amp;quot;Minor&amp;quot;]
 </pre>
 </div>
 <p></p></figure><p></p>
@@ -696,11 +696,11 @@ $y
 <p></p><figure class=""><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart LR
-  AA[log2FC] --&gt; A((&amp;gt; 0))
+  AA[P-value] --&gt; A((&amp;lt; 0.05))
   A --&gt; B(TRUE)
   A --&gt; C(FALSE)
-  B --&gt; D[Up-regulated]
-  C --&gt; E[Not up-regulated]
+  B --&gt; D[print &amp;quot;Significant&amp;quot;]
+  C --&gt; E[print &amp;quot;Non significant&amp;quot;]
 </pre>
 </div>
 <p></p></figure><p></p>
@@ -747,11 +747,11 @@ $y
 <p></p><figure class=""><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart LR
-  AA[log2FC] --&gt; A((&amp;gt; 0))
+  AA[P-value] --&gt; A((&amp;lt; 0.05))
   A --&gt; B(TRUE)
   A --&gt; C(FALSE)
-  B --&gt; D[Up-regulated]
-  C --&gt; E[Not up-regulated]
+  B --&gt; D[print &amp;quot;Significant&amp;quot;]
+  C --&gt; E[print &amp;quot;Non significant&amp;quot;]
 </pre>
 </div>
 <p></p></figure><p></p>
@@ -759,16 +759,16 @@ $y
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a></a>log2FC <span class="ot">&lt;-</span> <span class="fl">2.5</span></span>
-<span id="cb80-2"><a></a><span class="cf">if</span> (log2FC <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a></a>pvalue <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
+<span id="cb80-2"><a></a><span class="cf">if</span> (pvalue <span class="sc">&lt;</span> <span class="fl">0.05</span>) {</span>
 <span id="cb80-3"><a></a>  <span class="co"># code to run if condition is TRUE</span></span>
-<span id="cb80-4"><a></a>  <span class="fu">print</span>(<span class="st">"Up-regulated"</span>)</span>
+<span id="cb80-4"><a></a>  <span class="fu">print</span>(<span class="st">"Significant"</span>)</span>
 <span id="cb80-5"><a></a>} <span class="cf">else</span> {</span>
 <span id="cb80-6"><a></a>  <span class="co"># code to run if condition is FALSE</span></span>
-<span id="cb80-7"><a></a>  <span class="fu">print</span>(<span class="st">"Not up-regulated"</span>)</span>
+<span id="cb80-7"><a></a>  <span class="fu">print</span>(<span class="st">"Non significant"</span>)</span>
 <span id="cb80-8"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Up-regulated"</code></pre>
+<pre><code>[1] "Non significant"</code></pre>
 </div>
 </div>
 <div class="fragment">
@@ -778,7 +778,7 @@ $y
 <i class="callout-icon"></i>
 </div>
 <div class="callout-content">
-<p>What will you get when <code>log2FC</code> is 0?</p>
+<p>What will you get when <code>pvalue</code> is 0.03?</p>
 </div>
 </div>
 </div>
@@ -786,7 +786,7 @@ $y
 <div class="fragment">
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Not up-regulated"</code></pre>
+<pre><code>[1] "Significant"</code></pre>
 </div>
 </div>
 </div>
@@ -800,32 +800,19 @@ $y
 </div>
 <p>Example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a></a>log2FC <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span></span>
-<span id="cb84-2"><a></a><span class="fu">ifelse</span>(<span class="at">test =</span> log2FC <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="at">yes =</span> <span class="st">"Up-regulated"</span>, <span class="at">no =</span> <span class="st">"Not up-regulated"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a></a>pvalue <span class="ot">&lt;-</span> <span class="fl">0.01</span></span>
+<span id="cb84-2"><a></a><span class="fu">ifelse</span>(<span class="at">test =</span> pvalue <span class="sc">&lt;</span> <span class="fl">0.05</span>, <span class="at">yes =</span> <span class="st">"Significant"</span>, <span class="at">no =</span> <span class="st">"Non significant"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Not up-regulated"</code></pre>
-</div>
-</div>
-<div class="fragment">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a></a><span class="co"># nested condition</span></span>
-<span id="cb86-2"><a></a><span class="fu">ifelse</span>(</span>
-<span id="cb86-3"><a></a>  <span class="at">test =</span> log2FC <span class="sc">&gt;</span> <span class="dv">0</span>,</span>
-<span id="cb86-4"><a></a>  <span class="at">yes =</span> <span class="st">"Up-regulated"</span>,</span>
-<span id="cb86-5"><a></a>  <span class="at">no =</span> <span class="fu">ifelse</span>(log2FC <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="at">yes =</span> <span class="st">"Down-regulated"</span>, <span class="at">no =</span> <span class="st">"No change"</span>)</span>
-<span id="cb86-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Down-regulated"</code></pre>
-</div>
+<pre><code>[1] "Significant"</code></pre>
 </div>
 </div>
 <div class="fragment">
 <p>The “test” parameter can be a logical vector.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a></a>vec_lfc <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb88-2"><a></a><span class="fu">ifelse</span>(vec_lfc <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="at">yes =</span> <span class="st">"Up-regulated"</span>, <span class="at">no =</span> <span class="st">"Not up-regulated"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a></a>vec_p <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.02</span>, <span class="fl">0.049</span>, <span class="fl">0.1</span>)</span>
+<span id="cb86-2"><a></a><span class="fu">ifelse</span>(vec_p <span class="sc">&lt;</span> <span class="fl">0.05</span>, <span class="at">yes =</span> <span class="st">"Significant"</span>, <span class="at">no =</span> <span class="st">"Non significant"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Not up-regulated" "Not up-regulated" "Up-regulated"    </code></pre>
+<pre><code>[1] "Significant"     "Significant"     "Non significant"</code></pre>
 </div>
 </div>
 </div>
@@ -838,33 +825,10 @@ $y
 <section id="what-is-a-function" class="slide level2 smaller">
 <h2>What is a Function?</h2>
 <p>Functions = Reusable blocks of code.</p>
-<div class="cell" data-reveal="true" data-fig-width="10" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-  A[Inputs] --&gt; B(Code block for specific task)
-  B --&gt; C[Output]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
 <div class="fragment">
-<p>To use a function, write the <strong>function’s name</strong> followed by <code>()</code>, place any required input (arguments/parameters) inside the <code>()</code>.</p>
-<ul>
-<li>Built-in functions</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a></a><span class="fu">mean</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-</div>
+<p><img data-src="images/call_function.png"></p>
 <aside class="notes">
-<p>Functions that are part of R’s base installation, always available without needing to load any additional packages.</p>
+<p>Functions that are part of R’s base installation, always available without needing to load any additional packages. To use a function, write the <strong>function’s name</strong> followed by <code>()</code>, place any required input (arguments/parameters) inside the <code>()</code>.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -895,12 +859,17 @@ $y
 <p>Functions = Reusable blocks of code.</p>
 <ul>
 <li>Built-in functions</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a></a><span class="fu">mean</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
 <li>Functions from additional packages</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a></a><span class="co"># install.packages("readr")         # one time only if not yet installed</span></span>
-<span id="cb92-2"><a></a><span class="fu">library</span>(readr)                      <span class="co"># load the package (every new R session)</span></span>
-<span id="cb92-3"><a></a><span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"path/to/data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a></a><span class="co"># install.packages("readr")         # one time only if not yet installed</span></span>
+<span id="cb89-2"><a></a><span class="fu">library</span>(readr)                      <span class="co"># load the package (every new R session)</span></span>
+<span id="cb89-3"><a></a><span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"path/to/data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-note callout-style-simple">
 <div class="callout-body">
@@ -916,13 +885,6 @@ $y
 <ul>
 <li>Custom functions</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a></a>add_one <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {x <span class="sc">+</span> <span class="dv">1</span>}</span>
-<span id="cb93-2"><a></a><span class="fu">add_one</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2 3 4</code></pre>
-</div>
-</div>
 <div class="callout callout-note callout-style-simple">
 <div class="callout-body">
 <div class="callout-icon-container">
@@ -954,7 +916,9 @@ $y
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="../../images/logoInforBio_fond_blanc_small.png" class="slide-logo"></p>
 <div class="footer footer-default">
-
+<div style="position: absolute; bottom: 0px; left: 70px; font-size:18px">
+<a href="https://inforbio.github.io/ioc-r-2026/ioc_r_toc.html">Back to ToC</a>
+</div>
 </div>
 </div></div>
 

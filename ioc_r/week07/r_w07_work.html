@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.7.34">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,10 +37,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-4df3b0c4fafa0f66eafcead0ee6cff11.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-d68be38d83eca2bb035acf846ffba811.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -172,13 +172,28 @@ ul.task-list li input[type="checkbox"] {
 <p>Just a reminder, the expression of 20 genes was measured in mice aged from 10 to 60 days, with both male and female mice, and each group consists of 6 animals. The gene expression data is stored in two files, one for each brain structure. Within each file, rows represent the different ages, and columns represent the gene, sex, and animal.</p>
 <p>The data is available in two CSV files:</p>
 <ul>
-<li><a href="../exos_data/data_anonym_struc1_noise.csv">data_anonym_struc1_noise.csv</a></li>
-<li><a href="../exos_data/data_anonym_struc2_noise.csv">data_anonym_struc2_noise.csv</a></li>
+<li><a href="../exos_data/data_anonym_struc1_noise.csv" target="_blank">data_anonym_struc1_noise.csv</a></li>
+<li><a href="../exos_data/data_anonym_struc2_noise.csv" target="_blank">data_anonym_struc2_noise.csv</a></li>
 </ul>
 <ol type="1">
 <li>Import the two data files and reshape them the same way you did up to question 9 of the exercise. Then, combine the two datasets into one. Make sure to adjust any parameters as needed.</li>
 </ol>
-<p>Hints: You can combine datasets by stacking their rows together to create one final data frame. (Use <code>dplyr::bind_rows()</code> or <code>rbind()</code> for this.)</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Hints">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hints
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>You can combine datasets by stacking their rows together to create one final data frame. (Use <code>dplyr::bind_rows()</code> or <code>rbind()</code> for this.)</p>
+</div>
+</div>
+</div>
 <ol start="2" type="1">
 <li><p>Remove lines with NA in expression value.</p></li>
 <li><p>For the mice of 20 days, count how many measurements you have for each brain structure in genes 4 and 5 separately.</p></li>
@@ -190,7 +205,7 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 <p>Choose an appropriate figure to display this gene’s expression across the brain structures.</p>
 <hr>
-<p>The homework correction is available here: <a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week07/.r_w07_work_corr.R">link</a></p>
+<p>The homework correction is available here: <a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week07/.r_w07_work_corr.R" target="_blank">link</a></p>
 
 
 </section>
@@ -605,7 +620,7 @@ ul.task-list li input[type="checkbox"] {
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>This page is built with <a href="https://quarto.org/">Quarto</a></p>
+<p>This page is built with <a href="https://quarto.org/" target="_blank">Quarto</a></p>
 </div>
   </div>
 </footer>

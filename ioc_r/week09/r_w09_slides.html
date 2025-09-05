@@ -7,8 +7,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.33">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.34">
 
   <title>IOC-2026 – Putting It All Together:  Reproducible Analysis with Quarto</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -222,13 +222,13 @@
 <li>Combines narrative text and code (multi-language) in one script (.qmd).</li>
 <li>Supports multiple output formats: .html, .docx, .pptx, .pdf, <em>etc.</em></li>
 </ul>
-<div class="callout callout-tip callout-style-simple">
+<div class="callout callout-note callout-style-simple">
 <div class="callout-body">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-content">
-<p>Check out the <a href="https://quarto.org/docs/get-started/hello/rstudio.html">Quarto tutorial</a>.</p>
+<p>Check out the <a href="https://quarto.org/docs/get-started/hello/rstudio.html" target="_blank">Quarto tutorial</a>.</p>
 </div>
 </div>
 </div>
@@ -322,15 +322,16 @@
 </section>
 <section id="code-chunks-options" class="slide level2 smaller">
 <h2>Code Chunks Options</h2>
-<p><img data-src="images/chunk_options.png"> (Source: <a href="https://r4ds.hadley.nz/quarto.html#chunk-options">R For Data Science</a>)</p>
+<p><img data-src="images/chunk_options.png" class="" style="width:80.0%"></p>
+<p>(Source: <a href="https://r4ds.hadley.nz/quarto.html#chunk-options" target="_blank">R For Data Science</a>)</p>
 </section>
 <section id="code-chunks-execution" class="slide level2 smaller">
 <h2>Code Chunks Execution</h2>
 <ul>
 <li>To execute the whole chunk:</li>
 </ul>
-
-<img data-src="images/execute_chunk.png" style="width:20.0%" class="r-stretch"><ul>
+<p><img data-src="images/execute_chunk.png" class="" style="width:50.0%"></p>
+<ul>
 <li>To execute only some code lines: the same as in an R script (Ctrl/Cmd + Enter)</li>
 </ul>
 </section>
@@ -361,7 +362,7 @@
 <i class="callout-icon"></i>
 </div>
 <div class="callout-content">
-<p>Markdown syntax <a href="https://www.markdownguide.org/cheat-sheet/">cheat sheet</a></p>
+<p>Markdown syntax <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank">cheat sheet</a></p>
 </div>
 </div>
 </div>
@@ -433,23 +434,43 @@
 <h1>Final Project</h1>
 
 </section>
-<section id="reproducing-a-scientific-figure-with-ggplot2" class="slide level2 smaller">
-<h2>Reproducing a Scientific Figure with {<code>ggplot2</code>}</h2>
-<p><strong>Task:</strong> Select a figure from a scientific paper and recreate it using {<em>ggplot2</em>}. Document your workflow in a <strong>Quarto document</strong> to generate a report, and present your work (15 min per person).</p>
-<p>Your report should include:</p>
+<section id="recreate-a-figure-with-ggplot2" class="slide level2 smaller">
+<h2>Recreate a Figure with {<code>ggplot2</code>}</h2>
+<p><strong>Task</strong>: Select a figure from a scientific paper and recreate it using {<em>ggplot2</em>}. You can either use the publicly available data or your own dataset.</p>
+<div class="callout callout-important callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<p>Document your workflow in a <strong>Quarto document</strong> to generate a report, and present your work (15 min per person).</p>
+</div>
+</div>
+</div>
+<div title="What to include in your report:">
+<div class="callout callout-tip callout-titled callout-style-simple">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>What to include in your report:</strong></p>
+</div>
+<div class="callout-content">
 <ul>
-<li><strong>Figure Selection:</strong> Why did you choose this figure?<br>
+<li><strong>Why this figure?</strong> Explain your choice or inspiration.</li>
+<li><strong>Data &amp; Preprocessing:</strong> Source, cleaning, transformations, <em>etc.</em><br>
 </li>
-<li><strong>Data &amp; Preprocessing:</strong> Source of data, cleaning, transformations.<br>
-</li>
-<li><strong>Packages Used:</strong> List and explain key packages.<br>
-</li>
+<li><strong>Exploration &amp; Statistics:</strong> Summary stats, comparisons, or any tests that help to understand the data.</li>
+<li><strong>Plot Construction:</strong> Steps taken to build the visualization.</li>
 <li><strong>Challenges &amp; Solutions:</strong> Issues faced and how you resolved them.<br>
 </li>
-<li><strong>Plot Construction:</strong> Steps taken to build the visualization.<br>
-</li>
-<li><strong>Final Comparison &amp; Insights:</strong> How close is your result? What did you learn?</li>
+<li><strong>Comparison &amp; Insights:</strong> How close is it to the original? What did you learn?</li>
 </ul>
+</div>
+</div>
+</div>
+</div>
 
 
 </section></section>
@@ -457,7 +478,9 @@
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="../../images/logoInforBio_fond_blanc_small.png" class="slide-logo"></p>
 <div class="footer footer-default">
-
+<div style="position: absolute; bottom: 0px; left: 70px; font-size:18px">
+<a href="https://inforbio.github.io/ioc-r-2026/ioc_r_toc.html">Back to ToC</a>
+</div>
 </div>
 </div></div>
 

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.7.34">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -72,10 +72,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-4df3b0c4fafa0f66eafcead0ee6cff11.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-d68be38d83eca2bb035acf846ffba811.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -201,6 +201,7 @@ window.Quarto = {
    
   <ul>
   <li><a href="#goals" id="toc-goals" class="nav-link active" data-scroll-target="#goals">Goals</a></li>
+  <li><a href="#quarto-document" id="toc-quarto-document" class="nav-link" data-scroll-target="#quarto-document">Quarto Document</a></li>
   <li><a href="#mini-data-project" id="toc-mini-data-project" class="nav-link" data-scroll-target="#mini-data-project">Mini Data Project</a>
   <ul class="collapse">
   <li><a href="#data-import-exploration" id="toc-data-import-exploration" class="nav-link" data-scroll-target="#data-import-exploration">Data Import &amp; Exploration</a></li>
@@ -236,13 +237,20 @@ window.Quarto = {
 </header>
 
 
-<p>Write your code directly in a Quarto document.</p>
-<p>The template is available here: <a href="https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week09/r_w09_example.qmd.txt">link</a>. Download it and remove the suffix “.txt”.</p>
 <section id="goals" class="level2">
 <h2 class="anchored" data-anchor-id="goals">Goals</h2>
 <ul>
 <li>Understand the basics of Quarto.</li>
 <li>Create your first Quarto report by walking through a mini data project.</li>
+</ul>
+</section>
+<section id="quarto-document" class="level2">
+<h2 class="anchored" data-anchor-id="quarto-document">Quarto Document</h2>
+<p>A template is available here: <a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week09/r_w09_example.qmd.txt" target="_blank">link</a>. Download it and remove the suffix “.txt”.</p>
+<ul>
+<li>Modify the YAML header at the top of the Quarto file: change the <code>title</code>, <code>author</code>, or any other metadata to personalize the document.</li>
+<li>Write your R code directly in the Quarto document in code chunks (<code>```{r}...```</code>) to complete this exercise.</li>
+<li>Render the document (click “Render” in RStudio) to generate your first report.</li>
 </ul>
 </section>
 <section id="mini-data-project" class="level2">
@@ -608,7 +616,7 @@ WT-SET1.RRP6   -38.9  -78.84833   1.048326 0.0587008</code></pre>
 </div>
 </div>
 <ol start="11" type="1">
-<li>Visualize the expression levels of the <em>LOH1</em> gene across the four groups using a boxplot.</li>
+<li>Visualize the expression levels of the <em>LOH1</em> gene across the four groups using a boxplot. Comment on the figure.</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
@@ -1125,7 +1133,7 @@ Kruskal-Wallis chi-squared = 24.631, df = 3, p-value = 1.845e-05</code></pre>
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>This page is built with <a href="https://quarto.org/">Quarto</a></p>
+<p>This page is built with <a href="https://quarto.org/" target="_blank">Quarto</a></p>
 </div>
   </div>
 </footer>

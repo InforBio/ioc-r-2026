@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.7.34">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -72,10 +72,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-4df3b0c4fafa0f66eafcead0ee6cff11.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-d68be38d83eca2bb035acf846ffba811.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -209,7 +209,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>The R script is available here: <a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week07/r_w07_exos.R">link</a></p>
+<p>The R script is available here: <a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week07/r_w07_exos.R" target="_blank">link</a></p>
 <section id="goals" class="level2">
 <h2 class="anchored" data-anchor-id="goals">Goals</h2>
 <ul>
@@ -240,14 +240,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="mini-data-project">Mini Data Project</h2>
 <p>This mini data project is based on a real project that focuses on gene expression across different time points.</p>
 <p>A researcher has measured the expression levels of <strong>20 genes</strong> (anonymed as 1 to 20) using the RT-qPCR technique. The gene expression was assessed in <strong>two structures</strong> of the mouse brain. Mice ranged in age from 10 to 60 days (<strong>10, 15, 20, 25, 30, 35, 40, 45, 50, 60 days</strong>), and the experiment was repeated with both <strong>male</strong> and <strong>female</strong> mice, with <strong>6 animals</strong> (named from A to F) in each group.</p>
-<p>According to the researcher, the data was stored in two files, one for each brain structure. Within each file, <strong>rows represent the different ages, and columns represent the gene, sex, and animal.</strong></p>
+<p>According to the researcher, the data was stored in two files, one for each brain structure. Within each file, <strong>rows represent the different ages, and columns represent the gene, sex, and animal.</strong> For example, column <code>1MA</code> represents the expression level of <em>gene 1</em> from the <em>male</em> mouse <em>A</em>, column <code>15FD</code> represents the expression level of <em>gene 15</em> from the <em>female</em> mouse <em>D</em>.</p>
 <p>A small Gaussian noise has been added to the original data, preserving the overall structure.</p>
 <p>The data is available in two CSV files:</p>
 <ul>
-<li><a href="../exos_data/data_anonym_struc1_noise.csv">data_anonym_struc1_noise.csv</a></li>
-<li><a href="../exos_data/data_anonym_struc2_noise.csv">data_anonym_struc2_noise.csv</a></li>
+<li><a href="../exos_data/data_anonym_struc1_noise.csv" target="_blank">data_anonym_struc1_noise.csv</a></li>
+<li><a href="../exos_data/data_anonym_struc2_noise.csv" target="_blank">data_anonym_struc2_noise.csv</a></li>
 </ul>
-<p>We will focus on the data from the brain structure 1.</p>
+<p>We will focus on the data from the brain structure 1. <strong>The aim is to perform an exploratory analysis to have a glimpse of the relationship between variables.</strong></p>
 <section id="import-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="import-the-data">Import the Data</h3>
 <ol type="1">
@@ -354,10 +354,22 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> data1 <span class="sc">|&gt;</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">age =</span> ...<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<ul>
+<li>What can we do with the current data format?</li>
+<li>If we want to calculate the average expression value of a given gene by sex or by age, how should the data be organized?</li>
+</ul>
+</div>
+</div>
+</div>
 </section>
 <section id="reshape-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="reshape-the-data">Reshape the Data</h3>
-<p>How should the data be organized?</p>
 <ol start="5" type="1">
 <li>Reshape the dataset to a longer format using <code>pivot_longer()</code>, so that for each mouse:</li>
 </ol>
@@ -421,7 +433,22 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 <ol start="7" type="1">
 <li>Extract information about gene, sex and animal from the column <code>id</code> using the <code>extract()</code> function. Name the new columns as “gene_id”, “sex” and “animal”.</li>
 </ol>
-<p><strong>Hint</strong>: Find the patterns for the extraction. You can use AI to help you to write the regular expression.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Hints">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hints
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Find the patterns for the extraction. You can use AI to help you to write the regular expression.</p>
+</div>
+</div>
+</div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check how id (the colnames before reshape) was constructed.</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data1_long<span class="sc">$</span>id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -548,12 +575,12 @@ FALSE  TRUE
 <section id="explore-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="explore-the-data">Explore the Data</h3>
 <p>What kind of analysis would you like to perform with this data?</p>
-<p>In statistics, it’s common to begin by exploring the dataset as a whole and visualizing the relationships between different variables. The function <code>ggpairs()</code> from the {<a href="https://ggobi.github.io/ggally/index.html"><code>GGally</code></a>} package is useful for creating a matrix of scatter plots to examine the relationships between each pair of variables. First, let’s install the {<code>GGally</code>} package if it is not already installed.</p>
+<p>In statistics, it’s common to begin by exploring the dataset as a whole and visualizing the relationships between different variables. The function <code>ggpairs()</code> from the {<a href="https://ggobi.github.io/ggally/index.html" target="_blank"><code>GGally</code></a>} package is useful for creating a matrix of scatter plots to examine the relationships between each pair of variables. First, let’s install the {<code>GGally</code>} package if it is not already installed.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"GGally"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="12" type="1">
-<li>Load the package and take a look at the help page for <code>ggpairs()</code>. How will you reshape the <code>data1_long</code> to provide the necessary data for the <code>[ggpairs()](https://ggobi.github.io/ggally/articles/ggpairs.html)</code> function?</li>
+<li>Load the package and take a look at the help page for <code>ggpairs()</code>. How will you reshape the <code>data1_long</code> to provide the necessary data for the <code>[ggpairs()](https://ggobi.github.io/ggally/articles/ggpairs.html){target='_blank'}</code> function?</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
@@ -594,103 +621,6 @@ FALSE  TRUE
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(<span class="fu">select</span>(data1_wider, age, gene1<span class="sc">:</span>gene5))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 14 rows containing missing values
-Removed 14 rows containing missing values
-Removed 14 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 13 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 16 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 14 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 14 rows containing non-finite outside the scale range
-(`stat_density()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 14 rows containing missing values
-Removed 14 rows containing missing values
-Removed 14 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 16 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 14 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 14 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 14 rows containing non-finite outside the scale range
-(`stat_density()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 14 rows containing missing values
-Removed 14 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 16 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 14 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 14 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 14 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 14 rows containing non-finite outside the scale range
-(`stat_density()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 14 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 16 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 13 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 14 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 14 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 14 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 13 rows containing non-finite outside the scale range
-(`stat_density()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 16 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 16 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 16 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 16 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 16 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 16 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 16 rows containing non-finite outside the scale range
-(`stat_density()`).</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -698,142 +628,32 @@ Removed 16 rows containing missing values or values outside the scale range
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or you can tweak the points for a better look</span></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(</span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(data1_wider, age, gene1<span class="sc">:</span>gene5),</span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">lower =</span> <span class="fu">list</span>(<span class="at">continuous =</span> <span class="fu">wrap</span>(<span class="st">"points"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">size =</span> <span class="fl">0.8</span>))</span>
-<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 14 rows containing missing values</code></pre>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 14 rows containing missing values
-Removed 14 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 13 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 16 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 14 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 14 rows containing non-finite outside the scale range
-(`stat_density()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 14 rows containing missing values
-Removed 14 rows containing missing values
-Removed 14 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 16 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 14 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 14 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 14 rows containing non-finite outside the scale range
-(`stat_density()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 14 rows containing missing values
-Removed 14 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 16 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 14 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 14 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 14 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 14 rows containing non-finite outside the scale range
-(`stat_density()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 14 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 16 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 13 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 14 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 14 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 14 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 13 rows containing non-finite outside the scale range
-(`stat_density()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 16 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 16 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 16 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 16 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 16 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 16 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 16 rows containing non-finite outside the scale range
-(`stat_density()`).</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="r_w07_exos_files/figure-html/unnamed-chunk-17-2.png" class="img-fluid figure-img" width="1152"></p>
-</figure>
-</div>
-</div>
-</div>
+<p>The expression between gene 1 and 2 is similar, with a high coefficient of correlation. We observe the same trend between the expression of genes 3 and 4.</p>
+<p>In addition, it seems that there are two groups of mice that express genes 3 and 5 in a similar way.</p>
 <ol start="14" type="1">
 <li>Calculate the correlation between gene 1 and 2. (<code>?cor</code>)</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(</span>
-<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> data1_wider<span class="sc">$</span>gene1,</span>
-<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> data1_wider<span class="sc">$</span>gene2,</span>
-<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">use =</span> <span class="st">"na.or.complet"</span></span>
-<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>) <span class="co"># by default use the pearson's method</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> data1_wider<span class="sc">$</span>gene1,</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> data1_wider<span class="sc">$</span>gene2,</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">use =</span> <span class="st">"na.or.complet"</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>) <span class="co"># by default use the pearson's method</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.8935659</code></pre>
 </div>
 </div>
-<p>It seems that there are two groups of mice that express genes 4 and 5 in a similar way.</p>
 <ol start="15" type="1">
-<li>Draw a scatter plot using {<code>ggplot2</code>} to show the expression levels of genes 4 and 5. Color the points by different categorical variables that we have, <em>i.e.</em>, age, sex, and animal.</li>
+<li>Draw a scatter plot using {<code>ggplot2</code>} to show the expression levels of genes 3 and 5. Color the points by different categorical variables that we have, <em>i.e.</em>, age, sex, and animal.</li>
 </ol>
 <p>Is there any categorical variable that can explain the groups we observed in the figure?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>p_age <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> data1_wider, <span class="fu">aes</span>(<span class="at">x =</span> gene4, <span class="at">y =</span> gene5)) <span class="sc">+</span></span>
-<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> age)) <span class="sc">+</span></span>
-<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Expression Level of Genes 4 and 5"</span>) <span class="sc">+</span></span>
-<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span>
-<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a>p_age</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>p_age <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> data1_wider, <span class="fu">aes</span>(<span class="at">x =</span> gene3, <span class="at">y =</span> gene5)) <span class="sc">+</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> age)) <span class="sc">+</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Expression Level of Genes 3 and 5"</span>) <span class="sc">+</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>p_age</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 16 rows containing missing values or values outside the scale range
 (`geom_point()`).</code></pre>
@@ -845,11 +665,11 @@ Removed 16 rows containing missing values or values outside the scale range
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>p_sex <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> data1_wider, <span class="fu">aes</span>(<span class="at">x =</span> gene4, <span class="at">y =</span> gene5)) <span class="sc">+</span></span>
-<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> sex)) <span class="sc">+</span></span>
-<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Expression Level of Genes 4 and 5"</span>) <span class="sc">+</span></span>
-<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span>
-<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a>p_sex</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>p_sex <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> data1_wider, <span class="fu">aes</span>(<span class="at">x =</span> gene3, <span class="at">y =</span> gene5)) <span class="sc">+</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> sex)) <span class="sc">+</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Expression Level of Genes 3 and 5"</span>) <span class="sc">+</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>p_sex</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 16 rows containing missing values or values outside the scale range
 (`geom_point()`).</code></pre>
@@ -861,11 +681,11 @@ Removed 16 rows containing missing values or values outside the scale range
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>p_animal <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> data1_wider, <span class="fu">aes</span>(<span class="at">x =</span> gene4, <span class="at">y =</span> gene5)) <span class="sc">+</span></span>
-<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> animal)) <span class="sc">+</span></span>
-<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Expression Level of Genes 4 and 5"</span>) <span class="sc">+</span></span>
-<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span>
-<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>p_animal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>p_animal <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> data1_wider, <span class="fu">aes</span>(<span class="at">x =</span> gene3, <span class="at">y =</span> gene5)) <span class="sc">+</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> animal)) <span class="sc">+</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Expression Level of Genes 3 and 5"</span>) <span class="sc">+</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>p_animal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 16 rows containing missing values or values outside the scale range
 (`geom_point()`).</code></pre>
@@ -1297,7 +1117,7 @@ Removed 16 rows containing missing values or values outside the scale range
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>This page is built with <a href="https://quarto.org/">Quarto</a></p>
+<p>This page is built with <a href="https://quarto.org/" target="_blank">Quarto</a></p>
 </div>
   </div>
 </footer>
