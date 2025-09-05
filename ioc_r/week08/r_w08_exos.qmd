@@ -13,7 +13,7 @@ editor_options:
 ---
 
 The R script is available here:
-[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week08/r_w08_exos.R)
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week08/r_w08_exos.R){target='_blank'}
 
 ## Goals
 
@@ -24,9 +24,9 @@ The R script is available here:
 ## Import Data
 
 We will reuse the gene-level differential expression (DE) results
-([`toy_DEanalysis.csv`](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv)) introduced in session 4.
+([`toy_DEanalysis.csv`](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv){target='_blank'}) introduced in session 4.
 These results were obtained by comparing **SET1** samples against **WT** samples using the corresponding count data
-([read-counts.csv](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv)).
+([read-counts.csv](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv){target='_blank'}).
 
 - Import the DE results and save them as `de_res`.
 - Import the count data and save it as `counts`.

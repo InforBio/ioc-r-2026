@@ -7,7 +7,7 @@ website:
   favicon: images/logoInforBio_fond_blanc.png
   
   page-footer: 
-    right: "This page is built with [Quarto](https://quarto.org/)"
+    right: "This page is built with [Quarto](https://quarto.org/){target='_blank'}"
     left: "&copy; Code: MIT License | Content: CC BY-NC 4.0 [InforBio]"
     
   navbar:

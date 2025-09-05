@@ -11,7 +11,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-For this homework, we will use the [Palmer Penguins dataset](https://allisonhorst.github.io/palmerpenguins/).
+For this homework, we will use the [Palmer Penguins dataset](https://allisonhorst.github.io/palmerpenguins/){target='_blank'}.
 It contains information about three penguin species, living in the Palmer Archipelago.
 For each penguin, measurements include:
 
@@ -26,7 +26,7 @@ The goal is to explore, manipulate and visualize these data in R while practicin
 
 0. Set up your workspace.
 
-Create a new R Project called `penguins_analysis` and save the dataset file [penguins.csv](https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/inst/extdata/penguins.csv) inside a folder named `data` in your project.
+Create a new R Project called `penguins_analysis` and save the dataset file [penguins.csv](https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/inst/extdata/penguins.csv){target='_blank'} inside a folder named `data` in your project.
 
 
 1. Import the `penguins.csv` dataset, name the imported data as `penguins`.
@@ -101,4 +101,4 @@ If one or both groups are not normally distributed, use a Wilcoxon rank-sum test
 ---
 
 The homework correction is available here:
-[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week06/.r_w06_work_corr.R)
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week06/.r_w06_work_corr.R){target='_blank'}

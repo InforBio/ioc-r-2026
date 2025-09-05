@@ -19,7 +19,8 @@ editor_options:
 ## Quarto Document
 
 A template is available here:
-[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week09/r_w09_example.qmd.txt). Download it and remove the suffix ".txt".
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week09/r_w09_example.qmd.txt){target='_blank'}.
+Download it and remove the suffix ".txt".
 
 - Modify the YAML header at the top of the Quarto file:
 change the `title`, `author`, or any other metadata to personalize the document.
@@ -104,7 +105,7 @@ ANOVA compares the variances within (intra) and between groups (inter) to infer 
 
 We assume that the variance within each group is the same across all groups.
 
-![](https://inforbio.github.io/ioc-r-2026/ioc_r/week09/images/anova_img.png){width=80%}
+![](https://inforbio.github.io/ioc-r-2026/ioc_r/week09/images/anova_img.png){target='_blank' width=80%}
 
 (Figure credit: Lorette Noiret)
 

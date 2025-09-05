@@ -13,7 +13,7 @@ editor_options:
 ---
 
 The R script is available here:
-[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week02/r_w02_exos.R)
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week02/r_w02_exos.R){target='_blank'}
 
 ## Goals
 
@@ -169,7 +169,7 @@ is a common way in which data tends to organize itself naturally when measured r
 
 ![](images/normal_distribution.png){width=70%}
 <br>
-(figure obtained from this [source](https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEmpirical_Rule_Normal_Distribution.png&psig=AOvVaw3im9_Hwoy2pWzBaORhnaym&ust=1734727389053000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCIDm9aPZtIoDFQAAAAAdAAAAABAI))
+(figure obtained from this [source](https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEmpirical_Rule_Normal_Distribution.png&psig=AOvVaw3im9_Hwoy2pWzBaORhnaym&ust=1734727389053000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCIDm9aPZtIoDFQAAAAAdAAAAABAI){target='_blank'})
 
 It’s symmetric around the average (mean, $\mu$),
 and the spread of values depends on the standard deviation ($\sigma$).

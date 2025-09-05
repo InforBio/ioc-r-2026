@@ -66,4 +66,4 @@ Otherwise, draw a histogram for the log-transformed values.
 
 
 The homework correction is available here:
-[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week04/.r_w04_work_corr.R)
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week04/.r_w04_work_corr.R){target='_blank'}

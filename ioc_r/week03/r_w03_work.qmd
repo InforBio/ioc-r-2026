@@ -83,4 +83,4 @@ WT and RRP6 samples.
 
 
 The homework correction is available here:
-[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week03/.r_w03_work_corr.R)
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week03/.r_w03_work_corr.R){target='_blank'}
