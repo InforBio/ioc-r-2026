@@ -1,0 +1,267 @@
+---
+title: "Self-Check Sheet"
+format:
+  html: default
+  pdf: default
+date: "2026-03-16"
+date-format: " "
+categories: 
+  - week10
+  - exercise
+editor_options: 
+  chunk_output_type: console
+---
+
+Notes: 
+
+- Elements appear in the chronological order we saw them in class.
+- Elements marked with * were mentioned in class but are **not required** to be mastered.  
+
+## Week 1: Kickstart with R
+
+sqrt()  
+ls()  
+library()  
+mean()  
+q()  
+?  
+getwd()  
+file.exists()  
+readr::read_csv()  
+head()  
+View()  
+readr::write_csv()  
+
+dim()  
+mode()  
+sd()  
+summary()  
+\*hist()  
+\*plot()  
+log2()  
+
+\*text()  
+\*abline()  
+
+## Week 2: Vectors and Matrices
+
+help()  
+`NA`  
+is.numeric()  
+is.double()  
+is.integer()  
+as.numeric()  
+tyoeof()  
+is.character()  
+as.character()  
+is.logical()  
+  
+c()
+`:`     
+seq()  
+paste0()  
+rep()  
+is.vector()  
+length()  
+names()  
+str()  
+tail()  
+is.na()  
+sum()  
+median()  
+  
+matrix()  
+rbind()  
+cbind()  
+nrow()  
+ncol()  
+rownames()  
+colnames()  
+is.matrix()  
+rowSums()  
+colSums()  
+rowMeans()  
+colMeans()  
+  
+\*set.seed()  
+round()  
+\*rnorm()  
+shapiro.test()  
+\*curve()  
+\*dnorm()  
+
+## Week 3: Data Frames and Lists
+
+data.frame()  
+is.data.frame()  
+unlist()  
+`NULL`  
+factor()  
+merge()  
+  
+list()  
+names()  
+  
+read.table()  
+unique()  
+wilcox.test()  
+\*boxplot()  
+
+## Week 4: Operators, Conditions, and Functions
+
+`<-`  
+`=`  
+`[]`  
+`$`  
+`[[]]`  
+`+`, `-`, `*`, `/`, `^`  
+`<`, `<=`, `>`, `>=`, `==`, `!=`  
+`!`, `&`, `|`  
+`%in%`  
+any()  
+all()  
+which()  
+if()  
+if () {} else {}  
+ifelse()  
+print()  
+  
+abs()  
+table()  
+
+## Week 5: ggplot2 (part 1)
+
+install.packages()  
+remove.packages()  
+  
+ggplot()  
+aes()  
+geom_point()  
+labs()  
+geom_smooth()  
+geom_boxplot()  
+geom_violin()  
+geom_histogram()  
+geom_bar()  
+theme_grey()  
+theme_bw()  
+theme_classic()  
+theme_bw()  
+theme()  
+ggsave()  
+  
+as.data.frame()  
+theme_minimal()  
+\*element_text()  
+
+## Week6: Revisiting the Essentials
+
+read.csv()  
+write.table()  
+write.csv()  
+readxl::read_xlsx()  
+readxl::read_xls()  
+writexl::write_xlsx()  
+saveRDS()  
+readRDS()  
+save()  
+  
+t.test()  
+
+## Week7: Wrangling Data with dplyr and tidyr
+
+`|>`  
+\*`%>%`  
+
+tibble()  
+as_tibble()  
+  
+pivot_longer()  
+pivot_wider()  
+drop_na()  
+  
+select()  
+starts_with()  
+ends_with()  
+contains()  
+matches()  
+mutate()  
+rename()  
+filter()  
+arrange()  
+desc()  
+count()  
+summarise()  
+group_by()  
+ungroup()  
+  
+\*pull()  
+\*if_else()  
+\*slice()  
+\*slice_head()  
+\*slice_tail()  
+  
+\*readr::read_csv2()  
+\*extract()  
+\*GGally::ggpairs()  
+  
+cor()  
+
+## Week 8: ggplot2 (part 2) & Custom Functions
+
+theme_set()  
+theme_update()  
+scale_color_manual()  
+scale_fill_manual()  
+scale_shape_manual()  
+scale_x_continuous()  
+scale_y_continuous()  
+xlim()  
+ylim()  
+geom_hline()  
+geom_vline()  
+facet_wrap()  
+facet_grid()  
+geom_label()  
+\*ggrepel::geom_label_repel()  
+\*ggpubr::stat_compare_means()  
+  
+theme_minimal()  
+\*everything()  
+\*sub()  
+\*rank()  
+\*position_jitter()  
+paste()  
+  
+\*ggpubr::stat_pvalue_manual()  
+geom_col()  
+  
+\*patchwork::wrap_plots()  
+\*patchwork::plot_annotation()  
+
+## Week 9: Reproducible Analysis with Quarto
+
+````text
+# H1
+## H2
+### H3
+**Bold**
+*Italic*
+`code`
+`r nrow(iris)`
+Superscript^1^
+Subscript~2~
+![](path/to/image.png)
+- unordered list
+  - unordered sub-list
+1. ordered list
+````
+
+left_join()  
+theme_light()  
+  
+aov()  
+\*TukeyHSD()  
+  
+\*bartlett.test()  
+\*kruskal.test()  

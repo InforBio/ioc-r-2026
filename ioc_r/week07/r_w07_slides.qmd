@@ -169,6 +169,8 @@ What to do if we want to put conditions in a column and expression values in ano
 (*E.g.*: for data visualisation)
 :::
 
+:::
+
 ::: {.column .fragment}
 
 ```{r}
