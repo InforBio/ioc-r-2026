@@ -56,8 +56,8 @@ is.character()
 as.character()  
 is.logical()  
   
-c()
-`:`     
+c()  
+`:`   
 seq()  
 paste0()  
 rep()  
@@ -240,6 +240,8 @@ geom_col()
 \*patchwork::plot_annotation()  
 
 ## Week 9: Reproducible Analysis with Quarto
+
+Markdown syntax:
 
 ````text
 # H1
