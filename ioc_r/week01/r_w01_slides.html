@@ -7,8 +7,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.34">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
 
   <title>IOC-2026 – Kickstart with R: Your Gateway to Data Science</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -95,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-f563837468303362081e247dddd440d0.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
   <link rel="stylesheet" href="../custom.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -335,7 +335,7 @@
 <ul>
 <li>Basic codes (commands):</li>
 </ul>
-<div class="sourceCode" id="cb1" data-code-line-numbers="1|2-4|6-8|10-12|14-15|17-18|20-21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># Use `#` to write a comment (line) in your script</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-code-line-numbers="1|2-4|6-8|10-12|14-15|17-18|20-21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># Use `#` to write a comment (line) in your script</span></span>
 <span id="cb1-2"><a></a><span class="co"># Math with R:</span></span>
 <span id="cb1-3"><a></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span>    <span class="co"># Yes, R can do math!</span></span>
 <span id="cb1-4"><a></a><span class="fu">sqrt</span>(<span class="dv">16</span>) <span class="co"># Square root.</span></span>
@@ -355,7 +355,7 @@
 <span id="cb1-18"><a></a>?mean</span>
 <span id="cb1-19"><a></a></span>
 <span id="cb1-20"><a></a><span class="co"># Quit RStudio properly</span></span>
-<span id="cb1-21"><a></a><span class="fu">q</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-21"><a></a><span class="fu">q</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="some-configuration" class="slide level2 smaller">
 <h2>Some Configuration</h2>
@@ -450,7 +450,7 @@
 <ul>
 <li>Tree structure:</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a></a><span class="ex">r_week1</span>              <span class="co"># Your working directory    </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a></a><span class="ex">r_week1</span>              <span class="co"># Your working directory    </span></span>
 <span id="cb2-2"><a></a><span class="ex">├──</span> r_week1.Rproj    <span class="co"># The R project configuration file</span></span>
 <span id="cb2-3"><a></a><span class="ex">├──</span> README.md           <span class="co"># A short introduction of the project</span></span>
 <span id="cb2-4"><a></a><span class="ex">├──</span> data                <span class="co"># Raw data files</span></span>
@@ -458,7 +458,7 @@
 <span id="cb2-6"><a></a><span class="ex">├──</span> scripts             <span class="co"># Your R code files</span></span>
 <span id="cb2-7"><a></a><span class="ex">│&nbsp;&nbsp;</span> └── 01-analysis.R</span>
 <span id="cb2-8"><a></a><span class="ex">│&nbsp;&nbsp;</span> └── 02-figures.R</span>
-<span id="cb2-9"><a></a><span class="ex">└──</span> outputs             <span class="co"># Results, e.g., graphs, reports</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-9"><a></a><span class="ex">└──</span> outputs             <span class="co"># Results, e.g., graphs, reports</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <ul>
 <li>Managing Files (via the <em>File</em> pane):
@@ -526,14 +526,14 @@
 <img data-src="images/finder_rel_path.png" style="width:80.0%" class="r-stretch"></section>
 <section id="where-are-you" class="slide level2 smaller">
 <h2>Where Are You?</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a></a><span class="ex">r_week1</span>              <span class="co"># Your working directory</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a></a><span class="ex">r_week1</span>              <span class="co"># Your working directory</span></span>
 <span id="cb3-2"><a></a><span class="ex">├──</span> r_week1.Rproj    <span class="co"># The R project configuration file</span></span>
 <span id="cb3-3"><a></a><span class="ex">├──</span> data             <span class="co"># Raw data files</span></span>
 <span id="cb3-4"><a></a><span class="ex">└──</span> scripts          <span class="co"># Your R code files</span></span>
-<span id="cb3-5"><a></a> <span class="ex">&nbsp;&nbsp;</span> └── test.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-5"><a></a> <span class="ex">&nbsp;&nbsp;</span> └── test.R</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><br></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="sc">&gt;</span> <span class="fu">getwd</span>() <span class="co"># Get working directory</span></span>
-<span id="cb4-2"><a></a>[<span class="dv">1</span>] <span class="st">"/Users/lijiao/Documents/r_week1"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="sc">&gt;</span> <span class="fu">getwd</span>() <span class="co"># Get working directory</span></span>
+<span id="cb4-2"><a></a>[<span class="dv">1</span>] <span class="st">"/Users/lijiao/Documents/r_week1"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <div class="callout callout-tip callout-style-simple">
 <div class="callout-body">
@@ -551,10 +551,10 @@
 <p>relative path: <code>data</code></p>
 </div>
 <div class="fragment">
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="sc">&gt;</span> <span class="fu">file.exists</span>(<span class="st">"/Users/lijiao/Documents/r_week1/data"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="sc">&gt;</span> <span class="fu">file.exists</span>(<span class="st">"/Users/lijiao/Documents/r_week1/data"</span>)</span>
 <span id="cb5-2"><a></a>[<span class="dv">1</span>] <span class="cn">TRUE</span></span>
 <span id="cb5-3"><a></a><span class="sc">&gt;</span> <span class="fu">file.exists</span>(<span class="st">"data"</span>)</span>
-<span id="cb5-4"><a></a>[<span class="dv">1</span>] <span class="cn">TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-4"><a></a>[<span class="dv">1</span>] <span class="cn">TRUE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section></section>
 <section>
@@ -637,16 +637,16 @@
 <section id="export-data" class="slide level2 smaller">
 <h2>Export Data</h2>
 <p>We’ll use the built-in iris dataset and save it in the CSV format using the <code>write_csv()</code> function from the {<em>readr</em>} package.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">head</span>(iris) <span class="co"># show the first lines of the dataset</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">head</span>(iris) <span class="co"># show the first lines of the dataset</span></span>
 <span id="cb6-2"><a></a><span class="fu">View</span>(iris) <span class="co"># preview the whole dataset</span></span>
-<span id="cb6-3"><a></a>?write_csv <span class="co"># get help of the function</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-3"><a></a>?write_csv <span class="co"># get help of the function</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Goal</strong>: Save the built-in <code>iris</code> dataset as a CSV file named <code>iris_export.csv</code> inside the <code>outputs</code> folder of the project.</p>
 <div class="fragment">
 <ol type="1">
 <li>Create the <code>outputs</code> folder.</li>
 <li>Type the following command and execute it:</li>
 </ol>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">write_csv</span>(iris, <span class="at">file =</span> <span class="st">"outputs/iris_export.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">write_csv</span>(iris, <span class="at">file =</span> <span class="st">"outputs/iris_export.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="fragment">
 <div class="callout callout-tip callout-style-simple">
@@ -931,7 +931,7 @@
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1005,13 +1005,14 @@
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy
