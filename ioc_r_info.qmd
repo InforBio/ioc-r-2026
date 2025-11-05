@@ -9,21 +9,21 @@ Please bookmark this page for quick access.
 ## Calendar
 
 - Starts from: the week of 3rd November 2025  
-- Time slots: **9:30 am – 12:30 pm**
+- Time slots: **9:00 am – 12:00 pm**
 - Format: Hybrid -- with **weeks 1, 5 and 9 held in-persion** at InforBio office; all other sessions take place online.
 - Provisional schedule:  
 
   | **Week**           | **Session**                                                   | **Date**      | **Time**           |
   |--------------------|---------------------------------------------------------------|---------------|--------------------|
-  | **Week 1 (in-person)** | Kickstart with R: Your Gateway to Data Science            |  3rd November | 9:30 am – 12:30 pm |
-  | Week 2             | Data Foundations: Vectors and Matrices                        | 10th November | 9:30 am – 12:30 pm |
-  | Week 3             | More Complex Data Structures: Data Frames and Lists           | 17th November | 9:30 am – 12:30 pm |
-  | Week 4             | Building Logic: Operators, Conditions and Functions           | 24th November | 9:30 am – 12:30 pm |
-  | **Week 5 (in-person)** | Graphing with {`ggplot2`}  (Part 1)                       |  1st December | 9:30 am – 12:30 pm |
-  | Week 6             | R-fresh: Revisiting the Essentials                            |  5th January  | 9:30 am – 12:30 pm |
-  | Week 7             | Tidy Up: Wrangling Data with {`dplyr`} and {`tidyr`}   | 12th January  | 9:30 am – 12:30 pm |
-  | Week 8 | Graphs Level Up: {`ggplot2`} (Part 2) & Custom Functions  | 19th January  | 9:30 am – 12:30 pm |
-  | **Week 9 (in-person)** | Putting It All Together: Reproducible Analysis with Quarto |  26th January    | 9:30 am – 12:30 pm |
+  | **Week 1 (in-person)** | Kickstart with R: Your Gateway to Data Science            |  5th November | 9:00 am – 12:00 pm |
+  | Week 2             | Data Foundations: Vectors and Matrices                        | 12th November | 9:00 am – 12:00 pm |
+  | Week 3             | More Complex Data Structures: Data Frames and Lists           | 19th November | 9:00 am – 12:00 pm |
+  | Week 4             | Building Logic: Operators, Conditions and Functions           | **28th November** | 9:00 am – 12:00 pm |
+  | **Week 5 (in-person)** | Graphing with {`ggplot2`}  (Part 1)                       |  3rd December | 9:00 am – 12:00 pm |
+  | Week 6             | R-fresh: Revisiting the Essentials                            |  7th January  | 9:00 am – 12:00 pm |
+  | Week 7             | Tidy Up: Wrangling Data with {`dplyr`} and {`tidyr`}          | 14th January  | 9:00 am – 12:00 pm |
+  | Week 8 | Graphs Level Up: {`ggplot2`} (Part 2) & Custom Functions                  | 21th January  | 9:00 am – 12:00 pm |
+  | **Week 9 (in-person)** | Putting It All Together: Reproducible Analysis with Quarto| 28th January  | 9:00 am – 12:00 pm |
   | Week 10            | Your project presentation                                     | **TBD**       | **TBD** |
 
 
