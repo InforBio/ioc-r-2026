@@ -12,7 +12,7 @@ editor_options:
 
 Note: There may be other valid ways to solve this exercise — this is just one possible solution!
 
-Use the following code to import the file "read-counts.csv" 
+Use the following code to import the file "[read-counts.csv](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv){target='_blank'}" 
 (you have already downloaded it for the hand-on examples of week01).
 Name the imported data `expr_data`.
 
