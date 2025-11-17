@@ -13,18 +13,18 @@ Please bookmark this page for quick access.
 - Format: Hybrid -- with **weeks 1, 5 and 9 held in-persion** at InforBio office; all other sessions take place online.
 - Provisional schedule:  
 
-  | **Week**           | **Session**                                                   | **Date**      | **Time**           |
-  |--------------------|---------------------------------------------------------------|---------------|--------------------|
-  | **Week 1 (in-person)** | Kickstart with R: Your Gateway to Data Science            |  5th November | 9:00 am – 12:00 pm |
-  | Week 2             | Data Foundations: Vectors and Matrices                        | 12th November | 9:00 am – 12:00 pm |
-  | Week 3             | More Complex Data Structures: Data Frames and Lists           | 19th November | 9:00 am – 12:00 pm |
-  | Week 4             | Building Logic: Operators, Conditions and Functions           | **28th November** | 9:00 am – 12:00 pm |
-  | **Week 5 (in-person)** | Graphing with {`ggplot2`}  (Part 1)                       |  3rd December | 9:00 am – 12:00 pm |
-  | Week 6             | R-fresh: Revisiting the Essentials                            |  7th January  | 9:00 am – 12:00 pm |
-  | Week 7             | Tidy Up: Wrangling Data with {`dplyr`} and {`tidyr`}          | 14th January  | 9:00 am – 12:00 pm |
-  | Week 8 | Graphs Level Up: {`ggplot2`} (Part 2) & Custom Functions                  | 21th January  | 9:00 am – 12:00 pm |
-  | **Week 9 (in-person)** | Putting It All Together: Reproducible Analysis with Quarto| 28th January  | 9:00 am – 12:00 pm |
-  | Week 10            | Your project presentation                                     | **TBD**       | **TBD** |
+  | **Week**           | **Session**                                                   |
+  |--------------------|---------------------------------------------------------------|
+  | **Week 1 (in-person)** | Kickstart with R: Your Gateway to Data Science            |
+  | Week 2             | Data Foundations: Vectors and Matrices                        |
+  | Week 3             | More Complex Data Structures: Data Frames and Lists           |
+  | Week 4             | Building Logic: Operators, Conditions and Functions           |
+  | **Week 5 (in-person)** | Graphing with {`ggplot2`}  (Part 1)                       |
+  | Week 6             | R-fresh: Revisiting the Essentials                            |
+  | Week 7             | Tidy Up: Wrangling Data with {`dplyr`} and {`tidyr`}          |
+  | Week 8 | Graphs Level Up: {`ggplot2`} (Part 2) & Custom Functions                  |
+  | **Week 9 (in-person)** | Putting It All Together: Reproducible Analysis with Quarto|
+  | Week 10            | Your project presentation                                     |
 
 
 ## Recommended Readings
