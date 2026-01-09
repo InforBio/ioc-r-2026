@@ -71,7 +71,7 @@ data[data$value<-0.5, ]
 ## - Do we need to recode variable?
 
 ## 3. Remove rows with missing values.
-## Create a new dataset without missing values.
+## Create a new dataset without missing values, name it `data_clean`.
 
 
 ## 4. Find the average expression (`mean()`) and the standard deviation (`sd()`)

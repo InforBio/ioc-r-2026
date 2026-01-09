@@ -214,7 +214,7 @@ rnaseq_data$sample_group <- factor(rnaseq_data$sample_group, levels = c("Control
 ```
 
 3. Remove rows with missing values.
-Create a new dataset without missing values.
+Create a new dataset without missing values, name it `data_clean`.
 
 ```{r}
 #| code-fold: true
