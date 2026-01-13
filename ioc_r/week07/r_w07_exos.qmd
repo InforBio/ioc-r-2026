@@ -259,7 +259,7 @@ install.packages("GGally")
 ```
 
 12. Load the package and take a look at the help page for `ggpairs()`.
-How will you reshape the `data1_long` to provide the necessary data for the `[ggpairs()](https://ggobi.github.io/ggally/articles/ggpairs.html){target='_blank'}` function?
+How will you reshape the `data1_long` to provide the necessary data for the [`ggpairs()`](https://ggobi.github.io/ggally/articles/ggpairs.html){target='_blank'} function?
 
 ```{r}
 #| eval: false
