@@ -326,7 +326,8 @@ returning NA</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>vec_num <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="dv">3</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(<span class="at">vec_num =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error in which(vec_num = 3): unused argument (vec_num = 3)</code></pre>
+<pre><code>Error in `which()`:
+! unused argument (vec_num = 3)</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -345,10 +346,12 @@ returning NA</code></pre>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell">
 <div class="cell-output cell-output-error">
-<pre><code>Error in ggplot(iris, aes(x = Sepal.Length, y = Species)): could not find function "ggplot"</code></pre>
+<pre><code>Error in `ggplot()`:
+! could not find function "ggplot"</code></pre>
 </div>
 <div class="cell-output cell-output-error">
-<pre><code>Error in geom_boxplot(): could not find function "geom_boxplot"</code></pre>
+<pre><code>Error in `geom_boxplot()`:
+! could not find function "geom_boxplot"</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -600,7 +603,7 @@ dbl (1): expression
 </details>
 </div>
 <ol start="3" type="1">
-<li>Remove rows with missing values. Create a new dataset without missing values.</li>
+<li>Remove rows with missing values. Create a new dataset without missing values, name it <code>data_clean</code>.</li>
 </ol>
 <div class="cell">
 <details class="code-fold">

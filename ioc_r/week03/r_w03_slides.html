@@ -849,7 +849,8 @@
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a></a><span class="fu">rbind</span>(df1, df2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error in match.names(clabs, names(xi)): names do not match previous names</code></pre>
+<pre><code>Error in `match.names()`:
+! names do not match previous names</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a></a>df3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">7</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">y =</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">12</span>)</span>
 <span id="cb85-2"><a></a><span class="fu">rbind</span>(df1, df3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
