@@ -9,9 +9,9 @@
 # The analysis results are available via this link:
 # https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv
 
-## - Please donwload the result file and upload it to your data folder.
-## - Import the data using the `read.csv()` function.
-## (See the documentation with `?read.csv`)
+## - Donwload the result file and upload it to your data folder.
+## - Import the data using the `read_csv()` function from the package `readr`.
+## (See the documentation with `?read_csv`)
 ## Name the imported results `de_res`.
 
 de_res

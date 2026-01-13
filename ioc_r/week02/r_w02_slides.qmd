@@ -51,6 +51,9 @@ Click [here](https://app.wooclap.com/ZCRSNB?from=instruction-slide){target="_bla
 x <- 1 # put a space on each side of the assignment sign
 x # type variable name to print its value(s)
 
+x <- 2 # give it a new value
+x
+
 char_name <- "InforBio"
 char_name
 
@@ -60,6 +63,10 @@ char_name <- InforBio
 ::: {.callout-tip appearance="simple"}
 Check the "Environment" pane or type `ls()` in the console, are variables you just created there?
 :::
+
+```{r}
+rm(x) # remove the variable
+```
 
 ::: {.notes}
 Variables are containers for data.

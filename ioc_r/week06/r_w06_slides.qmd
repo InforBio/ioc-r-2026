@@ -132,7 +132,7 @@ xlsx::write.xlsx(
 
 :::{.callout-note appearance="simple" .fragment}
 - Don't forget to use arguments to specify if your data has header, row names, *etc.*
-- Cheat sheet for data import/export with {readr} and {readxl} in R: <https://github.com/rstudio/cheatsheets/blob/main/data-import.pdf>
+- Data import/export with {readr} and {readxl} [cheat sheet](https://github.com/rstudio/cheatsheets/blob/main/data-import.pdf){target="_blank"}.
 :::
 
 :::
@@ -289,7 +289,7 @@ df[which(df$Mutation), ]  # Filter mutated genes
 ```{r}
 age <- c(18, 27, 20, 23, 22)
 # extract age between 20 and 25
-age[age < 20 | age > 25]
+age[age > 20 & age < 25]
 ```
 
 :::

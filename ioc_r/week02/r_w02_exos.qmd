@@ -211,6 +211,17 @@ shapiro.test(heights)
 ```
 
 ::: {.callout-note title="Stats Time!"}
+**P-value** 
+
+The p-value is the probability of observing your data (or something more extreme) if the null hypothesis (H0) is true.
+
+- If the p-value is small:
+  - There’s strong evidence against H0, so you reject it.
+  - This suggests that the alternative hypothesis (H1) might be true.
+- If the p-value is large:
+  - There’s not enough evidence to reject H0.
+  - This doesn’t mean H0 is true, it just means the data doesn’t strongly contradict it.
+
 **Type I error ($\alpha$)**
 
 A type I error occurs when we reject the null hypothesis whereas it is actually true (false positive).
@@ -218,17 +229,6 @@ A type I error occurs when we reject the null hypothesis whereas it is actually 
 The probability (risk) of making a type I error is denoted as $\alpha$, which also called the significance level.
 By choosing $\alpha = 0.05$, you’re saying:
 "I’m willing to accept a 5% chance of incorrectly rejecting H0."
-
-**P-value** 
-
-The p-value is the probability of observing your data (or something more extreme) if the null hypothesis (H0) is true.
-
-- If the p-value is small (e.g., ≤ 0.05):
-  - There’s strong evidence against H0, so you reject it.
-  - This suggests that the alternative hypothesis (H1) might be true.
-- If the p-value is large (e.g., > 0.05):
-  - There’s not enough evidence to reject H0.
-  - This doesn’t mean H0 is true, it just means the data doesn’t strongly contradict it.
 :::
 
 If we take $\alpha=0.05$:
