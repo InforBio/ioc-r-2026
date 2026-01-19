@@ -68,13 +68,19 @@ the_gene <- "LOH1"
 df_plot <- filter(counts, Feature == the_gene) |>
   select(contains(names(colors)), -contains("RRP6")) |>
   pivot_longer(everything()) |>
-  mutate(group = sub("(.*)\\.([0-9]+)", "\\1", name)) # use regular expression, ?sub
+  mutate(group = sub("(.*)\\.[0-9]+", "\\1", name)) # use regular expression, ?sub
 df_plot
+
+# you can also use the extract() function instead of sub() and mutate()
+filter(counts, Feature == the_gene) |>
+  select(contains(names(colors)), -contains("RRP6")) |>
+  pivot_longer(everything()) |>
+  extract(col = name, into = "group", regex = "(.*)\\.[0-9]+", remove = FALSE)
 
 # or first pivot then filter wanted groups
 filter(counts, Feature == the_gene) |>
   pivot_longer(!Feature) |> # pivot except the 1st column
-  mutate(group = sub("(.*)\\.([0-9]+)", "\\1", name)) |> # use regular expression
+  mutate(group = sub("(.*)\\.[0-9]+", "\\1", name)) |> # use regular expression
   filter(group %in% names(colors))
 
 
@@ -105,14 +111,31 @@ Save the final plot as `p_label`.
 # E.g.: rank sample based on values by group
 df_plot |>
   group_by(group) |>
-  mutate(rank = rank(value))
+  mutate(val_rank = rank(value))
 
+# label the top 3 expressed samples in each group
+df_plot <- df_plot |>
+  group_by(group) |>
+  mutate(
+    val_rank = rank(value),
+    label = ifelse(val_rank <= 3, name, NA)
+  )
 
-# label the top 3 expressed sample in each group
+# or without creating the intermediate column
 df_plot <- df_plot |>
   group_by(group) |>
   mutate(label = ifelse(rank(desc(value)) <= 3, name, NA))
 
+# or use the combination of slice_head() and pull() to extract the top 3 per group,
+# then create the new column based on it.
+to_label <- df_plot |>
+  group_by(group) |>
+  arrange(desc(value)) |>
+  slice_head(n = 3) |>
+  pull(name)
+to_label
+df_plot <- df_plot |>
+  mutate(label = if_else(name %in% to_label, name, NA))
 
 # redo the figure with the updated data frame and add labels
 p_label <- ggplot(df_plot, aes(x = group, y = value)) +
@@ -148,10 +171,8 @@ pvalue_df <- data.frame(
   y.position = 230 # The y-coordinate where the annotation will be placed
 )
 
-p_signif <- p_label + stat_pvalue_manual(
-  data = pvalue_df,
-  y.position = 250
-)
+p_signif <- p_label +
+  stat_pvalue_manual(data = pvalue_df)
 p_signif
 
 ```
@@ -189,7 +210,7 @@ p_lfc
 ```
 
 6. Write a custom function that generates a boxplot (like `p` in Question 2 ) for any gene of interest.
-Test your function with the gene *PIR3*.
+Test your function with the gene *FAR1*.
 
 Save the resulting plot as `p2`.
 

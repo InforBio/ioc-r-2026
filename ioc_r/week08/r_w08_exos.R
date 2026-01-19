@@ -41,7 +41,7 @@
 # Save the final plot as `p_lfc`.
 
 # 6. Write a custom function that generates a boxplot (like `p` in Question 2 ) for any gene of interest.
-# Test your function with the gene *PIR3*.
+# Test your function with the gene *FAR1*.
 # Save the resulting plot as `p2`.
 
 # 7. Combine `p_lfc`, `p_signif`, and `p2` into a single layout using {patchwork}.
