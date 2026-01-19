@@ -5,6 +5,7 @@ format:
   html:
     toc: true
     embed-resources: true
+    link-external-newwindow: true
 date: "2026-XX-XX"
 editor_options: 
   chunk_output_type: console
@@ -19,7 +20,7 @@ editor_options:
 ## Quarto Document
 
 A template is available here:
-[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week09/r_w09_example.qmd.txt){target='_blank'}.
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week09/r_w09_example.qmd.txt).
 Download it and remove the suffix ".txt".
 
 - Modify the YAML header at the top of the Quarto file:
