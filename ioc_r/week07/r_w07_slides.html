@@ -7,8 +7,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.26">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.27">
 
   <title>IOC-2026 – Tidy Up: Wrangling Data with {dplyr} and {tidyr}</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -96,7 +96,7 @@
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
-  <link rel="stylesheet" href="../custom.css">
+  <link rel="stylesheet" href="../../ioc_r/custom.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -223,14 +223,14 @@
 <div class="columns">
 <div class="column">
 <ul>
-<li><a href="https://readr.tidyverse.org/" target="_blank">readr</a>: import data into R</li>
-<li><a href="https://ggplot2.tidyverse.org/" target="_blank">ggplot2</a>: visualisation</li>
+<li><a href="https://readr.tidyverse.org/">readr</a>: import data into R</li>
+<li><a href="https://ggplot2.tidyverse.org/">ggplot2</a>: visualisation</li>
 </ul>
 </div><div class="column">
 <ul>
-<li><a href="https://tidyr.tidyverse.org/" target="_blank"><strong>tidyr</strong></a>: restructure data</li>
-<li><a href="https://dplyr.tidyverse.org/" target="_blank"><strong>dplyr</strong></a>: manipulate data</li>
-<li><a href="https://stringr.tidyverse.org/" target="_blank">stringr</a>: manipulate strings</li>
+<li><a href="https://tidyr.tidyverse.org/"><strong>tidyr</strong></a>: restructure data</li>
+<li><a href="https://dplyr.tidyverse.org/"><strong>dplyr</strong></a>: manipulate data</li>
+<li><a href="https://stringr.tidyverse.org/">stringr</a>: manipulate strings</li>
 </ul>
 </div></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="do">## install the tidyverse package</span></span>
@@ -1596,6 +1596,11 @@ Levels: setosa versicolor virginica</code></pre>
               if (link.dataset.originalHref !== undefined) {
                 link.href = link.dataset.originalHref;
               }
+                // target, if specified
+                link.setAttribute("target", "_blank");
+                if (link.getAttribute("rel") === null) {
+                  link.setAttribute("rel", "noopener");
+                }
             }
           }
         function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

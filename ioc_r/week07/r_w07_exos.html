@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -73,7 +73,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-0b37c64f34216b628666a8dac638b53b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -211,7 +211,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>The R script is available here: <a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week07/r_w07_exos.R" target="_blank">link</a></p>
+<p>The R script is available here: <a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week07/r_w07_exos.R">link</a></p>
 <section id="goals" class="level2">
 <h2 class="anchored" data-anchor-id="goals">Goals</h2>
 <ul>
@@ -246,8 +246,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>A small Gaussian noise has been added to the original data, preserving the overall structure.</p>
 <p>The data is available in two CSV files:</p>
 <ul>
-<li><a href="../exos_data/data_anonym_struc1_noise.csv" target="_blank">data_anonym_struc1_noise.csv</a></li>
-<li><a href="../exos_data/data_anonym_struc2_noise.csv" target="_blank">data_anonym_struc2_noise.csv</a></li>
+<li><a href="../exos_data/data_anonym_struc1_noise.csv">data_anonym_struc1_noise.csv</a></li>
+<li><a href="../exos_data/data_anonym_struc2_noise.csv">data_anonym_struc2_noise.csv</a></li>
 </ul>
 <p>We will focus on the data from the brain structure 1. <strong>The aim is to perform an exploratory analysis to have a glimpse of the relationship between variables.</strong></p>
 <section id="import-the-data" class="level3">
@@ -577,12 +577,12 @@ FALSE  TRUE
 <section id="explore-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="explore-the-data">Explore the Data</h3>
 <p>What kind of analysis would you like to perform with this data?</p>
-<p>In statistics, it’s common to begin by exploring the dataset as a whole and visualizing the relationships between different variables. The function <code>ggpairs()</code> from the {<a href="https://ggobi.github.io/ggally/index.html" target="_blank"><code>GGally</code></a>} package is useful for creating a matrix of scatter plots to examine the relationships between each pair of variables. First, let’s install the {<code>GGally</code>} package if it is not already installed.</p>
+<p>In statistics, it’s common to begin by exploring the dataset as a whole and visualizing the relationships between different variables. The function <code>ggpairs()</code> from the {<a href="https://ggobi.github.io/ggally/index.html"><code>GGally</code></a>} package is useful for creating a matrix of scatter plots to examine the relationships between each pair of variables. First, let’s install the {<code>GGally</code>} package if it is not already installed.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"GGally"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ol start="12" type="1">
-<li>Load the package and take a look at the help page for <code>ggpairs()</code>. How will you reshape the <code>data1_long</code> to provide the necessary data for the <a href="https://ggobi.github.io/ggally/articles/ggpairs.html" target="_blank"><code>ggpairs()</code></a> function?</li>
+<li>Load the package and take a look at the help page for <code>ggpairs()</code>. How will you reshape the <code>data1_long</code> to provide the necessary data for the <a href="https://ggobi.github.io/ggally/articles/ggpairs.html"><code>ggpairs()</code></a> function?</li>
 </ol>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
@@ -797,6 +797,11 @@ FALSE  TRUE
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

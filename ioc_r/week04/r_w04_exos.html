@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -73,7 +73,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-0b37c64f34216b628666a8dac638b53b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -234,7 +234,7 @@ window.Quarto = {
 </header>
 
 
-<p>The R script is available here: <a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week04/r_w04_exos.R" target="_blank">link</a></p>
+<p>The R script is available here: <a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week04/r_w04_exos.R">link</a></p>
 <section id="goals" class="level2">
 <h2 class="anchored" data-anchor-id="goals">Goals</h2>
 <ul>
@@ -245,7 +245,7 @@ window.Quarto = {
 <section id="import-data" class="level2">
 <h2 class="anchored" data-anchor-id="import-data">Import Data</h2>
 <p>A gene-level differential expression (DE) analysis was performed to compare SET1 samples to WT samples using data from <code>read-counts.csv</code>.</p>
-<p>The analysis results are available via this <a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv" target="_blank">link</a>.</p>
+<p>The analysis results are available via this <a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv">link</a>.</p>
 <ul>
 <li>Donwload the result file and upload it to your data folder.</li>
 <li>Import the data using the <code>read_csv()</code> function from the package <code>readr</code>. (See the documentation with <code>?read_csv</code>) Name the imported results <code>de_res</code>.</li>
@@ -501,11 +501,11 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>Ensembl Data Base</strong></p>
-<p><a href="http://www.ensembl.org/index.html" target="_blank">Ensembl</a> is a comprehensive genome database that provides detailed information on genes and their annotations across a wide range of species (humain, mouse, zebrafish, <em>etc.</em>). It integrates genomic data with tools like BioMart, making it easy to query and extract information such as gene names, coordinates, functions, and orthologs for research purposes.</p>
+<p><a href="http://www.ensembl.org/index.html">Ensembl</a> is a comprehensive genome database that provides detailed information on genes and their annotations across a wide range of species (humain, mouse, zebrafish, <em>etc.</em>). It integrates genomic data with tools like BioMart, making it easy to query and extract information such as gene names, coordinates, functions, and orthologs for research purposes.</p>
 </div>
 </div>
 <ol start="9" type="1">
-<li>A yeast gene annotation file was obtained from the Ensembl data base. This file can be donwloaded <a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/yeast_gene_annot.csv" target="_blank">here</a>.</li>
+<li>A yeast gene annotation file was obtained from the Ensembl data base. This file can be donwloaded <a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/yeast_gene_annot.csv">here</a>.</li>
 </ol>
 <p>Import the data and add the annotation to the <code>de_res</code> data frame using <code>merge()</code> function. (<code>?merge</code>)</p>
 <div class="cell">
@@ -644,6 +644,11 @@ dbl (2): start, end
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

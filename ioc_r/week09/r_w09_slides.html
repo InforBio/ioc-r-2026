@@ -7,8 +7,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.26">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.27">
 
   <title>IOC-2026 – Putting It All Together:  Reproducible Analysis with Quarto</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -96,7 +96,7 @@
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
-  <link rel="stylesheet" href="../custom.css">
+  <link rel="stylesheet" href="../../ioc_r/custom.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -228,7 +228,7 @@
 <i class="callout-icon"></i>
 </div>
 <div class="callout-content">
-<p>Check out the <a href="https://quarto.org/docs/get-started/hello/rstudio.html" target="_blank">Quarto tutorial</a>.</p>
+<p>Check out the <a href="https://quarto.org/docs/get-started/hello/rstudio.html">Quarto tutorial</a>.</p>
 </div>
 </div>
 </div>
@@ -323,7 +323,7 @@
 <section id="code-chunks-options" class="slide level2 smaller">
 <h2>Code Chunks Options</h2>
 <p><img data-src="images/chunk_options.png" class="" style="width:80.0%"></p>
-<p>(Source: <a href="https://r4ds.hadley.nz/quarto.html#chunk-options" target="_blank">R For Data Science</a>)</p>
+<p>(Source: <a href="https://r4ds.hadley.nz/quarto.html#chunk-options">R For Data Science</a>)</p>
 </section>
 <section id="code-chunks-execution" class="slide level2 smaller">
 <h2>Code Chunks Execution</h2>
@@ -362,7 +362,7 @@
 <i class="callout-icon"></i>
 </div>
 <div class="callout-content">
-<p>Markdown syntax <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank">cheat sheet</a></p>
+<p>Markdown syntax <a href="https://www.markdownguide.org/cheat-sheet/">cheat sheet</a></p>
 </div>
 </div>
 </div>
@@ -776,6 +776,11 @@
               if (link.dataset.originalHref !== undefined) {
                 link.href = link.dataset.originalHref;
               }
+                // target, if specified
+                link.setAttribute("target", "_blank");
+                if (link.getAttribute("rel") === null) {
+                  link.setAttribute("rel", "noopener");
+                }
             }
           }
         function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
