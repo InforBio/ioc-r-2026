@@ -548,7 +548,7 @@ output
 ## First Custom Function {.smaller}
 
 Create a scatter plot for bill length and depth of penguins,
-color those will bill length greater than a specified cutoff, *e.g.*: 40 mm.
+coloring penguins whose bill length is greater than a specified cutoff, *e.g.*: 40 mm.
 
 ```{r}
 #| echo: false 
