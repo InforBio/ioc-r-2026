@@ -1,5 +1,6 @@
 ---
 title: "IOC on Single-cell RNAseq Analysis"
+format: html
 ---
 
 Training on single-cell RNAseq analysis is upcoming!

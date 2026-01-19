@@ -4,19 +4,7 @@ subtitle: "IOC-R Week 8"
 date: "2026-01-26"
 date-format: " "
 format:
-  revealjs: 
-    toc: true
-    toc-title: "Plan"
-    toc-depth: 1
-    slide-number: true
-    preview-links: auto
-    logo: ../../images/logoInforBio_fond_blanc_small.png
-    css: ../custom.css
-    footer: '<div style="position: absolute; bottom: 0px; left: 70px; font-size:18px">
-               <a href="https://inforbio.github.io/ioc-r-2026/ioc_r_toc.html">Back to ToC</a>
-             </div>'
-  # pdf:
-  #   toc: true
+  revealjs: default
 echo: true
 warning: false
 categories: 
@@ -73,7 +61,7 @@ iris_tbl |> filter(sepal_ratio > 2.8) |> nrow()
 
 ## Basic ggplot2
 
-![(Figure adpated from [QCBS R Workshop Series](https://r.qcbs.ca/workshop03/book-en/grammar-of-graphics-gg-basics.html){target="_blank"}.)](../week05/images/ggplot_comp.png)
+![(Figure adpated from [QCBS R Workshop Series](https://r.qcbs.ca/workshop03/book-en/grammar-of-graphics-gg-basics.html).)](../week05/images/ggplot_comp.png)
 
 # ggplot2 - Part 2
 
@@ -139,8 +127,8 @@ p0 + scale_color_manual( # Manually set colors
 ```
 
 ::: {.callout-note appearance="simple"}
-See [colors in R](https://r-charts.com/colors/){target="_blank"} and
-[Color Palette Finder](https://r-graph-gallery.com/color-palette-finder){target="_blank"}.
+See [colors in R](https://r-charts.com/colors/) and
+[Color Palette Finder](https://r-graph-gallery.com/color-palette-finder).
 :::
 
 :::
@@ -166,7 +154,7 @@ p1
 ```
 
 ::: {.callout-note appearance="simple"}
-See [possible shapes](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html#sec:shape-spec){target="_blank"}.
+See [possible shapes](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html#sec:shape-spec).
 :::
 
 :::
@@ -233,7 +221,7 @@ p0 +
 ```
 
 ::: {.callout-note appearance="simple"}
-See [possible line types](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html#sec:line-type-spec){target="_blank"}.
+See [possible line types](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html#sec:line-type-spec).
 :::
 
 :::
@@ -260,7 +248,7 @@ p0 +
 
 ![](images/position-facets.png){.nostretch width=70%}
 
-(Source: [ggplot2 book](https://ggplot2-book.org/facet.html){target="_blank"})
+(Source: [ggplot2 book](https://ggplot2-book.org/facet.html))
 
 :::{.notes}
 Faceting (or splitting into panels) allows us to compare patterns across groups,
@@ -323,7 +311,7 @@ Check out the extension gallery: <https://exts.ggplot2.tidyverse.org/gallery/>
 
 ## Labelling with {`ggrepel`} {.smaller}
 
-- {[`ggrepel`](https://ggrepel.slowkow.com){target="_blank"}}: prevent labels from overlapping
+- {[`ggrepel`](https://ggrepel.slowkow.com)}: prevent labels from overlapping
 
 ```{r}
 # E.g.: label penguins with bill depth 17.5
@@ -343,7 +331,7 @@ filter(penguins, !is.na(name)) |> nrow()
 
 ## Labelling with {`ggrepel`} {.smaller}
 
-- {[`ggrepel`](https://ggrepel.slowkow.com){target="_blank"}}: prevent labels from overlapping
+- {[`ggrepel`](https://ggrepel.slowkow.com)}: prevent labels from overlapping
 
 :::::: {.columns}
 ::: {.column}
@@ -436,7 +424,7 @@ Check out more details: <https://rpkgs.datanovia.com/ggpubr/index.html>
 
 ## Creating {`patchwork`} {.smaller}
 
-{[`patchwork`](https://patchwork.data-imaginist.com){target="_blank"}}: create multi-panel figures
+{[`patchwork`](https://patchwork.data-imaginist.com)}: create multi-panel figures
 
 ```{r}
 # prepare figures
@@ -484,7 +472,7 @@ p1 | p2 / p3
 :::
 
 :::{.callout-note appearance="simple"}
-For more complex and precise design, use the [`wrap_plots()`](https://patchwork.data-imaginist.com/reference/wrap_plots.html){target="_blank"} function. 
+For more complex and precise design, use the [`wrap_plots()`](https://patchwork.data-imaginist.com/reference/wrap_plots.html) function. 
 :::
 
 ## Interactive Plots with {`plotly`} {.smaller}

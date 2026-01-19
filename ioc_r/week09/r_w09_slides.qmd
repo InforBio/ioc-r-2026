@@ -4,19 +4,7 @@ subtitle: "IOC-R Week 9"
 date: "2026-03-09"
 date-format: " "
 format:
-  revealjs: 
-    toc: true
-    toc-title: "Plan"
-    toc-depth: 1
-    slide-number: true
-    preview-links: auto
-    logo: ../../images/logoInforBio_fond_blanc_small.png
-    css: ../custom.css
-    footer: '<div style="position: absolute; bottom: 0px; left: 70px; font-size:18px">
-               <a href="https://inforbio.github.io/ioc-r-2026/ioc_r_toc.html">Back to ToC</a>
-             </div>'
-  # pdf:
-  #   toc: true
+  revealjs: default
 echo: true
 categories: 
   - week09
@@ -33,7 +21,7 @@ image: images/preview_w9.jpg
 - Supports multiple output formats: .html, .docx, .pptx, .pdf, *etc.*
 
 ::: {.callout-note appearance="simple"}
-Check out the [Quarto tutorial](https://quarto.org/docs/get-started/hello/rstudio.html){target="_blank"}.
+Check out the [Quarto tutorial](https://quarto.org/docs/get-started/hello/rstudio.html).
 :::
 
 ## An Example {.smaller}
@@ -140,7 +128,7 @@ Global defaults for all chunks can be set under "**execute:**" inside the YAML h
 
 ![](images/chunk_options.png){.nostretch width=80%}
 
-(Source: [R For Data Science](https://r4ds.hadley.nz/quarto.html#chunk-options){target="_blank"})
+(Source: [R For Data Science](https://r4ds.hadley.nz/quarto.html#chunk-options))
 
 
 ## Code Chunks Execution {.smaller}
@@ -178,7 +166,7 @@ Subscript~2~
 ````
 
 :::{.callout-note appearance="simple"}
-Markdown syntax [cheat sheet](https://www.markdownguide.org/cheat-sheet/){target="_blank"}
+Markdown syntax [cheat sheet](https://www.markdownguide.org/cheat-sheet/)
 :::
 
 :::{.notes}

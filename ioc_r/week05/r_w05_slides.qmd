@@ -4,19 +4,7 @@ subtitle: "IOC-R Week 5"
 date: "2025-12-01"
 date-format: " "
 format:
-  revealjs: 
-    toc: true
-    toc-title: "Plan"
-    toc-depth: 1
-    slide-number: true
-    preview-links: auto
-    logo: ../../images/logoInforBio_fond_blanc_small.png
-    css: ../custom.css
-    footer: '<div style="position: absolute; bottom: 0px; left: 70px; font-size:18px">
-               <a href="https://inforbio.github.io/ioc-r-2026/ioc_r_toc.html">Back to ToC</a>
-             </div>'
-  # pdf:
-  #   toc: true
+  revealjs: default
 echo: true
 categories: 
   - week05
@@ -122,8 +110,8 @@ By default, R will install the lastest version of a package.
 - Via command, *i.e.*, `install.packages("ggplot2")`
 
 ::: {.callout-note appearance="simple"}
-- **[CRAN](https://cran.r-project.org){target="_blank"}** (Comprehensive R Archive Network) is a network of servers around the world that store identical, up-to-date, versions of code and documentation for R.
-- **[Bioconductor](https://bioconductor.org){target="_blank"}** is a specialized repository like CRAN, but focused on bioinformatics. It provides R packages for analyzing genomic and biological data.
+- **[CRAN](https://cran.r-project.org)** (Comprehensive R Archive Network) is a network of servers around the world that store identical, up-to-date, versions of code and documentation for R.
+- **[Bioconductor](https://bioconductor.org)** is a specialized repository like CRAN, but focused on bioinformatics. It provides R packages for analyzing genomic and biological data.
 :::
 
 ::: {.notes}
@@ -198,8 +186,8 @@ flowchart LR
 
 ::: {.callout-note appearance="simple"}
 Check out these websites:
-[from Data to Viz](https://www.data-to-viz.com){target="_blank"} and
-[The R Graph Gallery](https://r-graph-gallery.com){target="_blank"} (by Yan Holtz)
+[from Data to Viz](https://www.data-to-viz.com) and
+[The R Graph Gallery](https://r-graph-gallery.com) (by Yan Holtz)
 :::
 
 ::: {.notes}
@@ -210,7 +198,7 @@ Check out these websites:
 
 ## Compositions of a ggplot {.smaller}
 
-![(Figure adpated from [QCBS R Workshop Series](https://r.qcbs.ca/workshop03/book-en/grammar-of-graphics-gg-basics.html){target="_blank"}.)](images/ggplot_comp.png)
+![(Figure adpated from [QCBS R Workshop Series](https://r.qcbs.ca/workshop03/book-en/grammar-of-graphics-gg-basics.html).)](images/ggplot_comp.png)
 
 
 ## How to Build a ggplot {.smaller}

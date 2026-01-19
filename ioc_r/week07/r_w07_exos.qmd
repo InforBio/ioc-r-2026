@@ -13,7 +13,7 @@ editor_options:
 ---
 
 The R script is available here:
-[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week07/r_w07_exos.R){target='_blank'}
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week07/r_w07_exos.R)
 
 ## Goals
 
@@ -48,8 +48,8 @@ A small Gaussian noise has been added to the original data, preserving the overa
 
 The data is available in two CSV files:
 
-- [data_anonym_struc1_noise.csv](../exos_data/data_anonym_struc1_noise.csv){target='_blank'}
-- [data_anonym_struc2_noise.csv](../exos_data/data_anonym_struc2_noise.csv){target='_blank'}
+- [data_anonym_struc1_noise.csv](../exos_data/data_anonym_struc1_noise.csv)
+- [data_anonym_struc2_noise.csv](../exos_data/data_anonym_struc2_noise.csv)
 
 We will focus on the data from the brain structure 1.
 **The aim is to perform an exploratory analysis to have a glimpse of the relationship between variables.**
@@ -248,7 +248,7 @@ data1_long |>
 What kind of analysis would you like to perform with this data?
 
 In statistics, it's common to begin by exploring the dataset as a whole and visualizing the relationships between different variables.
-The function `ggpairs()` from the {[`GGally`](https://ggobi.github.io/ggally/index.html){target='_blank'}} package
+The function `ggpairs()` from the {[`GGally`](https://ggobi.github.io/ggally/index.html)} package
 is useful for creating a matrix of scatter plots to examine the relationships between each pair of variables.
 First, let's install the {`GGally`} package if it is not already installed.
 
@@ -259,7 +259,7 @@ install.packages("GGally")
 ```
 
 12. Load the package and take a look at the help page for `ggpairs()`.
-How will you reshape the `data1_long` to provide the necessary data for the [`ggpairs()`](https://ggobi.github.io/ggally/articles/ggpairs.html){target='_blank'} function?
+How will you reshape the `data1_long` to provide the necessary data for the [`ggpairs()`](https://ggobi.github.io/ggally/articles/ggpairs.html) function?
 
 ```{r}
 #| eval: false

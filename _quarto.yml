@@ -39,14 +39,29 @@ website:
         href: https://github.com/InforBio/ioc-r-2026
 
 
+toc: true
+link-external-newwindow: true
+preview-links: auto
+
+
 format:
   html:
+    # embed-resources: true
     theme: cosmo
-    toc: true
     history: false
+  revealjs:
+    # embed-resources: true
+    toc-title: "Plan"
+    toc-depth: 1
+    slide-number: true
+    css: ioc_r/custom.css
+    logo: images/logoInforBio_fond_blanc_small.png
+    footer: '<div style="position: absolute; bottom: 0px; left: 70px; font-size:18px">
+            <a href="https://inforbio.github.io/ioc-r-2026/ioc_r_toc.html">Back to ToC</a>
+          </div>'
   # pdf:
   #   toc: true
-    
+  
 
 
 

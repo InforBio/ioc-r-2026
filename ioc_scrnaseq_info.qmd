@@ -1,5 +1,6 @@
 ---
 title: "IOC Single-cell RNAseq Training Information"
+format: html
 ---
 
 Welcome to the IOC-scRNAseq Training!

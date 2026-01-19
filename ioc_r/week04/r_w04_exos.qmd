@@ -13,7 +13,7 @@ editor_options:
 ---
 
 The R script is available here:
-[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week04/r_w04_exos.R){target='_blank'}
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week04/r_w04_exos.R)
 
 ## Goals
 
@@ -24,7 +24,7 @@ The R script is available here:
 
 A gene-level differential expression (DE) analysis was performed to compare SET1 samples to WT samples using data from `read-counts.csv`.
 
-The analysis results are available via this [link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv){target='_blank'}.
+The analysis results are available via this [link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv).
 
 - Donwload the result file and upload it to your data folder.
 - Import the data using the `read_csv()` function from the package `readr`.
@@ -171,7 +171,7 @@ table(de_res[["gene_category"]])
 ::: {.callout-note}
 **Ensembl Data Base**
 
-[Ensembl](http://www.ensembl.org/index.html){target='_blank'}
+[Ensembl](http://www.ensembl.org/index.html)
 is a comprehensive genome database that provides detailed information on genes and
 their annotations across a wide range of species (humain, mouse, zebrafish, *etc.*).
 It integrates genomic data with tools like BioMart,
@@ -180,7 +180,7 @@ and orthologs for research purposes.
 :::
 
 9. A yeast gene annotation file was obtained from the Ensembl data base.
-This file can be donwloaded [here](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/yeast_gene_annot.csv){target='_blank'}.
+This file can be donwloaded [here](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/yeast_gene_annot.csv).
 
 Import the data and add the annotation to the `de_res` data frame using `merge()` function. (`?merge`)
 

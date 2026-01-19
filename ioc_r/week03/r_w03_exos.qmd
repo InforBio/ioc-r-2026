@@ -13,7 +13,7 @@ editor_options:
 ---
 
 The R script is available here:
-[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week03/r_w03_exos.R){target='_blank'}
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week03/r_w03_exos.R)
 
 ## Goals
 
@@ -250,7 +250,7 @@ my_list[["gene_description"]] <- c(
 
 ::: {.callout-note title="Bonus!"}
 Check out this cheat sheet for the basic R commands:
-[Base R Cheat Sheet](https://iqss.github.io/dss-workshops/R/Rintro/base-r-cheat-sheet.pdf){target='_blank'}
+[Base R Cheat Sheet](https://iqss.github.io/dss-workshops/R/Rintro/base-r-cheat-sheet.pdf)
 :::
 
 ---

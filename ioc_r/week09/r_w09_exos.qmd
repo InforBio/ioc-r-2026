@@ -21,7 +21,7 @@ editor_options:
 ## Quarto Document
 
 A template is available here:
-[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week09/r_w09_example.qmd.txt){target='_blank'}. Download it and remove the suffix ".txt".
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week09/r_w09_example.qmd.txt). Download it and remove the suffix ".txt".
 
 - Modify the YAML header at the top of the Quarto file:
 change the `title`, `author`, or any other metadata to personalize the document.

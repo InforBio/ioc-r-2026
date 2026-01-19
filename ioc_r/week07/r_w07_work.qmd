@@ -19,8 +19,8 @@ Just a reminder, the expression of 20 genes was measured in mice aged from 10 to
 
 The data is available in two CSV files:
 
-- [data_anonym_struc1_noise.csv](../exos_data/data_anonym_struc1_noise.csv){target='_blank'}
-- [data_anonym_struc2_noise.csv](../exos_data/data_anonym_struc2_noise.csv){target='_blank'}
+- [data_anonym_struc1_noise.csv](../exos_data/data_anonym_struc1_noise.csv)
+- [data_anonym_struc2_noise.csv](../exos_data/data_anonym_struc2_noise.csv)
 
 1. Import the two data files and reshape them the same way you did up to question 9 of the exercise.
 Then, combine the two datasets into one.
@@ -50,4 +50,4 @@ Choose an appropriate figure to display this gene's expression across the brain 
 ---
 
 The homework correction is available here:
-[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week07/.r_w07_work_corr.R){target='_blank'}
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week07/.r_w07_work_corr.R)

@@ -4,19 +4,7 @@ subtitle: "IOC-R Week 7"
 date: "2026-01-12"
 date-format: " "
 format:
-  revealjs: 
-    toc: true
-    toc-title: "Plan"
-    toc-depth: 1
-    slide-number: true
-    preview-links: auto
-    logo: ../../images/logoInforBio_fond_blanc_small.png
-    css: ../custom.css
-    footer: '<div style="position: absolute; bottom: 0px; left: 70px; font-size:18px">
-               <a href="https://inforbio.github.io/ioc-r-2026/ioc_r_toc.html">Back to ToC</a>
-             </div>'
-  # pdf:
-  #   toc: true
+  revealjs: default
 echo: true
 categories: 
   - week07
@@ -32,13 +20,13 @@ image: images/preview_w7.png
 
 ::: {.columns}
 ::: {.column}
-- [readr](https://readr.tidyverse.org/){target="_blank"}: import data into R
-- [ggplot2](https://ggplot2.tidyverse.org/){target="_blank"}: visualisation
+- [readr](https://readr.tidyverse.org/): import data into R
+- [ggplot2](https://ggplot2.tidyverse.org/): visualisation
 :::
 ::: {.column}
-- [**tidyr**](https://tidyr.tidyverse.org/){target="_blank"}: restructure data
-- [**dplyr**](https://dplyr.tidyverse.org/){target="_blank"}: manipulate data
-- [stringr](https://stringr.tidyverse.org/){target="_blank"}: manipulate strings
+- [**tidyr**](https://tidyr.tidyverse.org/): restructure data
+- [**dplyr**](https://dplyr.tidyverse.org/): manipulate data
+- [stringr](https://stringr.tidyverse.org/): manipulate strings
 :::
 :::
 

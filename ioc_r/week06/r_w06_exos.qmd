@@ -15,7 +15,7 @@ execute:
 ---
 
 The R script is available here:
-[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week06/r_w06_exos.R){target='_blank'}
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week06/r_w06_exos.R)
 
 ## Goals
 
@@ -177,7 +177,7 @@ check if the expression is different between groups.
 
 Tasks:
 
-1. Download the data ([link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/rna_seq_simulated_data.csv){target='_blank'}) and import it into Rstudio, name it `rnaseq_data`.
+1. Download the data ([link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/rna_seq_simulated_data.csv)) and import it into Rstudio, name it `rnaseq_data`.
 
 ```{r}
 #| code-fold: true

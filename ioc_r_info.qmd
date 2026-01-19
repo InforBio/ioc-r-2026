@@ -1,5 +1,6 @@
 ---
 title: "IOC R Training Information"
+format: html
 ---
 
 Welcome to the new edition of IOC R Training!
@@ -29,9 +30,9 @@ Please bookmark this page for quick access.
 
 ## Recommended Readings
 
-- [R for Data Science](https://r4ds.hadley.nz){target='_blank'} by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
-- [Hands-On Programming with R](https://rstudio-education.github.io/hopr/){target='_blank'} by Garrett Grolemund 
-- [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2.tidyverse.org){target='_blank'} by Hadley Wickham 
-- [YaRrr! The Pirate’s Guide to R](https://bookdown.org/ndphillips/YaRrr/){target='_blank'} by Nathaniel D. Phillips
-- [CRAN R Documentation](https://cran.r-project.org/){target='_blank'}
+- [R for Data Science](https://r4ds.hadley.nz) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
+- [Hands-On Programming with R](https://rstudio-education.github.io/hopr/) by Garrett Grolemund 
+- [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2.tidyverse.org) by Hadley Wickham 
+- [YaRrr! The Pirate’s Guide to R](https://bookdown.org/ndphillips/YaRrr/) by Nathaniel D. Phillips
+- [CRAN R Documentation](https://cran.r-project.org/)
 

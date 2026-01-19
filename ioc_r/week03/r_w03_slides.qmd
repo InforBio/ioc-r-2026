@@ -4,17 +4,7 @@ subtitle: "IOC-R Week 3"
 date: "2025-11-17"
 date-format: " "
 format:
-  revealjs: 
-    toc: true
-    toc-title: "Plan"
-    toc-depth: 1
-    slide-number: true
-    preview-links: auto
-    logo: ../../images/logoInforBio_fond_blanc_small.png
-    css: ../custom.css
-    footer: '<div style="position: absolute; bottom: 0px; left: 70px; font-size:18px">
-               <a href="https://inforbio.github.io/ioc-r-2026/ioc_r_toc.html">Back to ToC</a>
-             </div>'
+  revealjs: default
 echo: true
 categories: 
   - week03

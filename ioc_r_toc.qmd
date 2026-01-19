@@ -1,5 +1,6 @@
 ---
 title: "Materials for the IOC-R"
+format: html
 listing:
   contents: ioc_r
   sort: "date"

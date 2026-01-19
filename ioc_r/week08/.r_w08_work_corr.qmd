@@ -13,7 +13,7 @@ editor_options:
 Note: There may be other valid ways to solve this exercise — this is just one possible solution!
 
 1. Import the gene expression count data
-([read-counts.csv](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv){target='_blank'}).
+([read-counts.csv](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv)).
 
 ```{r}
 library(tidyverse)

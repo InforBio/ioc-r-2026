@@ -34,8 +34,8 @@ Some rules for naming your project:
 
 3. Download two files:
 
-  -  An R script named "r_w01_exos.R" for this week's exercise ([here](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week01/r_w01_exos.R){target='_blank'}), save it into the `scripts` folder.
-  - A data file called "read-counts.csv" ([here](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv){target='_blank'}), put it into the `data` folder.
+  -  An R script named "r_w01_exos.R" for this week's exercise ([here](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week01/r_w01_exos.R)), save it into the `scripts` folder.
+  - A data file called "read-counts.csv" ([here](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv)), put it into the `data` folder.
 
 ::: {.callout-note}
 If you are using RStudio server, files can be uploaded using the "Upload" icon
@@ -47,7 +47,7 @@ in the *Files* pane.
 ### Data File
 
 We'll be working with a gene expression dataset as an example,
-sourced from this [link](https://monashbioinformaticsplatform.github.io/r-more/){target='_blank'}.
+sourced from this [link](https://monashbioinformaticsplatform.github.io/r-more/).
 
 The data comes from an experiment using PCR to study 44 genes.
 The results were measured to see which genes are active at different stages in Yeast cell cycling.
@@ -133,7 +133,7 @@ Quartiles are three values that split sorted data into four equal parts.
 
 ![](images/boxplot.png){width=65%}
 
-(figure modified from this [source](https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ABoxplot_vs_PDF.png&psig=AOvVaw3y4ZFGXe2JU0ypMGAEc2_i&ust=1734727102604000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMDBxpfYtIoDFQAAAAAdAAAAABAE){target='_blank'})
+(figure modified from this [source](https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ABoxplot_vs_PDF.png&psig=AOvVaw3y4ZFGXe2JU0ypMGAEc2_i&ust=1734727102604000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMDBxpfYtIoDFQAAAAAdAAAAABAE))
 
 IQR (Interquartile range) = Q3 - Q1
 :::
