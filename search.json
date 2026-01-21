@@ -1138,14 +1138,14 @@
     "href": "ioc_r/week08/r_w08_slides.html#customizing-scales-2",
     "title": "Graphs Level Up: {ggplot2} (Part 2) & Custom Functions",
     "section": "Customizing Scales",
-    "text": "Customizing Scales\n\nscale_*_continuous(limits = ...) or xlim() orylim(): Change axis limits or continuous scales.\n\n\n\n\np0 + scale_x_continuous(limits = c(0, 8))\n\n\n\n\n\n\n\n\n\n\np0 + xlim(c(1, 5))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nuse scale_*_discrete() if the axis mapped to a discrete variable."
+    "text": "Customizing Scales\n\nscale_*_continuous(limits = ...) or xlim() or ylim(): Change axis limits or continuous scales.\n\n\n\n\np0 + scale_x_continuous(limits = c(0, 8))\n\n\n\n\n\n\n\n\n\n\np0 + xlim(c(1, 5))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nuse scale_*_discrete() if the axis mapped to a discrete variable."
   },
   {
     "objectID": "ioc_r/week08/r_w08_slides.html#add-lines-to-figures",
     "href": "ioc_r/week08/r_w08_slides.html#add-lines-to-figures",
     "title": "Graphs Level Up: {ggplot2} (Part 2) & Custom Functions",
     "section": "Add Lines to Figures",
-    "text": "Add Lines to Figures\n\nAdd horizontal line (geom_hline()) or vertical line (geom_vline())\n\n\n\n\np0 +\n  geom_hline(\n    yintercept = mean(iris$Sepal.Length), \n    linetype = \"dashed\", color = \"gray50\"\n  ) +\n  geom_vline(\n    xintercept = c(3, 5),\n    linetype = \"dotted\", color = \"red\"\n  )\n\n\n\n\n\n\n\nSee possible line types."
+    "text": "Add Lines to Figures\n\nAdd horizontal (geom_hline()), vertical (geom_vline()) or diagonal (geom_abline()) lines.\n\n\n\n\np0 +\n  geom_hline(\n    yintercept = mean(iris$Sepal.Length), \n    linetype = \"dashed\", color = \"gray50\"\n  ) +\n  geom_vline(\n    xintercept = c(3, 5),\n    linetype = \"dotted\", color = \"red\"\n  ) +\n  geom_abline(\n    intercept = 4.3, slope = 0.4,\n    color = \"orange\"\n  )\n\n\n\n\n\n\n\nSee possible line types."
   },
   {
     "objectID": "ioc_r/week08/r_w08_slides.html#faceting-subplots",
@@ -1229,14 +1229,14 @@
     "href": "ioc_r/week08/r_w08_slides.html#first-custom-function-1",
     "title": "Graphs Level Up: {ggplot2} (Part 2) & Custom Functions",
     "section": "First Custom Function",
-    "text": "First Custom Function\n\n\n# identified place to change\npenguins |&gt;\n  mutate(colored = ifelse(bill_len &gt; 40, \"yes\", \"no\")) |&gt;\n  ggplot(aes(bill_len, bill_dep)) +\n  geom_point(aes(color = colored)) +\n  scale_color_manual(values = c(\"yes\" = \"red\", \"no\" = \"grey70\")) +\n  labs(title = \"Penguins with bill length &gt; 40 mm are colored\")\n\n\n\n\n\n\n\nWrite a function to automate the visualisation with different cutoff.\n\n\n\n\n\n\nplot_scatter &lt;- function(cutoff) {\n  penguins |&gt;\n    mutate(colored = ifelse(bill_len &gt; cutoff, \"yes\", \"no\")) |&gt;\n    ggplot(aes(bill_len, bill_dep)) +\n    geom_point(aes(color = colored)) +\n    scale_color_manual(values = c(\"yes\" = \"red\", \"no\" = \"grey70\")) +\n    labs(title = paste(\"Penguins with bill length &gt;\", cutoff, \"mm are colored\"))\n}\n\n\n\nplot_scatter(cutoff =  50)"
+    "text": "First Custom Function\n\n\n# identified place to change\npenguins |&gt;\n  mutate(colored = ifelse(bill_len &gt; 40, \"yes\", \"no\")) |&gt;\n  ggplot(aes(bill_len, bill_dep)) +\n  geom_point(aes(color = colored)) +\n  scale_color_manual(values = c(\"yes\" = \"red\", \"no\" = \"grey70\")) +\n  labs(title = \"Penguins with bill length &gt; 40 mm are colored\")\n\n\n\n\n\n\n\nWrite a function to automate the visualisation with different cutoff.\n\n\n\n\n\n\nplot_scatter &lt;- function(cutoff) {\n  penguins |&gt;\n    mutate(colored = ifelse(bill_len &gt; cutoff, \"yes\", \"no\")) |&gt;\n    ggplot(aes(bill_len, bill_dep)) +\n    geom_point(aes(color = colored)) +\n    scale_color_manual(values = c(\"yes\" = \"red\", \"no\" = \"grey70\")) +\n    labs(title = paste(\"Penguins with bill length &gt;\", cutoff, \"mm are colored\"))\n}\n\n\n\nplot_scatter(cutoff = 50)"
   },
   {
     "objectID": "ioc_r/week08/r_w08_slides.html#first-custom-function-2",
     "href": "ioc_r/week08/r_w08_slides.html#first-custom-function-2",
     "title": "Graphs Level Up: {ggplot2} (Part 2) & Custom Functions",
     "section": "First Custom Function",
-    "text": "First Custom Function\n\nplot_scatter(cutoff =  40) + plot_scatter(cutoff =  50)"
+    "text": "First Custom Function\n\nplot_scatter(cutoff = 40) + plot_scatter(cutoff = 50)\n\n\n\nwrap_plots(plot_scatter(cutoff = 40), plot_scatter(cutoff = 50)) # alternative to combine figs"
   },
   {
     "objectID": "ioc_r/week08/r_w08_slides.html#todays-goals",
