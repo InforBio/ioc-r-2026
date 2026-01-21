@@ -177,7 +177,7 @@ p1 + scale_fill_manual( # Manually set fill
 
 ## Customizing Scales {.smaller}
 
-- `scale_*_continuous(limits = ...)` or `xlim()` or`ylim()`: Change axis limits or continuous scales.
+- `scale_*_continuous(limits = ...)` or `xlim()` or `ylim()`: Change axis limits or continuous scales.
 
 :::: {.columns}
 ::: {.column}
@@ -202,7 +202,7 @@ use `scale_*_discrete()` if the axis mapped to a discrete variable.
 
 ## Add Lines to Figures {.smaller}
 
-- Add horizontal line (`geom_hline()`) or vertical line (`geom_vline()`) 
+- Add horizontal (`geom_hline()`), vertical (`geom_vline()`) or diagonal (`geom_abline()`) lines.
 
 ::: {.columns}
 ::: {.column}
@@ -217,6 +217,10 @@ p0 +
   geom_vline(
     xintercept = c(3, 5),
     linetype = "dotted", color = "red"
+  ) +
+  geom_abline(
+    intercept = 4.3, slope = 0.4,
+    color = "orange"
   )
 ```
 
@@ -238,6 +242,10 @@ p0 +
   geom_vline(
     xintercept = c(3, 5),
     linetype = "dotted", color = "red", linewidth = 1
+  ) +
+  geom_abline(
+    intercept = 4.3, slope = 0.4,
+    color = "orange"
   )
 ```
 :::
@@ -614,7 +622,7 @@ plot_scatter <- function(cutoff) {
 :::{.fragment}
 
 ```{r}
-plot_scatter(cutoff =  50)
+plot_scatter(cutoff = 50)
 ```
 :::
 
@@ -625,9 +633,14 @@ plot_scatter(cutoff =  50)
 ## First Custom Function {.smaller}
 
 ```{r}
-plot_scatter(cutoff =  40) + plot_scatter(cutoff =  50)
+plot_scatter(cutoff = 40) + plot_scatter(cutoff = 50)
 ```
 
+```{r}
+#| eval: false
+
+wrap_plots(plot_scatter(cutoff = 40), plot_scatter(cutoff = 50)) # alternative to combine figs
+```
 
 # Let's Practice !
 
