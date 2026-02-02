@@ -970,7 +970,7 @@
     "href": "ioc_r/week09/r_w09_slides.html#generate-the-final-doc",
     "title": "Putting It All Together: Reproducible Analysis with Quarto",
     "section": "Generate The Final Doc",
-    "text": "Generate The Final Doc\n\n\n\nClick the “Render” button.\n\n\n\n\nIf you have specified multiple output formats in the YAML header, you can select the wanted one to render."
+    "text": "Generate The Final Doc\n\n\n\nClick the “Render” button.\n\n\n\n\nIf you have specified multiple output formats in the YAML header, you can select the wanted one to render.\n\n\n\n\n\n\n\n\n\nWhen you render a Quarto document, it executes all code chunks in a fresh R session, ignoring objects in your current workspace, and generates the final output file from scratch."
   },
   {
     "objectID": "ioc_r/week09/r_w09_slides.html#html-themes",
