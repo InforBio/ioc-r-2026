@@ -190,6 +190,10 @@ Text with formatting, including section headings, hyperlinks, an embedded image,
 :::
 :::
 
+:::{.callout-note appearance="simple"}
+When you **render** a Quarto document, it executes all code chunks in a **fresh R session**,
+ignoring objects in your current workspace, and generates the final output file from scratch.
+:::
 
 ## HTML Themes {.smaller}
 
