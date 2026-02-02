@@ -37,9 +37,10 @@ change the `title`, `author`, or any other metadata to personalize the document.
 
 - Yeast gene annotation data:
 `"https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/mart_export.txt.gz"`,
-  name the data as `annot`.
+name the data as `annot`.
 - Gene differential expression analysis (SET1 *vs.* WT):
-`"https://inforbio.github.io/ioc-r-2026/ioc_r/exos_data/toy_DEanalysis.csv"`, name the data as `de_res`.
+`"https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv"`,
+name the data as `de_res`.
 
 What are the dimensions of each dataset?
 
