@@ -19,18 +19,13 @@ website:
       - text: "Calendar & Info"
         menu: 
           - text: "IOC-R Info"
-            href: ioc_r_info.qmd
+            href: ioc_r/ioc_r_info.qmd
           - text: "IOC-scRNAseq Info"
-            href: ioc_scrnaseq_info.qmd
+            href: ioc_scrnaseq/ioc_scrnaseq_info.qmd
       - text: "IOC-R"
-        href: ioc_r_toc.qmd
-        # menu: 
-        #   - text: "Week 1 - Slides"
-        #     href: docs/r_slides_week01.html
-        #   - text: "Week 1 - Exercises"
-        #     href: r_week1.qmd
+        href: ioc_r/ioc_r_toc.qmd
       - text: "IOC-scRNAseq"
-        href: ioc_scrnaseq.qmd
+        href: ioc_scrnaseq/ioc_scrnaseq.qmd
       # - text: "IOC-bulk RNAseq"
       #   href: ioc_bulk_rnaseq.qmd
       # - text: "News"
@@ -60,7 +55,7 @@ format:
     css: ioc_r/custom.css
     logo: images/logoInforBio_fond_blanc_small.png
     footer: '<div style="position: absolute; bottom: 0px; left: 70px; font-size:18px">
-            <a href="https://inforbio.github.io/ioc-r-2026/ioc_r_toc.html">Back to ToC</a>
+            <a href="https://inforbio.github.io/ioc-r-2026/ioc_r/ioc_r_toc.html">Back to ToC</a>
           </div>'
   # pdf:
   #   toc: true

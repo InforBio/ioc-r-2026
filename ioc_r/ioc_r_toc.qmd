@@ -2,7 +2,7 @@
 title: "Materials for the IOC-R"
 format: html
 listing:
-  contents: ioc_r
+  contents: r_contents
   sort: "date"
   type: default
   categories: numbered
@@ -11,6 +11,6 @@ listing:
   fields: [image, title, categories]
 page-layout: full
 title-block-banner: false
-css: toc.css
+css: ../toc.css
 ---
 
