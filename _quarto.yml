@@ -43,6 +43,9 @@ toc: true
 link-external-newwindow: true
 preview-links: auto
 
+execute:
+  echo: true
+  warning: false
 
 format:
   html:

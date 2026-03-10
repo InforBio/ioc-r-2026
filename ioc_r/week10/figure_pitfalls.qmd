@@ -2,9 +2,6 @@
 title: "Les pièges de visualisation"
 date: "2026-03-11"
 date-format: " "
-execute: 
-  echo: true
-  warning: false
 format: html
 categories: 
   - week10

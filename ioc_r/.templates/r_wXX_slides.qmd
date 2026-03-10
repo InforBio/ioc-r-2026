@@ -17,7 +17,6 @@ format:
             </div>'
   # pdf:
   #   toc: true
-echo: true
 categories: 
   - weekXX
   - slides

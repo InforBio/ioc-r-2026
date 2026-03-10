@@ -1,7 +1,5 @@
 ---
 title: "Gestion des versions : renv et git"
-execute: 
-  echo: true
 date: "2026-03-10"
 date-format: " "
 format: html

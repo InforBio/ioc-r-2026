@@ -5,8 +5,6 @@ date: "2026-01-19"
 date-format: " "
 format:
   revealjs: default
-echo: true
-warning: false
 categories: 
   - week08
   - slides
