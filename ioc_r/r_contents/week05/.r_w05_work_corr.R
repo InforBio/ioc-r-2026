@@ -4,8 +4,8 @@
 
 # Import Data
 # We need to use two data for this exercise:
-# - the bulk RNAseq gene expression data from the [`read-counts.csv`](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv) file.
-# - the diffenrential expression (DE) analysis results [`toy_DEanalysis`](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv).
+# - the bulk RNAseq gene expression data from the [`read-counts.csv`](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/exos_data/read-counts.csv) file.
+# - the diffenrential expression (DE) analysis results [`toy_DEanalysis`](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/exos_data/toy_DEanalysis.csv).
 # Reminder: the DE results were obtained by comparing SET1 samples to WT samples using data from `read-counts.csv`
 
 # 1. Import DE analysis result (`toy_DEanalysis.csv`) and name it as `de_res`.

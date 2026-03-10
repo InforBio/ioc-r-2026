@@ -21,7 +21,7 @@ editor_options:
 ## Quarto Document
 
 A template is available here:
-[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week09/r_w09_example.qmd.txt). Download it and remove the suffix ".txt".
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/week09/r_w09_example.qmd.txt). Download it and remove the suffix ".txt".
 
 - Modify the YAML header at the top of the Quarto file:
 change the `title`, `author`, or any other metadata to personalize the document.
@@ -36,20 +36,20 @@ change the `title`, `author`, or any other metadata to personalize the document.
 1. Import the two data datasets with `read_csv()` using following links:
 
 - Yeast gene annotation data:
-`"https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/mart_export.txt.gz"`,
+`"https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/exos_data/mart_export.txt.gz"`,
   name the data as `annot`.
 - Gene differential expression analysis (SET1 *vs.* WT):
-`"https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv"`, name the data as `de_res`.
+`"https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/exos_data/toy_DEanalysis.csv"`, name the data as `de_res`.
 
 What are the dimensions of each dataset?
 
 ```{r}
 library(tidyverse)
 annot <- read_csv(
-  "https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/mart_export.txt.gz"
+  "https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/exos_data/mart_export.txt.gz"
 )
 de_res <- read_csv(
-  "https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv"
+  "https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/exos_data/toy_DEanalysis.csv"
 )
 ```
 
@@ -205,11 +205,11 @@ In R, the function `aov()` is used to perform ANOVA.
 Let's take the gene *LOH1* as example.
 
 7. Import the expression data using this link:
-`"https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv"`
+`"https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/exos_data/read-counts.csv"`
 
 ```{r}
 counts <- read_csv(
-  "https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv"
+  "https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/exos_data/read-counts.csv"
 )
 ```
 

@@ -7,7 +7,7 @@
 # to compare SET1 samples to WT samples using data from `read-counts.csv`.
 
 # The analysis results are available via this link:
-# https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv
+# https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/exos_data/toy_DEanalysis.csv
 
 ## - Donwload the result file and upload it to your data folder.
 ## - Import the data using the `read_csv()` function from the package `readr`.
@@ -54,5 +54,5 @@ de_res
 
 ## 9. A yeast gene annotation file was obtained from the Ensembl data base.
 ##     This file can be donwloaded here:
-##     https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/yeast_gene_annot.csv
+##     https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/exos_data/yeast_gene_annot.csv
 ##     Import the data and add the annotation to the `de_res` data frame using `merge()` function. (?merge)

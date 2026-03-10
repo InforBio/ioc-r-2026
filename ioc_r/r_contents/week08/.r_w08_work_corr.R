@@ -3,7 +3,7 @@
 ## this is just one possible solution!
 
 # 1. Import the gene expression count data
-# ([read-counts.csv](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv)).
+# ([read-counts.csv](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/exos_data/read-counts.csv)).
 
 library(tidyverse)
 counts <- read_csv("../exos_data/read-counts.csv")

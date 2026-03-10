@@ -13,10 +13,10 @@
 #    *i.e.*, `data`, `scripts`, `outputs`.
 # 3. Download two files:
 #   -  An R script named "r_w01_exos.R" for this week's exercise here:
-# https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/week01/r_w01_exos.R
+# https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/week01/r_w01_exos.R
 #     save it into the `scripts` folder.
 #   - A data file called "read-counts.csv" here:
-# https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv
+# https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/exos_data/read-counts.csv
 #     Put it into the `data` folder.
 
 ## Files Description ----------------------------------------------------------------------

@@ -4,9 +4,9 @@
 ## Import Data ----------------------------------------------------------
 
 # We will reuse the gene-level differential expression (DE) results
-# ([`toy_DEanalysis.csv`](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv)) introduced in session 4.
+# ([`toy_DEanalysis.csv`](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/exos_data/toy_DEanalysis.csv)) introduced in session 4.
 # These results were obtained by comparing **SET1** samples against **WT** samples using the corresponding count data
-# ([read-counts.csv](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/read-counts.csv)).
+# ([read-counts.csv](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/exos_data/read-counts.csv)).
 
 # - Import the DE results and save them as `de_res`.
 # - Import the count data and save it as `counts`.

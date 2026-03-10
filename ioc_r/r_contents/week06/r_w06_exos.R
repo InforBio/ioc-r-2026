@@ -62,7 +62,7 @@ data[data$value<-0.5, ]
 
 
 ## Tasks:
-## 1. Download the data: https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/rna_seq_simulated_data.csv
+## 1. Download the data: https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/exos_data/rna_seq_simulated_data.csv
 ##    and import it into Rstudio, name it `rnaseq_data`.
 
 

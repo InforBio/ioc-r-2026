@@ -3,7 +3,7 @@
 ## this is just one possible solution!
 
 # 1. Import the data file "**visceral_fat.csv**".
-#   - First, download the `visceral_fat.csv` file via this [link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/exos_data/visceral_fat.csv).
+#   - First, download the `visceral_fat.csv` file via this [link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/exos_data/visceral_fat.csv).
 #   - Then, upload the file to a folder of your choice within your RStudio project.
 #   - Next, import the data into RStudio and name the data frame `visceral_fat`.
 # Tip:
