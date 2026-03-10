@@ -30,6 +30,7 @@ jobs:
               any::patchwork
               any::ggrepel
               any::plotly
+              any::treemapify
 
         - name: Set up Quarto
           uses: quarto-dev/quarto-actions/setup@v2
