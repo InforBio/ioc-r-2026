@@ -8,3 +8,4 @@ data/
 docs/
 ioc_r/*/add_noise.R
 renv/library/
+*_files/
