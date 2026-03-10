@@ -3,7 +3,7 @@ title: "Week 8 - Hands-On Examples"
 format: 
   html: default
   # pdf: default
-date: "2026-01-27"
+date: "2026-01-20"
 date-format: " "
 categories: 
   - week08

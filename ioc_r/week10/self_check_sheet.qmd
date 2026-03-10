@@ -3,11 +3,10 @@ title: "Self-Check Sheet"
 format:
   html: default
   pdf: default
-date: "2026-03-16"
+date: "2026-03-09"
 date-format: " "
 categories: 
   - week10
-  - exercise
 editor_options: 
   chunk_output_type: console
 ---
