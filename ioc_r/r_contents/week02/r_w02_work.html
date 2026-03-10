@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>IOC-2026</title>
+<title>Week 2 - Homework – IOC-2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,28 +20,63 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./images/logoInforBio_fond_blanc.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-afa37c5c79185640b9c231024f4fe5ea.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../images/logoInforBio_fond_blanc.png" rel="icon" type="image/png">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-afa37c5c79185640b9c231024f4fe5ea.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -80,11 +115,11 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/logoInforBio_fond_blanc_small.png" alt="" class="navbar-logo light-content">
-    <img src="./images/logoInforBio_fond_blanc_small.png" alt="" class="navbar-logo dark-content">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../images/logoInforBio_fond_blanc_small.png" alt="" class="navbar-logo light-content">
+    <img src="../../../images/logoInforBio_fond_blanc_small.png" alt="" class="navbar-logo dark-content">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">IOC-2026</span>
     </a>
   </div>
@@ -100,21 +135,21 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-calendar--info">    
         <li>
-    <a class="dropdown-item" href="./ioc_r/ioc_r_info.html">
+    <a class="dropdown-item" href="../../../ioc_r/ioc_r_info.html">
  <span class="dropdown-text">IOC-R Info</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./ioc_scrnaseq/ioc_scrnaseq_info.html">
+    <a class="dropdown-item" href="../../../ioc_scrnaseq/ioc_scrnaseq_info.html">
  <span class="dropdown-text">IOC-scRNAseq Info</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./ioc_r/ioc_r_toc.html"> 
+    <a class="nav-link" href="../../../ioc_r/ioc_r_toc.html"> 
 <span class="menu-text">IOC-R</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./ioc_scrnaseq/ioc_scrnaseq.html"> 
+    <a class="nav-link" href="../../../ioc_scrnaseq/ioc_scrnaseq.html"> 
 <span class="menu-text">IOC-scRNAseq</span></a>
   </li>  
   <li class="nav-item compact">
@@ -133,83 +168,109 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#welcome-to-the-ioc-training" id="toc-welcome-to-the-ioc-training" class="nav-link active" data-scroll-target="#welcome-to-the-ioc-training">Welcome To the IOC Training!</a>
-  <ul class="collapse">
-  <li><a href="#what-is-ioc" id="toc-what-is-ioc" class="nav-link" data-scroll-target="#what-is-ioc">What is IOC?</a></li>
-  <li><a href="#ioc-tools" id="toc-ioc-tools" class="nav-link" data-scroll-target="#ioc-tools">IOC tools</a>
-  <ul class="collapse">
-  <li><a href="#zoom" id="toc-zoom" class="nav-link" data-scroll-target="#zoom">Zoom</a></li>
-  <li><a href="#slack" id="toc-slack" class="nav-link" data-scroll-target="#slack">Slack</a></li>
-  <li><a href="#trello" id="toc-trello" class="nav-link" data-scroll-target="#trello">Trello</a></li>
-  </ul></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Week 2 - Homework</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">week02</div>
+    <div class="quarto-category">homework</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
 
-<p><img src="images/logoInforBio_fond_blanc.png" class="img-fluid"></p>
-<section id="welcome-to-the-ioc-training" class="level1">
-<h1>Welcome To the IOC Training!</h1>
-<section id="what-is-ioc" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-ioc">What is IOC?</h2>
-<p>The <strong>InforBio</strong> platform has developed an “<strong>Interactive Online Companionship</strong>” (IOC) specifically tailored to initiate researchers into bioinformatics. The IOC involved one-to-many virtual work sessions where companions are trained to <strong>analyze their own data</strong>.</p>
-<p>All IOC programs are structured into a series of modules, with each module building upon the knowledge and skills acquired in the previous one. One module lasts one week, during which companions dive into <strong>online materials</strong> to ensure they understand and internalize the content. Companions then complete <strong>quizzes and exercises</strong> using both public and their own data to gauge their understanding, receiving <strong>personalized feedback</strong> on their work. To facilitate their learning, we provide access to computational resources such as Rstudio and Galaxy servers. The module wraps up with a 3 hours training to recap the week’s material and address any questions, with 7 videoconference sessions and 3 in-person sessions. These videoconferences are recorded and made available for later viewing, ensuring continuous access to the learning resources.</p>
-<p>By the end of an IOC, companions will be equipped with expertise and confidence to run their own analyses independently.</p>
-</section>
-<section id="ioc-tools" class="level2">
-<h2 class="anchored" data-anchor-id="ioc-tools">IOC tools</h2>
-<section id="zoom" class="level3">
-<h3 class="anchored" data-anchor-id="zoom">Zoom</h3>
-<p>We will use Zoom for videoconferencing.</p>
-<p>Please follow the rules for usage:</p>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Use the following code to import the file “read-counts.csv” (you have already downloaded it for the hand-on examples of week01). Name the imported data <code>expr_data</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>expr_data <span class="ot">&lt;-</span> <span class="fu">read.table</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> <span class="st">"../exos_data/read-counts.csv"</span>,  <span class="co"># replace the path with your own</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">","</span>, <span class="at">row.names =</span> <span class="dv">1</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol type="1">
+<li>Is the imported data a matrix?</li>
+</ol>
+<ol start="2" type="1">
+<li>Transform it to a matrix using <code>as.matrix()</code>.</li>
+</ol>
+<ol start="3" type="1">
+<li>What are the dimensions of the matrix?</li>
+</ol>
+<ol start="4" type="1">
+<li>What are the column names and row names?</li>
+</ol>
+<ol start="5" type="1">
+<li>Extract all genes’ expression for the 10 WT samples (WT.1, WT.2, …, WT.10), and store it in a variable called <code>expr_wt</code>. Show the first few rows using <code>head()</code> function.</li>
+</ol>
+<ol start="6" type="1">
+<li>What is the average expression level across all WT samples for each gene? Store the results in a variable called <code>avg_wt</code>.</li>
+</ol>
+<ol start="7" type="1">
+<li>Draw a histogram to check the distribution of the average gene expression level for WT samples.</li>
+</ol>
+<ol start="8" type="1">
+<li>Repeat questions 5 to 7 for the SET1 samples (SET1.1, SET1.2, …, SET1.10).</li>
+</ol>
+<ol start="9" type="1">
+<li>What is the absolute difference between the average expression of WT and SET1 samples for each gene? Which gene shows the biggest difference?</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled" title="Hints">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Hints
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <ul>
-<li>Please be on time.</li>
-<li>Technical setup:
-<ul>
-<li>Ensure your internet connection is stable.</li>
-<li>Test your camera and microphone before the session.</li>
-</ul></li>
-<li>During the session:
-<ul>
-<li>Keep your microphone muted unless you’re speaking to avoid background noise.</li>
-<li>Use the “Raise Hand” feature if you want to ask a question during the lecture.</li>
-<li>Keep your camera on if possible to create a more interactive environment.</li>
-</ul></li>
-<li>Recorded sessions are for personal review only. Do not distribute them without permission.</li>
+<li>Use <code>abs()</code> to get the absolute value. (<code>?abs</code>)</li>
+<li>The <code>max()</code> function helps to find the maximum value from a vector. (<code>?max</code>)</li>
+<li>The <code>which.max()</code> function helps to find the index of the maximum value from a vector. (<code>?which.max</code>)</li>
 </ul>
-</section>
-<section id="slack" class="level3">
-<h3 class="anchored" data-anchor-id="slack">Slack</h3>
-<p>Slack is a dedicated workspace for communication and staying connected between sessions.</p>
-<p>If you haven’t already use it, you need to create a <a href="https://slack.com/get-started#/createnew">Slack account</a>.</p>
-<p>If you have a Slack account, you can either connect to the account using this <a href="https://slack.com/signin#/signin">webpage</a>, or use a desktop version on your computer. (<a href="https://slack.com/intl/fr-fr/downloads/windows">Slack Windows desktop</a>, <a href="https://apps.apple.com/us/app/slack-for-desktop/id803453959?mt=12">Slack Mac desktop</a>)</p>
-<p>And you will receive an invitation link to join the IOC Slack of your group.</p>
-<ul>
-<li>Post messages in the correct channel, e.g., “questions” for asking about course content.</li>
-<li>When asking questions, please be specific and clear with a minimal context, include screenshots or error message to help others understand the issue.</li>
-<li>When discussing a question, please reply in the thread to avoid flooding the channel.</li>
-</ul>
-</section>
-<section id="trello" class="level3">
-<h3 class="anchored" data-anchor-id="trello">Trello</h3>
-<p>Trello is a tool to help you stay organized and track your learning progress.</p>
-<p>You will be invited to join a Trello board for this IOC. We will create one list per student, please add one card for each session to add your notes, summary, etc.</p>
-<!-- ### Git? -->
+</div>
+</div>
+</div>
+<ol start="10" type="1">
+<li>Compare the following matrix to the one we created during the course’ exercise (the matrix named <code>expression_levels</code>). What is the key difference in how the matrix is constructed? Provide a brief explanation.</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">18</span>, <span class="dv">22</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">19</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">7</span>, <span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">28</span>),</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">3</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]
+[1,]   10   22    9
+[2,]   12   14    7
+[3,]   15   16   25
+[4,]   20   19   30
+[5,]   18    8   28</code></pre>
+</div>
+</div>
+<p>The homework correction is available here: <a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/week02/.r_w02_work_corr.R">link</a></p>
 
 
-</section>
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>IOC-2026</title>
+<title>Gestion des versions : renv et git – IOC-2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,28 +20,63 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./images/logoInforBio_fond_blanc.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-afa37c5c79185640b9c231024f4fe5ea.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../images/logoInforBio_fond_blanc.png" rel="icon" type="image/png">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-afa37c5c79185640b9c231024f4fe5ea.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -80,11 +115,11 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/logoInforBio_fond_blanc_small.png" alt="" class="navbar-logo light-content">
-    <img src="./images/logoInforBio_fond_blanc_small.png" alt="" class="navbar-logo dark-content">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../images/logoInforBio_fond_blanc_small.png" alt="" class="navbar-logo light-content">
+    <img src="../../../images/logoInforBio_fond_blanc_small.png" alt="" class="navbar-logo dark-content">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">IOC-2026</span>
     </a>
   </div>
@@ -100,21 +135,21 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-calendar--info">    
         <li>
-    <a class="dropdown-item" href="./ioc_r/ioc_r_info.html">
+    <a class="dropdown-item" href="../../../ioc_r/ioc_r_info.html">
  <span class="dropdown-text">IOC-R Info</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./ioc_scrnaseq/ioc_scrnaseq_info.html">
+    <a class="dropdown-item" href="../../../ioc_scrnaseq/ioc_scrnaseq_info.html">
  <span class="dropdown-text">IOC-scRNAseq Info</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./ioc_r/ioc_r_toc.html"> 
+    <a class="nav-link" href="../../../ioc_r/ioc_r_toc.html"> 
 <span class="menu-text">IOC-R</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./ioc_scrnaseq/ioc_scrnaseq.html"> 
+    <a class="nav-link" href="../../../ioc_scrnaseq/ioc_scrnaseq.html"> 
 <span class="menu-text">IOC-scRNAseq</span></a>
   </li>  
   <li class="nav-item compact">
@@ -138,76 +173,131 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#welcome-to-the-ioc-training" id="toc-welcome-to-the-ioc-training" class="nav-link active" data-scroll-target="#welcome-to-the-ioc-training">Welcome To the IOC Training!</a>
+  <li><a href="#versions-des-packages" id="toc-versions-des-packages" class="nav-link active" data-scroll-target="#versions-des-packages">Versions des packages</a></li>
+  <li><a href="#gérer-les-versions-de-packages-renv" id="toc-gérer-les-versions-de-packages-renv" class="nav-link" data-scroll-target="#gérer-les-versions-de-packages-renv">Gérer les versions de packages : renv</a></li>
+  <li><a href="#quelle-modification-ai-je-faite" id="toc-quelle-modification-ai-je-faite" class="nav-link" data-scroll-target="#quelle-modification-ai-je-faite">Quelle modification ai-je faite ?</a></li>
+  <li><a href="#gérer-les-versions-de-codes-git" id="toc-gérer-les-versions-de-codes-git" class="nav-link" data-scroll-target="#gérer-les-versions-de-codes-git">Gérer les versions de codes: Git</a>
   <ul class="collapse">
-  <li><a href="#what-is-ioc" id="toc-what-is-ioc" class="nav-link" data-scroll-target="#what-is-ioc">What is IOC?</a></li>
-  <li><a href="#ioc-tools" id="toc-ioc-tools" class="nav-link" data-scroll-target="#ioc-tools">IOC tools</a>
-  <ul class="collapse">
-  <li><a href="#zoom" id="toc-zoom" class="nav-link" data-scroll-target="#zoom">Zoom</a></li>
-  <li><a href="#slack" id="toc-slack" class="nav-link" data-scroll-target="#slack">Slack</a></li>
-  <li><a href="#trello" id="toc-trello" class="nav-link" data-scroll-target="#trello">Trello</a></li>
-  </ul></li>
+  <li><a href="#workflow-git-local" id="toc-workflow-git-local" class="nav-link" data-scroll-target="#workflow-git-local">Workflow Git local</a></li>
+  <li><a href="#workflow-avec-dépôt-distant-github-gitlab" id="toc-workflow-avec-dépôt-distant-github-gitlab" class="nav-link" data-scroll-target="#workflow-avec-dépôt-distant-github-gitlab">Workflow avec dépôt distant (GitHub / GitLab)</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Gestion des versions : renv et git</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">week10</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
 
-<p><img src="images/logoInforBio_fond_blanc.png" class="img-fluid"></p>
-<section id="welcome-to-the-ioc-training" class="level1">
-<h1>Welcome To the IOC Training!</h1>
-<section id="what-is-ioc" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-ioc">What is IOC?</h2>
-<p>The <strong>InforBio</strong> platform has developed an “<strong>Interactive Online Companionship</strong>” (IOC) specifically tailored to initiate researchers into bioinformatics. The IOC involved one-to-many virtual work sessions where companions are trained to <strong>analyze their own data</strong>.</p>
-<p>All IOC programs are structured into a series of modules, with each module building upon the knowledge and skills acquired in the previous one. One module lasts one week, during which companions dive into <strong>online materials</strong> to ensure they understand and internalize the content. Companions then complete <strong>quizzes and exercises</strong> using both public and their own data to gauge their understanding, receiving <strong>personalized feedback</strong> on their work. To facilitate their learning, we provide access to computational resources such as Rstudio and Galaxy servers. The module wraps up with a 3 hours training to recap the week’s material and address any questions, with 7 videoconference sessions and 3 in-person sessions. These videoconferences are recorded and made available for later viewing, ensuring continuous access to the learning resources.</p>
-<p>By the end of an IOC, companions will be equipped with expertise and confidence to run their own analyses independently.</p>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="versions-des-packages" class="level2">
+<h2 class="anchored" data-anchor-id="versions-des-packages">Versions des packages</h2>
+<p>Parfois, on voit ces messages lors de l’exécution d’un script :</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">library</span>(dplyr) <span class="sc">:</span> there is no package called ‘dplyr’</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>ou</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Error<span class="sc">:</span> package ‘dplyr’ version <span class="dv">1</span>.<span class="fl">1.0</span> required</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>but <span class="dv">0</span>.<span class="fl">8.5</span> is installed</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="ioc-tools" class="level2">
-<h2 class="anchored" data-anchor-id="ioc-tools">IOC tools</h2>
-<section id="zoom" class="level3">
-<h3 class="anchored" data-anchor-id="zoom">Zoom</h3>
-<p>We will use Zoom for videoconferencing.</p>
-<p>Please follow the rules for usage:</p>
+<section id="gérer-les-versions-de-packages-renv" class="level2">
+<h2 class="anchored" data-anchor-id="gérer-les-versions-de-packages-renv">Gérer les versions de packages : <a href="https://rstudio.github.io/renv/">renv</a></h2>
+<p>Concept :</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">my_project</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">├</span> script.R</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">├</span> data/</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">├</span> renv.lock</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a> <span class="ex">└</span> renv/</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">└</span> library/ <span class="co"># la bibliothèque du projet</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Chaque projet a ses propres versions des packages.</p>
+<p>Avec le fichier <code>renv.lock</code> qui enregistre :</p>
 <ul>
-<li>Please be on time.</li>
-<li>Technical setup:
-<ul>
-<li>Ensure your internet connection is stable.</li>
-<li>Test your camera and microphone before the session.</li>
-</ul></li>
-<li>During the session:
-<ul>
-<li>Keep your microphone muted unless you’re speaking to avoid background noise.</li>
-<li>Use the “Raise Hand” feature if you want to ask a question during the lecture.</li>
-<li>Keep your camera on if possible to create a more interactive environment.</li>
-</ul></li>
-<li>Recorded sessions are for personal review only. Do not distribute them without permission.</li>
+<li>versions packages</li>
+<li>dépendances</li>
 </ul>
+<p>Commandes essentielles :</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialiser</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Installer packages</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"dplyr"</span>) <span class="co"># depuis CRAN</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"bioc::DESeq2"</span>) <span class="co"># depuis Bioconductor</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"r-lib/rlang"</span>) <span class="co"># depuis un répertoire github</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Enregistrer l’état actuel des packages du projet</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>() <span class="co"># mettre à jour le renv.lock</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérifier l'état actuel des packages du projet</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">status</span>()</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Restaurer</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>() <span class="co"># restaurer les pkgs du projet à partir d'un renv.lock</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Workflow simple :</p>
+<ol type="1">
+<li>créer projet RStudio</li>
+<li><code>renv::init()</code></li>
+<li>travailler normalement, <code>renv::install()</code> des packages</li>
+<li><code>renv::snapshot()</code> recorder l’info des packages avant de partager</li>
+</ol>
+<p><code>renv</code> utilise un cache global, donc quand un package est déjà installé avec la même version, <code>renv::install()</code> ne le recompilera pas. Il va simplement créer un lien vers le cache.</p>
 </section>
-<section id="slack" class="level3">
-<h3 class="anchored" data-anchor-id="slack">Slack</h3>
-<p>Slack is a dedicated workspace for communication and staying connected between sessions.</p>
-<p>If you haven’t already use it, you need to create a <a href="https://slack.com/get-started#/createnew">Slack account</a>.</p>
-<p>If you have a Slack account, you can either connect to the account using this <a href="https://slack.com/signin#/signin">webpage</a>, or use a desktop version on your computer. (<a href="https://slack.com/intl/fr-fr/downloads/windows">Slack Windows desktop</a>, <a href="https://apps.apple.com/us/app/slack-for-desktop/id803453959?mt=12">Slack Mac desktop</a>)</p>
-<p>And you will receive an invitation link to join the IOC Slack of your group.</p>
+<section id="quelle-modification-ai-je-faite" class="level2">
+<h2 class="anchored" data-anchor-id="quelle-modification-ai-je-faite">Quelle modification ai-je faite ?</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/documents.png" class="img-fluid figure-img"></p>
+<figcaption>source: <a href="https://xkcd.com/1459/" class="uri">https://xkcd.com/1459/</a></figcaption>
+</figure>
+</div>
+</section>
+<section id="gérer-les-versions-de-codes-git" class="level2">
+<h2 class="anchored" data-anchor-id="gérer-les-versions-de-codes-git">Gérer les versions de codes: <a href="https://git-scm.com">Git</a></h2>
+<p>Git permet :</p>
 <ul>
-<li>Post messages in the correct channel, e.g., “questions” for asking about course content.</li>
-<li>When asking questions, please be specific and clear with a minimal context, include screenshots or error message to help others understand the issue.</li>
-<li>When discussing a question, please reply in the thread to avoid flooding the channel.</li>
+<li>historique du code</li>
+<li>revenir en arrière</li>
+<li>collaboration</li>
 </ul>
+<p>Concepts simples :</p>
+<p>commit = snapshot du code</p>
+<p>Workflow : edit → commit → edit → commit → … (→ push)</p>
+<section id="workflow-git-local" class="level3">
+<h3 class="anchored" data-anchor-id="workflow-git-local">Workflow Git local</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init                             <span class="co"># initialise un dépôt git</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add script_test.qmd              <span class="co"># ajoute un fichier au prochain commit</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"create a test script"</span> <span class="co"># enregistre un snapshot</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="co"># check history              # montre l’historique</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="trello" class="level3">
-<h3 class="anchored" data-anchor-id="trello">Trello</h3>
-<p>Trello is a tool to help you stay organized and track your learning progress.</p>
-<p>You will be invited to join a Trello board for this IOC. We will create one list per student, please add one card for each session to add your notes, summary, etc.</p>
-<!-- ### Git? -->
+<section id="workflow-avec-dépôt-distant-github-gitlab" class="level3">
+<h3 class="anchored" data-anchor-id="workflow-avec-dépôt-distant-github-gitlab">Workflow avec dépôt distant (GitHub / GitLab)</h3>
+<p>Si on veut partager ou sauvegarder sur GitHub, on ajoute : <code>git push</code></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add script_test.qmd</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"create a test script"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/user/project.git <span class="co"># le dépôt distant auquel je veux me connecter</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
-</section>
 </section>
 </section>
 
