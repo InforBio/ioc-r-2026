@@ -1,0 +1,345 @@
+---
+title: "Les pièges de visualisation"
+date: "2026-03-11"
+date-format: " "
+execute: 
+  echo: true
+  warning: false
+format: html
+categories: 
+  - week10
+editor_options: 
+  chunk_output_type: console
+---
+
+Une bonne figure scientifique doit :
+
+- répondre à une question claire
+- être facile à lire
+- représenter les données sans biais
+- éviter les interprétations trompeuses
+
+Beaucoup de figures posent problème à cause de :
+
+- mauvais type de graphique
+- trop d’informations
+- couleurs mal choisies
+- axes trompeurs
+
+## Ordre et lisibilité
+
+Des données non ordonnées rendent la lecture difficile.
+
+Bonne pratique : ordonner les catégories pour faciliter la comparaison.
+
+Exemples :
+
+- trier par valeur
+- trier par ordre biologique
+- trier par temps
+
+
+## Axe Y : commencer à 0 ou non ?
+
+Les barplots doivent commencer à 0. Sinon la différence est exagérée visuellement.
+
+```{r}
+#| label: axe-trompeur
+#| layout-ncol: 2
+#| fig-cap: 
+#|   - "Axe original"
+#|   - "Version trompeuse"
+
+library(tidyverse)
+
+df <- data.frame(
+  group = c("A", "B"),
+  value = c(52, 55)
+)
+
+ggplot(df, aes(group, value)) +
+  geom_col()
+
+ggplot(df, aes(group, value)) +
+  geom_col() +
+  coord_cartesian(ylim = c(50, 56))
+```
+
+## Surcharge d'information
+
+Symptômes :
+
+- trop de groupes
+- trop de couleurs
+- trop de panels
+- trop d’annotations
+- trop de variables dans un même plot
+
+Règle simple : une figure doit répondre à une seule question scientifique.
+
+Example : les line plots deviennent illisibles avec > 5 groupes.
+
+Solutions : facets par groupe, mettre en évidence quelques groupes importants, griser les autres groupes, labeliser directement les lignes, etc.
+
+```{r}
+set.seed(123)
+
+time <- 0:12
+groups <- paste0("Gene_", LETTERS[1:8])
+
+df <- expand.grid(
+  time = time,
+  gene = groups
+) |>
+  arrange(gene, time) |>
+  mutate(
+    value = sin(time/2) +
+            as.numeric(factor(gene))/2 +
+            rnorm(n(), 1, 0.3)
+  ) |> 
+  as_tibble()
+df
+```
+
+```{r}
+#| label: bcp-groupes
+#| fig-cap: "Figure originale"
+
+ggplot(df, aes(time, value, color = gene)) +
+  geom_line() +
+  theme_minimal()
+```
+
+```{r}
+#| label: bcp-groupes-facet
+#| fig-cap: "Facets par groupe"
+
+ggplot(df, aes(time, value)) +
+  geom_line(color = "steelblue") +
+  facet_wrap(~gene) +
+  theme_minimal()
+```
+
+```{r}
+#| label: bcp-groupes-higlight
+#| fig-cap: "Mettre en évidence un groupe"
+
+ggplot(df, aes(time, value, group = gene, color = gene == "Gene_D")) +
+  geom_line() +
+  scale_color_manual(values = c("grey70", "red")) +
+  theme_minimal()
+```
+
+```{r}
+#| label: bcp-groupes-grey-out
+#| fig-cap: "Griser les autres groupes"
+
+ggplot(df, aes(time, value, group = gene)) +
+  geom_line(color = "grey80") +
+  geom_line(
+    data = df |> filter(gene %in% c("Gene_B","Gene_D")),
+    aes(color = gene)
+  ) +
+  theme_minimal()
+```
+
+```{r}
+#| label: bcp-groupes-label-line
+#| fig-cap: "Labeliser directement les lignes"
+
+# récupérer le dernier point de chaque gene
+labels <- df |>
+  group_by(gene) |>
+  slice_max(time, n = 1)
+labels
+
+ggplot(df, aes(time, value, color = gene)) +
+  geom_line() +
+  geom_text(
+    data = labels,
+    aes(label = gene),
+    hjust = -0.1
+  ) +
+  scale_x_continuous(expand = expansion(mult = c(0, 0.2))) + # augmenter l’espace sur l’axe x pour les labels
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+
+## Mauvais graphiques : pie charts
+
+Les pie charts sont difficiles à lire :
+
+- comparaison d’angles difficile
+- comparaison d’aires difficile
+
+Alternatives :
+
+- barplot
+- lollipop plot
+- treemap
+
+Example: 
+
+```{r}
+cell_types <- tibble(
+  cell_type = c(
+    "T cells",
+    "B cells",
+    "NK cells",
+    "Monocytes",
+    "Dendritic cells",
+    "Epithelial",
+    "Fibroblasts"
+  ),
+  proportion = c(31, 21, 8, 15, 7, 12, 6)
+)
+cell_types
+sum(cell_types$proportion)
+```
+
+```{r}
+#| label: pie-chart
+
+ggplot(cell_types, aes(x = "", y = proportion, fill = cell_type)) +
+  geom_col(width = 1) +
+  coord_polar(theta = "y") +
+  theme_void()
+```
+
+Barplot :
+
+- comparaison immédiate
+- tri possible
+- facile à lire
+
+```{r}
+#| label: pie-alternative-bar
+
+ggplot(cell_types,
+       aes(x = reorder(cell_type, proportion),
+           y = proportion,
+           fill = cell_type)) +
+  geom_col() +
+  coord_flip() +
+  theme_minimal() +
+  labs(x = "", y = "Percentage")
+```
+
+Lollipop plot : 
+
+- plus léger visuellement
+- très lisible
+
+```{r}
+#| label: pie-alternative-lollipop
+
+ggplot(cell_types,
+       aes(x = reorder(cell_type, proportion),
+           y = proportion)) +
+  geom_segment(aes(xend = cell_type,
+                   y = 0,
+                   yend = proportion),
+               color = "grey70") +
+  geom_point(size = 4, color = "steelblue") +
+  coord_flip() +
+  theme_minimal() +
+  labs(x = "", y = "Percentage")
+```
+
+Treemap :
+
+- représentation intuitive de la surface
+- utile quand il y a beaucoup de catégories
+- Bon pour visualiser des proportions relatives
+
+```{r}
+#| label: pie-alternative-treemap
+
+library(treemapify)
+ggplot(cell_types,
+       aes(area = proportion,
+           fill = cell_type,
+           label = cell_type)) +
+  geom_treemap() +
+  geom_treemap_text(colour = "white", place = "centre") +
+  theme(legend.position = "none") 
+```
+
+## Histogrammes
+
+Le bin width influence fortement l’interprétation.
+
+Un mauvais choix peut :
+
+- cacher une distribution bimodale
+- créer de faux motifs
+
+Bonne pratique : tester plusieurs valeurs.
+
+```{r}
+#| eval: false
+
+geom_histogram(binwidth = ...)
+geom_histogram(bins = ...)
+```
+
+## Barres d’erreur
+
+Les barplots avec `mean ± error bar` peuvent cacher :
+
+- outliers
+- distribution bimodale
+- tailles d’échantillons différentes
+
+De plus, les barres d’erreur peuvent représenter :
+
+- SD (écart-type, mesure de la dispersion des données)
+- SE (erreur-type, mesure de la précision de la moyenne)
+- CI (intervalle de confiance, l'intervalle probable de la vraie moyenne)
+
+C'est souvent ambigu pour le lecteur.
+
+Alternatives :
+
+- boxplot
+- violin plot
+- nuage de points
+
+## Mauvaises couleurs
+
+Bonnes pratiques :
+
+- utiliser ≤ 6–7 couleurs
+- garder la même couleur pour la même variable
+- préférer les couleurs sobres pour le contexte
+- utiliser la couleur pour souligner l’information importante
+
+Attention :
+
+- éviter les gradients pour des catégories
+- préférer des palettes color-blind friendly
+- garder un bon contraste
+
+Solution simple :
+
+```{r}
+#| eval: false
+
+scale_color_viridis_d()
+scale_fill_viridis_d()
+
+# ou
+library(RColorBrewer)
+scale_fill_brewer(palette = "Set2")
+```
+
+# Final checklist
+
+Avant de publier une figure :
+
+- Le graphique répond-il à une question claire ?
+- Les axes sont-ils honnêtes ?
+- Peut-on voir les données ?
+- Les couleurs sont lisibles ?
+- La figure est-elle compréhensible sans explication orale ?
