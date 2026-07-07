@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Week 5 - Hands-On Examples – IOC-2026</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -68,15 +71,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../images/logoInforBio_fond_blanc.png" rel="icon" type="image/png">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-afa37c5c79185640b9c231024f4fe5ea.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-bba5ebae505b5c03f3f0d8040a416a6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -236,13 +238,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>my_pkgs <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">installed.packages</span>()[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>)])</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_pkgs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>            Package Version Priority
-abind         abind   1.4-8     &lt;NA&gt;
-askpass     askpass   1.2.1     &lt;NA&gt;
-backports backports   1.5.0     &lt;NA&gt;
-base64enc base64enc   0.1-6     &lt;NA&gt;
-bit             bit   4.6.0     &lt;NA&gt;
-bit64         bit64 4.6.0-1     &lt;NA&gt;</code></pre>
+<pre><code>                Package  Version Priority
+abind             abind    1.4-8     &lt;NA&gt;
+AsioHeaders AsioHeaders 1.30.2-1     &lt;NA&gt;
+askpass         askpass    1.2.1     &lt;NA&gt;
+backports     backports    1.5.0     &lt;NA&gt;
+base64enc     base64enc    0.1-3     &lt;NA&gt;
+bit                 bit    4.6.0     &lt;NA&gt;</code></pre>
 </div>
 </div>
 <ol start="4" type="1">
@@ -251,7 +253,7 @@ bit64         bit64 4.6.0-1     &lt;NA&gt;</code></pre>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(my_pkgs) <span class="co"># the number can be different</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 187</code></pre>
+<pre><code>[1] 213</code></pre>
 </div>
 </div>
 <ol start="5" type="1">
@@ -262,18 +264,18 @@ bit64         bit64 4.6.0-1     &lt;NA&gt;</code></pre>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>my_pkgs[<span class="fu">c</span>(<span class="st">"ggplot2"</span>, <span class="st">"tidyr"</span>, <span class="st">"dplyr"</span>), ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        Package Version Priority
-ggplot2 ggplot2   4.0.2     &lt;NA&gt;
-tidyr     tidyr   1.3.2     &lt;NA&gt;
-dplyr     dplyr   1.2.0     &lt;NA&gt;</code></pre>
+ggplot2 ggplot2   4.0.3     &lt;NA&gt;
+tidyr     tidyr   1.3.1     &lt;NA&gt;
+dplyr     dplyr   1.1.4     &lt;NA&gt;</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## or</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># extract by filtering the names in the "Package" column</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>my_pkgs[my_pkgs<span class="sc">$</span>Package <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"ggplot2"</span>, <span class="st">"tidyr"</span>, <span class="st">"dplyr"</span>), ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        Package Version Priority
-dplyr     dplyr   1.2.0     &lt;NA&gt;
-ggplot2 ggplot2   4.0.2     &lt;NA&gt;
-tidyr     tidyr   1.3.2     &lt;NA&gt;</code></pre>
+dplyr     dplyr   1.1.4     &lt;NA&gt;
+ggplot2 ggplot2   4.0.3     &lt;NA&gt;
+tidyr     tidyr   1.3.1     &lt;NA&gt;</code></pre>
 </div>
 </div>
 </section>

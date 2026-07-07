@@ -7,8 +7,8 @@
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.27">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.38">
 
   <title>IOC-2026 – Data Foundations: Vectors and Matrices</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -17,6 +17,9 @@
   <link rel="stylesheet" href="../../../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../../../site_libs/revealjs/dist/reveal.css">
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -95,7 +98,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../../site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link rel="stylesheet" href="../../../site_libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
   <link rel="stylesheet" href="../../../ioc_r/custom.css">
   <link href="../../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -275,8 +278,7 @@
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>char_name <span class="ot">&lt;-</span> InforBio</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error:
-! object 'InforBio' not found</code></pre>
+<pre><code>Error: object 'InforBio' not found</code></pre>
 </div>
 </div>
 <div class="callout callout-tip callout-style-simple">
@@ -466,8 +468,7 @@
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="st">"1"</span> <span class="sc">+</span> <span class="st">"2"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error in `"1" + "2"`:
-! non-numeric argument to binary operator</code></pre>
+<pre><code>Error in "1" + "2": non-numeric argument to binary operator</code></pre>
 </div>
 </div>
 </div>
@@ -505,8 +506,7 @@
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="fu">is.logical</span>(True)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error:
-! object 'True' not found</code></pre>
+<pre><code>Error: object 'True' not found</code></pre>
 </div>
 </div>
 <ul>
@@ -1289,8 +1289,7 @@ r3  3  6  9 12</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb201"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb201-1"><a></a><span class="co"># replace values in 1st row</span></span>
 <span id="cb201-2"><a></a>mat[<span class="dv">1</span>, ] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error in `mat[1, ] &lt;- c(0, 1, 2)`:
-! number of items to replace is not a multiple of replacement length</code></pre>
+<pre><code>Error in mat[1, ] &lt;- c(0, 1, 2): number of items to replace is not a multiple of replacement length</code></pre>
 </div>
 </div>
 </div>
@@ -1314,8 +1313,7 @@ r3  3  6  9 12</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb205"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb205-1"><a></a><span class="co"># replace values in 1st row</span></span>
 <span id="cb205-2"><a></a>mat[<span class="dv">1</span>, ] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error in `mat[1, ] &lt;- c(0, 1, 2)`:
-! number of items to replace is not a multiple of replacement length</code></pre>
+<pre><code>Error in mat[1, ] &lt;- c(0, 1, 2): number of items to replace is not a multiple of replacement length</code></pre>
 </div>
 </div>
 </div><div class="column">
@@ -1590,44 +1588,6 @@ multiple of replacement length</code></pre>
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
