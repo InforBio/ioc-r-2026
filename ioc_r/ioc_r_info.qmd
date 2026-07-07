@@ -9,23 +9,25 @@ Please bookmark this page for quick access.
 
 ## Calendar
 
-- Starts from: the week of 3rd November 2025  
+- Starts from: 2nd October 2026  
 - Time slots: **9:00 am – 12:00 pm**
-- Format: Hybrid -- with **weeks 1, 5 and 9 held in-persion** at InforBio office; all other sessions take place online.
+- Format: online via [Visio](https://lasuite.numerique.gouv.fr/produits/visio) (link will be shared with registered participants)
 - Provisional schedule:  
 
-  | **Week**           | **Session**                                                   |
-  |--------------------|---------------------------------------------------------------|
-  | **Week 1 (in-person)** | Kickstart with R: Your Gateway to Data Science            |
-  | Week 2             | Data Foundations: Vectors and Matrices                        |
-  | Week 3             | More Complex Data Structures: Data Frames and Lists           |
-  | Week 4             | Building Logic: Operators, Conditions and Functions           |
-  | **Week 5 (in-person)** | Graphing with {`ggplot2`}  (Part 1)                       |
-  | Week 6             | R-fresh: Revisiting the Essentials                            |
-  | Week 7             | Tidy Up: Wrangling Data with {`dplyr`} and {`tidyr`}          |
-  | Week 8 | Graphs Level Up: {`ggplot2`} (Part 2) & Custom Functions                  |
-  | **Week 9 (in-person)** | Putting It All Together: Reproducible Analysis with Quarto|
-  | Week 10            | Your project presentation                                     |
+| **Session**        | **Topic**                           | **Planned Date** |
+|------------------------|----------------------------------------------| ---------|
+|  1    | Kickstart with R: Your Gateway to Data Science                |  02/10/2026 |
+|  2    | Data Foundations: Vectors and Matrices                        |  09/10/2026 |
+|  3    | More Complex Data Structures: Data Frames and Lists           |  16/10/2026 |
+| \-\-\-    |   Break |  \-\-\-     |
+|  4    | Building Logic: Operators, Conditions and Functions           |  06/11/2026 |
+|  5    | Graphing with {`ggplot2`}  (Part 1)                           |  13/11/2026 |
+| \-\-\-    |  Break |  \-\-\-     |
+|  6    | R-fresh: Revisiting the Essentials                            |  27/11/2026 |
+|  7    | Tidy Up: Wrangling Data with {`dplyr`} and {`tidyr`} |  04/12/2026 |
+|  8    | Graphs Level Up: {`ggplot2`} (Part 2) & Custom Functions      |  11/12/2026 |
+|  9    | Putting It All Together: Reproducible Analysis with Quarto |  18/12/2026 |
+|  10   | Your project presentation                                     |  TBD     |
 
 
 ## Recommended Readings
@@ -35,4 +37,3 @@ Please bookmark this page for quick access.
 - [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2.tidyverse.org) by Hadley Wickham 
 - [YaRrr! The Pirate’s Guide to R](https://bookdown.org/ndphillips/YaRrr/) by Nathaniel D. Phillips
 - [CRAN R Documentation](https://cran.r-project.org/)
-

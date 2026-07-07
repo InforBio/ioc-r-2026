@@ -9,17 +9,22 @@ The training centers on hands-on analysis of single-cell RNA-seq data.
 You’ll work with a provided dataset, get personalized feedback on your own projects,
 and should already be comfortable working in R.
 
-The online course will be started from March 2026.
+The online course will be started from March 2027.
 
-| **Week** | **Session**                      |
-|----------|----------------------------------|
-| Week 1   | Introduction                     |
-| Week 2   | Quality Control & Normalisation  |
-| Week 3   | Dimensionality Reduction         |
-| Week 4   | Clustering (Part 1)              |
-| Week 5   | Clustering (Part 2)              |
-| Week 6   | Ingegration                      |
-| Week 7   | Annotation                       |
-| Week 8   | Multiome                         |
-| Week 9   | Enrichment Analysis              |
-| Week 10  | Your project presentation        |
+| **Session** | **Topic**                      | **Planned 2027** |
+|----------|----------------------------------|--------------------|
+|  1   | Introduction to Single-cell RNA-seq and Analysis Workflow | week 9 |
+|  2   | From fastq to counts (1)  | week 10 |
+|  3   | From fastq to counts (2)         | week 11 |
+|  4   | Quality Control and Normalization              | week 12 |
+|  5   | Dimensionality Reduction | week 13 |
+| \-\-\-    |  Break |  \-\-\-     |
+|  6   | Clustering and Marker Identification | week 16 |
+|  7   | Cell Type Annotation                       | week 17 |
+| \-\-\-    |  Break |  \-\-\-     |
+|  8   | Integration                         | week 19 |
+| \-\-\-    |  Break |  \-\-\-     |
+|  9   | Exploratory Analysis (1) DE - Enrichment           | week 21 |
+|  10  | Exploratory Analysis (2) DE - Enrichment           | week 22 |
+|  11  | Multiome | week 23 |
+|  12  | Your project presentation        | TBD |

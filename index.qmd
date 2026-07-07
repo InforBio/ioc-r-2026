@@ -33,9 +33,9 @@ confidence to run their own analyses independently.
 
 ## IOC tools
 
-### Zoom
+### Visio
 
-We will use Zoom for videoconferencing.
+We will use [Visio](https://lasuite.numerique.gouv.fr/produits/visio) for videoconferencing.
 
 Please follow the rules for usage:
 
@@ -50,19 +50,13 @@ Please follow the rules for usage:
 - Recorded sessions are for personal review only. Do not distribute them without permission.
 
 
-### Slack
+### Tchap
 
-Slack is a dedicated workspace for communication and staying connected between sessions.
+Tchap is a dedicated workspace for communication and staying connected between sessions.
 
-If you haven't already use it, you need to create a [Slack account](https://slack.com/get-started#/createnew).
+If you haven't already use it, you need to create a [Tchap account](https://tchap.gouv.fr/).
 
-If you have a Slack account, you can either connect to the account using this
-[webpage](https://slack.com/signin#/signin),
-or use a desktop version on your computer.
-([Slack Windows desktop](https://slack.com/intl/fr-fr/downloads/windows),
-[Slack Mac desktop](https://apps.apple.com/us/app/slack-for-desktop/id803453959?mt=12))
-
-And you will receive an invitation link to join the IOC Slack of your group.
+Then join the IOC Tchap group by searching for the space name: **InforBio-IOC-2027**.
 
 - Post messages in the correct channel, e.g., "questions" for asking about course content.
 - When asking questions, please be specific and clear with a minimal context, include screenshots or error message to help others understand the issue.
@@ -76,9 +70,3 @@ Trello is a tool to help you stay organized and track your learning progress.
 You will be invited to join a Trello board for this IOC.
 We will create one list per student, 
 please add one card for each session to add your notes, summary, etc.
-
-
-<!-- ### Git? -->
-
-
-
