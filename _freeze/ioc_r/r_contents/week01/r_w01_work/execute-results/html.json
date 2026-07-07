@@ -1,0 +1,15 @@
+{
+  "hash": "d0b5402796735a9db9113319c3bcc595",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Week 1 - Homework\"\nformat: \n  html: default\ndate: \"2025-11-05\"\ndate-format: \" \"\ncategories: \n  - week01\n  - homework\neditor_options: \n  chunk_output_type: console\n---\n\nWrite your code in a new R script.\nYou can use `#` at the beginning of a line to add a comment in your script.\n\n1. Import the data file \"**visceral_fat.csv**\".\n\n  - First, download the `visceral_fat.csv` file via this [link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/exos_data/visceral_fat.csv).\n  - Then, upload the file to a folder of your choice within your RStudio project.\n  - Next, import the data into RStudio and name the data frame `visceral_fat`. \n\nTip:\n\nUse the **click-button method** in RStudio to upload and import the file. Then, copy and paste the R commands generated into your script.\n\nOnce imported, you can use the `visceral_fat` dataset for further analysis in your report.\n\n\n::: {.cell}\n\n:::\n\n\n2. Summarize the dataset.\n\nRun the function `summary(visceral_fat)` to generate a summary of the dataset. Describe what information you obtained.\n\n\n::: {.cell}\n\n:::\n\n\n3. Draw a histogram.\n\nCreate a histogram for the diastolic blood pressure using the column `visceral_fat[[\"diastolic_bp__mmhg\"]]`. Describe what you observe from the plot.\n\n\n::: {.cell}\n\n:::\n\n\n4. Handle an outlier.\n\nAfter consulting with a clinician, you discover that the 27th value of the diastolic blood pressure was incorrectly recorded.\n\n  - Ignore this value using `visceral_fat[[\"diastolic_bp__mmhg\"]][-27]`\n  - Redraw the histogram after excluding the outlier and describe any changes you observe.\n\n\n::: {.cell}\n\n:::\n\n\n5. Compare mean and median.\n\nCalculate the mean (`mean()`) and the median (`median()`) for the diastolic blood pressure\n\n  - before ignoring the 27th value: `visceral_fat[[\"diastolic_bp__mmhg\"]]` \n  - after ignoring the 27th value: `visceral_fat[[\"diastolic_bp__mmhg\"]][-27]`\n  \nDescribe how the outlier affects the mean and median.\n\n\n::: {.cell}\n\n:::\n\n\n\nThe homework correction is available here:\n[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/week01/.r_w01_work_corr.R)",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

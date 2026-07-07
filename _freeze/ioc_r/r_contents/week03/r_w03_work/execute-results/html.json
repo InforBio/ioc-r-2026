@@ -1,0 +1,15 @@
+{
+  "hash": "9346cf8a5afff8b90ade856f428816a0",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Week 3 - Homework\"\nformat: \n  html: default\ndate: \"2025-11-19\"\ndate-format: \" \"\ncategories: \n  - week03\n  - homework\neditor_options: \n  chunk_output_type: console\n---\n\n1. Create a matrix of two columns to store numbers 1 to 8,\nuse the `dimnames` parameter of the `matrix` function to name\nthe rows and columns directly. (see `?matrix`)\n(You can name the rows/columns whatever you want.)\n\n\n::: {.cell}\n\n:::\n\n\n\nUse the following code to import the file \"read-counts.csv\" \n(you have already downloaded it for the hand-on examples of week01).\nName the imported data `expr_data`.\n\n\n::: {.cell}\n\n```{.r .cell-code}\nexpr_data <- read.table(\n  file = \"../exos_data/read-counts.csv\",  # replace the path with your own\n  header = TRUE, sep = \",\", row.names = 1\n)\n```\n:::\n\n\n2. Create a list `info_expr` to store information about `expr_data`:  \n  - \"col_names\": column names\n  - \"row_names\": row names\n  - \"dimension\": number of rows and columns\n  - \"sum_sample\": the sum of expression level across all genes for each sample\n  - \"avg_gene\": the average expression level across all samples for each gene\n\n\n::: {.cell}\n\n:::\n\n\n3. Calculate the median of the average gene expression levels across all samples.\n\n\n::: {.cell}\n\n:::\n\n\n4. Use `summary()` to generate summary statistics of the sum of expression level across all genes.\n\n\n::: {.cell}\n\n:::\n\n\n5. Calculate the log2 fold change of the gene *TOS6* for the WT and RRP6 samples.\nIs *TOS6* up or down-regulated in the RRP6 samples compared to WT?\n\n\n::: {.cell}\n\n:::\n\n\n6. Perform a Wilcoxon test to check if the *TOS6* expression is different between\nWT and RRP6 samples. \n\n  - Store the test results in a variable (object) called `res_wilcox`.\n  What is the data structure of the results? Extract the p-value from the results.\n  - Use $\\alpha = 0.05$, what is your conclusion?\n\n\n::: {.cell}\n\n:::\n\n\n\n7. Visualize the expression level of *TOS6* for WT and RRP6 samples using boxplot.\n\n\n::: {.cell}\n\n:::\n\n\n\nThe homework correction is available here:\n[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/week03/.r_w03_work_corr.R)",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

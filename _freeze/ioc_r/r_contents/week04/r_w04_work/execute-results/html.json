@@ -1,0 +1,15 @@
+{
+  "hash": "124aa259a4a6b070a5e80a74d01a2b51",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Week 4 - Homework\"\nformat: \n  html: default\ndate: \"2025-11-26\"\ndate-format: \" \"\ncategories: \n  - week04\n  - homework\neditor_options: \n  chunk_output_type: console\n---\n\n1. Import the `read-counts.csv` file.\n\n\n::: {.cell}\n\n:::\n\n\n*Quick reminder*:\nthis data file contains gene expression values of samples from four groups,\nsample names are prefixed by \"WT\", \"SET1\", \"SET1.RRP6\" and \"RRP6\".\nEach group has 10 samples.\n\n2. Calculate the average gene expression per gene across the 10 samples in the \"WT\" group.\n\n\n::: {.cell}\n\n:::\n\n\n3. Now, repeat the previous step to calculate the average expression for the remaining three groups: \"SET1\", \"SET1.RRP6\" and \"RRP6\"\n- Store the four average values in a list named `avg_list`, using the group names as the names of the list.\n- Display the first 5 average values for the \"SET1.RRP6\" group.\n\n\n::: {.cell}\n\n:::\n\n\n4. Transform the list obtained in question 3 to a data frame using `as.data.frame()`.\nShow the head lines of your data frame.\n\n\n::: {.cell}\n\n:::\n\n\n:::{.callout-note}\nA data frame can be considered as a list of equal-length vectors.\n:::\n\n5. What are the genes having an average greater than 10000 in WT and SET1 samples?\nCompare if there are genes in common using learned operator or the `intersect()` function.\n\n\n::: {.cell}\n\n:::\n\n\n6. Check if the average expression of the \"RRP6\" group\nis normally distributed (`?shapiro.test()`) using significance level at 5%.\nWhat is the p-value of normality test?\nIf it's normally distributed, draw directly a histogram (`?hist()`) for the values.\nOtherwise, draw a histogram for the log-transformed values.\n\n\n::: {.cell}\n\n:::\n\n\n\nThe homework correction is available here:\n[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/week04/.r_w04_work_corr.R)",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

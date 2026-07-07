@@ -1,0 +1,15 @@
+{
+  "hash": "27844a7eee7ac2211165efb45de7065e",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Gestion des versions : renv et git\"\ndate: \"2026-03-10\"\ndate-format: \" \"\nformat: html\nimage: images/documents.png\ncategories: \n  - week10\neditor_options: \n  chunk_output_type: console\n---\n\n## Versions des packages\n\nParfois, on voit ces messages lors de l’exécution d’un script :\n\n```r\nError in library(dplyr) : there is no package called ‘dplyr’\n```\n\nou\n\n```r\nError: package ‘dplyr’ version 1.1.0 required\nbut 0.8.5 is installed\n```\n\n## Gérer les versions de packages : [renv](https://rstudio.github.io/renv/)\n\nConcept :\n\n```bash\nmy_project\n ├ script.R\n ├ data/\n ├ renv.lock\n └ renv/\n    └ library/ # la bibliothèque du projet\n```\n\nChaque projet a ses propres versions des packages.\n\nAvec le fichier `renv.lock` qui enregistre :\n\n- versions packages\n- dépendances\n\nCommandes essentielles :\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# Initialiser\nrenv::init()\n\n# Installer packages\nrenv::install(\"dplyr\") # depuis CRAN\nrenv::install(\"bioc::DESeq2\") # depuis Bioconductor\nrenv::install(\"r-lib/rlang\") # depuis un répertoire github\n\n# Enregistrer l’état actuel des packages du projet\nrenv::snapshot() # mettre à jour le renv.lock\n\n# Vérifier l'état actuel des packages du projet\nrenv::status()\n\n# Restaurer\nrenv::restore() # restaurer les pkgs du projet à partir d'un renv.lock\n```\n:::\n\n\nWorkflow simple :\n\n1. créer projet RStudio\n2. `renv::init()`\n3. travailler normalement, `renv::install()` des packages\n4. `renv::snapshot()` recorder l'info des packages avant de partager\n\n`renv` utilise un cache global, donc quand un package est déjà installé avec la même version, `renv::install()` ne le recompilera pas. Il va simplement créer un lien vers le cache.\n\n\n## Quelle modification ai-je faite ?\n\n![source: <https://xkcd.com/1459/>](images/documents.png)\n\n## Gérer les versions de codes: [Git](https://git-scm.com)\n\nGit permet :\n\n- historique du code\n- revenir en arrière\n- collaboration\n\nConcepts simples :\n\ncommit = snapshot du code\n\nWorkflow : edit → commit → edit → commit → ... (→ push)\n\n### Workflow Git local\n\n```bash\ngit init                             # initialise un dépôt git\ngit add script_test.qmd              # ajoute un fichier au prochain commit\ngit commit -m \"create a test script\" # enregistre un snapshot\ngit log # check history              # montre l’historique\n```\n\n### Workflow avec dépôt distant (GitHub / GitLab)\n\nSi on veut partager ou sauvegarder sur GitHub, on ajoute : `git push`\n\n```bash\ngit init\ngit add script_test.qmd\ngit commit -m \"create a test script\"\n\ngit remote add origin https://github.com/user/project.git # le dépôt distant auquel je veux me connecter\ngit push -u origin main\n```\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "hash": "6d7ed4f7b1449f6031489547740a675d",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Week 6 - Homework\"\nformat: \n  html: default\ndate: \"2026-01-07\"\ndate-format: \" \"\ncategories: \n  - week06\n  - homework\neditor_options: \n  chunk_output_type: console\n---\n\nFor this homework, we will use the [Palmer Penguins dataset](https://allisonhorst.github.io/palmerpenguins/).\nIt contains information about three penguin species, living in the Palmer Archipelago.\nFor each penguin, measurements include:\n\n- Bill length and bill depth (in mm)\n- Flipper length (in mm)\n- Body mass (in grams)\n- Sex and the island where it was observed\n- Study year\n\nThe goal is to explore, manipulate and visualize these data in R while practicing the concepts learned in class.\n\n\n0. Set up your workspace.\n\nCreate a new R Project called `penguins_analysis` and save the dataset file [penguins.csv](https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/inst/extdata/penguins.csv) inside a folder named `data` in your project.\n\n\n1. Import the `penguins.csv` dataset, name the imported data as `penguins`.\n\n\n::: {.cell}\n\n:::\n\n\n2. Insepct the imported data: \n\n- How many rows and columns are there?\n- Recode the `species`, `island` and `sex` as factors\n\n\n::: {.cell}\n\n:::\n\n\n3. Which species contains the most data?\n\n\n::: {.cell}\n\n:::\n\n\n4. Extract penguins of \"Gentoo\" species which live on the \"Biscoe\" island.\n\n\n::: {.cell}\n\n:::\n\n\n5. Create a new column `bm_kg` which stores the body mass in kilogram.\n\n\n::: {.cell}\n\n:::\n\n\n6. Which species shows the highest average body mass in kilogram?\n\n\n::: {.cell}\n\n:::\n\n\n7. Use scatter plot to visualise the body mass (in kg) and the bill length:\n\n- Color the point by species.\n- Increase the point size to 2.5.\n- Replace the axis' label by \"Body Mass (kg)\" and \"Bill Length (mm)\".\n- Remove the legend title.\n- Use `theme_minimal()`.\n- Put the legend on the top of the figure.\n\n\n::: {.cell}\n\n:::\n\n\nWhat is your observation for Adelie and Chinstrap penguins?\n\n\n8. Based on your observation from question 7, test if your hypothesis is statistically valid (using significance level at 5%). \n\n::: {.callout-tip collapse=\"true\" title=\"Hints\"}\n- Check the distribution of body mass or bill length,\ntest the normality of data distribution of each species.\n- If both group are normally distributed, use a t-test (`?t.test`);\nIf one or both groups are not normally distributed, use a Wilcoxon rank-sum test.\n- Report the p-value and state your conclusion in one sentence.\n:::\n\n\n::: {.cell}\n\n:::\n\n\n---\n\nThe homework correction is available here:\n[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/week06/.r_w06_work_corr.R)",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

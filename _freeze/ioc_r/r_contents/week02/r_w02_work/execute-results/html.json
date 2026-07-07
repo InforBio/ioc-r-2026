@@ -1,0 +1,15 @@
+{
+  "hash": "1116e5d09b9be703f259c55fc68e4234",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Week 2 - Homework\"\nformat: \n  html: default\ndate: \"2025-11-12\"\ndate-format: \" \"\ncategories: \n  - week02\n  - homework\neditor_options: \n  chunk_output_type: console\n---\n\nUse the following code to import the file \"read-counts.csv\" \n(you have already downloaded it for the hand-on examples of week01).\nName the imported data `expr_data`.\n\n\n::: {.cell}\n\n```{.r .cell-code}\nexpr_data <- read.table(\n  file = \"../exos_data/read-counts.csv\",  # replace the path with your own\n  header = TRUE, sep = \",\", row.names = 1\n)\n```\n:::\n\n\n1. Is the imported data a matrix?\n\n\n::: {.cell}\n\n:::\n\n\n2. Transform it to a matrix using `as.matrix()`.\n\n\n::: {.cell}\n\n:::\n\n\n3. What are the dimensions of the matrix?\n\n\n::: {.cell}\n\n:::\n\n\n4. What are the column names and row names?\n\n\n::: {.cell}\n\n:::\n\n\n\n5. Extract all genes' expression for the 10 WT samples (WT.1, WT.2, ..., WT.10),\nand store it in a variable called `expr_wt`.\nShow the first few rows using `head()` function.\n\n\n::: {.cell}\n\n:::\n\n\n6. What is the average expression level across all WT samples for each gene?\nStore the results in a variable called `avg_wt`.\n\n\n::: {.cell}\n\n:::\n\n\n7. Draw a histogram to check the distribution of the average gene expression level for WT samples.\n\n\n::: {.cell}\n\n:::\n\n\n8. Repeat questions 5 to 7 for the SET1 samples (SET1.1, SET1.2, ..., SET1.10).\n\n\n::: {.cell}\n\n:::\n\n\n9. What is the absolute difference between the average expression of WT and SET1 samples for each gene? \nWhich gene shows the biggest difference?\n\n::: {.callout-tip collapse=\"true\" title=\"Hints\"}\n- Use `abs()` to get the absolute value. (`?abs`)\n- The `max()` function helps to find the maximum value from a vector. (`?max`)\n- The `which.max()` function helps to find the index of the maximum value from a vector. (`?which.max`)\n:::\n\n\n::: {.cell}\n\n:::\n\n\n\n10. Compare the following matrix to the one we created during the course' exercise (the matrix named `expression_levels`).\nWhat is the key difference in how the matrix is constructed? \nProvide a brief explanation.\n\n\n::: {.cell}\n\n```{.r .cell-code}\nmatrix(\n  c(10, 12, 15, 20, 18, 22, 14, 16, 19, 8, 9, 7, 25, 30, 28),\n  ncol = 3\n)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n     [,1] [,2] [,3]\n[1,]   10   22    9\n[2,]   12   14    7\n[3,]   15   16   25\n[4,]   20   19   30\n[5,]   18    8   28\n```\n\n\n:::\n:::\n\n\n\nThe homework correction is available here:\n[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/week02/.r_w02_work_corr.R)\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
