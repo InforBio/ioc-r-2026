@@ -24,7 +24,7 @@ The online course will be started from March 2027.
 | \-\-\-    |  Break |  \-\-\-     |
 |  8   | Integration                         | week 19 |
 | \-\-\-    |  Break |  \-\-\-     |
-|  9   | Exploratory Analysis (1) DE - Enrichment           | week 21 |
-|  10  | Exploratory Analysis (2) DE - Enrichment           | week 22 |
+|  9   | Exploratory Analysis (1) Enrichment           | week 21 |
+|  10  | Exploratory Analysis (2) Cell2Cell Communication / Trajectories           | week 22 |
 |  11  | Multiome | week 23 |
 |  12  | Your project presentation        | TBD |
