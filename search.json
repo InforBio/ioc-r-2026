@@ -1,17 +1,10 @@
 [
   {
-    "objectID": "index.html#what-is-ioc",
-    "href": "index.html#what-is-ioc",
-    "title": "Welcome To the IOC Training!",
-    "section": "What is IOC?",
-    "text": "What is IOC?\nThe InforBio platform has developed an “Interactive Online Companionship” (IOC) specifically tailored to initiate researchers into bioinformatics. The IOC involved one-to-many virtual work sessions where companions are trained to analyze their own data.\nAll IOC programs are structured into a series of modules, with each module building upon the knowledge and skills acquired in the previous one. One module lasts one week, during which companions dive into online materials to ensure they understand and internalize the content. Companions then complete quizzes and exercises using both public and their own data to gauge their understanding, receiving personalized feedback on their work. To facilitate their learning, we provide access to computational resources such as Rstudio and Galaxy servers. The module wraps up with a 3 hours training to recap the week’s material and address any questions, with 7 videoconference sessions and 3 in-person sessions. These videoconferences are recorded and made available for later viewing, ensuring continuous access to the learning resources.\nBy the end of an IOC, companions will be equipped with expertise and confidence to run their own analyses independently."
-  },
-  {
-    "objectID": "index.html#ioc-tools",
-    "href": "index.html#ioc-tools",
-    "title": "Welcome To the IOC Training!",
-    "section": "IOC tools",
-    "text": "IOC tools\n\nVisio\nWe will use Visio for videoconferencing.\nPlease follow the rules for usage:\n\nPlease be on time.\nTechnical setup:\n\nEnsure your internet connection is stable.\nTest your camera and microphone before the session.\n\nDuring the session:\n\nKeep your microphone muted unless you’re speaking to avoid background noise.\nUse the “Raise Hand” feature if you want to ask a question during the lecture.\nKeep your camera on if possible to create a more interactive environment.\n\nRecorded sessions are for personal review only. Do not distribute them without permission.\n\n\n\nTchap\nTchap is a dedicated workspace for communication and staying connected between sessions.\nIf you haven’t already use it, you need to create a Tchap account.\nThen join the IOC Tchap group by searching for the space name: InforBio-IOC-2027.\n\nPost messages in the correct channel, e.g., “questions” for asking about course content.\nWhen asking questions, please be specific and clear with a minimal context, include screenshots or error message to help others understand the issue.\nWhen discussing a question, please reply in the thread to avoid flooding the channel.\n\n\n\nTrello\nTrello is a tool to help you stay organized and track your learning progress.\nYou will be invited to join a Trello board for this IOC. We will create one list per student, please add one card for each session to add your notes, summary, etc."
+    "objectID": "index.html#training-tools",
+    "href": "index.html#training-tools",
+    "title": "Welcome To the InforBio Training!",
+    "section": "Training Tools",
+    "text": "Training Tools\n\nVisio\nWe will use Visio for videoconferencing.\nPlease follow the rules for usage:\n\nPlease be on time.\nTechnical setup:\n\nEnsure your internet connection is stable.\nTest your camera and microphone before the session.\n\nDuring the session:\n\nKeep your microphone muted unless you’re speaking to avoid background noise.\nUse the “Raise Hand” feature if you want to ask a question during the lecture.\nKeep your camera on if possible to create a more interactive environment.\n\nRecorded sessions are for personal review only. Do not distribute them without permission.\n\n\n\nTchap\nTchap is a dedicated workspace for communication and staying connected between sessions.\nIf you haven’t already use it, you need to create a Tchap account.\nThen join the InforBio training Tchap group by searching for the space name: InforBio-trainings-2027.\n\nPost messages in the correct channel, e.g., “questions” for asking about course content.\nWhen asking questions, please be specific and clear with a minimal context, include screenshots or error message to help others understand the issue.\nWhen discussing a question, please reply in the thread to avoid flooding the channel.\n\n\n\nTrello\nTrello is a tool to help you stay organized and track your learning progress.\nYou will be invited to join a Trello board for each training program. We will create one list per student, please add one card for each session to add your notes, summary, etc."
   },
   {
     "objectID": "ioc_r/r_contents/week01/r_w01_exos.html",
@@ -933,9 +926,9 @@
   {
     "objectID": "ioc_scrnaseq/ioc_scrnaseq_info.html",
     "href": "ioc_scrnaseq/ioc_scrnaseq_info.html",
-    "title": "IOC Single-cell RNAseq Training Information",
+    "title": "scRNA-seq Training Information",
     "section": "",
-    "text": "Welcome to the IOC-scRNAseq Training!\nThe training centers on hands-on analysis of single-cell RNA-seq data. You’ll work with a provided dataset, get personalized feedback on your own projects, and should already be comfortable working in R.\nThe online course will be started from March 2027.\n\n\n\n\n\n\n\n\nSession\nTopic\nPlanned 2027\n\n\n\n\n1\nIntroduction to Single-cell RNA-seq and Analysis Workflow\nweek 9\n\n\n2\nFrom fastq to counts (1)\nweek 10\n\n\n3\nFrom fastq to counts (2)\nweek 11\n\n\n4\nQuality Control and Normalization\nweek 12\n\n\n5\nDimensionality Reduction\nweek 13\n\n\n---\nBreak\n---\n\n\n6\nClustering and Marker Identification\nweek 16\n\n\n7\nCell Type Annotation\nweek 17\n\n\n---\nBreak\n---\n\n\n8\nIntegration\nweek 19\n\n\n---\nBreak\n---\n\n\n9\nExploratory Analysis (1) DE - Enrichment\nweek 21\n\n\n10\nExploratory Analysis (2) DE - Enrichment\nweek 22\n\n\n11\nMultiome\nweek 23\n\n\n12\nYour project presentation\nTBD"
+    "text": "Welcome to the sc-RNAseq Data Analysis Training!\nThe training centers on hands-on analysis of single-cell RNA-seq data. You’ll work with a provided dataset, get personalized feedback on your own projects, and should already be comfortable working in R.\nThe online course will be started from March 2027.\nNew this year: a “from FASTQ to counts” module to understand and carry out the generation of the count matrix from raw sequencing data.\n\n\n\n\n\n\n\n\nSession\nTopic\nPlanned 2027\n\n\n\n\n1\nIntroduction to Single-cell RNA-seq and Analysis Workflow\nweek 9\n\n\n2\nFrom fastq to counts (1)\nweek 10\n\n\n3\nFrom fastq to counts (2)\nweek 11\n\n\n4\nQuality Control and Normalization\nweek 12\n\n\n5\nDimensionality Reduction\nweek 13\n\n\n---\nBreak\n---\n\n\n6\nClustering and Marker Identification\nweek 16\n\n\n7\nCell Type Annotation\nweek 17\n\n\n---\nBreak\n---\n\n\n8\nIntegration\nweek 19\n\n\n---\nBreak\n---\n\n\n9\nExploratory Analysis (1) Enrichment\nweek 21\n\n\n10\nExploratory Analysis (2) Cell2Cell Communication / Trajectories\nweek 22\n\n\n11\nMultiome\nweek 23\n\n\n12\nYour project presentation\nTBD"
   },
   {
     "objectID": "ioc_r/ioc_r_toc.html",
@@ -1752,21 +1745,21 @@
   {
     "objectID": "ioc_r/ioc_r_info.html",
     "href": "ioc_r/ioc_r_info.html",
-    "title": "IOC R Training Information",
+    "title": "R Training Information",
     "section": "",
-    "text": "Welcome to the new edition of IOC R Training! This page contains all the essential details for the training. Please bookmark this page for quick access."
+    "text": "Welcome to the new edition of Introduction to R for Data Analysis Training! This page contains all the essential details for the training. Please bookmark this page for quick access."
   },
   {
     "objectID": "ioc_r/ioc_r_info.html#calendar",
     "href": "ioc_r/ioc_r_info.html#calendar",
-    "title": "IOC R Training Information",
+    "title": "R Training Information",
     "section": "Calendar",
     "text": "Calendar\n\nStarts from: 2nd October 2026\n\nTime slots: 9:00 am – 12:00 pm\nFormat: online via Visio (link will be shared with registered participants)\nProvisional schedule:\n\n\n\n\n\n\n\n\n\nSession\nTopic\nPlanned Date\n\n\n\n\n1\nKickstart with R: Your Gateway to Data Science\n02/10/2026\n\n\n2\nData Foundations: Vectors and Matrices\n09/10/2026\n\n\n3\nMore Complex Data Structures: Data Frames and Lists\n16/10/2026\n\n\n---\nBreak\n---\n\n\n4\nBuilding Logic: Operators, Conditions and Functions\n06/11/2026\n\n\n5\nGraphing with {ggplot2} (Part 1)\n13/11/2026\n\n\n---\nBreak\n---\n\n\n6\nR-fresh: Revisiting the Essentials\n27/11/2026\n\n\n7\nTidy Up: Wrangling Data with {dplyr} and {tidyr}\n04/12/2026\n\n\n8\nGraphs Level Up: {ggplot2} (Part 2) & Custom Functions\n11/12/2026\n\n\n9\nPutting It All Together: Reproducible Analysis with Quarto\n18/12/2026\n\n\n10\nYour project presentation\nTBD"
   },
   {
     "objectID": "ioc_r/ioc_r_info.html#recommended-readings",
     "href": "ioc_r/ioc_r_info.html#recommended-readings",
-    "title": "IOC R Training Information",
+    "title": "R Training Information",
     "section": "Recommended Readings",
     "text": "Recommended Readings\n\nR for Data Science by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.\nHands-On Programming with R by Garrett Grolemund\nggplot2: Elegant Graphics for Data Analysis by Hadley Wickham\nYaRrr! The Pirate’s Guide to R by Nathaniel D. Phillips\nCRAN R Documentation"
   }
