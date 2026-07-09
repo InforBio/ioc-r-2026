@@ -3,7 +3,7 @@ project:
   output-dir: docs/
 
 website:
-  title: "IOC-2026"
+  title: "Trainings-2026"
   favicon: images/logoInforBio_fond_blanc.png
   
   page-footer: 
@@ -14,19 +14,19 @@ website:
     logo: images/logoInforBio_fond_blanc_small.png
     # right:
     #   - href: index.qmd
-    #     text: "About IOC"
+    #     text: "About InforBio Trainings"
     left: 
       - text: "Calendar & Info"
         menu: 
-          - text: "IOC-R Info"
+          - text: "R training"
             href: ioc_r/ioc_r_info.qmd
-          - text: "IOC-scRNAseq Info"
+          - text: "scRNAseq training"
             href: ioc_scrnaseq/ioc_scrnaseq_info.qmd
-      - text: "IOC-R"
+      - text: "R training"
         href: ioc_r/ioc_r_toc.qmd
-      - text: "IOC-scRNAseq"
+      - text: "scRNAseq training"
         href: ioc_scrnaseq/ioc_scrnaseq.qmd
-      # - text: "IOC-bulk RNAseq"
+      # - text: "bulk RNAseq training"
       #   href: ioc_bulk_rnaseq.qmd
       # - text: "News"
       #   href: news.qmd

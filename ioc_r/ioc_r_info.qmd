@@ -1,9 +1,9 @@
 ---
-title: "IOC R Training Information"
+title: "R Training Information"
 format: html
 ---
 
-Welcome to the new edition of IOC R Training!
+Welcome to the new edition of *Introduction to R for Data Analysis* Training!
 This page contains all the essential details for the training.
 Please bookmark this page for quick access.
 

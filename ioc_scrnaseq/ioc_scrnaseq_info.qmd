@@ -1,15 +1,17 @@
 ---
-title: "IOC Single-cell RNAseq Training Information"
+title: "scRNA-seq Training Information"
 format: html
 ---
 
-Welcome to the IOC-scRNAseq Training!
+Welcome to the *sc-RNAseq Data Analysis* Training!
 
 The training centers on hands-on analysis of single-cell RNA-seq data.
 You’ll work with a provided dataset, get personalized feedback on your own projects,
 and should already be comfortable working in R.
 
 The online course will be started from March 2027.
+
+**New this year**: a “from FASTQ to counts” module to understand and carry out the generation of the count matrix from raw sequencing data.
 
 | **Session** | **Topic**                      | **Planned 2027** |
 |----------|----------------------------------|--------------------|
