@@ -333,6 +333,8 @@ df
 :::
 ::: {.column}
 ```{r}
+#| fig-height: 4
+
 ggplot(
   data = df,
   aes(x = Condition, y = Expression)
@@ -354,42 +356,39 @@ ggsave(filename = "path/to/my_figure.png")
 :::
 
 
-# Using AI to Solve Coding Problems in R
+# Using Quarto to Create Reports
 
-## How Can AI help Us? {.smaller}
+## An Example {.smaller}
 
-- Debugging: Identify and troubleshoot error/warning messages
-- Generate code snippets (filter data, visualize, define functions, etc.)
-- Explain unfamiliar code and documentation
-- Enhance code quality (readability, efficiency, optimization)
-- ...
+::: columns
+::: {.column}
+To create: *File* -> *New File* -> *Quarto Document* -> click *Create*.
+![](../week09/images/quarto_annot.png)
 
-Different AI tools: ChatGPT, Gemini, Perplexity, Claude, Le Chat, DeepSeek, *etc.*
-
-:::{.callout-important appearance="simple"}
-AI is a great assistant, but it can make mistakes, always verify outputs!
+:::{.fragment}
+Save the document and click **Render** button.
+:::
 :::
 
+:::{.column .fragment}
+Rendered document in HTML format:
+![](../week09/images/quarto_output.png)
+:::
+:::
 
-## How to ask AI for help effectively? {.smaller}
+:::{.fragment .callout-tip appearance="simple"}
+Don't worry about the details for now, we'll break down each part of a Quarto document in Week 9.
+:::
 
-✅ Be specific: Instead of "Why is my code not working?", ask:
-
-> "I’m trying to filter a data frame in R where Expression > 10, but I get an error. Here’s my code: df[df$Expression > 10]. How can I fix it?"
-
-✅ Provide context:
-
-- A quick mention of your background can guide the response (*e.g.*: "I'm biologist working with gene expression data")
-- What is your goal?
-- What error message do you see?
-- What does your dataset look like?
 
 # Let's Practice!
 
 ## Today's Goals
 
-- Hands-on challenge: “Fix the Code”
-- Mini data analysis project
+Create your first Quarto report by:
+
+- Taking on the "Fix the Code" hands-on challenge
+- Walking through a mini data analysis project:
   - Data cleaning
   - Simple analysis
   - Visualisation

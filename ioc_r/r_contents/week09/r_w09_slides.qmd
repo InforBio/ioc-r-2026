@@ -220,7 +220,7 @@ More themes available here:
 ## Today's Goals
 
 - Understand the basics of Quarto.
-- Create your first Quarto report by walking through a mini data project.
+- Create your Quarto report by walking through a mini data project.
 
 
 # Final Project
