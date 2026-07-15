@@ -1,5 +1,5 @@
 ---
-title: "Materials for the IOC-R"
+title: "Materials for the R training"
 format: html
 listing:
   contents: r_contents

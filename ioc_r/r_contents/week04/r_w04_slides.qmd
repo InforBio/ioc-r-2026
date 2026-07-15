@@ -1,6 +1,6 @@
 ---
 title: "Building Logic:<br>Operators, Conditions, and Functions"
-subtitle: "IOC-R Week 4"
+subtitle: "Week 4"
 date: "2025-11-24"
 date-format: " "
 format:
@@ -30,6 +30,7 @@ df
 my_list <- list(x = 1:3, y = letters[5:1])
 my_list
 ```
+
 :::
 
 ::: {.column .fragment}
@@ -92,6 +93,7 @@ y
 # assign value to function’s parameter
 mean(x = 1:3)
 ```
+
 :::
 
 ::: {.column .fragment}
@@ -108,6 +110,7 @@ x <- c(2, 8, 3)
 x - 1
 x - 1:3
 ```
+
 :::
 
 ::: {.fragment}
@@ -117,6 +120,7 @@ x + y
 x * y
 x / y
 ```
+
 :::
 :::
 :::
@@ -138,6 +142,7 @@ returns logical results.
 10 == 3 # equal
 10 != 3 # not equal
 ```
+
 :::
 
 ::: {.column .fragment}
@@ -261,11 +266,13 @@ Order can be change using `()`:
 ```{r}
 TRUE | TRUE & FALSE
 ```
+
 :::
 ::: {.fragment}
 ```{r}
 (TRUE | TRUE) & FALSE
 ```
+
 :::
 
 :::
@@ -301,6 +308,7 @@ all(-3:3 > 0)
 ```{r}
 which(-3:3 > 0)
 ```
+
 :::
 ::: {.column .fragment}
 ::: {.callout-tip appearance="simple"}
@@ -412,6 +420,7 @@ if (pvalue < 0.05) {
   print("Non significant")
 }
 ```
+
 :::
 :::
 :::

@@ -1,6 +1,6 @@
 ---
 title: "Kickstart with R:<br>Your Gateway to Data Science"
-subtitle: "IOC-R Week 1"
+subtitle: "Week 1"
 date: "2025-11-03"
 date-format: " "
 format: 

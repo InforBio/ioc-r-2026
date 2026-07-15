@@ -1,5 +1,5 @@
 ---
-title: "IOC on Single-cell RNAseq Analysis"
+title: "Single-cell RNAseq Analysis Training"
 format: html
 ---
 

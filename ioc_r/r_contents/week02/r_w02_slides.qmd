@@ -1,6 +1,6 @@
 ---
 title: "Data Foundations:<br>Vectors and Matrices"
-subtitle: "IOC-R Week 2"
+subtitle: "Week 2"
 date: "2025-11-10"
 date-format: " "
 format:

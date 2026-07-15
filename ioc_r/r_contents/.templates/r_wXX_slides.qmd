@@ -1,6 +1,6 @@
 ---
 title: " "
-subtitle: "IOC-R Week X"
+subtitle: "Week X"
 date: "2025-"
 date-format: " "
 format:

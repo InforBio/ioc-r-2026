@@ -1,6 +1,6 @@
 ---
 title: "Tidy Up: Wrangling Data with {`dplyr`} and {`tidyr`}"
-subtitle: "IOC-R Week 7"
+subtitle: "Week 7"
 date: "2026-01-12"
 date-format: " "
 format:

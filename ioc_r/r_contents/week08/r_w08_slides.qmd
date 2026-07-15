@@ -1,6 +1,6 @@
 ---
 title: "Graphs Level Up: {ggplot2} (Part 2) & Custom Functions"
-subtitle: "IOC-R Week 8"
+subtitle: "Week 8"
 date: "2026-01-19"
 date-format: " "
 format:

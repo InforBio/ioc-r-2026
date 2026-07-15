@@ -1,6 +1,6 @@
 ---
 title: "Putting It All Together: <br>Reproducible Analysis with Quarto"
-subtitle: "IOC-R Week 9"
+subtitle: "Week 9"
 date: "2026-01-26"
 date-format: " "
 format:

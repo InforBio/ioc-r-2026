@@ -1,6 +1,6 @@
 ---
 title: "R-fresh:<br>Revisiting the Essentials"
-subtitle: "IOC-R Week 6"
+subtitle: "Week 6"
 date: "2026-01-05"
 date-format: " "
 format:
