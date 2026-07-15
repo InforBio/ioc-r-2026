@@ -49,7 +49,7 @@ Tchap is a dedicated workspace for communication and staying connected between s
 
 If you haven't already use it, you need to create a [Tchap account](https://tchap.gouv.fr/).
 
-Then join the InforBio training Tchap group by searching for the space name: **InforBio-trainings-2027**.
+Then join the InforBio training Tchap group by searching for the space name: **InforBio-trainings-2026/2027**.
 
 - Post messages in the correct channel, e.g., "questions" for asking about course content.
 - When asking questions, please be specific and clear with a minimal context, include screenshots or error message to help others understand the issue.
