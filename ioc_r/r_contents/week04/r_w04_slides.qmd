@@ -345,11 +345,11 @@ guiding how the code behaves in different scenarios.
 %%| echo: false
 %%| fig-width: 10
 flowchart LR
-  AA[Age] --> A(("> 18"))
+  AA[Age] --> A(("< 18"))
   A --> B(TRUE)
   A --> C(FALSE)
-  B --> D["print 'Adult'"]
-  C --> E["print 'Minor'"]
+  B --> D["print 'Minor'"]
+  C --> E["print 'Adult'"]
 ```
 
 . . . 
