@@ -3,7 +3,7 @@ title: ""
 format: html
 ---
 
-![](images/logoInforBio_fond_blanc.png)
+![](images/logoInforBio_fond_blanc.png){ width="80%"}
 
 # Welcome To the InforBio Training!
 
