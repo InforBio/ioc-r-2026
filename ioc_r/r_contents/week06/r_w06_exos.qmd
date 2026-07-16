@@ -14,13 +14,20 @@ execute:
   error: true
 ---
 
-The R script is available here:
-[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/week06/r_w06_exos.R)
+The Quarto template is available here:
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/week06/r_w06_exos.qmd.txt).
+
+Download it and rename it to `r_w06_exos.qmd` before you start the exercises.
+
+You can click "Render" to generate the HTML report anytime you want to test it.
+
 
 ## Goals
 
-- Hands-on challenge: “Fix the Code”
-- Mini data analysis project
+Create your first Quarto report by:
+
+- Taking on the "Fix the Code" hands-on challenge
+- Walking through a mini data analysis project:
   - Data cleaning
   - Simple analysis
   - Visualisation

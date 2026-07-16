@@ -1,20 +1,10 @@
 ---
 title: "Week 7 - Hands-On Examples"
-format: 
-  html: default
-  # pdf: default
-date: "2026-01-13"
-date-format: " "
-categories: 
-  - week07
-  - exercise
+format: html
+date: ""
 editor_options: 
   chunk_output_type: console
 ---
-
-The Quarto template is available here:
-[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/week07/r_w07_exos.qmd.txt). Download it and rename it to `r_w07_exos.qmd` before you start the exercises.
-
 
 ## Goals
 
@@ -24,8 +14,7 @@ The Quarto template is available here:
 ## Install {tidyverse} and Load the Package
 
 ```{r}
-# install.packages("tidyverse")
-library(tidyverse)
+
 ```
 
 
@@ -49,8 +38,8 @@ A small Gaussian noise has been added to the original data, preserving the overa
 
 The data is available in two CSV files:
 
-- [data_anonym_struc1_noise.csv](../exos_data/data_anonym_struc1_noise.csv)
-- [data_anonym_struc2_noise.csv](../exos_data/data_anonym_struc2_noise.csv)
+- [data_anonym_struc1_noise.csv](https://inforbio.github.io/ioc-r-2026/ioc_r/r_contents/exos_data/data_anonym_struc1_noise.csv)
+- [data_anonym_struc2_noise.csv](https://inforbio.github.io/ioc-r-2026/ioc_r/r_contents/exos_data/data_anonym_struc2_noise.csv)
 
 We will focus on the data from the brain structure 1.
 **The aim is to perform an exploratory analysis to have a glimpse of the relationship between variables.**
@@ -87,33 +76,18 @@ Convert your imported data to tibble format if it's not the case.
 What is the data dimension?
 
 ```{r}
-data1 <- read_csv2(
-  file = "../exos_data/data_anonym_struc1_noise.csv",
-  locale = locale(decimal_mark = ",")
-)
 
-# or use the read_delim() with appropriate parameters
-# data1 <- read_delim(
-#   "../exos_data/data_anonym_struc1_noise.csv", 
-#   delim = ";", locale = locale(decimal_mark = ",")
-# )
 ```
 
 3. Show the first 10 columns of your data.
 
 ```{r}
-# classic way
-data1[, 1:10]
 
-# use select()
-select(data1, 1:10)
 ```
 
 4. Rename the first column as `age`.
 
 ```{r}
-data1 <- data1 |>
-  rename(age = ...1)
 
 ```
 
@@ -135,23 +109,13 @@ how should the data be organized?
 What are the columns to be included to pivot into longer format?
 
 ```{r}
-# use column index
-data1_long <- data1 |>
-  pivot_longer(cols = -1, names_to = "id", values_to = "value")
 
-# use column name
-# data1_long <- data1 |>
-#   pivot_longer(cols = -age, names_to = "id", values_to = "value")
-
-data1_long 
 ```
 
 6. Add a column `struc` which contains the name of the measured structure `s1`.
 
 ```{r}
-data1_long <- data1_long |>
-  mutate(struc = "s1")
-data1_long
+
 ```
 
 7. Extract information about gene, sex and animal from the column `id` using the `extract()` function. Name the new columns as "gene_id", "sex" and "animal".
@@ -162,10 +126,6 @@ You can use AI to help you to write the regular expression.
 :::
 
 ```{r}
-# check how id (the colnames before reshape) was constructed.
-head(data1_long$id)
-tail(data1_long$id)
-
 data1_long <- data1_long |>
   extract(
     col = id,
@@ -177,20 +137,7 @@ data1_long <- data1_long |>
 If you want to write all previous codes together:
 
 ```{r}
-#| eval: false
 
-data1_long <- read_csv2(
-    file = "../exos_data/data_anonym_struc1_noise.csv",
-    locale = locale(decimal_mark = ",")
-  ) |>
-  rename(age = ...1) |> # not necessary if the next line "cols" based on index
-  pivot_longer(cols = -1, names_to = "id", values_to = "value") |>
-  mutate(struc = "s1") |>
-  extract(
-    col = id,
-    into = c("gene_id", "sex", "animal"),
-    regex = "([0-9]+)([MF])([A-F])"
-  )
 ```
 
 Now, the data is ready for downstream analysis.
@@ -202,46 +149,26 @@ For question 8 to 11, let's focus on gene 1 from the data.
 8. At age of 10 days, which animal has the highest expression value for gene 1 overall?
 
 ```{r}
-# overall
-data1_long |>
-  filter(gene_id == "1" & age == 10) |>
-  arrange(desc(value)) |>
-  head(1)
+
 ```
 
 9. Is there any missing value for gene 1?
 If yes, how to remove lines with NA?
 
 ```{r}
-table(is.na(data1_long$value[data1_long$gene_id == "1"]))
 
-data1_long |>
-  filter(gene_id == "1") |>
-  drop_na(value)
 ```
 
 10. After removing NAs, how many animals are there for each sex in gene 1?
 
 ```{r}
-data1_long |>
-  filter(gene_id == "1") |>
-  drop_na(value) |>
-  group_by(sex) |>
-  count()
+
 ```
 
 11. Summarize the median, mean, and standard deviation of gene 1 expression for both sexes.
 
 ```{r}
-data1_long |>
-  filter(gene_id == "1") |>
-  drop_na(value) |>
-  group_by(sex) |>
-  summarise(
-    median_gene1 = median(value),
-    mean_gene1 = mean(value),
-    sd_gene1 = sd(value)
-  )
+
 ```
 
 ### Explore the Data
@@ -254,30 +181,15 @@ is useful for creating a matrix of scatter plots to examine the relationships be
 First, let's install the {`GGally`} package if it is not already installed.
 
 ```{r}
-#| eval: false
 
-install.packages("GGally")
 ```
 
 12. Load the package and take a look at the help page for `ggpairs()`.
 How will you reshape the `data1_long` to provide the necessary data for the [`ggpairs()`](https://ggobi.github.io/ggally/articles/ggpairs.html) function?
 
-```{r}
-#| eval: false
-
-library(GGally)
-?ggpairs
-```
 
 ```{r}
-data1_wider <- data1_long |>
-  pivot_wider(
-    names_from = "gene_id",
-    values_from = "value",
-    names_prefix = "gene" # to avoid name starts with number
-  )
 
-data1_wider
 ```
 
 To save space, we will focus on examining the relationship between age and the first 5 genes.
@@ -285,17 +197,11 @@ To save space, we will focus on examining the relationship between age and the f
 13. What did you observe from these scatter plots?
 
 ```{r}
-#| echo: false
-
-library(GGally)
-```
-
-```{r}
 #| fig-width: 12
 #| fig-height: 12
 #| warning: false
 
-ggpairs(select(data1_wider, age, gene1:gene5))
+
 ```
 
 
@@ -307,11 +213,7 @@ In addition, it seems that there are two groups of mice that express genes 3 and
 14. Calculate the correlation between gene 1 and 2. (`?cor`)
 
 ```{r}
-cor(
-  x = data1_wider$gene1,
-  y = data1_wider$gene2,
-  use = "na.or.complet"
-) # by default use the pearson's method
+
 ```
 
 
@@ -321,28 +223,6 @@ Color the points by different categorical variables that we have, *i.e.*, age, s
 Is there any categorical variable that can explain the groups we observed in the figure?
 
 ```{r}
-p_age <- ggplot(data = data1_wider, aes(x = gene3, y = gene5)) +
-  geom_point(aes(color = age)) +
-  labs(title = "Expression Level of Genes 3 and 5") +
-  theme_light()
-p_age
 
-p_sex <- ggplot(data = data1_wider, aes(x = gene3, y = gene5)) +
-  geom_point(aes(color = sex)) +
-  labs(title = "Expression Level of Genes 3 and 5") +
-  theme_light()
-p_sex
-
-p_animal <- ggplot(data = data1_wider, aes(x = gene3, y = gene5)) +
-  geom_point(aes(color = animal)) +
-  labs(title = "Expression Level of Genes 3 and 5") +
-  theme_light()
-p_animal
 ```
-
-
----
-
-#### Good job! 👏👏 You've made great progress in mastering data manipulation techniques.
-
 

@@ -12,8 +12,8 @@ editor_options:
   chunk_output_type: console
 ---
 
-The R script is available here:
-[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/week08/r_w08_exos.R)
+The Quarto template is available here:
+[link](https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/week08/r_w08_exos.qmd). Download it and rename it to `r_w08_exos.qmd` before you start the exercises.
 
 ## Goals
 
