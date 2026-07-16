@@ -203,5 +203,3 @@ Therefore, an ANOVA is not appropriate, and a non-parametric Kruskal-Wallis test
 ```
 
 ---
-
-#### Great work, you’ve made it to the end! 🎉 and now you're ready to take on even more! Keep exploring new things, there's so much more R can do for you!

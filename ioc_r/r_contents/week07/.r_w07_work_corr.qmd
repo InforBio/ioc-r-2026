@@ -1,12 +1,7 @@
 ---
 title: "Week 7 - Homework"
-format: 
-  html: default
-date: "2025-03-12"
-date-format: " "
-categories: 
-  - week07
-  - homework
+subtitle: "Proposed Correction"
+format: html
 editor_options: 
   chunk_output_type: console
 ---
@@ -21,8 +16,9 @@ Just a reminder, the expression of 20 genes was measured in mice aged from 10 to
 
 The data is available in two CSV files:
 
-- [data_anonym_struc1_noise.csv](../exos_data/data_anonym_struc1_noise.csv)
-- [data_anonym_struc2_noise.csv](../exos_data/data_anonym_struc2_noise.csv)
+- [data_anonym_struc1_noise.csv](https://inforbio.github.io/ioc-r-2026/ioc_r/r_contents/exos_data/data_anonym_struc1_noise.csv)
+- [data_anonym_struc2_noise.csv](https://inforbio.github.io/ioc-r-2026/ioc_r/r_contents/exos_data/data_anonym_struc2_noise.csv)
+
 
 1. Import the two data files and reshape them the same way you did up to question 9 of the exercise.
 Then, combine the two datasets into one.
@@ -123,5 +119,3 @@ ggplot(data = data_wider, aes(x = struc, y = gene19)) +
 
 
 ---
-
-Click "Render" to generate your Quarto report.

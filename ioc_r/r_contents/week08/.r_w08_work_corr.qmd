@@ -1,11 +1,7 @@
 ---
 title: "Week 8 - Homework"
-format: 
-  html: default
-date-format: " "
-categories: 
-  - week08
-  - homework
+subtitle: "Proposed Correction"
+format: html
 editor_options: 
   chunk_output_type: console
 ---
@@ -72,5 +68,3 @@ reshape_data(raw_df = counts, gene_name = "PIR3", groups = c("WT", "SET1"), top_
 
 
 ---
-
-Click "Render" to generate your Quarto report.
