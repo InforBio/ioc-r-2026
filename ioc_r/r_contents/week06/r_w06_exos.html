@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-bba5ebae505b5c03f3f0d8040a416a6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-c98d9d0b3b0a085d3ddf71e6e91476d8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -237,12 +237,15 @@ window.Quarto = {
 </header>
 
 
-<p>The R script is available here: <a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/week06/r_w06_exos.R">link</a></p>
+<p>The Quarto template is available here: <a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/week06/r_w06_exos.qmd.txt">link</a>.</p>
+<p>Download it and rename it to <code>r_w06_exos.qmd</code> before you start the exercises.</p>
+<p>You can click “Render” to generate the HTML report anytime you want to test it.</p>
 <section id="goals" class="level2">
 <h2 class="anchored" data-anchor-id="goals">Goals</h2>
+<p>Create your first Quarto report by:</p>
 <ul>
-<li>Hands-on challenge: “Fix the Code”</li>
-<li>Mini data analysis project
+<li>Taking on the “Fix the Code” hands-on challenge</li>
+<li>Walking through a mini data analysis project:
 <ul>
 <li>Data cleaning</li>
 <li>Simple analysis</li>
@@ -324,7 +327,8 @@ gene3       3       3       2</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>vec_num <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="dv">3</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(<span class="at">vec_num =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error in which(vec_num = 3): unused argument (vec_num = 3)</code></pre>
+<pre><code>Error in `which()`:
+! unused argument (vec_num = 3)</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -343,10 +347,12 @@ gene3       3       3       2</code></pre>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell">
 <div class="cell-output cell-output-error">
-<pre><code>Error in ggplot(iris, aes(x = Sepal.Length, y = Species)): could not find function "ggplot"</code></pre>
+<pre><code>Error in `ggplot()`:
+! could not find function "ggplot"</code></pre>
 </div>
 <div class="cell-output cell-output-error">
-<pre><code>Error in geom_boxplot(): could not find function "geom_boxplot"</code></pre>
+<pre><code>Error in `geom_boxplot()`:
+! could not find function "geom_boxplot"</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -528,14 +534,14 @@ gene3       3       3       2</code></pre>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(rnaseq_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>  sample_id           expression     sample_group      
- Length:60          Min.   : 24.00   Length:60         
- Class :character   1st Qu.: 43.00   Class :character  
- Mode  :character   Median : 58.00   Mode  :character  
-                    Mean   : 61.89                     
-                    3rd Qu.: 75.00                     
-                    Max.   :126.00                     
-                    NA's   :3                          </code></pre>
+<pre><code>     sample_id    expression        sample_group
+ Length   :60   Min.   : 24.00   Length   :60   
+ N.unique :60   1st Qu.: 43.00   N.unique : 2   
+ N.blank  : 0   Median : 58.00   N.blank  : 0   
+ Min.nchar: 7   Mean   : 61.89   Min.nchar: 4   
+ Max.nchar: 8   3rd Qu.: 75.00   Max.nchar: 7   
+                Max.   :126.00                  
+                NAs    :3                       </code></pre>
 </div>
 <details class="code-fold">
 <summary>Correction</summary>
@@ -894,10 +900,10 @@ SE = \frac{SD}{\sqrt{n}}
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(expr_ctrl, expr_case)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-    Wilcoxon rank sum test with continuity correction
+    Wilcoxon rank sum exact test
 
 data:  expr_ctrl and expr_case
-W = 124, p-value = 7.288e-06
+W = 124, p-value = 2.025e-06
 alternative hypothesis: true location shift is not equal to 0</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or check the normality and perform a t-test</span></span>

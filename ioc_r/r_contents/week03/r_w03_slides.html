@@ -198,7 +198,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">More Complex Data Structures:<br>Data Frames and Lists</h1>
-  <p class="subtitle">IOC-R Week 3</p>
+  <p class="subtitle">Week 3</p>
 
 <div class="quarto-title-authors">
 </div>
@@ -438,20 +438,13 @@
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">summary</span>(my_df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>       id         gene_name           detected           gene_expr    
- Min.   : 1.00   Length:10          Length:10          Min.   : 0.50  
- 1st Qu.: 3.25   Class :character   Class :character   1st Qu.: 1.05  
- Median : 5.50   Mode  :character   Mode  :character   Median : 5.80  
- Mean   : 5.50                                         Mean   : 6.35  
- 3rd Qu.: 7.75                                         3rd Qu.:11.38  
- Max.   :10.00                                         Max.   :13.50  
-    status         
- Length:10         
- Class :character  
- Mode  :character  
-                   
-                   
-                   </code></pre>
+<pre><code>       id            gene_name       detected    gene_expr           status  
+ Min.   : 1.00   Length   :10   Length   :10   Min.   : 0.50   Length   :10  
+ 1st Qu.: 3.25   N.unique :10   N.unique : 1   1st Qu.: 1.05   N.unique : 2  
+ Median : 5.50   N.blank  : 0   N.blank  : 0   Median : 5.80   N.blank  : 0  
+ Mean   : 5.50   Min.nchar: 5   Min.nchar: 3   Mean   : 6.35   Min.nchar: 9  
+ 3rd Qu.: 7.75   Max.nchar: 5   Max.nchar: 3   3rd Qu.:11.38   Max.nchar: 9  
+ Max.   :10.00                                 Max.   :13.50                 </code></pre>
 </div>
 </div>
 </div>
@@ -807,13 +800,13 @@
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a></a><span class="fu">summary</span>(my_df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      id             gene_name           gene_expr           status     tissue 
- Length:10          Length:10          Min.   : 0.50   activated:5   muscle:5  
- Class :character   Class :character   1st Qu.: 1.05   inhibited:5   liver :5  
- Mode  :character   Mode  :character   Median : 5.80                           
-                                       Mean   : 6.35                           
-                                       3rd Qu.:11.38                           
-                                       Max.   :13.50                           </code></pre>
+<pre><code>         id         gene_name    gene_expr           status     tissue 
+ Length   :10   Length   :10   Min.   : 0.50   activated:5   muscle:5  
+ N.unique :10   N.unique :10   1st Qu.: 1.05   inhibited:5   liver :5  
+ N.blank  : 0   N.blank  : 0   Median : 5.80                           
+ Min.nchar: 1   Min.nchar: 5   Mean   : 6.35                           
+ Max.nchar: 4   Max.nchar: 5   3rd Qu.:11.38                           
+                               Max.   :13.50                           </code></pre>
 </div>
 </div>
 </section>
@@ -852,7 +845,8 @@
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a></a><span class="fu">rbind</span>(df1, df2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error in match.names(clabs, names(xi)): names do not match previous names</code></pre>
+<pre><code>Error in `match.names()`:
+! names do not match previous names</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a></a>df3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">7</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">y =</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">12</span>)</span>
 <span id="cb85-2"><a></a><span class="fu">rbind</span>(df1, df3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1527,6 +1521,44 @@ $new_element
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")

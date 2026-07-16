@@ -198,7 +198,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">R-fresh:<br>Revisiting the Essentials</h1>
-  <p class="subtitle">IOC-R Week 6</p>
+  <p class="subtitle">Week 6</p>
 
 <div class="quarto-title-authors">
 </div>
@@ -214,7 +214,7 @@
 <li><a href="#/data-structures" id="/toc-data-structures">Data Structures</a></li>
 <li><a href="#/conditions-operators" id="/toc-conditions-operators">Conditions &amp; Operators</a></li>
 <li><a href="#/ggplot2-visualizing-your-results" id="/toc-ggplot2-visualizing-your-results">ggplot2: Visualizing Your Results</a></li>
-<li><a href="#/using-ai-to-solve-coding-problems-in-r" id="/toc-using-ai-to-solve-coding-problems-in-r">Using AI to Solve Coding Problems in R</a></li>
+<li><a href="#/using-quarto-to-create-reports" id="/toc-using-quarto-to-create-reports">Using Quarto to Create Reports</a></li>
 <li><a href="#/lets-practice" id="/toc-lets-practice">Let’s Practice!</a></li>
 </ul>
 </nav>
@@ -644,7 +644,7 @@ Levels: mut wt</code></pre>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="r_w06_slides_files/figure-html/unnamed-chunk-13-1.png" width="672"></p>
+<p><img data-src="r_w06_slides_files/figure-revealjs/unnamed-chunk-13-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -659,44 +659,33 @@ Levels: mut wt</code></pre>
 </div></div>
 </section></section>
 <section>
-<section id="using-ai-to-solve-coding-problems-in-r" class="title-slide slide level1 center">
-<h1>Using AI to Solve Coding Problems in R</h1>
+<section id="using-quarto-to-create-reports" class="title-slide slide level1 center">
+<h1>Using Quarto to Create Reports</h1>
 
 </section>
-<section id="how-can-ai-help-us" class="slide level2 smaller">
-<h2>How Can AI help Us?</h2>
-<ul>
-<li>Debugging: Identify and troubleshoot error/warning messages</li>
-<li>Generate code snippets (filter data, visualize, define functions, etc.)</li>
-<li>Explain unfamiliar code and documentation</li>
-<li>Enhance code quality (readability, efficiency, optimization)</li>
-<li>…</li>
-</ul>
-<p>Different AI tools: ChatGPT, Gemini, Perplexity, Claude, Le Chat, DeepSeek, <em>etc.</em></p>
-<div class="callout callout-important callout-style-simple">
+<section id="an-example" class="slide level2 smaller">
+<h2>An Example</h2>
+<div class="columns">
+<div class="column">
+<p>To create: <em>File</em> -&gt; <em>New File</em> -&gt; <em>Quarto Document</em> -&gt; click <em>Create</em>. <img data-src="../week09/images/quarto_annot.png"></p>
+<div class="fragment">
+<p>Save the document and click <strong>Render</strong> button.</p>
+</div>
+</div><div class="column fragment">
+<p>Rendered document in HTML format: <img data-src="../week09/images/quarto_output.png"></p>
+</div></div>
+<div class="fragment">
+<div class="callout callout-tip callout-style-simple">
 <div class="callout-body">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-content">
-<p>AI is a great assistant, but it can make mistakes, always verify outputs!</p>
+<p>Don’t worry about the details for now, we’ll break down each part of a Quarto document in Week 9.</p>
 </div>
 </div>
 </div>
-</section>
-<section id="how-to-ask-ai-for-help-effectively" class="slide level2 smaller">
-<h2>How to ask AI for help effectively?</h2>
-<p>✅ Be specific: Instead of “Why is my code not working?”, ask:</p>
-<blockquote>
-<p>“I’m trying to filter a data frame in R where Expression &gt; 10, but I get an error. Here’s my code: df[df$Expression &gt; 10]. How can I fix it?”</p>
-</blockquote>
-<p>✅ Provide context:</p>
-<ul>
-<li>A quick mention of your background can guide the response (<em>e.g.</em>: “I’m biologist working with gene expression data”)</li>
-<li>What is your goal?</li>
-<li>What error message do you see?</li>
-<li>What does your dataset look like?</li>
-</ul>
+</div>
 </section></section>
 <section>
 <section id="lets-practice" class="title-slide slide level1 center">
@@ -705,9 +694,10 @@ Levels: mut wt</code></pre>
 </section>
 <section id="todays-goals" class="slide level2">
 <h2>Today’s Goals</h2>
+<p>Create your first Quarto report by:</p>
 <ul>
-<li>Hands-on challenge: “Fix the Code”</li>
-<li>Mini data analysis project
+<li>Taking on the “Fix the Code” hands-on challenge</li>
+<li>Walking through a mini data analysis project:
 <ul>
 <li>Data cleaning</li>
 <li>Simple analysis</li>
@@ -935,6 +925,44 @@ Levels: mut wt</code></pre>
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
