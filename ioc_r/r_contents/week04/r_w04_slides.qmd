@@ -345,11 +345,11 @@ guiding how the code behaves in different scenarios.
 %%| echo: false
 %%| fig-width: 10
 flowchart LR
-  AA[Age] --> A((&gt; 18))
+  AA[Age] --> A(("> 18"))
   A --> B(TRUE)
   A --> C(FALSE)
-  B --> D[print &quot;Adult&quot;]
-  C --> E[print &quot;Minor&quot;]
+  B --> D["print 'Adult'"]
+  C --> E["print 'Minor'"]
 ```
 
 . . . 
@@ -358,11 +358,11 @@ flowchart LR
 %%| echo: false
 %%| fig-width: 10
 flowchart LR
-  AA[P-value] --> A((&lt; 0.05))
+  AA[P-value] --> A(("< 0.05"))
   A --> B(TRUE)
   A --> C(FALSE)
-  B --> D[print &quot;Significant&quot;]
-  C --> E[print &quot;Non significant&quot;]
+  B --> D["print 'Significant'"]
+  C --> E["print 'Non significant'"]
 ```
 
 
@@ -398,11 +398,11 @@ if (condition) {
 ```{mermaid}
 %%| echo: false
 flowchart LR
-  AA[P-value] --> A((&lt; 0.05))
+  AA[P-value] --> A(("< 0.05"))
   A --> B(TRUE)
   A --> C(FALSE)
-  B --> D[print &quot;Significant&quot;]
-  C --> E[print &quot;Non significant&quot;]
+  B --> D["print 'Significant'"]
+  C --> E["print 'Non significant'"]
 ```
 
 
