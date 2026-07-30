@@ -1,0 +1,107 @@
+---
+title: "Week 6 - Self-Check Quiz"
+format: html
+date: "2026-01-07"
+date-format: " "
+categories:
+  - week06
+  - quiz
+editor_options:
+  chunk_output_type: console
+---
+
+Week 6 is a review session, so this quiz is a cumulative check-up on weeks 1 to 5 rather than new material. Try to answer each question on your own before revealing the correction.
+
+## 1. Paths and R projects
+
+Your R project's working directory is `/Users/alex/Documents/rnaseq_project`, and you have a file at `data/samples.csv`. Write both the absolute and relative path to this file, and the code to check that each one exists.
+
+::: {.answer}
+```r
+abs_path <- "/Users/alex/Documents/rnaseq_project/data/samples.csv"
+rel_path <- "data/samples.csv"
+```
+
+The relative path works because it's evaluated **relative to the current working directory**, which is exactly what an R project guarantees stays fixed to the project folder.
+:::
+
+## 2. Vector coercion
+
+What does `c(1, "a", TRUE)` return, and what type is it?
+
+::: {.answer}
+```r
+c(1, "a", TRUE)
+# [1] "1"    "a"    "TRUE"
+```
+
+It's a **character** vector. A vector can only hold one data type, so R coerces every element to the most flexible type present, following the hierarchy `logical → numeric → character`. Since `"a"` is character, everything gets converted to character.
+:::
+
+## 3. Vectors *vs.* data frames
+
+What are the two key differences between a **vector** and a **data frame** as data structures?
+
+::: {.answer}
+- **Dimensionality**: a vector is 1-dimensional, a data frame is 2-dimensional (rows and columns).
+- **Data type**: a vector holds only **one** data type for all its elements, while a data frame can hold **different** data types across its columns (each column is internally a vector of a single type).
+:::
+
+## 4. `[` vs. `[[` on a list
+
+Given `my_list <- list(gene = "TP53", expr = c(10, 12, 9))`, what's the difference between `my_list[1]` and `my_list[[1]]`?
+
+::: {.answer}
+`my_list[1]` returns a **list** of length 1, still containing the first element wrapped inside a list.
+
+`my_list[[1]]` returns the **content itself** (here, the character value `"TP53"`), unwrapped from the list.
+:::
+
+## 5. Filtering with operators
+
+Given a data frame `genes` with columns `expr` (numeric) and `chr` (chromosome name), write code to keep only rows where `expr > 10` **and** `chr` is one of `"chr1"`, `"chr2"`, or `"chrX"`.
+
+::: {.answer}
+```r
+genes[genes$expr > 10 & genes$chr %in% c("chr1", "chr2", "chrX"), ]
+```
+
+`&` combines the two conditions element-wise, and `%in%` checks membership in a set of values, much more compact than chaining multiple `|` comparisons.
+:::
+
+## 6. `if`/`else` *vs.* `ifelse()`
+
+You want to classify every value of a numeric vector `pvalues` as `"Significant"` or `"Non significant"` based on a 0.05 threshold. Would you use an `if`/`else` statement or `ifelse()`? Why?
+
+::: {.answer}
+Use `ifelse()`:
+
+```r
+ifelse(pvalues < 0.05, "Significant", "Non significant")
+```
+
+`ifelse()` is **vectorized**, it evaluates the condition and returns a result for every element of the vector at once. A plain `if`/`else` only works on a **single** logical value and would error on a vector with more than one entry.
+:::
+
+## 7. Installing *vs.* loading a package
+
+What's the difference between `install.packages("dplyr")` and `library(dplyr)`? How often do you need to run each?
+
+::: {.answer}
+`install.packages("dplyr")` **downloads and installs** the package files onto your computer, you only need to do this **once** (until you want to update it).
+
+`library(dplyr)` **attaches/loads** an already-installed package so its functions become available by name, you need to do this **once per R session** (every time you restart R).
+:::
+
+## 8. Basic ggplot2 recipe
+
+Write the minimal `{ggplot2}` code to draw a scatter plot of `Petal.Length` (x-axis) against `Sepal.Length` (y-axis) from the `iris` data frame.
+
+::: {.answer}
+```r
+library(ggplot2)
+
+ggplot(data = iris, mapping = aes(x = Petal.Length, y = Sepal.Length)) +
+  geom_point()
+```
+:::

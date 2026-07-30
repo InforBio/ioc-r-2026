@@ -1,0 +1,115 @@
+---
+title: "Week 7 - Self-Check Quiz"
+format: html
+date: "2026-01-14"
+date-format: " "
+categories:
+  - week07
+  - quiz
+editor_options:
+  chunk_output_type: console
+---
+
+Use this quiz to check how well you understood this week's session, or as a quick review if you didn't have time to do the homework. Try to answer each question on your own before revealing the correction.
+
+## 1. Rewriting with the pipe
+
+Rewrite this nested code using the native pipe `|>`:
+
+```r
+sqrt(mean(abs(x), na.rm = TRUE))
+```
+
+::: {.answer}
+```r
+abs(x) |>
+  mean(na.rm = TRUE) |>
+  sqrt()
+```
+
+The pipe `|>` takes the result on its left and feeds it as the **first argument** of the function on its right, letting you read the sequence of operations top-to-bottom/left-to-right instead of from the inside out.
+:::
+
+## 2. Tibbles *vs.* data frames
+
+Name two differences between a `tibble` and a base R `data.frame` mentioned in the slides.
+
+::: {.answer}
+Any two of:
+
+- Tibbles have **better/cleaner printing** (*e.g.* only showing a limited number of rows/columns with their types).
+- Tibbles are **less strict** about column names (*e.g.* allow names that wouldn't be syntactically valid otherwise).
+- Tibbles have more **consistent subsetting** behavior.
+- Tibbles **don't store row names** — the numbers shown before the first column are just row numbers for display, not stored data.
+:::
+
+## 3. Reformatting data
+
+You have a tibble `wider_data` with one row per gene and separate columns `control` and `treatment` for expression values. You want a single `condition` column and a single `expression_level` column instead. Which `{tidyr}` function do you use, and write the code.
+
+::: {.answer}
+```r
+wider_data |>
+  pivot_longer(
+    cols = c(control, treatment),
+    names_to = "condition",
+    values_to = "expression_level"
+  )
+```
+
+Use `pivot_longer()` because you're **increasing the number of rows** (going from a "wide" layout to a "long" one). `pivot_wider()` does the reverse: it increases the number of columns.
+:::
+
+## 4. `select()` helper functions
+
+Given a tibble `iris_tbl` with columns `Sepal.Length`, `Sepal.Width`, `Petal.Length`, `Petal.Width`, `Species`, write the `select()` call to get only the columns whose name **contains** `"Length"`.
+
+::: {.answer}
+```r
+iris_tbl |> select(contains("Length"))
+```
+
+Other helpers include `starts_with()`, `ends_with()`, and `matches()` (regex), all case-insensitive by default.
+:::
+
+## 5. Combining filter conditions
+
+Write a `{dplyr}` pipeline to keep only rows from `iris_tbl` where `Sepal.Length > 6.8` **and** `Species` is `"versicolor"`.
+
+::: {.answer}
+```r
+iris_tbl |> filter(Sepal.Length > 6.8 & Species == "versicolor")
+```
+:::
+
+## 6. `group_by()` and `summarise()`
+
+What does `group_by()` actually do to the data? Does it summarize or change values on its own? What do you typically pair it with, and why might you call `ungroup()` afterward?
+
+::: {.answer}
+`group_by()` does **not** change or summarize the data itself, it just adds an internal grouping structure, so that subsequent operations (like `summarise()` or `mutate()`) are applied **separately within each group** instead of to the whole dataset.
+
+It's typically paired with `summarise()` (e.g. `iris_tbl |> group_by(Species) |> summarise(mean_sepal_len = mean(Sepal.Length))`).
+
+`ungroup()` removes that grouping structure afterward, so later steps in the pipeline aren't accidentally still applied per-group.
+:::
+
+## 7. `if_else()` *vs.* `ifelse()`
+
+What extra capability does `dplyr::if_else()` offer compared to base R's `ifelse()`?
+
+::: {.answer}
+`if_else()` lets you explicitly control what happens for **missing values (`NA`)** via a `missing =` argument (e.g. `if_else(x < 0, "negative", "positive", missing = "not available")`), whereas `ifelse()` just propagates `NA` silently wherever the condition is `NA`.
+:::
+
+## 8. Sorting rows
+
+Write a `{dplyr}` call to sort `iris_tbl` by `Sepal.Length` in **descending** order, and use `Sepal.Width` (ascending) to break ties.
+
+::: {.answer}
+```r
+iris_tbl |> arrange(desc(Sepal.Length), Sepal.Width)
+```
+
+`arrange()` sorts ascending by default; wrap a column in `desc()` to sort it descending. Listing multiple columns breaks ties using the later ones, in order.
+:::

@@ -1,0 +1,109 @@
+---
+title: "Week 1 - Self-Check Quiz"
+format: html
+date: "2025-11-05"
+date-format: " "
+categories:
+  - week01
+  - quiz
+editor_options:
+  chunk_output_type: console
+---
+
+Use this quiz to check how well you understood this week's session, or as a quick review if you didn't have time to do the homework. Try to answer each question on your own before revealing the correction.
+
+## 1. Reading the console
+
+In the R console, you suddenly see a `+` appear at the beginning of a new line instead of `>`. What does this mean, and what are your two options to get back to a normal prompt?
+
+::: {.answer}
+The `+` means R thinks your command is **not finished yet** (e.g. you forgot to close a parenthesis or quote, or left a trailing comma/operator). You can either:
+
+- finish typing the rest of the command so R can execute it, or
+- press **Esc** to cancel the input and get a fresh `>` prompt.
+:::
+
+## 2. Why use an R Project?
+
+What problem does creating an **R Project** solve, compared to just opening loose `.R` scripts?
+
+::: {.answer}
+An R Project fixes the **working directory** to one folder that contains everything for that piece of work (scripts, data, outputs). This means:
+
+- R always knows where to look for your files.
+- You can use short **relative paths** (e.g. `data/counts.csv`) instead of fragile absolute paths that only work on your own computer.
+- It keeps a project's files organized and easy to share with others.
+:::
+
+## 3. Absolute *vs.* relative paths
+
+Suppose `getwd()` returns `/Users/lijiao/Documents/r_week1`, and you have a file at `data/counts.csv` inside that project. Write both the **absolute** and **relative** path to this file, and the R code to check that each one exists.
+
+::: {.answer}
+```r
+abs_path <- "/Users/lijiao/Documents/r_week1/data/counts.csv"
+rel_path <- "data/counts.csv"
+
+file.exists(abs_path)
+file.exists(rel_path)
+```
+
+Both point to the same file: the absolute path starts from the very top of the computer's file system, while the relative path starts from the current working directory.
+:::
+
+## 4. Importing and exporting data
+
+Which `{readr}` function would you use to **import** a CSV file into R as a data frame? Which one would you use to **export** a data frame back to a CSV file?
+
+::: {.answer}
+- To import: `read_csv("path/to/file.csv")`
+- To export: `write_csv(my_data, file = "path/to/file.csv")`
+:::
+
+## 5. Exploring a new data frame
+
+You've just imported a dataset into an object called `counts`. Write the R code to:
+
+a. check its dimensions (number of rows/columns)
+b. check the storage `mode` of the column `counts[["WT.2"]]`
+
+::: {.answer}
+```r
+# a.
+dim(counts)
+
+# b.
+mode(counts[["WT.2"]])
+```
+
+`dim()` returns `c(nrow, ncol)`. `mode()` tells you the basic storage type of the data (e.g. `"numeric"`, `"character"`).
+:::
+
+## 6. Summary statistics
+
+What is the difference between using `mean()` or `sd()` on a numeric vector versus using `summary()` on it? What extra information does `summary()` give you?
+
+::: {.answer}
+`mean()` and `sd()` each return a single number (the average and the standard deviation). `summary()` gives a fuller picture in one call: the **minimum**, **1st quartile (Q1)**, **median**, **mean**, **3rd quartile (Q3)**, and **maximum**, so you also see how the data is spread and whether it's skewed, not just its center.
+:::
+
+## 7. Quartiles and IQR
+
+What are quartiles, and what does the **IQR** (interquartile range) represent?
+
+::: {.answer}
+Quartiles are the three values that split sorted data into four equal-sized parts (Q1, median/Q2, Q3). The **IQR = Q3 − Q1** represents the spread of the middle 50% of the data, and is often used to describe variability while being less sensitive to outliers than the full range.
+:::
+
+## 8. Why log2-transform gene expression data?
+
+Gene expression counts are often log2-transformed before plotting a histogram. Give one reason why this is useful.
+
+::: {.answer}
+Any one of these is a valid reason:
+
+- It **reduces skewness**, since raw expression values often span several orders of magnitude with a long tail of large values.
+- It **stabilizes variance**, making values with large differences more directly comparable.
+- It turns **multiplicative relationships (ratios/fold-changes) into additive ones**, which is easier to interpret and plot.
+- It makes the distribution **closer to normal**, which many statistical methods assume.
+:::

@@ -1,0 +1,121 @@
+---
+title: "Week 8 - Self-Check Quiz"
+format: html
+date: "2026-01-21"
+date-format: " "
+categories:
+  - week08
+  - quiz
+editor_options:
+  chunk_output_type: console
+---
+
+Use this quiz to check how well you understood this week's session, or as a quick review if you didn't have time to do the homework. Try to answer each question on your own before revealing the correction.
+
+## 1. `theme_set()` *vs.* `theme_update()`
+
+What do `theme_set(theme_light())` and `theme_update(axis.title = element_text(size = rel(2)))` do?
+
+::: {.answer}
+`theme_set()` replaces the **entire default theme** used by every subsequent plot (*e.g.* switching from `theme_grey()` to `theme_light()`).
+
+`theme_update()` **modifies specific elements** of the *current* default theme (*e.g.* just making axis titles twice bigger), without replacing the whole theme.
+:::
+
+## 2. Manually assigning colors
+
+Given `p0` a ggplot object and the data used contains a variable `Species`, which has the values `"setosa"`, `"versicolor"`, `"virginica"`. Write the code to manually assign `"setosa"` to green, `"versicolor"` to orange, and `"virginica"` to blue.
+
+::: {.answer}
+```r
+p0 + scale_color_manual(
+  values = c(
+    "setosa" = "green",
+    "versicolor" = "orange",
+    "virginica" = "blue"
+  )
+)
+```
+:::
+
+## 3. `facet_wrap()` *vs.* `facet_grid()`
+
+What's the conceptual difference between `facet_grid(rows = vars(species), cols = vars(island))` and `facet_wrap(facets = vars(species, island))`?
+
+::: {.answer}
+`facet_grid()` arranges panels in a strict **grid**, with one variable defining rows and another defining columns. Every combination gets a fixed position, even if some combinations have no data.
+
+`facet_wrap()` creates one panel **per combination** of the faceting variable(s) and then wraps them into a flexible grid, which is more compact when not every combination is meaningful or when facetting on more than 2 variables at once.
+:::
+
+## 4. Combining plots with `{patchwork}`
+
+What's the difference between combining two plots with `p1 | p2` versus `p1 / p2`?
+
+::: {.answer}
+`p1 | p2` places the plots **side by side** (horizontally).
+
+`p1 / p2` **stacks** the plots (vertically, one above the other).
+
+Plain `+` also combines plots but lets `{patchwork}` decide the layout automatically (trying to keep a roughly square grid).
+:::
+
+## 5. Function anatomy and variable scope
+
+```r
+add_one <- function(argument) {
+  output <- argument + 1
+  return(output)
+}
+
+add_one(argument = 3)
+argument
+output
+```
+
+What does the last two lines (`argument` and `output`) return, and why?
+
+::: {.answer}
+Both throw an **error** (`object 'argument'/'output' not found`). Variables created **inside** a function (including its arguments) only exist in that function's own local environment, they are not accessible from the outside once the function call finishes.
+:::
+
+## 6. Writing a custom function
+
+`pvalue` is a numeric vector of p-values. Write a custom function `categorize_pvalue` that take the pvalue and a flexible cutoff (default is 0.05) as arguments and returns `"Significant"` if `pvalue` is below `cutoff`, and `"Non significant"` otherwise.
+
+::: {.answer}
+```r
+categorize_pvalue <- function(pvalue, cutoff = 0.05) {
+  result <- ifelse(pvalue < cutoff, "Significant", "Non significant")
+  return(result)
+}
+
+categorize_pvalue(0.03)               # "Significant"
+categorize_pvalue(0.2, cutoff = 0.1)  # "Non significant"
+```
+
+Giving `cutoff` a default value (`= 0.05`) makes it optional when calling the function.
+:::
+
+## 7. Adding reference lines
+
+Which `{ggplot2}` function would you use to add a horizontal dashed line at the mean of `y`, and which one for a vertical line at `x = 5`?
+
+::: {.answer}
+```r
+p0 + geom_hline(yintercept = mean(y), linetype = "dashed")
+p0 + geom_vline(xintercept = 5)
+```
+
+`geom_hline()` draws horizontal lines (`yintercept`), `geom_vline()` draws vertical lines (`xintercept`), and `geom_abline()` draws a line from a slope/intercept.
+:::
+
+## 8. Why use `{ggrepel}`?
+
+When labelling individual points on a scatter plot with `geom_label()`, what problem can occur, and how does `ggrepel::geom_label_repel()` solve it?
+
+::: {.answer}
+With `geom_label()`, labels are placed exactly at their data point, so when points are close together, their **labels overlap** and become unreadable.
+
+`geom_label_repel()` automatically nudges/repels overlapping labels away from each other (and can draw a small connecting segment back to the original point), keeping them readable.
+:::

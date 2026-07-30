@@ -1,0 +1,161 @@
+---
+title: "Week 2 - Self-Check Quiz"
+format: html
+date: "2025-11-12"
+date-format: " "
+categories:
+  - week02
+  - quiz
+editor_options:
+  chunk_output_type: console
+---
+
+Use this quiz to check how well you understood this week's session, or as a quick review if you didn't have time to do the homework. Try to answer each question on your own before revealing the correction.
+
+## 1. Variable naming
+
+Which of these are **valid, good-practice** variable names in R, and which are not? For the invalid/bad ones, explain why: `gene_name`, `2nd_sample`, `mean`, `TRUE`, `drug.conc`
+
+::: {.answer}
+- `gene_name` — valid, follows snake_case convention. ✅
+- `2nd_sample` — **invalid**, a name cannot start with a number. ❌
+- `mean` — technically valid, but **bad practice**: it overwrites the built-in `mean()` function. ❌
+- `TRUE` — **invalid**, it's a reserved keyword in R. ❌
+- `drug.conc` — valid syntactically (dots are allowed), but the course convention favors snake_case (`drug_conc`) over dots.
+:::
+
+## 2. Data types
+
+For each variable below, what does `class()` (or the type-check function) return: `is.numeric()`, `is.character()`, `is.logical()`?
+
+```r
+a <- 3
+b <- 3L
+c_val <- "3"
+d <- TRUE
+```
+
+::: {.answer}
+```r
+is.numeric(a)       # TRUE, it's a double
+is.numeric(b)       # TRUE, an integer is also numeric
+is.integer(b)       # TRUE
+is.character(c_val) # TRUE, "3" is quoted, so it's text, not a number
+is.logical(d)       # TRUE
+```
+
+Key point: `is.numeric()` is `TRUE` for both doubles and integers, `typeof()`/`is.double()`/`is.integer()` are needed to tell them apart.
+:::
+
+## 3. Coercion in vectors
+
+What does R print for each of the following, and why?
+
+```r
+c(10, TRUE)
+c(10, "gene1")
+c(TRUE, "gene1")
+```
+
+::: {.answer}
+```r
+c(10, TRUE)        # 10 1 (TRUE becomes numeric 1)
+c(10, "gene1")     # "10" "gene1" (10 becomes character "10")
+c(TRUE, "gene1")   # "TRUE" "gene1" (TRUE becomes character "TRUE")
+```
+
+A vector can only hold **one data type**, so R coerces every element to the most flexible type present, following the hierarchy: `logical → numeric → character` (least to most inclusive).
+:::
+
+## 4. Vector indexing
+
+Given:
+
+```r
+gene_expr <- c(gene1 = 15, gene2 = 19, gene3 = 14, gene4 = 3, gene5 = 10)
+```
+
+Write R code to:
+
+a. extract the value of `gene3` by name
+b. extract all values **greater than 12**
+c. set the values of `gene1` and `gene4` to `0`
+
+::: {.answer}
+```r
+# a.
+gene_expr["gene3"]
+
+# b.
+gene_expr[gene_expr > 12]
+
+# c.
+gene_expr[c("gene1", "gene4")] <- 0
+```
+:::
+
+## 5. Matrix basics
+
+You create a matrix with `matrix(1:6, nrow = 2)`. What are its dimensions, and how would `matrix(1:6, nrow = 2, byrow = TRUE)` differ from it?
+
+::: {.answer}
+`matrix(1:6, nrow = 2)` creates a **2 rows × 3 columns** matrix (`dim()` returns `c(2, 3)`), filling the values **column by column** by default:
+
+```
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+```
+
+Adding `byrow = TRUE` fills the same 2×3 shape **row by row** instead:
+
+```
+     [,1] [,2] [,3]
+[1,]    1    2    3
+[2,]    4    5    6
+```
+:::
+
+## 6. Matrix indexing and row/column stats
+
+Given a matrix `expression_levels` with genes as rows and samples as columns (row names `geneA`, `geneB`, `geneC`), write the code to:
+
+a. get the expression of `geneB` across all samples
+b. compute the mean expression **per gene** (*i.e.* per row)
+
+::: {.answer}
+```r
+# a.
+expression_levels["geneB", ]
+
+# b.
+rowMeans(expression_levels)
+```
+:::
+
+## 7. Value replacement rule
+
+You try to run:
+
+```r
+mat[1, ] <- c(0, 1, 2)
+```
+
+on a matrix `mat` that has **4 columns**, and R throws an error. What's wrong, and what's the general rule for replacing values in a vector/matrix?
+
+::: {.answer}
+The 1st row has 4 elements, but you're only supplying 3 replacement values (`c(0, 1, 2)`), and 3 is not a multiple of 4 — so R can't recycle it evenly and throws an error.
+
+General rule: when replacing values, you must supply either a **single value** (recycled for all), a vector with the **exact same number of elements** being replaced, or (not recommended) a vector whose length **evenly divides** the number of elements being replaced.
+:::
+
+## 8. Testing normality
+
+You run a Shapiro-Wilk test on a vector of simulated heights: `shapiro.test(heights)`, and get a p-value of 0.99. What are H0 and H1 in this test? Using a significance level of $\alpha = 0.05$, what do you conclude?
+
+::: {.answer}
+- **H0**: the heights are normally distributed.
+- **H1**: the heights are not normally distributed.
+
+Since the p-value (0.99) is much larger than $\alpha$ (0.05), we **fail to reject H0**. There is no strong evidence that the data deviates from a normal distribution. (This does *not* prove the data is normal, only that it doesn't contradict that assumption.)
+:::

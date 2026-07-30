@@ -1,0 +1,158 @@
+---
+title: "Week 3 - Self-Check Quiz"
+format: html
+date: "2025-11-19"
+date-format: " "
+categories:
+  - week03
+  - quiz
+editor_options:
+  chunk_output_type: console
+---
+
+Use this quiz to check how well you understood this week's session, or as a quick review if you didn't have time to do the homework. Try to answer each question on your own before revealing the correction.
+
+## 1. Data frame column selection and "dropping"
+
+Given a data frame `my_df` with several columns, what is the difference between the results (and their **data structure**) of:
+
+```r
+my_df[, 2]
+my_df[, 2, drop = FALSE]
+```
+
+::: {.answer}
+`my_df[, 2]` **simplifies** the result to a plain **vector**, since only one column was selected.
+
+`my_df[, 2, drop = FALSE]` keeps the result as a **data frame** with one column, by preventing R's automatic simplification.
+
+Use `str()` to check: `str(my_df[, 2])` → vector, `str(my_df[, 2, drop = FALSE])` → data frame.
+:::
+
+## 2. List subsetting: `[` vs `[[`
+
+Given `simple_list <- list(gene_name = "geneA", counts = c(10, 11, 0.5), expressed = c(TRUE, TRUE, FALSE))`, what is the difference in **data structure** returned by:
+
+```r
+simple_list[1]
+simple_list[[1]]
+```
+
+::: {.answer}
+`simple_list[1]` returns a **list** containing the first element (still wrapped in a list of length 1).
+
+`simple_list[[1]]` returns the **actual content** of the first element itself (here, the character value `"geneA"`), unwrapped from the list.
+
+Rule of thumb: `[` keeps you "inside" the list structure, `[[` extracts what's "inside" a specific slot.
+:::
+
+## 3. Modifying a data frame
+
+Write R code to, on a data frame `my_df`:
+
+a. add a new column `tissue` with the value `"liver"` repeated for every row
+b. delete the column `detected`
+
+::: {.answer}
+```r
+# a.
+my_df[["tissue"]] <- "liver"   # recycled for all rows
+# or: my_df$tissue <- "liver"
+
+# b.
+my_df[["detected"]] <- NULL
+# or: my_df$detected <- NULL
+```
+
+Assigning `NULL` to a column removes it entirely.
+:::
+
+## 4. When and why use `factor()`
+
+You have a data frame column `status` containing the character values `"activated"` and `"inhibited"`. Why and when would you convert it with `factor()` instead of leaving it as character?
+
+::: {.answer}
+Use `factor()` when a column represents **categorical data** with a limited, known set of categories (levels). Converting it tells R to treat it as categorical rather than free text, which matters for:
+
+- correct summaries (`summary()` will show counts per category instead of treating it like arbitrary text),
+- controlling the **order of levels** (e.g. `factor(x, levels = c("muscle", "liver"))`), which matters for plots and some statistical models.
+:::
+
+## 5. Joining data frames with `merge()`
+
+Given `df1 <- data.frame(id = 1:3, x = letters[1:3])` and `df2 <- data.frame(id = c(2, 4), y = LETTERS[c(2, 4)])`, what is the key difference between these two calls, and how many rows would each return?
+
+```r
+merge(x = df1, y = df2, by = "id")
+merge(x = df1, y = df2, by = "id", all = TRUE)
+```
+
+::: {.answer}
+```{r}
+df1 <- data.frame(id = 1:3, x = letters[1:3])
+df2 <- data.frame(id = c(2, 4), y = LETTERS[c(2, 4)])
+merge(x = df1, y = df2, by = "id")
+merge(x = df1, y = df2, by = "id", all = TRUE)
+```
+
+- `merge(x = df1, y = df2, by = "id")` performs an **inner join**: it keeps only rows where `id` is present in **both** data frames → here only `id = 2` matches, so **1 row**.
+- `merge(x = df1, y = df2, by = "id", all = TRUE)` performs a **full outer join**: it keeps **all** ids from both data frames, filling in `NA` where there's no match → here `id` 1, 2, 3, 4, so **4 rows**.
+:::
+
+## 6. Fold change
+
+For a gene, the mean expression is 4 in Group 1 and 16 in Group 2. Calculate the fold change (Group2/Group1) and the log2 fold change. Is the gene up- or down-regulated in Group 2 relative to Group 1?
+
+::: {.answer}
+```r
+fc <- 16 / 4    # 4
+lfc <- log2(fc) # 2
+```
+
+FC = 4, log2(FC) = 2. Since log2FC > 0, the gene is **up-regulated** in Group 2 compared to Group 1.
+:::
+
+## 7. Choosing and interpreting a statistical test
+
+Why would you use `wilcox.test()` instead of a t-test to compare gene expression between two groups? What is the null hypothesis and the alternative hypothesis? If the test returns a p-value of 0.03, what do you conclude at $\alpha = 0.05$?
+
+::: {.answer}
+The Wilcoxon (Mann-Whitney) test is **non-parametric**, it doesn't assume the data follows a normal distribution, unlike the t-test. It's a safer choice when normality is questionable or sample sizes are small.
+
+- H0: the two groups have the same distribution.
+- H1: the two groups have different distributions.
+
+Since p-value (0.03) < $\alpha$ (0.05), we **reject H0**: there is a statistically significant difference in expression between the two groups.
+:::
+
+## 8. Extracting nested elements
+
+Given:
+
+```r
+my_list <- list(
+  sample_info = data.frame(
+    id = paste0("sample", 1:3),
+    age = c(25, 27, 30)
+  ),
+  family_sequenced = list(
+    sample1 = c("father", "mother"),
+    sample2 = c("father", "mother", "sister")
+  )
+)
+```
+
+Write R code to extract:
+
+a. the `age` of `sample1`
+b. the sequenced family members of `sample2`
+
+::: {.answer}
+```r
+# a.
+my_list[["sample_info"]][1, "age"]
+
+# b.
+my_list[["family_sequenced"]][["sample2"]]
+```
+:::

@@ -1,0 +1,109 @@
+---
+title: "Week 5 - Self-Check Quiz"
+format: html
+date: "2025-12-03"
+date-format: " "
+categories:
+  - week05
+  - quiz
+editor_options:
+  chunk_output_type: console
+---
+
+Use this quiz to check how well you understood this week's session, or as a quick review if you didn't have time to do the homework. Try to answer each question on your own before revealing the correction.
+
+## 1. Loading a package *vs.* using `::`
+
+What is the difference between `library(ggplot2)` followed by `ggplot()`, and calling `ggplot2::ggplot()` directly? When would you prefer the second approach?
+
+::: {.answer}
+`library(ggplot2)` **attaches the whole package**, so every function is available by name for the rest of the R session, you only need to do this once per session.
+
+`ggplot2::ggplot()` calls **one function** from the package without attaching it. This is preferable when you only need a single function from a package, or when you want to be explicit about which package a function comes from (e.g. to avoid conflicts with a same-named function in another loaded package).
+:::
+
+## 2. CRAN *vs.* Bioconductor
+
+What is the difference between CRAN and Bioconductor as package repositories?
+
+::: {.answer}
+**CRAN** (Comprehensive R Archive Network) is the general, main repository for R packages of all kinds. **Bioconductor** is a specialized repository focused specifically on **bioinformatics**, it provides R packages for analyzing genomic and biological data.
+:::
+
+## 3. The basic ggplot2 recipe
+
+What three things does a minimal `ggplot()` call need to produce a scatter plot, and how do you add the layer that actually draws the points?
+
+::: {.answer}
+```r
+# example
+ggplot(data = iris, mapping = aes(x = Sepal.Length, y = Petal.Length)) +
+  geom_point()
+```
+
+You need: (1) a **data frame** containing the variables to plot, (2) an **aesthetic mapping** via `aes()` linking data columns to plot axes (here `x` and `y`), and (3) at least one **geometry layer** (here `geom_point()`) added with `+` to actually draw something.
+:::
+
+## 4. Static aesthetic *vs.* aesthetic mapping
+
+Given a ggplot2 object `p0`, what is the difference between these two, and what would each one do?
+
+```r
+p0 + geom_point(color = "red")
+p0 + geom_point(aes(color = Species))
+```
+
+::: {.answer}
+`geom_point(color = "red")` sets a **static aesthetic**: a fixed value applied to every point, regardless of the data, all points turn red.
+
+`geom_point(aes(color = Species))` is an **aesthetic mapping**: the color depends on the data (the `Species` column), so different species get different colors, plus a legend is generated automatically.
+:::
+
+## 5. Where you put `aes()` matters
+
+You're drawing a scatter plot with a regression line (`geom_point()` + `geom_smooth(method = "lm")`). What's the practical difference between mapping `color = Species` inside `ggplot(aes(...))` versus inside `geom_point(aes(...))` only?
+
+::: {.answer}
+Mapping `aes(color = Species)` inside `ggplot()` applies it **globally**, to every layer that follows. So both `geom_point()` and `geom_smooth()` would be colored/split by species (*e.g.* one regression line per species).
+
+Mapping it inside `geom_point(aes(color = Species))` only applies it to **that specific layer**. The points would be colored by species, but a `geom_smooth()` added afterward would still draw a single line for all the data combined.
+:::
+
+## 6. Histogram bins
+
+When you run `geom_histogram()` without specifying `bins`, R prints a message about the default. What does the `bins` argument control, and why might you need to try different values?
+
+::: {.answer}
+`bins` controls how many intervals (bars) the continuous variable is divided into (the default is 30). Different `bins` values can reveal or hide patterns in the data's distribution. Too few bins can oversimplify/hide structure, too many can make the histogram noisy, so it's good practice to try a few values and pick one that represents the data well.
+:::
+
+## 7. Customizing labels
+
+Write the code to take an existing plot `p0` and: set the x-axis label to `"Sepal Length (cm)"`, the plot title to `"My plot"`, and remove the legend title (while keeping the legend itself).
+
+::: {.answer}
+```r
+p0 + labs(
+  x = "Sepal Length (cm)",
+  title = "My plot",
+  color = NULL   # removes the legend title (adjust to the aesthetic used, e.g. fill = NULL)
+)
+```
+:::
+
+## 8. Saving a plot
+
+Write R code to save the plot object `base_plot` as a PNG file at `outputs/my_plot.png`, at 300 dpi.
+
+::: {.answer}
+```r
+ggsave(
+  filename = "outputs/my_plot.png",
+  plot = base_plot,
+  device = "png",
+  dpi = 300
+)
+```
+
+`ggsave()` saves the last displayed plot by default (`plot = last_plot()`), but it's good practice to pass the plot object explicitly.
+:::

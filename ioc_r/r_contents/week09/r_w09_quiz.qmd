@@ -1,0 +1,93 @@
+---
+title: "Week 9 - Self-Check Quiz"
+format: html
+date: "2026-01-28"
+date-format: " "
+categories:
+  - week09
+  - quiz
+editor_options:
+  chunk_output_type: console
+---
+
+Use this quiz to check how well you understood this week's session, or as a quick review if you didn't have time to do the homework. Try to answer each question on your own before revealing the correction.
+
+## 1. The YAML header
+
+Where does the YAML header go in a Quarto document, and what kind of information does it control?
+
+::: {.answer}
+It goes at the **very beginning** of the `.qmd` file, framed by a pair of three dashes (`---`). It controls document-level metadata and options such as `title`, `author`, `date`, and the output `format` (and format-specific options, *e.g.* `toc: true`, `theme: ...`).
+:::
+
+## 2. Chunk options scope
+
+You set `#| eval: false` inside one code chunk. Does that affect other chunks in the document? How would you instead set a default option for **every** chunk?
+
+::: {.answer}
+No, options set with `#|` at the top of a chunk apply **only to that specific chunk**.
+
+To set a default for every chunk in the document, add it under `execute:` in the YAML header, *e.g.*:
+
+```yaml
+execute:
+  echo: true
+  warning: false
+```
+:::
+
+## 3. What happens when you render
+
+When you click "Render" on a Quarto document, does it reuse the objects already in your RStudio environment/workspace? Why does this matter?
+
+::: {.answer}
+No. Rendering executes all code chunks in a **fresh R session**, ignoring whatever is currently in your workspace. This matters because a document that "works" only thanks to leftover objects from your console won't render correctly (or at all), the `.qmd` file must import/create everything it needs from scratch.
+:::
+
+## 4. ANOVA hypotheses
+
+What are H0 and H1 for a one-way ANOVA comparing gene expression across 4 groups? What does the F statistic actually compare?
+
+::: {.answer}
+- H0: all group means are equal ($\mu_1 = \mu_2 = \mu_3 = \mu_4$).
+- H1: at least one group has a mean different from the others.
+
+The F statistic is the ratio of the **between-group variance** to the **within-group variance** ($F = \sigma^2_{\text{inter group}} / \sigma^2_{\text{intra group}}$). A large F suggests the groups differ more from each other than individual observations differ within a group, providing evidence against H0.
+:::
+
+## 5. Conditions for a valid ANOVA
+
+Name the three conditions that should be checked before trusting an ANOVA result, and one R function/test used to check each.
+
+::: {.answer}
+- **Independence** of observations within and across groups (no statistical test, verified by the experimental design).
+- **Normality**: each group's data should be approximately normally distributed, check with `shapiro.test()`.
+- **Homoscedasticity** (equal variance across groups), check with `bartlett.test()` (or Levene's test).
+:::
+
+## 6. When ANOVA assumptions fail
+
+If the normality or homoscedasticity assumptions for ANOVA are not met, what test should you use instead, and why?
+
+::: {.answer}
+Use the **Kruskal-Wallis test** (`kruskal.test()`), it's the non-parametric equivalent of one-way ANOVA for comparing more than two groups, and it doesn't require normally distributed data or equal variances.
+:::
+
+## 7. Post-hoc testing with TukeyHSD
+
+After a significant ANOVA result across 4 groups, why would you run `TukeyHSD()`, and what does it tell you that the ANOVA result alone does not?
+
+::: {.answer}
+ANOVA only tells you that **at least one** group differs from the others overall, it doesn't say *which* group(s). `TukeyHSD()` performs pairwise comparisons between every pair of groups (with a multiple-testing correction), telling you specifically which group pairs are significantly different.
+:::
+
+## 8. Building a volcano plot
+
+In a volcano plot of differential expression results, what goes on the x-axis and what goes on the y-axis? Why is the y-axis typically `-log10(pvalue)` rather than the raw p-value?
+
+::: {.answer}
+- x-axis: `log2FoldChange` (the magnitude/direction of expression change).
+- y-axis: `-log10(pvalue)` (statistical significance).
+
+Using `-log10(pvalue)` flips small p-values (highly significant) into **large, positive** y-values, so the most significant genes appear visually at the **top** of the plot, much more intuitive than plotting raw p-values, which would shrink toward zero for the most significant results.
+:::

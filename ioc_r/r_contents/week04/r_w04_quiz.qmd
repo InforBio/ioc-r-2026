@@ -1,0 +1,128 @@
+---
+title: "Week 4 - Self-Check Quiz"
+format: html
+date: "2025-11-26"
+date-format: " "
+categories:
+  - week04
+  - quiz
+editor_options:
+  chunk_output_type: console
+---
+
+Use this quiz to check how well you understood this week's session, or as a quick review if you didn't have time to do the homework. Try to answer each question on your own before revealing the correction.
+
+## 1. Comparison operators on vectors
+
+Given `x <- c(2, 8, 3)` and `y <- c(6, 8, 1)`, what do the following return?
+
+```r
+x == y
+x > y
+```
+
+::: {.answer}
+```r
+x == y   # FALSE  TRUE FALSE
+x > y    # FALSE FALSE  TRUE
+```
+
+Comparisons are done **element-wise**: each element of `x` is compared to the element at the same position in `y`.
+:::
+
+## 2. The `%in%` operator
+
+A data frame `df` has two columns named `x` and `y`. What does `"id" %in% colnames(df)` return, and what does `%in%` check in general?
+
+::: {.answer}
+It returns `FALSE`, since `"id"` is not one of the column names (`"x"`, `"y"`).
+
+`%in%` checks whether each value on its **left side** is present anywhere in the collection on its **right side**, returning a logical value (or vector). Here it's a single check, so a single `FALSE`.
+:::
+
+## 3. `any()`, `all()`, and `which()`
+
+Given `log2FoldChange <- c(-1.2, 0.5, -0.9, -0.7, 1.1)`, what do the following return?
+
+```r
+which(log2FoldChange > 0.8)
+any(log2FoldChange > 0.8)
+all(log2FoldChange > 0)
+```
+
+::: {.answer}
+```r
+which(log2FoldChange > 0.8)  # 5      (indices where the condition is TRUE)
+any(log2FoldChange > 0.8)    # TRUE     (at least one value is > 0.8)
+all(log2FoldChange > 0)      # FALSE    (not all values are positive)
+```
+:::
+
+## 4. Rules for `if` statements
+
+What condition must an `if (condition)` statement's `condition` satisfy in R? And is it valid to write an `if` **without** an `else`? Is the reverse valid?
+
+::: {.answer}
+The `condition` must evaluate to **exactly one logical value** (`TRUE` or `FALSE`), and it cannot be `NA`.
+
+You **can** use `if` without `else` (the code block is simply skipped if the condition is `FALSE`). You **cannot** use `else` without a preceding `if`, that's invalid syntax.
+:::
+
+## 5. Vectorized categorization with `ifelse()`
+
+`de_res` is a data frame with two numeric columns `log2FoldChange` and `padj` which represent the log2 fold change of genes between two conditions and adjusted p-values, respectively. Write R code using **nested `ifelse()`** to create a `gene_category` column from the `log2FoldChange`, with:
+
+- `"up"` if `log2FoldChange > 1`
+- `"down"` if `log2FoldChange < -1`
+- `"neutral"` otherwise
+
+::: {.answer}
+```r
+de_res[["gene_category"]] <- ifelse(
+  test = de_res[["log2FoldChange"]] > 1,
+  yes = "up",
+  no = ifelse(
+    test = de_res[["log2FoldChange"]] < -1,
+    yes = "down",
+    no = "neutral"
+  )
+)
+```
+
+`ifelse()` is vectorized, it evaluates the condition for every element at once, unlike a plain `if`, which needs a single logical value.
+:::
+
+## 6. Operator precedence
+
+Without running it, what does `TRUE | TRUE & FALSE` evaluate to? Why?
+
+::: {.answer}
+It returns `TRUE`. The operator `&` (AND) has **higher precedence** than `|` (OR), so R evaluates it as `TRUE | (TRUE & FALSE)` = `TRUE | FALSE` = `TRUE`.
+
+(Compare with `(TRUE | TRUE) & FALSE`, which forces the `|` first and evaluates to `FALSE`.)
+:::
+
+## 7. Combining conditions to filter rows
+
+Write R code to filter a data frame `de_res` for rows where `log2FoldChange > 1` **and** `padj < 0.01` at the same time.
+
+::: {.answer}
+```r
+de_res[de_res$log2FoldChange > 1 & de_res$padj < 0.01, ]
+```
+
+Use `&` to combine element-wise conditions across an entire column when filtering rows of a data frame.
+:::
+
+## 8. Why correct for multiple testing?
+
+If you run 100 independent statistical tests, each at $\alpha = 0.05$, why is the overall chance of at least one false positive much higher than 5%? Name one correction method used to address this.
+
+::: {.answer}
+Each individual test has a 5% chance of a false positive (Type I error) purely by chance. Running many tests **accumulates** this risk: the probability of at least one false positive among 100 independent tests is $1 - (1 - 0.05)^{100} \approx 0.99$, almost certain.
+
+Correction methods include:
+
+- **Bonferroni correction**: divide $\alpha$ by the number of tests ($\alpha_{adjusted} = \alpha / N_{test}$), which is strict/conservative.
+- **False Discovery Rate (FDR)**, *e.g.* the Benjamini-Hochberg procedure: controls the expected proportion of false positives among the significant results, and is less conservative than Bonferroni.
+:::
