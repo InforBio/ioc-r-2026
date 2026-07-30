@@ -3,7 +3,7 @@ project:
   output-dir: docs/
 
 website:
-  title: "Trainings-2026"
+  title: "IOT-2026"
   favicon: images/logoInforBio_fond_blanc.png
   
   page-footer: 
