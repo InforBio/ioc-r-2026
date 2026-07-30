@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 1 - Hands-On Examples – IOT-2026</title>
+<title>Week 9 - Self-Check Quiz – IOT-2026</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -110,6 +110,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -178,18 +207,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#goals" id="toc-goals" class="nav-link active" data-scroll-target="#goals">Goals</a></li>
-  <li><a href="#create-an-r-project" id="toc-create-an-r-project" class="nav-link" data-scroll-target="#create-an-r-project">Create an R project</a></li>
-  <li><a href="#files-description" id="toc-files-description" class="nav-link" data-scroll-target="#files-description">Files Description</a>
-  <ul class="collapse">
-  <li><a href="#data-file" id="toc-data-file" class="nav-link" data-scroll-target="#data-file">Data File</a></li>
-  <li><a href="#the-r-script" id="toc-the-r-script" class="nav-link" data-scroll-target="#the-r-script">The R script</a></li>
-  </ul></li>
-  <li><a href="#play-with-rstudio" id="toc-play-with-rstudio" class="nav-link" data-scroll-target="#play-with-rstudio">Play with RStudio</a>
-  <ul class="collapse">
-  <li><a href="#import-data" id="toc-import-data" class="nav-link" data-scroll-target="#import-data">Import Data</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
-  </ul></li>
+  <li><a href="#the-yaml-header" id="toc-the-yaml-header" class="nav-link active" data-scroll-target="#the-yaml-header">1. The YAML header</a></li>
+  <li><a href="#chunk-options-scope" id="toc-chunk-options-scope" class="nav-link" data-scroll-target="#chunk-options-scope">2. Chunk options scope</a></li>
+  <li><a href="#what-happens-when-you-render" id="toc-what-happens-when-you-render" class="nav-link" data-scroll-target="#what-happens-when-you-render">3. What happens when you render</a></li>
+  <li><a href="#anova-hypotheses" id="toc-anova-hypotheses" class="nav-link" data-scroll-target="#anova-hypotheses">4. ANOVA hypotheses</a></li>
+  <li><a href="#conditions-for-a-valid-anova" id="toc-conditions-for-a-valid-anova" class="nav-link" data-scroll-target="#conditions-for-a-valid-anova">5. Conditions for a valid ANOVA</a></li>
+  <li><a href="#when-anova-assumptions-fail" id="toc-when-anova-assumptions-fail" class="nav-link" data-scroll-target="#when-anova-assumptions-fail">6. When ANOVA assumptions fail</a></li>
+  <li><a href="#post-hoc-testing-with-tukeyhsd" id="toc-post-hoc-testing-with-tukeyhsd" class="nav-link" data-scroll-target="#post-hoc-testing-with-tukeyhsd">7. Post-hoc testing with TukeyHSD</a></li>
+  <li><a href="#building-a-volcano-plot" id="toc-building-a-volcano-plot" class="nav-link" data-scroll-target="#building-a-volcano-plot">8. Building a volcano plot</a></li>
   </ul>
 </nav>
     </div>
@@ -198,10 +223,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 1 - Hands-On Examples</h1>
+<h1 class="title">Week 9 - Self-Check Quiz</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">week01</div>
-    <div class="quarto-category">exercise</div>
+    <div class="quarto-category">week09</div>
+    <div class="quarto-category">quiz</div>
   </div>
   </div>
 
@@ -219,232 +244,184 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="goals" class="level2">
-<h2 class="anchored" data-anchor-id="goals">Goals</h2>
-<ul>
-<li>Get familiar with the RStudio</li>
-<li>Create an R project in RStudio</li>
-<li>Import data file into RStudio</li>
-<li>Export data from RStudio</li>
-</ul>
-</section>
-<section id="create-an-r-project" class="level2">
-<h2 class="anchored" data-anchor-id="create-an-r-project">Create an R project</h2>
-<ol type="1">
-<li>Open RStudio, create a new R project in the folder of your choice.</li>
-</ol>
-<p>Some rules for naming your project:</p>
-<ul>
-<li>Choose a short and descriptive name.</li>
-<li>Use snake case (lowercase letters and underscores only). Avoid special characters (such as <code>!</code>, <code>#</code>, ) and spaces.</li>
-<li>The name cannot starts with numbers.</li>
-</ul>
-<ol start="2" type="1">
-<li><p>Open your R project, create three new folders, <em>i.e.</em>, <code>data</code>, <code>scripts</code>, <code>outputs</code>.</p></li>
-<li><p>Download two files:</p></li>
-</ol>
-<ul>
-<li>An R script named “r_w01_exos.R” for this week’s exercise (<a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/week01/r_w01_exos.R">here</a>), save it into the <code>scripts</code> folder.</li>
-<li>A data file called “read-counts.csv” (<a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/exos_data/read-counts.csv">here</a>), put it into the <code>data</code> folder.</li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
+<p>Use this quiz to check how well you understood this week’s session, or as a quick review if you didn’t have time to do the homework. Try to answer each question on your own before revealing the correction.</p>
+<section id="the-yaml-header" class="level2">
+<h2 class="anchored" data-anchor-id="the-yaml-header">1. The YAML header</h2>
+<p>Where does the YAML header go in a Quarto document, and what kind of information does it control?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Note</span>Show answer
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>If you are using RStudio server, files can be uploaded using the “Upload” icon in the <em>Files</em> pane.</p>
+<p>It goes at the <strong>very beginning</strong> of the <code>.qmd</code> file, framed by a pair of three dashes (<code>---</code>). It controls document-level metadata and options such as <code>title</code>, <code>author</code>, <code>date</code>, and the output <code>format</code> (and format-specific options, <em>e.g.</em> <code>toc: true</code>, <code>theme: ...</code>).</p>
+</div>
 </div>
 </div>
 </section>
-<section id="files-description" class="level2">
-<h2 class="anchored" data-anchor-id="files-description">Files Description</h2>
-<section id="data-file" class="level3">
-<h3 class="anchored" data-anchor-id="data-file">Data File</h3>
-<p>We’ll be working with a gene expression dataset as an example, sourced from this <a href="https://monashbioinformaticsplatform.github.io/r-more/">link</a>.</p>
-<p>The data comes from an experiment using PCR to study 44 genes. The results were measured to see which genes are active at different stages in Yeast cell cycling. Several strains were tested, including wildtype and some with specific genes knock-downs. Samples were taken at nine time points over two cell cycles (two hours).</p>
-</section>
-<section id="the-r-script" class="level3">
-<h3 class="anchored" data-anchor-id="the-r-script">The R script</h3>
-<p>The <code>r_w01_exos.R</code> script contains all commands R for the exercise.</p>
-</section>
-</section>
-<section id="play-with-rstudio" class="level2">
-<h2 class="anchored" data-anchor-id="play-with-rstudio">Play with RStudio</h2>
-<p>In your R project, open the downloaded R script <code>r_w01_exos.R</code>: In RStudio menu bar, click <em>File</em> -&gt; <em>Open File</em> -&gt; selec the Rscript, or click the file in the <em>Files</em> pane.</p>
-<section id="import-data" class="level3">
-<h3 class="anchored" data-anchor-id="import-data">Import Data</h3>
-<ol type="1">
-<li>If you are not familiar with the file content, click on the CSV file in <em>Files</em> pane to “View” it. Identify the column separator and the decimal sign.</li>
-<li>Import the file into R and call the imported data “counts”.</li>
-<li>Copy paste the command shown in the R console.</li>
-</ol>
-</section>
-<section id="exercises" class="level3">
-<h3 class="anchored" data-anchor-id="exercises">Exercises</h3>
-<ol type="1">
-<li>What is the absolute file path of the imported data <code>counts</code>? What is its relative path? Verify your answer using the function <code>file.exists()</code>.</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>() <span class="co"># show the current working directory</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>abs_path <span class="ot">&lt;-</span> <span class="st">""</span> <span class="co"># put your answer between quotes</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>rel_path <span class="ot">&lt;-</span> <span class="st">""</span> <span class="co"># put your answer between quotes</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">file.exists</span>(abs_path) <span class="co"># check if R finds your file using absolute path</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">file.exists</span>(rel_path) <span class="co"># check if R finds your file using relative path</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<ol start="2" type="1">
-<li>What is the dimension (number of rows and columns) of the data frame? Check the “Environment” panel or use the function <code>dim()</code>.</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(counts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 45 41</code></pre>
-</div>
-</div>
-<p>In the “Environment” panel, click on the tabular icon next to the dataset to visualize the it.</p>
-<p>We can extract all gene expressions for the sample named “WT.2” using <code>counts[["WT.2"]]</code>.</p>
-<ol start="3" type="1">
-<li>Try <code>mode()</code> on the expression data for “WT.2”, what does it return?</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mode</span>(counts[[<span class="st">"WT.2"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "numeric"</code></pre>
-</div>
-</div>
-<ol start="4" type="1">
-<li>Calculate the average expression (<code>mean()</code>) and standard deviation (<code>sd()</code>) of genes from the sample “WT.2”.</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(counts[[<span class="st">"WT.2"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 148</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(counts[[<span class="st">"WT.2"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 392.7854</code></pre>
-</div>
-</div>
-<ol start="5" type="1">
-<li>Generate descriptive statistics for all genes from the sample “WT.2” using <code>summary()</code>.</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(counts[[<span class="st">"WT.2"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-      0       6      27     148     110    2527 </code></pre>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled" title="Stats Time!">
-<div class="callout-header d-flex align-content-center">
+<section id="chunk-options-scope" class="level2">
+<h2 class="anchored" data-anchor-id="chunk-options-scope">2. Chunk options scope</h2>
+<p>You set <code>#| eval: false</code> inside one code chunk. Does that affect other chunks in the document? How would you instead set a default option for <strong>every</strong> chunk?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Stats Time!
+<span class="screen-reader-only">Note</span>Show answer
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>What are quartiles?</p>
-<p>Quartiles are three values that split sorted data into four equal parts.</p>
-<p><img src="images/boxplot.png" class="img-fluid" style="width:65.0%"></p>
-<p>(figure modified from this <a href="https://www.google.com/url?sa=i&amp;url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ABoxplot_vs_PDF.png&amp;psig=AOvVaw3y4ZFGXe2JU0ypMGAEc2_i&amp;ust=1734727102604000&amp;source=images&amp;cd=vfe&amp;opi=89978449&amp;ved=0CBQQjRxqFwoTCMDBxpfYtIoDFQAAAAAdAAAAABAE">source</a>)</p>
-<p>IQR (Interquartile range) = Q3 - Q1</p>
+<p>No, options set with <code>#|</code> at the top of a chunk apply <strong>only to that specific chunk</strong>.</p>
+<p>To set a default for every chunk in the document, add it under <code>execute:</code> in the YAML header, <em>e.g.</em>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-<ol start="6" type="1">
-<li>Generate a histogram for the “WT.2” sample using <code>hist()</code>. What does the distribution look like?</li>
-</ol>
-<div class="callout callout-style-default callout-note callout-titled" title="Stats Time!">
-<div class="callout-header d-flex align-content-center">
+</div>
+</section>
+<section id="what-happens-when-you-render" class="level2">
+<h2 class="anchored" data-anchor-id="what-happens-when-you-render">3. What happens when you render</h2>
+<p>When you click “Render” on a Quarto document, does it reuse the objects already in your RStudio environment/workspace? Why does this matter?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Stats Time!
+<span class="screen-reader-only">Note</span>Show answer
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>Histograms</strong> help us see how data is spread out. They show how many data points fall into different intervals, or <em>bins</em>. By looking at a histogram, we can quickly understand the shape of the data, like if it’s skewed or has outliers. It’s a simple way to get an overview of your data.</p>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(counts[[<span class="st">"WT.2"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="r_w01_exos_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<p>No.&nbsp;Rendering executes all code chunks in a <strong>fresh R session</strong>, ignoring whatever is currently in your workspace. This matters because a document that “works” only thanks to leftover objects from your console won’t render correctly (or at all), the <code>.qmd</code> file must import/create everything it needs from scratch.</p>
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Stats Time!">
-<div class="callout-header d-flex align-content-center">
+</section>
+<section id="anova-hypotheses" class="level2">
+<h2 class="anchored" data-anchor-id="anova-hypotheses">4. ANOVA hypotheses</h2>
+<p>What are H0 and H1 for a one-way ANOVA comparing gene expression across 4 groups? What does the F statistic actually compare?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Stats Time!
+<span class="screen-reader-only">Note</span>Show answer
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>log2 Transformation</strong></p>
-<p>A log2 transformation is commonly used to normalize data and reduce skewness, especially in datasets with values spanning several orders of magnitude. Many biological data, like gene expression counts, tend to have a highly skewed distribution with a long tail of large values. The log2 transformation helps:</p>
 <ul>
-<li>Stabilize variance – Makes data with large differences more comparable.</li>
-<li>Handle ratios – Converts multiplicative relationships into additive ones, simplifying interpretation.</li>
-<li>Improve normality – Makes the data distribution closer to normal, which is often required for statistical tests.</li>
+<li>H0: all group means are equal (<span class="math inline">\(\mu_1 = \mu_2 = \mu_3 = \mu_4\)</span>).</li>
+<li>H1: at least one group has a mean different from the others.</li>
+</ul>
+<p>The F statistic is the ratio of the <strong>between-group variance</strong> to the <strong>within-group variance</strong> (<span class="math inline">\(F = \sigma^2_{\text{inter group}} / \sigma^2_{\text{intra group}}\)</span>). A large F suggests the groups differ more from each other than individual observations differ within a group, providing evidence against H0.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="conditions-for-a-valid-anova" class="level2">
+<h2 class="anchored" data-anchor-id="conditions-for-a-valid-anova">5. Conditions for a valid ANOVA</h2>
+<p>Name the three conditions that should be checked before trusting an ANOVA result, and one R function/test used to check each.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Show answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Independence</strong> of observations within and across groups (no statistical test, verified by the experimental design).</li>
+<li><strong>Normality</strong>: each group’s data should be approximately normally distributed, check with <code>shapiro.test()</code>.</li>
+<li><strong>Homoscedasticity</strong> (equal variance across groups), check with <code>bartlett.test()</code> (or Levene’s test).</li>
 </ul>
 </div>
 </div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> counts[[<span class="st">"WT.2"</span>]], <span class="at">y =</span> <span class="fu">log2</span>(counts[[<span class="st">"WT.2"</span>]]),</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Original Scale"</span>, <span class="at">ylab =</span> <span class="st">"log2 Scale"</span>,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Gene expression for the sample WT.2"</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="dv">256</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lty =</span> <span class="dv">2</span>) <span class="co"># Add vertical line </span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">8</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lty =</span> <span class="dv">2</span>) <span class="co"># Add horizontal line</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="dv">500</span>, <span class="at">y =</span> <span class="dv">7</span>, <span class="at">labels =</span> <span class="fu">expression</span>(<span class="dv">2</span><span class="sc">^</span><span class="dv">8</span> <span class="sc">==</span> <span class="dv">256</span>)) <span class="co"># Add equation</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="r_w01_exos_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+</div>
+</section>
+<section id="when-anova-assumptions-fail" class="level2">
+<h2 class="anchored" data-anchor-id="when-anova-assumptions-fail">6. When ANOVA assumptions fail</h2>
+<p>If the normality or homoscedasticity assumptions for ANOVA are not met, what test should you use instead, and why?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Show answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Use the <strong>Kruskal-Wallis test</strong> (<code>kruskal.test()</code>), it’s the non-parametric equivalent of one-way ANOVA for comparing more than two groups, and it doesn’t require normally distributed data or equal variances.</p>
 </div>
 </div>
 </div>
-<p>Re draw the histogram with the log2 transformed data, what does the distribution look like now?</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">log2</span>(counts[[<span class="st">"WT.2"</span>]]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="r_w01_exos_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+</section>
+<section id="post-hoc-testing-with-tukeyhsd" class="level2">
+<h2 class="anchored" data-anchor-id="post-hoc-testing-with-tukeyhsd">7. Post-hoc testing with TukeyHSD</h2>
+<p>After a significant ANOVA result across 4 groups, why would you run <code>TukeyHSD()</code>, and what does it tell you that the ANOVA result alone does not?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Show answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>ANOVA only tells you that <strong>at least one</strong> group differs from the others overall, it doesn’t say <em>which</em> group(s). <code>TukeyHSD()</code> performs pairwise comparisons between every pair of groups (with a multiple-testing correction), telling you specifically which group pairs are significantly different.</p>
 </div>
 </div>
 </div>
-<ol start="7" type="1">
-<li>We can extract the gene name column (called “Feature”) and the column for sample “WT.2” using this command: <code>counts[, c("Feature", "WT.2")]</code>. Export the data to a file called <code>WT_2_expression.csv</code>, store this file in the <code>outputs</code> folder.</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(counts[, <span class="fu">c</span>(<span class="st">"Feature"</span>, <span class="st">"WT.2"</span>)], <span class="at">file =</span> <span class="st">"outputs/WT_2_expression.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="building-a-volcano-plot" class="level2">
+<h2 class="anchored" data-anchor-id="building-a-volcano-plot">8. Building a volcano plot</h2>
+<p>In a volcano plot of differential expression results, what goes on the x-axis and what goes on the y-axis? Why is the y-axis typically <code>-log10(pvalue)</code> rather than the raw p-value?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>Check in the <code>outputs</code> folder, do you see the saved file? Does the content correspond to your expectations?</p>
-<hr>
-<section id="good-job-youve-taken-your-first-big-steps-into-r-and-youre-off-to-a-great-start-keep-it-up" class="level4">
-<h4 class="anchored" data-anchor-id="good-job-youve-taken-your-first-big-steps-into-r-and-youre-off-to-a-great-start-keep-it-up">Good job! 👏👏 You’ve taken your first big steps into R, and you’re off to a great start, keep it up!</h4>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Show answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>x-axis: <code>log2FoldChange</code> (the magnitude/direction of expression change).</li>
+<li>y-axis: <code>-log10(pvalue)</code> (statistical significance).</li>
+</ul>
+<p>Using <code>-log10(pvalue)</code> flips small p-values (highly significant) into <strong>large, positive</strong> y-values, so the most significant genes appear visually at the <strong>top</strong> of the plot, much more intuitive than plotting raw p-values, which would shrink toward zero for the most significant results.</p>
+</div>
+</div>
+</div>
 
 
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->

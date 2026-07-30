@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 1 - Hands-On Examples – IOT-2026</title>
+<title>Week 3 - Self-Check Quiz – IOT-2026</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -110,6 +110,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -178,18 +207,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#goals" id="toc-goals" class="nav-link active" data-scroll-target="#goals">Goals</a></li>
-  <li><a href="#create-an-r-project" id="toc-create-an-r-project" class="nav-link" data-scroll-target="#create-an-r-project">Create an R project</a></li>
-  <li><a href="#files-description" id="toc-files-description" class="nav-link" data-scroll-target="#files-description">Files Description</a>
-  <ul class="collapse">
-  <li><a href="#data-file" id="toc-data-file" class="nav-link" data-scroll-target="#data-file">Data File</a></li>
-  <li><a href="#the-r-script" id="toc-the-r-script" class="nav-link" data-scroll-target="#the-r-script">The R script</a></li>
-  </ul></li>
-  <li><a href="#play-with-rstudio" id="toc-play-with-rstudio" class="nav-link" data-scroll-target="#play-with-rstudio">Play with RStudio</a>
-  <ul class="collapse">
-  <li><a href="#import-data" id="toc-import-data" class="nav-link" data-scroll-target="#import-data">Import Data</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
-  </ul></li>
+  <li><a href="#data-frame-column-selection-and-dropping" id="toc-data-frame-column-selection-and-dropping" class="nav-link active" data-scroll-target="#data-frame-column-selection-and-dropping">1. Data frame column selection and “dropping”</a></li>
+  <li><a href="#list-subsetting-vs" id="toc-list-subsetting-vs" class="nav-link" data-scroll-target="#list-subsetting-vs">2. List subsetting: <code>[</code> vs <code>[[</code></a></li>
+  <li><a href="#modifying-a-data-frame" id="toc-modifying-a-data-frame" class="nav-link" data-scroll-target="#modifying-a-data-frame">3. Modifying a data frame</a></li>
+  <li><a href="#when-and-why-use-factor" id="toc-when-and-why-use-factor" class="nav-link" data-scroll-target="#when-and-why-use-factor">4. When and why use <code>factor()</code></a></li>
+  <li><a href="#joining-data-frames-with-merge" id="toc-joining-data-frames-with-merge" class="nav-link" data-scroll-target="#joining-data-frames-with-merge">5. Joining data frames with <code>merge()</code></a></li>
+  <li><a href="#fold-change" id="toc-fold-change" class="nav-link" data-scroll-target="#fold-change">6. Fold change</a></li>
+  <li><a href="#choosing-and-interpreting-a-statistical-test" id="toc-choosing-and-interpreting-a-statistical-test" class="nav-link" data-scroll-target="#choosing-and-interpreting-a-statistical-test">7. Choosing and interpreting a statistical test</a></li>
+  <li><a href="#extracting-nested-elements" id="toc-extracting-nested-elements" class="nav-link" data-scroll-target="#extracting-nested-elements">8. Extracting nested elements</a></li>
   </ul>
 </nav>
     </div>
@@ -198,10 +223,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 1 - Hands-On Examples</h1>
+<h1 class="title">Week 3 - Self-Check Quiz</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">week01</div>
-    <div class="quarto-category">exercise</div>
+    <div class="quarto-category">week03</div>
+    <div class="quarto-category">quiz</div>
   </div>
   </div>
 
@@ -219,232 +244,239 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="goals" class="level2">
-<h2 class="anchored" data-anchor-id="goals">Goals</h2>
-<ul>
-<li>Get familiar with the RStudio</li>
-<li>Create an R project in RStudio</li>
-<li>Import data file into RStudio</li>
-<li>Export data from RStudio</li>
-</ul>
-</section>
-<section id="create-an-r-project" class="level2">
-<h2 class="anchored" data-anchor-id="create-an-r-project">Create an R project</h2>
-<ol type="1">
-<li>Open RStudio, create a new R project in the folder of your choice.</li>
-</ol>
-<p>Some rules for naming your project:</p>
-<ul>
-<li>Choose a short and descriptive name.</li>
-<li>Use snake case (lowercase letters and underscores only). Avoid special characters (such as <code>!</code>, <code>#</code>, ) and spaces.</li>
-<li>The name cannot starts with numbers.</li>
-</ul>
-<ol start="2" type="1">
-<li><p>Open your R project, create three new folders, <em>i.e.</em>, <code>data</code>, <code>scripts</code>, <code>outputs</code>.</p></li>
-<li><p>Download two files:</p></li>
-</ol>
-<ul>
-<li>An R script named “r_w01_exos.R” for this week’s exercise (<a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/week01/r_w01_exos.R">here</a>), save it into the <code>scripts</code> folder.</li>
-<li>A data file called “read-counts.csv” (<a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/exos_data/read-counts.csv">here</a>), put it into the <code>data</code> folder.</li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
+<p>Use this quiz to check how well you understood this week’s session, or as a quick review if you didn’t have time to do the homework. Try to answer each question on your own before revealing the correction.</p>
+<section id="data-frame-column-selection-and-dropping" class="level2">
+<h2 class="anchored" data-anchor-id="data-frame-column-selection-and-dropping">1. Data frame column selection and “dropping”</h2>
+<p>Given a data frame <code>my_df</code> with several columns, what is the difference between the results (and their <strong>data structure</strong>) of:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>my_df[, <span class="dv">2</span>]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>my_df[, <span class="dv">2</span>, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Note</span>Show answer
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>If you are using RStudio server, files can be uploaded using the “Upload” icon in the <em>Files</em> pane.</p>
+<p><code>my_df[, 2]</code> <strong>simplifies</strong> the result to a plain <strong>vector</strong>, since only one column was selected.</p>
+<p><code>my_df[, 2, drop = FALSE]</code> keeps the result as a <strong>data frame</strong> with one column, by preventing R’s automatic simplification.</p>
+<p>Use <code>str()</code> to check: <code>str(my_df[, 2])</code> → vector, <code>str(my_df[, 2, drop = FALSE])</code> → data frame.</p>
+</div>
 </div>
 </div>
 </section>
-<section id="files-description" class="level2">
-<h2 class="anchored" data-anchor-id="files-description">Files Description</h2>
-<section id="data-file" class="level3">
-<h3 class="anchored" data-anchor-id="data-file">Data File</h3>
-<p>We’ll be working with a gene expression dataset as an example, sourced from this <a href="https://monashbioinformaticsplatform.github.io/r-more/">link</a>.</p>
-<p>The data comes from an experiment using PCR to study 44 genes. The results were measured to see which genes are active at different stages in Yeast cell cycling. Several strains were tested, including wildtype and some with specific genes knock-downs. Samples were taken at nine time points over two cell cycles (two hours).</p>
-</section>
-<section id="the-r-script" class="level3">
-<h3 class="anchored" data-anchor-id="the-r-script">The R script</h3>
-<p>The <code>r_w01_exos.R</code> script contains all commands R for the exercise.</p>
-</section>
-</section>
-<section id="play-with-rstudio" class="level2">
-<h2 class="anchored" data-anchor-id="play-with-rstudio">Play with RStudio</h2>
-<p>In your R project, open the downloaded R script <code>r_w01_exos.R</code>: In RStudio menu bar, click <em>File</em> -&gt; <em>Open File</em> -&gt; selec the Rscript, or click the file in the <em>Files</em> pane.</p>
-<section id="import-data" class="level3">
-<h3 class="anchored" data-anchor-id="import-data">Import Data</h3>
-<ol type="1">
-<li>If you are not familiar with the file content, click on the CSV file in <em>Files</em> pane to “View” it. Identify the column separator and the decimal sign.</li>
-<li>Import the file into R and call the imported data “counts”.</li>
-<li>Copy paste the command shown in the R console.</li>
-</ol>
-</section>
-<section id="exercises" class="level3">
-<h3 class="anchored" data-anchor-id="exercises">Exercises</h3>
-<ol type="1">
-<li>What is the absolute file path of the imported data <code>counts</code>? What is its relative path? Verify your answer using the function <code>file.exists()</code>.</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>() <span class="co"># show the current working directory</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>abs_path <span class="ot">&lt;-</span> <span class="st">""</span> <span class="co"># put your answer between quotes</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>rel_path <span class="ot">&lt;-</span> <span class="st">""</span> <span class="co"># put your answer between quotes</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">file.exists</span>(abs_path) <span class="co"># check if R finds your file using absolute path</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">file.exists</span>(rel_path) <span class="co"># check if R finds your file using relative path</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<ol start="2" type="1">
-<li>What is the dimension (number of rows and columns) of the data frame? Check the “Environment” panel or use the function <code>dim()</code>.</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(counts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 45 41</code></pre>
-</div>
-</div>
-<p>In the “Environment” panel, click on the tabular icon next to the dataset to visualize the it.</p>
-<p>We can extract all gene expressions for the sample named “WT.2” using <code>counts[["WT.2"]]</code>.</p>
-<ol start="3" type="1">
-<li>Try <code>mode()</code> on the expression data for “WT.2”, what does it return?</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mode</span>(counts[[<span class="st">"WT.2"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "numeric"</code></pre>
-</div>
-</div>
-<ol start="4" type="1">
-<li>Calculate the average expression (<code>mean()</code>) and standard deviation (<code>sd()</code>) of genes from the sample “WT.2”.</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(counts[[<span class="st">"WT.2"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 148</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(counts[[<span class="st">"WT.2"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 392.7854</code></pre>
-</div>
-</div>
-<ol start="5" type="1">
-<li>Generate descriptive statistics for all genes from the sample “WT.2” using <code>summary()</code>.</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(counts[[<span class="st">"WT.2"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-      0       6      27     148     110    2527 </code></pre>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled" title="Stats Time!">
-<div class="callout-header d-flex align-content-center">
+<section id="list-subsetting-vs" class="level2">
+<h2 class="anchored" data-anchor-id="list-subsetting-vs">2. List subsetting: <code>[</code> vs <code>[[</code></h2>
+<p>Given <code>simple_list &lt;- list(gene_name = "geneA", counts = c(10, 11, 0.5), expressed = c(TRUE, TRUE, FALSE))</code>, what is the difference in <strong>data structure</strong> returned by:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>simple_list[<span class="dv">1</span>]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>simple_list[[<span class="dv">1</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Stats Time!
+<span class="screen-reader-only">Note</span>Show answer
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>What are quartiles?</p>
-<p>Quartiles are three values that split sorted data into four equal parts.</p>
-<p><img src="images/boxplot.png" class="img-fluid" style="width:65.0%"></p>
-<p>(figure modified from this <a href="https://www.google.com/url?sa=i&amp;url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ABoxplot_vs_PDF.png&amp;psig=AOvVaw3y4ZFGXe2JU0ypMGAEc2_i&amp;ust=1734727102604000&amp;source=images&amp;cd=vfe&amp;opi=89978449&amp;ved=0CBQQjRxqFwoTCMDBxpfYtIoDFQAAAAAdAAAAABAE">source</a>)</p>
-<p>IQR (Interquartile range) = Q3 - Q1</p>
+<p><code>simple_list[1]</code> returns a <strong>list</strong> containing the first element (still wrapped in a list of length 1).</p>
+<p><code>simple_list[[1]]</code> returns the <strong>actual content</strong> of the first element itself (here, the character value <code>"geneA"</code>), unwrapped from the list.</p>
+<p>Rule of thumb: <code>[</code> keeps you “inside” the list structure, <code>[[</code> extracts what’s “inside” a specific slot.</p>
 </div>
 </div>
-<ol start="6" type="1">
-<li>Generate a histogram for the “WT.2” sample using <code>hist()</code>. What does the distribution look like?</li>
+</div>
+</section>
+<section id="modifying-a-data-frame" class="level2">
+<h2 class="anchored" data-anchor-id="modifying-a-data-frame">3. Modifying a data frame</h2>
+<p>Write R code to, on a data frame <code>my_df</code>:</p>
+<ol type="a">
+<li>add a new column <code>tissue</code> with the value <code>"liver"</code> repeated for every row</li>
+<li>delete the column <code>detected</code></li>
 </ol>
-<div class="callout callout-style-default callout-note callout-titled" title="Stats Time!">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Stats Time!
+<span class="screen-reader-only">Note</span>Show answer
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>Histograms</strong> help us see how data is spread out. They show how many data points fall into different intervals, or <em>bins</em>. By looking at a histogram, we can quickly understand the shape of the data, like if it’s skewed or has outliers. It’s a simple way to get an overview of your data.</p>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(counts[[<span class="st">"WT.2"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="r_w01_exos_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>my_df[[<span class="st">"tissue"</span>]] <span class="ot">&lt;-</span> <span class="st">"liver"</span>   <span class="co"># recycled for all rows</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># or: my_df$tissue &lt;- "liver"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># b.</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>my_df[[<span class="st">"detected"</span>]] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># or: my_df$detected &lt;- NULL</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Assigning <code>NULL</code> to a column removes it entirely.</p>
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Stats Time!">
-<div class="callout-header d-flex align-content-center">
+</section>
+<section id="when-and-why-use-factor" class="level2">
+<h2 class="anchored" data-anchor-id="when-and-why-use-factor">4. When and why use <code>factor()</code></h2>
+<p>You have a data frame column <code>status</code> containing the character values <code>"activated"</code> and <code>"inhibited"</code>. Why and when would you convert it with <code>factor()</code> instead of leaving it as character?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Stats Time!
+<span class="screen-reader-only">Note</span>Show answer
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>log2 Transformation</strong></p>
-<p>A log2 transformation is commonly used to normalize data and reduce skewness, especially in datasets with values spanning several orders of magnitude. Many biological data, like gene expression counts, tend to have a highly skewed distribution with a long tail of large values. The log2 transformation helps:</p>
+<p>Use <code>factor()</code> when a column represents <strong>categorical data</strong> with a limited, known set of categories (levels). Converting it tells R to treat it as categorical rather than free text, which matters for:</p>
 <ul>
-<li>Stabilize variance – Makes data with large differences more comparable.</li>
-<li>Handle ratios – Converts multiplicative relationships into additive ones, simplifying interpretation.</li>
-<li>Improve normality – Makes the data distribution closer to normal, which is often required for statistical tests.</li>
+<li>correct summaries (<code>summary()</code> will show counts per category instead of treating it like arbitrary text),</li>
+<li>controlling the <strong>order of levels</strong> (e.g.&nbsp;<code>factor(x, levels = c("muscle", "liver"))</code>), which matters for plots and some statistical models.</li>
 </ul>
 </div>
 </div>
+</div>
+</section>
+<section id="joining-data-frames-with-merge" class="level2">
+<h2 class="anchored" data-anchor-id="joining-data-frames-with-merge">5. Joining data frames with <code>merge()</code></h2>
+<p>Given <code>df1 &lt;- data.frame(id = 1:3, x = letters[1:3])</code> and <code>df2 &lt;- data.frame(id = c(2, 4), y = LETTERS[c(2, 4)])</code>, what is the key difference between these two calls, and how many rows would each return?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">merge</span>(<span class="at">x =</span> df1, <span class="at">y =</span> df2, <span class="at">by =</span> <span class="st">"id"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">merge</span>(<span class="at">x =</span> df1, <span class="at">y =</span> df2, <span class="at">by =</span> <span class="st">"id"</span>, <span class="at">all =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Show answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> counts[[<span class="st">"WT.2"</span>]], <span class="at">y =</span> <span class="fu">log2</span>(counts[[<span class="st">"WT.2"</span>]]),</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Original Scale"</span>, <span class="at">ylab =</span> <span class="st">"log2 Scale"</span>,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Gene expression for the sample WT.2"</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="dv">256</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lty =</span> <span class="dv">2</span>) <span class="co"># Add vertical line </span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">8</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lty =</span> <span class="dv">2</span>) <span class="co"># Add horizontal line</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="dv">500</span>, <span class="at">y =</span> <span class="dv">7</span>, <span class="at">labels =</span> <span class="fu">expression</span>(<span class="dv">2</span><span class="sc">^</span><span class="dv">8</span> <span class="sc">==</span> <span class="dv">256</span>)) <span class="co"># Add equation</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="r_w01_exos_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">x =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="at">y =</span> LETTERS[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)])</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">merge</span>(<span class="at">x =</span> df1, <span class="at">y =</span> df2, <span class="at">by =</span> <span class="st">"id"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  id x y
+1  2 b B</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">merge</span>(<span class="at">x =</span> df1, <span class="at">y =</span> df2, <span class="at">by =</span> <span class="st">"id"</span>, <span class="at">all =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  id    x    y
+1  1    a &lt;NA&gt;
+2  2    b    B
+3  3    c &lt;NA&gt;
+4  4 &lt;NA&gt;    D</code></pre>
+</div>
+</div>
+<ul>
+<li><code>merge(x = df1, y = df2, by = "id")</code> performs an <strong>inner join</strong>: it keeps only rows where <code>id</code> is present in <strong>both</strong> data frames → here only <code>id = 2</code> matches, so <strong>1 row</strong>.</li>
+<li><code>merge(x = df1, y = df2, by = "id", all = TRUE)</code> performs a <strong>full outer join</strong>: it keeps <strong>all</strong> ids from both data frames, filling in <code>NA</code> where there’s no match → here <code>id</code> 1, 2, 3, 4, so <strong>4 rows</strong>.</li>
+</ul>
 </div>
 </div>
 </div>
-<p>Re draw the histogram with the log2 transformed data, what does the distribution look like now?</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">log2</span>(counts[[<span class="st">"WT.2"</span>]]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="r_w01_exos_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+</section>
+<section id="fold-change" class="level2">
+<h2 class="anchored" data-anchor-id="fold-change">6. Fold change</h2>
+<p>For a gene, the mean expression is 4 in Group 1 and 16 in Group 2. Calculate the fold change (Group2/Group1) and the log2 fold change. Is the gene up- or down-regulated in Group 2 relative to Group 1?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Show answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fc <span class="ot">&lt;-</span> <span class="dv">16</span> <span class="sc">/</span> <span class="dv">4</span>    <span class="co"># 4</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>lfc <span class="ot">&lt;-</span> <span class="fu">log2</span>(fc) <span class="co"># 2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>FC = 4, log2(FC) = 2. Since log2FC &gt; 0, the gene is <strong>up-regulated</strong> in Group 2 compared to Group 1.</p>
 </div>
 </div>
 </div>
-<ol start="7" type="1">
-<li>We can extract the gene name column (called “Feature”) and the column for sample “WT.2” using this command: <code>counts[, c("Feature", "WT.2")]</code>. Export the data to a file called <code>WT_2_expression.csv</code>, store this file in the <code>outputs</code> folder.</li>
+</section>
+<section id="choosing-and-interpreting-a-statistical-test" class="level2">
+<h2 class="anchored" data-anchor-id="choosing-and-interpreting-a-statistical-test">7. Choosing and interpreting a statistical test</h2>
+<p>Why would you use <code>wilcox.test()</code> instead of a t-test to compare gene expression between two groups? What is the null hypothesis and the alternative hypothesis? If the test returns a p-value of 0.03, what do you conclude at <span class="math inline">\(\alpha = 0.05\)</span>?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Show answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The Wilcoxon (Mann-Whitney) test is <strong>non-parametric</strong>, it doesn’t assume the data follows a normal distribution, unlike the t-test. It’s a safer choice when normality is questionable or sample sizes are small.</p>
+<ul>
+<li>H0: the two groups have the same distribution.</li>
+<li>H1: the two groups have different distributions.</li>
+</ul>
+<p>Since p-value (0.03) &lt; <span class="math inline">\(\alpha\)</span> (0.05), we <strong>reject H0</strong>: there is a statistically significant difference in expression between the two groups.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="extracting-nested-elements" class="level2">
+<h2 class="anchored" data-anchor-id="extracting-nested-elements">8. Extracting nested elements</h2>
+<p>Given:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample_info =</span> <span class="fu">data.frame</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">id =</span> <span class="fu">paste0</span>(<span class="st">"sample"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">27</span>, <span class="dv">30</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">family_sequenced =</span> <span class="fu">list</span>(</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample1 =</span> <span class="fu">c</span>(<span class="st">"father"</span>, <span class="st">"mother"</span>),</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample2 =</span> <span class="fu">c</span>(<span class="st">"father"</span>, <span class="st">"mother"</span>, <span class="st">"sister"</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Write R code to extract:</p>
+<ol type="a">
+<li>the <code>age</code> of <code>sample1</code></li>
+<li>the sequenced family members of <code>sample2</code></li>
 </ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(counts[, <span class="fu">c</span>(<span class="st">"Feature"</span>, <span class="st">"WT.2"</span>)], <span class="at">file =</span> <span class="st">"outputs/WT_2_expression.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>Check in the <code>outputs</code> folder, do you see the saved file? Does the content correspond to your expectations?</p>
-<hr>
-<section id="good-job-youve-taken-your-first-big-steps-into-r-and-youre-off-to-a-great-start-keep-it-up" class="level4">
-<h4 class="anchored" data-anchor-id="good-job-youve-taken-your-first-big-steps-into-r-and-youre-off-to-a-great-start-keep-it-up">Good job! 👏👏 You’ve taken your first big steps into R, and you’re off to a great start, keep it up!</h4>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Show answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a.</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>my_list[[<span class="st">"sample_info"</span>]][<span class="dv">1</span>, <span class="st">"age"</span>]</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># b.</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>my_list[[<span class="st">"family_sequenced"</span>]][[<span class="st">"sample2"</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
 
 
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->

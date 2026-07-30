@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 1 - Hands-On Examples – IOT-2026</title>
+<title>Week 7 - Self-Check Quiz – IOT-2026</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -178,18 +178,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#goals" id="toc-goals" class="nav-link active" data-scroll-target="#goals">Goals</a></li>
-  <li><a href="#create-an-r-project" id="toc-create-an-r-project" class="nav-link" data-scroll-target="#create-an-r-project">Create an R project</a></li>
-  <li><a href="#files-description" id="toc-files-description" class="nav-link" data-scroll-target="#files-description">Files Description</a>
-  <ul class="collapse">
-  <li><a href="#data-file" id="toc-data-file" class="nav-link" data-scroll-target="#data-file">Data File</a></li>
-  <li><a href="#the-r-script" id="toc-the-r-script" class="nav-link" data-scroll-target="#the-r-script">The R script</a></li>
-  </ul></li>
-  <li><a href="#play-with-rstudio" id="toc-play-with-rstudio" class="nav-link" data-scroll-target="#play-with-rstudio">Play with RStudio</a>
-  <ul class="collapse">
-  <li><a href="#import-data" id="toc-import-data" class="nav-link" data-scroll-target="#import-data">Import Data</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
-  </ul></li>
+  <li><a href="#rewriting-with-the-pipe" id="toc-rewriting-with-the-pipe" class="nav-link active" data-scroll-target="#rewriting-with-the-pipe">1. Rewriting with the pipe</a></li>
+  <li><a href="#tibbles-vs.-data-frames" id="toc-tibbles-vs.-data-frames" class="nav-link" data-scroll-target="#tibbles-vs.-data-frames">2. Tibbles <em>vs.</em> data frames</a></li>
+  <li><a href="#reformatting-data" id="toc-reformatting-data" class="nav-link" data-scroll-target="#reformatting-data">3. Reformatting data</a></li>
+  <li><a href="#select-helper-functions" id="toc-select-helper-functions" class="nav-link" data-scroll-target="#select-helper-functions">4. <code>select()</code> helper functions</a></li>
+  <li><a href="#combining-filter-conditions" id="toc-combining-filter-conditions" class="nav-link" data-scroll-target="#combining-filter-conditions">5. Combining filter conditions</a></li>
+  <li><a href="#group_by-and-summarise" id="toc-group_by-and-summarise" class="nav-link" data-scroll-target="#group_by-and-summarise">6. <code>group_by()</code> and <code>summarise()</code></a></li>
+  <li><a href="#if_else-vs.-ifelse" id="toc-if_else-vs.-ifelse" class="nav-link" data-scroll-target="#if_else-vs.-ifelse">7. <code>if_else()</code> <em>vs.</em> <code>ifelse()</code></a></li>
+  <li><a href="#sorting-rows" id="toc-sorting-rows" class="nav-link" data-scroll-target="#sorting-rows">8. Sorting rows</a></li>
   </ul>
 </nav>
     </div>
@@ -198,10 +194,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 1 - Hands-On Examples</h1>
+<h1 class="title">Week 7 - Self-Check Quiz</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">week01</div>
-    <div class="quarto-category">exercise</div>
+    <div class="quarto-category">week07</div>
+    <div class="quarto-category">quiz</div>
   </div>
   </div>
 
@@ -219,232 +215,188 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="goals" class="level2">
-<h2 class="anchored" data-anchor-id="goals">Goals</h2>
-<ul>
-<li>Get familiar with the RStudio</li>
-<li>Create an R project in RStudio</li>
-<li>Import data file into RStudio</li>
-<li>Export data from RStudio</li>
-</ul>
-</section>
-<section id="create-an-r-project" class="level2">
-<h2 class="anchored" data-anchor-id="create-an-r-project">Create an R project</h2>
-<ol type="1">
-<li>Open RStudio, create a new R project in the folder of your choice.</li>
-</ol>
-<p>Some rules for naming your project:</p>
-<ul>
-<li>Choose a short and descriptive name.</li>
-<li>Use snake case (lowercase letters and underscores only). Avoid special characters (such as <code>!</code>, <code>#</code>, ) and spaces.</li>
-<li>The name cannot starts with numbers.</li>
-</ul>
-<ol start="2" type="1">
-<li><p>Open your R project, create three new folders, <em>i.e.</em>, <code>data</code>, <code>scripts</code>, <code>outputs</code>.</p></li>
-<li><p>Download two files:</p></li>
-</ol>
-<ul>
-<li>An R script named “r_w01_exos.R” for this week’s exercise (<a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/week01/r_w01_exos.R">here</a>), save it into the <code>scripts</code> folder.</li>
-<li>A data file called “read-counts.csv” (<a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/exos_data/read-counts.csv">here</a>), put it into the <code>data</code> folder.</li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
+<p>Use this quiz to check how well you understood this week’s session, or as a quick review if you didn’t have time to do the homework. Try to answer each question on your own before revealing the correction.</p>
+<section id="rewriting-with-the-pipe" class="level2">
+<h2 class="anchored" data-anchor-id="rewriting-with-the-pipe">1. Rewriting with the pipe</h2>
+<p>Rewrite this nested code using the native pipe <code>|&gt;</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">mean</span>(<span class="fu">abs</span>(x), <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Note</span>Show answer
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>If you are using RStudio server, files can be uploaded using the “Upload” icon in the <em>Files</em> pane.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(x) <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The pipe <code>|&gt;</code> takes the result on its left and feeds it as the <strong>first argument</strong> of the function on its right, letting you read the sequence of operations top-to-bottom/left-to-right instead of from the inside out.</p>
+</div>
 </div>
 </div>
 </section>
-<section id="files-description" class="level2">
-<h2 class="anchored" data-anchor-id="files-description">Files Description</h2>
-<section id="data-file" class="level3">
-<h3 class="anchored" data-anchor-id="data-file">Data File</h3>
-<p>We’ll be working with a gene expression dataset as an example, sourced from this <a href="https://monashbioinformaticsplatform.github.io/r-more/">link</a>.</p>
-<p>The data comes from an experiment using PCR to study 44 genes. The results were measured to see which genes are active at different stages in Yeast cell cycling. Several strains were tested, including wildtype and some with specific genes knock-downs. Samples were taken at nine time points over two cell cycles (two hours).</p>
-</section>
-<section id="the-r-script" class="level3">
-<h3 class="anchored" data-anchor-id="the-r-script">The R script</h3>
-<p>The <code>r_w01_exos.R</code> script contains all commands R for the exercise.</p>
-</section>
-</section>
-<section id="play-with-rstudio" class="level2">
-<h2 class="anchored" data-anchor-id="play-with-rstudio">Play with RStudio</h2>
-<p>In your R project, open the downloaded R script <code>r_w01_exos.R</code>: In RStudio menu bar, click <em>File</em> -&gt; <em>Open File</em> -&gt; selec the Rscript, or click the file in the <em>Files</em> pane.</p>
-<section id="import-data" class="level3">
-<h3 class="anchored" data-anchor-id="import-data">Import Data</h3>
-<ol type="1">
-<li>If you are not familiar with the file content, click on the CSV file in <em>Files</em> pane to “View” it. Identify the column separator and the decimal sign.</li>
-<li>Import the file into R and call the imported data “counts”.</li>
-<li>Copy paste the command shown in the R console.</li>
-</ol>
-</section>
-<section id="exercises" class="level3">
-<h3 class="anchored" data-anchor-id="exercises">Exercises</h3>
-<ol type="1">
-<li>What is the absolute file path of the imported data <code>counts</code>? What is its relative path? Verify your answer using the function <code>file.exists()</code>.</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>() <span class="co"># show the current working directory</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>abs_path <span class="ot">&lt;-</span> <span class="st">""</span> <span class="co"># put your answer between quotes</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>rel_path <span class="ot">&lt;-</span> <span class="st">""</span> <span class="co"># put your answer between quotes</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">file.exists</span>(abs_path) <span class="co"># check if R finds your file using absolute path</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">file.exists</span>(rel_path) <span class="co"># check if R finds your file using relative path</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<ol start="2" type="1">
-<li>What is the dimension (number of rows and columns) of the data frame? Check the “Environment” panel or use the function <code>dim()</code>.</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(counts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 45 41</code></pre>
-</div>
-</div>
-<p>In the “Environment” panel, click on the tabular icon next to the dataset to visualize the it.</p>
-<p>We can extract all gene expressions for the sample named “WT.2” using <code>counts[["WT.2"]]</code>.</p>
-<ol start="3" type="1">
-<li>Try <code>mode()</code> on the expression data for “WT.2”, what does it return?</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mode</span>(counts[[<span class="st">"WT.2"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "numeric"</code></pre>
-</div>
-</div>
-<ol start="4" type="1">
-<li>Calculate the average expression (<code>mean()</code>) and standard deviation (<code>sd()</code>) of genes from the sample “WT.2”.</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(counts[[<span class="st">"WT.2"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 148</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(counts[[<span class="st">"WT.2"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 392.7854</code></pre>
-</div>
-</div>
-<ol start="5" type="1">
-<li>Generate descriptive statistics for all genes from the sample “WT.2” using <code>summary()</code>.</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(counts[[<span class="st">"WT.2"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-      0       6      27     148     110    2527 </code></pre>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled" title="Stats Time!">
-<div class="callout-header d-flex align-content-center">
+<section id="tibbles-vs.-data-frames" class="level2">
+<h2 class="anchored" data-anchor-id="tibbles-vs.-data-frames">2. Tibbles <em>vs.</em> data frames</h2>
+<p>Name two differences between a <code>tibble</code> and a base R <code>data.frame</code> mentioned in the slides.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Stats Time!
+<span class="screen-reader-only">Note</span>Show answer
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>What are quartiles?</p>
-<p>Quartiles are three values that split sorted data into four equal parts.</p>
-<p><img src="images/boxplot.png" class="img-fluid" style="width:65.0%"></p>
-<p>(figure modified from this <a href="https://www.google.com/url?sa=i&amp;url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ABoxplot_vs_PDF.png&amp;psig=AOvVaw3y4ZFGXe2JU0ypMGAEc2_i&amp;ust=1734727102604000&amp;source=images&amp;cd=vfe&amp;opi=89978449&amp;ved=0CBQQjRxqFwoTCMDBxpfYtIoDFQAAAAAdAAAAABAE">source</a>)</p>
-<p>IQR (Interquartile range) = Q3 - Q1</p>
-</div>
-</div>
-<ol start="6" type="1">
-<li>Generate a histogram for the “WT.2” sample using <code>hist()</code>. What does the distribution look like?</li>
-</ol>
-<div class="callout callout-style-default callout-note callout-titled" title="Stats Time!">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Stats Time!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Histograms</strong> help us see how data is spread out. They show how many data points fall into different intervals, or <em>bins</em>. By looking at a histogram, we can quickly understand the shape of the data, like if it’s skewed or has outliers. It’s a simple way to get an overview of your data.</p>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(counts[[<span class="st">"WT.2"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="r_w01_exos_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled" title="Stats Time!">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Stats Time!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>log2 Transformation</strong></p>
-<p>A log2 transformation is commonly used to normalize data and reduce skewness, especially in datasets with values spanning several orders of magnitude. Many biological data, like gene expression counts, tend to have a highly skewed distribution with a long tail of large values. The log2 transformation helps:</p>
+<p>Any two of:</p>
 <ul>
-<li>Stabilize variance – Makes data with large differences more comparable.</li>
-<li>Handle ratios – Converts multiplicative relationships into additive ones, simplifying interpretation.</li>
-<li>Improve normality – Makes the data distribution closer to normal, which is often required for statistical tests.</li>
+<li>Tibbles have <strong>better/cleaner printing</strong> (<em>e.g.</em> only showing a limited number of rows/columns with their types).</li>
+<li>Tibbles are <strong>less strict</strong> about column names (<em>e.g.</em> allow names that wouldn’t be syntactically valid otherwise).</li>
+<li>Tibbles have more <strong>consistent subsetting</strong> behavior.</li>
+<li>Tibbles <strong>don’t store row names</strong> — the numbers shown before the first column are just row numbers for display, not stored data.</li>
 </ul>
 </div>
 </div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> counts[[<span class="st">"WT.2"</span>]], <span class="at">y =</span> <span class="fu">log2</span>(counts[[<span class="st">"WT.2"</span>]]),</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Original Scale"</span>, <span class="at">ylab =</span> <span class="st">"log2 Scale"</span>,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Gene expression for the sample WT.2"</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="dv">256</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lty =</span> <span class="dv">2</span>) <span class="co"># Add vertical line </span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">8</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lty =</span> <span class="dv">2</span>) <span class="co"># Add horizontal line</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="dv">500</span>, <span class="at">y =</span> <span class="dv">7</span>, <span class="at">labels =</span> <span class="fu">expression</span>(<span class="dv">2</span><span class="sc">^</span><span class="dv">8</span> <span class="sc">==</span> <span class="dv">256</span>)) <span class="co"># Add equation</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="r_w01_exos_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+</div>
+</section>
+<section id="reformatting-data" class="level2">
+<h2 class="anchored" data-anchor-id="reformatting-data">3. Reformatting data</h2>
+<p>You have a tibble <code>wider_data</code> with one row per gene and separate columns <code>control</code> and <code>treatment</code> for expression values. You want a single <code>condition</code> column and a single <code>expression_level</code> column instead. Which <code>{tidyr}</code> function do you use, and write the code.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Show answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>wider_data <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(control, treatment),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"condition"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"expression_level"</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Use <code>pivot_longer()</code> because you’re <strong>increasing the number of rows</strong> (going from a “wide” layout to a “long” one). <code>pivot_wider()</code> does the reverse: it increases the number of columns.</p>
 </div>
 </div>
 </div>
-<p>Re draw the histogram with the log2 transformed data, what does the distribution look like now?</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">log2</span>(counts[[<span class="st">"WT.2"</span>]]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="r_w01_exos_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+</section>
+<section id="select-helper-functions" class="level2">
+<h2 class="anchored" data-anchor-id="select-helper-functions">4. <code>select()</code> helper functions</h2>
+<p>Given a tibble <code>iris_tbl</code> with columns <code>Sepal.Length</code>, <code>Sepal.Width</code>, <code>Petal.Length</code>, <code>Petal.Width</code>, <code>Species</code>, write the <code>select()</code> call to get only the columns whose name <strong>contains</strong> <code>"Length"</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Show answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>iris_tbl <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"Length"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Other helpers include <code>starts_with()</code>, <code>ends_with()</code>, and <code>matches()</code> (regex), all case-insensitive by default.</p>
 </div>
 </div>
 </div>
-<ol start="7" type="1">
-<li>We can extract the gene name column (called “Feature”) and the column for sample “WT.2” using this command: <code>counts[, c("Feature", "WT.2")]</code>. Export the data to a file called <code>WT_2_expression.csv</code>, store this file in the <code>outputs</code> folder.</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(counts[, <span class="fu">c</span>(<span class="st">"Feature"</span>, <span class="st">"WT.2"</span>)], <span class="at">file =</span> <span class="st">"outputs/WT_2_expression.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="combining-filter-conditions" class="level2">
+<h2 class="anchored" data-anchor-id="combining-filter-conditions">5. Combining filter conditions</h2>
+<p>Write a <code>{dplyr}</code> pipeline to keep only rows from <code>iris_tbl</code> where <code>Sepal.Length &gt; 6.8</code> <strong>and</strong> <code>Species</code> is <code>"versicolor"</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>Check in the <code>outputs</code> folder, do you see the saved file? Does the content correspond to your expectations?</p>
-<hr>
-<section id="good-job-youve-taken-your-first-big-steps-into-r-and-youre-off-to-a-great-start-keep-it-up" class="level4">
-<h4 class="anchored" data-anchor-id="good-job-youve-taken-your-first-big-steps-into-r-and-youre-off-to-a-great-start-keep-it-up">Good job! 👏👏 You’ve taken your first big steps into R, and you’re off to a great start, keep it up!</h4>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Show answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>iris_tbl <span class="sc">|&gt;</span> <span class="fu">filter</span>(Sepal.Length <span class="sc">&gt;</span> <span class="fl">6.8</span> <span class="sc">&amp;</span> Species <span class="sc">==</span> <span class="st">"versicolor"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</section>
+<section id="group_by-and-summarise" class="level2">
+<h2 class="anchored" data-anchor-id="group_by-and-summarise">6. <code>group_by()</code> and <code>summarise()</code></h2>
+<p>What does <code>group_by()</code> actually do to the data? Does it summarize or change values on its own? What do you typically pair it with, and why might you call <code>ungroup()</code> afterward?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Show answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>group_by()</code> does <strong>not</strong> change or summarize the data itself, it just adds an internal grouping structure, so that subsequent operations (like <code>summarise()</code> or <code>mutate()</code>) are applied <strong>separately within each group</strong> instead of to the whole dataset.</p>
+<p>It’s typically paired with <code>summarise()</code> (e.g.&nbsp;<code>iris_tbl |&gt; group_by(Species) |&gt; summarise(mean_sepal_len = mean(Sepal.Length))</code>).</p>
+<p><code>ungroup()</code> removes that grouping structure afterward, so later steps in the pipeline aren’t accidentally still applied per-group.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="if_else-vs.-ifelse" class="level2">
+<h2 class="anchored" data-anchor-id="if_else-vs.-ifelse">7. <code>if_else()</code> <em>vs.</em> <code>ifelse()</code></h2>
+<p>What extra capability does <code>dplyr::if_else()</code> offer compared to base R’s <code>ifelse()</code>?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Show answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>if_else()</code> lets you explicitly control what happens for <strong>missing values (<code>NA</code>)</strong> via a <code>missing =</code> argument (e.g.&nbsp;<code>if_else(x &lt; 0, "negative", "positive", missing = "not available")</code>), whereas <code>ifelse()</code> just propagates <code>NA</code> silently wherever the condition is <code>NA</code>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="sorting-rows" class="level2">
+<h2 class="anchored" data-anchor-id="sorting-rows">8. Sorting rows</h2>
+<p>Write a <code>{dplyr}</code> call to sort <code>iris_tbl</code> by <code>Sepal.Length</code> in <strong>descending</strong> order, and use <code>Sepal.Width</code> (ascending) to break ties.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Show answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>iris_tbl <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(Sepal.Length), Sepal.Width)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>arrange()</code> sorts ascending by default; wrap a column in <code>desc()</code> to sort it descending. Listing multiple columns breaks ties using the later ones, in order.</p>
+</div>
+</div>
+</div>
 
 
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->

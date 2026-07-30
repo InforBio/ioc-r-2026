@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 1 - Hands-On Examples – IOT-2026</title>
+<title>Week 1 - Self-Check Quiz – IOT-2026</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -178,18 +178,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#goals" id="toc-goals" class="nav-link active" data-scroll-target="#goals">Goals</a></li>
-  <li><a href="#create-an-r-project" id="toc-create-an-r-project" class="nav-link" data-scroll-target="#create-an-r-project">Create an R project</a></li>
-  <li><a href="#files-description" id="toc-files-description" class="nav-link" data-scroll-target="#files-description">Files Description</a>
-  <ul class="collapse">
-  <li><a href="#data-file" id="toc-data-file" class="nav-link" data-scroll-target="#data-file">Data File</a></li>
-  <li><a href="#the-r-script" id="toc-the-r-script" class="nav-link" data-scroll-target="#the-r-script">The R script</a></li>
-  </ul></li>
-  <li><a href="#play-with-rstudio" id="toc-play-with-rstudio" class="nav-link" data-scroll-target="#play-with-rstudio">Play with RStudio</a>
-  <ul class="collapse">
-  <li><a href="#import-data" id="toc-import-data" class="nav-link" data-scroll-target="#import-data">Import Data</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
-  </ul></li>
+  <li><a href="#reading-the-console" id="toc-reading-the-console" class="nav-link active" data-scroll-target="#reading-the-console">1. Reading the console</a></li>
+  <li><a href="#why-use-an-r-project" id="toc-why-use-an-r-project" class="nav-link" data-scroll-target="#why-use-an-r-project">2. Why use an R Project?</a></li>
+  <li><a href="#absolute-vs.-relative-paths" id="toc-absolute-vs.-relative-paths" class="nav-link" data-scroll-target="#absolute-vs.-relative-paths">3. Absolute <em>vs.</em> relative paths</a></li>
+  <li><a href="#importing-and-exporting-data" id="toc-importing-and-exporting-data" class="nav-link" data-scroll-target="#importing-and-exporting-data">4. Importing and exporting data</a></li>
+  <li><a href="#exploring-a-new-data-frame" id="toc-exploring-a-new-data-frame" class="nav-link" data-scroll-target="#exploring-a-new-data-frame">5. Exploring a new data frame</a></li>
+  <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link" data-scroll-target="#summary-statistics">6. Summary statistics</a></li>
+  <li><a href="#quartiles-and-iqr" id="toc-quartiles-and-iqr" class="nav-link" data-scroll-target="#quartiles-and-iqr">7. Quartiles and IQR</a></li>
+  <li><a href="#why-log2-transform-gene-expression-data" id="toc-why-log2-transform-gene-expression-data" class="nav-link" data-scroll-target="#why-log2-transform-gene-expression-data">8. Why log2-transform gene expression data?</a></li>
   </ul>
 </nav>
     </div>
@@ -198,10 +194,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 1 - Hands-On Examples</h1>
+<h1 class="title">Week 1 - Self-Check Quiz</h1>
   <div class="quarto-categories">
     <div class="quarto-category">week01</div>
-    <div class="quarto-category">exercise</div>
+    <div class="quarto-category">quiz</div>
   </div>
   </div>
 
@@ -219,232 +215,200 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="goals" class="level2">
-<h2 class="anchored" data-anchor-id="goals">Goals</h2>
-<ul>
-<li>Get familiar with the RStudio</li>
-<li>Create an R project in RStudio</li>
-<li>Import data file into RStudio</li>
-<li>Export data from RStudio</li>
-</ul>
-</section>
-<section id="create-an-r-project" class="level2">
-<h2 class="anchored" data-anchor-id="create-an-r-project">Create an R project</h2>
-<ol type="1">
-<li>Open RStudio, create a new R project in the folder of your choice.</li>
-</ol>
-<p>Some rules for naming your project:</p>
-<ul>
-<li>Choose a short and descriptive name.</li>
-<li>Use snake case (lowercase letters and underscores only). Avoid special characters (such as <code>!</code>, <code>#</code>, ) and spaces.</li>
-<li>The name cannot starts with numbers.</li>
-</ul>
-<ol start="2" type="1">
-<li><p>Open your R project, create three new folders, <em>i.e.</em>, <code>data</code>, <code>scripts</code>, <code>outputs</code>.</p></li>
-<li><p>Download two files:</p></li>
-</ol>
-<ul>
-<li>An R script named “r_w01_exos.R” for this week’s exercise (<a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/week01/r_w01_exos.R">here</a>), save it into the <code>scripts</code> folder.</li>
-<li>A data file called “read-counts.csv” (<a href="https://raw.githubusercontent.com/InforBio/ioc-r-2026/refs/heads/main/ioc_r/r_contents/exos_data/read-counts.csv">here</a>), put it into the <code>data</code> folder.</li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
+<p>Use this quiz to check how well you understood this week’s session, or as a quick review if you didn’t have time to do the homework. Try to answer each question on your own before revealing the correction.</p>
+<section id="reading-the-console" class="level2">
+<h2 class="anchored" data-anchor-id="reading-the-console">1. Reading the console</h2>
+<p>In the R console, you suddenly see a <code>+</code> appear at the beginning of a new line instead of <code>&gt;</code>. What does this mean, and what are your two options to get back to a normal prompt?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Note</span>Show answer
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>If you are using RStudio server, files can be uploaded using the “Upload” icon in the <em>Files</em> pane.</p>
-</div>
-</div>
-</section>
-<section id="files-description" class="level2">
-<h2 class="anchored" data-anchor-id="files-description">Files Description</h2>
-<section id="data-file" class="level3">
-<h3 class="anchored" data-anchor-id="data-file">Data File</h3>
-<p>We’ll be working with a gene expression dataset as an example, sourced from this <a href="https://monashbioinformaticsplatform.github.io/r-more/">link</a>.</p>
-<p>The data comes from an experiment using PCR to study 44 genes. The results were measured to see which genes are active at different stages in Yeast cell cycling. Several strains were tested, including wildtype and some with specific genes knock-downs. Samples were taken at nine time points over two cell cycles (two hours).</p>
-</section>
-<section id="the-r-script" class="level3">
-<h3 class="anchored" data-anchor-id="the-r-script">The R script</h3>
-<p>The <code>r_w01_exos.R</code> script contains all commands R for the exercise.</p>
-</section>
-</section>
-<section id="play-with-rstudio" class="level2">
-<h2 class="anchored" data-anchor-id="play-with-rstudio">Play with RStudio</h2>
-<p>In your R project, open the downloaded R script <code>r_w01_exos.R</code>: In RStudio menu bar, click <em>File</em> -&gt; <em>Open File</em> -&gt; selec the Rscript, or click the file in the <em>Files</em> pane.</p>
-<section id="import-data" class="level3">
-<h3 class="anchored" data-anchor-id="import-data">Import Data</h3>
-<ol type="1">
-<li>If you are not familiar with the file content, click on the CSV file in <em>Files</em> pane to “View” it. Identify the column separator and the decimal sign.</li>
-<li>Import the file into R and call the imported data “counts”.</li>
-<li>Copy paste the command shown in the R console.</li>
-</ol>
-</section>
-<section id="exercises" class="level3">
-<h3 class="anchored" data-anchor-id="exercises">Exercises</h3>
-<ol type="1">
-<li>What is the absolute file path of the imported data <code>counts</code>? What is its relative path? Verify your answer using the function <code>file.exists()</code>.</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>() <span class="co"># show the current working directory</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>abs_path <span class="ot">&lt;-</span> <span class="st">""</span> <span class="co"># put your answer between quotes</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>rel_path <span class="ot">&lt;-</span> <span class="st">""</span> <span class="co"># put your answer between quotes</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">file.exists</span>(abs_path) <span class="co"># check if R finds your file using absolute path</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">file.exists</span>(rel_path) <span class="co"># check if R finds your file using relative path</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<ol start="2" type="1">
-<li>What is the dimension (number of rows and columns) of the data frame? Check the “Environment” panel or use the function <code>dim()</code>.</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(counts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 45 41</code></pre>
-</div>
-</div>
-<p>In the “Environment” panel, click on the tabular icon next to the dataset to visualize the it.</p>
-<p>We can extract all gene expressions for the sample named “WT.2” using <code>counts[["WT.2"]]</code>.</p>
-<ol start="3" type="1">
-<li>Try <code>mode()</code> on the expression data for “WT.2”, what does it return?</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mode</span>(counts[[<span class="st">"WT.2"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "numeric"</code></pre>
-</div>
-</div>
-<ol start="4" type="1">
-<li>Calculate the average expression (<code>mean()</code>) and standard deviation (<code>sd()</code>) of genes from the sample “WT.2”.</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(counts[[<span class="st">"WT.2"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 148</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(counts[[<span class="st">"WT.2"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 392.7854</code></pre>
-</div>
-</div>
-<ol start="5" type="1">
-<li>Generate descriptive statistics for all genes from the sample “WT.2” using <code>summary()</code>.</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(counts[[<span class="st">"WT.2"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-      0       6      27     148     110    2527 </code></pre>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled" title="Stats Time!">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Stats Time!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>What are quartiles?</p>
-<p>Quartiles are three values that split sorted data into four equal parts.</p>
-<p><img src="images/boxplot.png" class="img-fluid" style="width:65.0%"></p>
-<p>(figure modified from this <a href="https://www.google.com/url?sa=i&amp;url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ABoxplot_vs_PDF.png&amp;psig=AOvVaw3y4ZFGXe2JU0ypMGAEc2_i&amp;ust=1734727102604000&amp;source=images&amp;cd=vfe&amp;opi=89978449&amp;ved=0CBQQjRxqFwoTCMDBxpfYtIoDFQAAAAAdAAAAABAE">source</a>)</p>
-<p>IQR (Interquartile range) = Q3 - Q1</p>
-</div>
-</div>
-<ol start="6" type="1">
-<li>Generate a histogram for the “WT.2” sample using <code>hist()</code>. What does the distribution look like?</li>
-</ol>
-<div class="callout callout-style-default callout-note callout-titled" title="Stats Time!">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Stats Time!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Histograms</strong> help us see how data is spread out. They show how many data points fall into different intervals, or <em>bins</em>. By looking at a histogram, we can quickly understand the shape of the data, like if it’s skewed or has outliers. It’s a simple way to get an overview of your data.</p>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(counts[[<span class="st">"WT.2"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="r_w01_exos_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled" title="Stats Time!">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Stats Time!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>log2 Transformation</strong></p>
-<p>A log2 transformation is commonly used to normalize data and reduce skewness, especially in datasets with values spanning several orders of magnitude. Many biological data, like gene expression counts, tend to have a highly skewed distribution with a long tail of large values. The log2 transformation helps:</p>
+<p>The <code>+</code> means R thinks your command is <strong>not finished yet</strong> (e.g.&nbsp;you forgot to close a parenthesis or quote, or left a trailing comma/operator). You can either:</p>
 <ul>
-<li>Stabilize variance – Makes data with large differences more comparable.</li>
-<li>Handle ratios – Converts multiplicative relationships into additive ones, simplifying interpretation.</li>
-<li>Improve normality – Makes the data distribution closer to normal, which is often required for statistical tests.</li>
+<li>finish typing the rest of the command so R can execute it, or</li>
+<li>press <strong>Esc</strong> to cancel the input and get a fresh <code>&gt;</code> prompt.</li>
 </ul>
 </div>
 </div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> counts[[<span class="st">"WT.2"</span>]], <span class="at">y =</span> <span class="fu">log2</span>(counts[[<span class="st">"WT.2"</span>]]),</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Original Scale"</span>, <span class="at">ylab =</span> <span class="st">"log2 Scale"</span>,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Gene expression for the sample WT.2"</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="dv">256</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lty =</span> <span class="dv">2</span>) <span class="co"># Add vertical line </span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">8</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lty =</span> <span class="dv">2</span>) <span class="co"># Add horizontal line</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="dv">500</span>, <span class="at">y =</span> <span class="dv">7</span>, <span class="at">labels =</span> <span class="fu">expression</span>(<span class="dv">2</span><span class="sc">^</span><span class="dv">8</span> <span class="sc">==</span> <span class="dv">256</span>)) <span class="co"># Add equation</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="r_w01_exos_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+</div>
+</section>
+<section id="why-use-an-r-project" class="level2">
+<h2 class="anchored" data-anchor-id="why-use-an-r-project">2. Why use an R Project?</h2>
+<p>What problem does creating an <strong>R Project</strong> solve, compared to just opening loose <code>.R</code> scripts?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Show answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>An R Project fixes the <strong>working directory</strong> to one folder that contains everything for that piece of work (scripts, data, outputs). This means:</p>
+<ul>
+<li>R always knows where to look for your files.</li>
+<li>You can use short <strong>relative paths</strong> (e.g.&nbsp;<code>data/counts.csv</code>) instead of fragile absolute paths that only work on your own computer.</li>
+<li>It keeps a project’s files organized and easy to share with others.</li>
+</ul>
 </div>
 </div>
 </div>
-<p>Re draw the histogram with the log2 transformed data, what does the distribution look like now?</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">log2</span>(counts[[<span class="st">"WT.2"</span>]]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="r_w01_exos_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+</section>
+<section id="absolute-vs.-relative-paths" class="level2">
+<h2 class="anchored" data-anchor-id="absolute-vs.-relative-paths">3. Absolute <em>vs.</em> relative paths</h2>
+<p>Suppose <code>getwd()</code> returns <code>/Users/lijiao/Documents/r_week1</code>, and you have a file at <code>data/counts.csv</code> inside that project. Write both the <strong>absolute</strong> and <strong>relative</strong> path to this file, and the R code to check that each one exists.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Show answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>abs_path <span class="ot">&lt;-</span> <span class="st">"/Users/lijiao/Documents/r_week1/data/counts.csv"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>rel_path <span class="ot">&lt;-</span> <span class="st">"data/counts.csv"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">file.exists</span>(abs_path)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">file.exists</span>(rel_path)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Both point to the same file: the absolute path starts from the very top of the computer’s file system, while the relative path starts from the current working directory.</p>
 </div>
 </div>
 </div>
-<ol start="7" type="1">
-<li>We can extract the gene name column (called “Feature”) and the column for sample “WT.2” using this command: <code>counts[, c("Feature", "WT.2")]</code>. Export the data to a file called <code>WT_2_expression.csv</code>, store this file in the <code>outputs</code> folder.</li>
+</section>
+<section id="importing-and-exporting-data" class="level2">
+<h2 class="anchored" data-anchor-id="importing-and-exporting-data">4. Importing and exporting data</h2>
+<p>Which <code>{readr}</code> function would you use to <strong>import</strong> a CSV file into R as a data frame? Which one would you use to <strong>export</strong> a data frame back to a CSV file?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Show answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>To import: <code>read_csv("path/to/file.csv")</code></li>
+<li>To export: <code>write_csv(my_data, file = "path/to/file.csv")</code></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="exploring-a-new-data-frame" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-a-new-data-frame">5. Exploring a new data frame</h2>
+<p>You’ve just imported a dataset into an object called <code>counts</code>. Write the R code to:</p>
+<ol type="a">
+<li>check its dimensions (number of rows/columns)</li>
+<li>check the storage <code>mode</code> of the column <code>counts[["WT.2"]]</code></li>
 </ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(counts[, <span class="fu">c</span>(<span class="st">"Feature"</span>, <span class="st">"WT.2"</span>)], <span class="at">file =</span> <span class="st">"outputs/WT_2_expression.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>Check in the <code>outputs</code> folder, do you see the saved file? Does the content correspond to your expectations?</p>
-<hr>
-<section id="good-job-youve-taken-your-first-big-steps-into-r-and-youre-off-to-a-great-start-keep-it-up" class="level4">
-<h4 class="anchored" data-anchor-id="good-job-youve-taken-your-first-big-steps-into-r-and-youre-off-to-a-great-start-keep-it-up">Good job! 👏👏 You’ve taken your first big steps into R, and you’re off to a great start, keep it up!</h4>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Show answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a.</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(counts)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># b.</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mode</span>(counts[[<span class="st">"WT.2"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>dim()</code> returns <code>c(nrow, ncol)</code>. <code>mode()</code> tells you the basic storage type of the data (e.g.&nbsp;<code>"numeric"</code>, <code>"character"</code>).</p>
+</div>
+</div>
+</div>
+</section>
+<section id="summary-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="summary-statistics">6. Summary statistics</h2>
+<p>What is the difference between using <code>mean()</code> or <code>sd()</code> on a numeric vector versus using <code>summary()</code> on it? What extra information does <code>summary()</code> give you?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Show answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>mean()</code> and <code>sd()</code> each return a single number (the average and the standard deviation). <code>summary()</code> gives a fuller picture in one call: the <strong>minimum</strong>, <strong>1st quartile (Q1)</strong>, <strong>median</strong>, <strong>mean</strong>, <strong>3rd quartile (Q3)</strong>, and <strong>maximum</strong>, so you also see how the data is spread and whether it’s skewed, not just its center.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="quartiles-and-iqr" class="level2">
+<h2 class="anchored" data-anchor-id="quartiles-and-iqr">7. Quartiles and IQR</h2>
+<p>What are quartiles, and what does the <strong>IQR</strong> (interquartile range) represent?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Show answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Quartiles are the three values that split sorted data into four equal-sized parts (Q1, median/Q2, Q3). The <strong>IQR = Q3 − Q1</strong> represents the spread of the middle 50% of the data, and is often used to describe variability while being less sensitive to outliers than the full range.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="why-log2-transform-gene-expression-data" class="level2">
+<h2 class="anchored" data-anchor-id="why-log2-transform-gene-expression-data">8. Why log2-transform gene expression data?</h2>
+<p>Gene expression counts are often log2-transformed before plotting a histogram. Give one reason why this is useful.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Show answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Show answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Any one of these is a valid reason:</p>
+<ul>
+<li>It <strong>reduces skewness</strong>, since raw expression values often span several orders of magnitude with a long tail of large values.</li>
+<li>It <strong>stabilizes variance</strong>, making values with large differences more directly comparable.</li>
+<li>It turns <strong>multiplicative relationships (ratios/fold-changes) into additive ones</strong>, which is easier to interpret and plot.</li>
+<li>It makes the distribution <strong>closer to normal</strong>, which many statistical methods assume.</li>
+</ul>
+</div>
+</div>
+</div>
 
 
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->
