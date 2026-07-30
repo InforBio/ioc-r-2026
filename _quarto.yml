@@ -37,6 +37,9 @@ website:
 toc: true
 link-external-newwindow: true
 preview-links: auto
+filters:
+  - path: answer-callout.lua
+    at: pre-ast
 execute:
   echo: true
   warning: false
