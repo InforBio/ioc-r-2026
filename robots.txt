@@ -1,1 +1,1 @@
-Sitemap: https://InforBio.github.io/ioc-r-2026/sitemap.xml
+Sitemap: https://InforBio.github.io/iot-r-2026/sitemap.xml
