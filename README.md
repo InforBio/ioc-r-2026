@@ -1,7 +1,7 @@
-# Trainings @<a href="https://inforbio.github.io/" target="_blank">InforBio</a>
+# <a href="https://inforbio.github.io/" target="_blank">InforBio</a> Online Training (IOT)
 
-[![License](https://img.shields.io/github/license/InforBio/ioc-r-2026)](LICENSE)
-[![Auto build & publish](https://github.com/InforBio/ioc-r-2026/actions/workflows/publish-quarto.yml/badge.svg)]((https://github.com/InforBio/InforBio.github.io/actions/workflows/publish-quarto.yml/badge.svg))
+[![License](https://img.shields.io/github/license/InforBio/iot-r-2026)](LICENSE)
+[![Auto build & publish](https://github.com/InforBio/iot-r-2026/actions/workflows/publish-quarto.yml/badge.svg)](https://github.com/InforBio/iot-r-2026/actions/workflows/publish-quarto.yml)
 
 ## Edition 2026
 
