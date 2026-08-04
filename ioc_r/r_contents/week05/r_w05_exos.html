@@ -264,13 +264,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>my_pkgs <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">installed.packages</span>()[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>)])</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_pkgs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                Package Version Priority
-abind             abind   1.4-8     &lt;NA&gt;
-askpass         askpass   1.2.1     &lt;NA&gt;
-backports     backports   1.5.1     &lt;NA&gt;
-base64enc     base64enc   0.1-6     &lt;NA&gt;
-BiocManager BiocManager 1.30.27     &lt;NA&gt;
-bit                 bit   4.6.0     &lt;NA&gt;</code></pre>
+<pre><code>            Package  Version Priority
+abind         abind    1.4-8     &lt;NA&gt;
+askpass     askpass    1.2.1     &lt;NA&gt;
+backports backports    1.5.1     &lt;NA&gt;
+base64enc base64enc    0.1-6     &lt;NA&gt;
+BH               BH 1.90.0-1     &lt;NA&gt;
+Biobase     Biobase   2.72.0     &lt;NA&gt;</code></pre>
 </div>
 </div>
 <ol start="5" type="1">
@@ -279,7 +279,7 @@ bit                 bit   4.6.0     &lt;NA&gt;</code></pre>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(my_pkgs) <span class="co"># the number can be different</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 187</code></pre>
+<pre><code>[1] 228</code></pre>
 </div>
 </div>
 <ol start="6" type="1">
