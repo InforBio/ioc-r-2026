@@ -3,26 +3,34 @@
 
 ## Install New Packages -------------------------------------------------------------
 
-# We will use a couple of additional R packages for this training
-# in sessions 8 and 9, for example:
+# Let's warm up by installing a package just for fun: {cowsay} makes an
+# ASCII animal say whatever you want.
+
+## 1. Install the {`cowsay`} package, then load it and make it say something.
+# install.packages("cowsay") # you only need to install it once
+library(cowsay)
+say("Hello R!", by = "cow")
+
+# Now that you've seen how installing a package works, let's install the
+# packages we will actually use for this training in sessions 8 and 9, for example:
 # - {[tidyr](https://tidyr.tidyverse.org)}: provides functions that help you get to tidy data
 # - {[dplyr](https://dplyr.tidyverse.org)}: provides functions that help you to manipulate data
 
-## 1.Install the {`dplyr`} and {`tidyr`} packages.
+## 2. Install the {`dplyr`} and {`tidyr`} packages.
 # install.packages("dplyr") # you only need to install it once
 # install.packages("tidyr") # you only need to install it once
 
-## 2. Check if you can find `{dplyr}` and `{tidyr}`
+## 3. Check if you can find `{dplyr}` and `{tidyr}`
 ##    in the "Packages" panel in RStudio.
 
-## 3. Please use the following code to create a data frame of
+## 4. Please use the following code to create a data frame of
 ##    all installed packages in your system.
 ##    Show a couple of first lines of the data frame.
 my_pkgs <- as.data.frame(installed.packages()[, c(1, 3:4)])
 
-## 4. According to `my_pkgs`, how many packages are installed in your system?
+## 5. According to `my_pkgs`, how many packages are installed in your system?
 
-## 5. Extract the rows for the "ggplot2", "tidyr", "dplyr" packages from `my_pkgs`.
+## 6. Extract the rows for the "ggplot2", "tidyr", "dplyr" packages from `my_pkgs`.
 
 ## Create a Basic Histogram -------------------------------------------------------------
 

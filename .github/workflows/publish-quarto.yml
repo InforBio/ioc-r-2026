@@ -24,6 +24,7 @@ jobs:
               any::knitr
               any::rmarkdown
               any::tidyverse
+              any::cowsay
               any::ggsignif
               any::GGally
               any::ggpubr
